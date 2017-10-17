@@ -3337,7 +3337,7 @@ lastaccess integer DEFAULT '0' NOT NULL,\n\
 status integer DEFAULT '0' NOT NULL,\n\
 PRIMARY KEY (sessionid)\n\
 );\n\
-CREATE INDEX sessions_1 ON sessions (userid,status);\n\
+CREATE INDEX sessions_1 ON sessions (userid,status,lastaccess);\n\
 CREATE TABLE trigger_discovery (\n\
 triggerid bigint  NOT NULL REFERENCES triggers (triggerid) ON DELETE CASCADE,\n\
 parent_triggerid bigint  NOT NULL REFERENCES triggers (triggerid),\n\
@@ -3653,7 +3653,7 @@ CREATE TABLE dbversion (\n\
 mandatory integer DEFAULT '0' NOT NULL,\n\
 optional integer DEFAULT '0' NOT NULL\n\
 );\n\
-INSERT INTO dbversion VALUES ('3040000','3040001');\n\
+INSERT INTO dbversion VALUES ('3040000','3040005');\n\
 ";
 const char	*const db_schema_fkeys[] = {
 	NULL

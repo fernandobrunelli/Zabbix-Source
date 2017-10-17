@@ -1374,7 +1374,7 @@ CREATE TABLE sessions (
 	status                   integer         DEFAULT '0'               NOT NULL,
 	PRIMARY KEY (sessionid)
 );
-CREATE INDEX sessions_1 ON sessions (userid,status);
+CREATE INDEX sessions_1 ON sessions (userid,status,lastaccess);
 CREATE TABLE trigger_discovery (
 	triggerid                bigint                                    NOT NULL REFERENCES triggers (triggerid) ON DELETE CASCADE,
 	parent_triggerid         bigint                                    NOT NULL REFERENCES triggers (triggerid),
@@ -1690,4 +1690,4 @@ CREATE TABLE dbversion (
 	mandatory                integer         DEFAULT '0'               NOT NULL,
 	optional                 integer         DEFAULT '0'               NOT NULL
 );
-INSERT INTO dbversion VALUES ('3040000','3040001');
+INSERT INTO dbversion VALUES ('3040000','3040005');

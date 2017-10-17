@@ -1377,7 +1377,7 @@ CREATE TABLE `sessions` (
 	`status`                 integer         DEFAULT '0'               NOT NULL,
 	PRIMARY KEY (sessionid)
 ) ENGINE=InnoDB;
-CREATE INDEX `sessions_1` ON `sessions` (`userid`,`status`);
+CREATE INDEX `sessions_1` ON `sessions` (`userid`,`status`,`lastaccess`);
 CREATE TABLE `trigger_discovery` (
 	`triggerid`              bigint unsigned                           NOT NULL,
 	`parent_triggerid`       bigint unsigned                           NOT NULL,
@@ -1693,7 +1693,7 @@ CREATE TABLE `dbversion` (
 	`mandatory`              integer         DEFAULT '0'               NOT NULL,
 	`optional`               integer         DEFAULT '0'               NOT NULL
 ) ENGINE=InnoDB;
-INSERT INTO dbversion VALUES ('3040000','3040001');
+INSERT INTO dbversion VALUES ('3040000','3040005');
 ALTER TABLE `hosts` ADD CONSTRAINT `c_hosts_1` FOREIGN KEY (`proxy_hostid`) REFERENCES `hosts` (`hostid`);
 ALTER TABLE `hosts` ADD CONSTRAINT `c_hosts_2` FOREIGN KEY (`maintenanceid`) REFERENCES `maintenances` (`maintenanceid`);
 ALTER TABLE `hosts` ADD CONSTRAINT `c_hosts_3` FOREIGN KEY (`templateid`) REFERENCES `hosts` (`hostid`) ON DELETE CASCADE;

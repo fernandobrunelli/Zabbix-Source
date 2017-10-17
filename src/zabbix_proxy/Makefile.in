@@ -448,7 +448,7 @@ zabbix_proxy_SOURCES = \
 	servercomms.c servercomms.h \
 	events.c \
 	preprocessing.c \
-	proxy.c 
+	proxy.c
 
 @PROXY_IPCSERVICE_TRUE@LIBIPCSERVICE = $(top_srcdir)/src/libs/zbxipcservice/libzbxipcservice.a
 zabbix_proxy_LDADD = heart/libzbxheart.a \

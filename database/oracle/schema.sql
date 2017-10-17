@@ -1377,7 +1377,7 @@ CREATE TABLE sessions (
 	status                   number(10)      DEFAULT '0'               NOT NULL,
 	PRIMARY KEY (sessionid)
 );
-CREATE INDEX sessions_1 ON sessions (userid,status);
+CREATE INDEX sessions_1 ON sessions (userid,status,lastaccess);
 CREATE TABLE trigger_discovery (
 	triggerid                number(20)                                NOT NULL,
 	parent_triggerid         number(20)                                NOT NULL,
@@ -1693,7 +1693,7 @@ CREATE TABLE dbversion (
 	mandatory                number(10)      DEFAULT '0'               NOT NULL,
 	optional                 number(10)      DEFAULT '0'               NOT NULL
 );
-INSERT INTO dbversion VALUES ('3040000','3040001');
+INSERT INTO dbversion VALUES ('3040000','3040005');
 CREATE SEQUENCE proxy_history_seq
 START WITH 1
 INCREMENT BY 1
