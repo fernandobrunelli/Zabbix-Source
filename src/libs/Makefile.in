@@ -400,7 +400,8 @@ DIST_SUBDIRS = \
 	zbxregexp \
 	zbxtasks \
 	zbxhttp \
-	zbxipcservice
+	zbxipcservice \
+	zbxhistory
 
 @SERVER_TRUE@SERVER_SUBDIRS = \
 @SERVER_TRUE@	zbxcommshigh \
@@ -414,7 +415,8 @@ DIST_SUBDIRS = \
 @SERVER_TRUE@	zbxicmpping \
 @SERVER_TRUE@	zbxmedia \
 @SERVER_TRUE@	zbxself \
-@SERVER_TRUE@	zbxtasks
+@SERVER_TRUE@	zbxtasks \
+@SERVER_TRUE@	zbxhistory
 
 @PROXY_TRUE@@SERVER_FALSE@PROXY_SUBDIRS = \
 @PROXY_TRUE@@SERVER_FALSE@	zbxcommshigh \
@@ -427,7 +429,8 @@ DIST_SUBDIRS = \
 @PROXY_TRUE@@SERVER_FALSE@	zbxserver \
 @PROXY_TRUE@@SERVER_FALSE@	zbxicmpping \
 @PROXY_TRUE@@SERVER_FALSE@	zbxself \
-@PROXY_TRUE@@SERVER_FALSE@	zbxtasks
+@PROXY_TRUE@@SERVER_FALSE@	zbxtasks \
+@PROXY_TRUE@@SERVER_FALSE@	zbxhistory
 
 @AGENT_TRUE@@PROXY_FALSE@@SERVER_FALSE@AGENT_SUBDIRS = \
 @AGENT_TRUE@@PROXY_FALSE@@SERVER_FALSE@	zbxself
