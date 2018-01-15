@@ -1,6 +1,6 @@
 /*
 ** Zabbix
-** Copyright (C) 2001-2017 Zabbix SIA
+** Copyright (C) 2001-2018 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -3426,6 +3426,7 @@ PRIMARY KEY (eventid)\n\
 );\n\
 CREATE INDEX problem_1 ON problem (source,object,objectid);\n\
 CREATE INDEX problem_2 ON problem (r_clock);\n\
+CREATE INDEX problem_3 ON problem (r_eventid);\n\
 CREATE TABLE problem_tag (\n\
 problemtagid bigint  NOT NULL,\n\
 eventid bigint  NOT NULL REFERENCES problem (eventid) ON DELETE CASCADE,\n\
@@ -3653,7 +3654,7 @@ CREATE TABLE dbversion (\n\
 mandatory integer DEFAULT '0' NOT NULL,\n\
 optional integer DEFAULT '0' NOT NULL\n\
 );\n\
-INSERT INTO dbversion VALUES ('3040000','3040005');\n\
+INSERT INTO dbversion VALUES ('3040000','3040006');\n\
 ";
 const char	*const db_schema_fkeys[] = {
 	NULL

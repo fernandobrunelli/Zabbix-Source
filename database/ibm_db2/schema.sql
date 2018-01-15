@@ -1466,6 +1466,7 @@ CREATE TABLE problem (
 );
 CREATE INDEX problem_1 ON problem (source,object,objectid);
 CREATE INDEX problem_2 ON problem (r_clock);
+CREATE INDEX problem_3 ON problem (r_eventid);
 CREATE TABLE problem_tag (
 	problemtagid             bigint                                    NOT NULL,
 	eventid                  bigint                                    NOT NULL,
@@ -1693,7 +1694,7 @@ CREATE TABLE dbversion (
 	mandatory                integer         WITH DEFAULT '0'          NOT NULL,
 	optional                 integer         WITH DEFAULT '0'          NOT NULL
 );
-INSERT INTO dbversion VALUES ('3040000','3040005');
+INSERT INTO dbversion VALUES ('3040000','3040006');
 ALTER TABLE hosts ADD CONSTRAINT c_hosts_1 FOREIGN KEY (proxy_hostid) REFERENCES hosts (hostid);
 ALTER TABLE hosts ADD CONSTRAINT c_hosts_2 FOREIGN KEY (maintenanceid) REFERENCES maintenances (maintenanceid);
 ALTER TABLE hosts ADD CONSTRAINT c_hosts_3 FOREIGN KEY (templateid) REFERENCES hosts (hostid) ON DELETE CASCADE;

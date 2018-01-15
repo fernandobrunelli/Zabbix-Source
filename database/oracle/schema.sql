@@ -1466,6 +1466,7 @@ CREATE TABLE problem (
 );
 CREATE INDEX problem_1 ON problem (source,object,objectid);
 CREATE INDEX problem_2 ON problem (r_clock);
+CREATE INDEX problem_3 ON problem (r_eventid);
 CREATE TABLE problem_tag (
 	problemtagid             number(20)                                NOT NULL,
 	eventid                  number(20)                                NOT NULL,
@@ -1693,7 +1694,7 @@ CREATE TABLE dbversion (
 	mandatory                number(10)      DEFAULT '0'               NOT NULL,
 	optional                 number(10)      DEFAULT '0'               NOT NULL
 );
-INSERT INTO dbversion VALUES ('3040000','3040005');
+INSERT INTO dbversion VALUES ('3040000','3040006');
 CREATE SEQUENCE proxy_history_seq
 START WITH 1
 INCREMENT BY 1
