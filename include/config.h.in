@@ -295,6 +295,12 @@
 /* Define to 1 if you have the <resolv.h> header file. */
 #undef HAVE_RESOLV_H
 
+/* Define to 1 if 'res_ndestroy' exists. */
+#undef HAVE_RES_NDESTROY
+
+/* Define to 1 if 'res_ninit' exists. */
+#undef HAVE_RES_NINIT
+
 /* Define to 1 if you have the DNS functions */
 #undef HAVE_RES_QUERY
 
