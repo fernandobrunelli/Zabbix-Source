@@ -26,7 +26,7 @@ INSERT INTO usrgrp (usrgrpid,name,gui_access,users_status,debug_mode) values ('1
 INSERT INTO usrgrp (usrgrpid,name,gui_access,users_status,debug_mode) values ('12','No access to the frontend','2','0','0');
 INSERT INTO users_groups (id,usrgrpid,userid) values ('2','8','2');
 INSERT INTO users_groups (id,usrgrpid,userid) values ('4','7','1');
-INSERT INTO scripts (scriptid,name,command,host_access,usrgrpid,groupid,description,confirmation,type,execute_on) values ('1','Ping','/bin/ping -c 3 {HOST.CONN}','2',NULL,NULL,'','','0','2');
+INSERT INTO scripts (scriptid,name,command,host_access,usrgrpid,groupid,description,confirmation,type,execute_on) values ('1','Ping','ping -c 3 {HOST.CONN}; case $? in [01]) true;; *) false;; esac','2',NULL,NULL,'','','0','2');
 INSERT INTO scripts (scriptid,name,command,host_access,usrgrpid,groupid,description,confirmation,type,execute_on) values ('2','Traceroute','/usr/bin/traceroute {HOST.CONN}','2',NULL,NULL,'','','0','2');
 INSERT INTO scripts (scriptid,name,command,host_access,usrgrpid,groupid,description,confirmation,type,execute_on) values ('3','Detect operating system','sudo /usr/bin/nmap -O {HOST.CONN}','2','7',NULL,'','','0','2');
 INSERT INTO actions (actionid,name,eventsource,evaltype,status,esc_period,def_shortdata,def_longdata,r_shortdata,r_longdata,formula,maintenance_mode,ack_shortdata,ack_longdata) values ('2','Auto discovery. Linux servers.','1','0','1','0','','','','','','1','','');
@@ -4499,16 +4499,6 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Last three attempts returned timeout.  Please check device connectivity.',NULL,'0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14252','{14379}>{$ICMP_LOSS_WARN} and {14379}<100','High ICMP ping loss','','0','2','',NULL,'0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14253','{14380}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','',NULL,'0','0','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14254','{$IFCONTROL:"{#IFNAME}"}=1 and ({14381}=2 and {14382}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down',NULL,'0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14258','{$IFCONTROL:"{#IFNAME}"}=1 and ({14393}=2 and {14394}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down',NULL,'0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14262','{$IFCONTROL:"{#IFNAME}"}=1 and ({14405}=2 and {14406}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down',NULL,'0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14266','{$IFCONTROL:"{#IFNAME}"}=1 and ({14417}=2 and {14418}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down',NULL,'0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14274','{$IFCONTROL:"{#IFNAME}"}=1 and ({14441}=2 and {14442}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down',NULL,'0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14291','{14466}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes',NULL,'0','0','0','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14296','{14471}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
@@ -4708,111 +4698,6 @@ SNMP is not available for polling. Please check device connectivity and SNMP set
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15170','{16375}=0','No SNMP data collection','','0','2','Last value: {ITEM.LASTVALUE1}.
 SNMP is not available for polling. Please check device connectivity and SNMP settings.',NULL,'0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15225','{16477}>{$CPU_UTIL_MAX}','{#SNMPVALUE}: High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15240','({16518}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16519} or
-{16520}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16519}) and
-{16519}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16518}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16519} and
-{16520}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16519}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15241','{16521}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16522}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16521}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16522}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15242','{16523}<0 and {16524}>0
-and (
-{16525}=6 or
-{16525}=7 or
-{16525}=11 or
-{16525}=62 or
-{16525}=69 or
-{16525}=117
-)
-and
-({16526}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16523}>0 and {16527}>0) or
-({16526}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15249','({16548}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16549} or
-{16550}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16549}) and
-{16549}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16548}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16549} and
-{16550}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16549}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15250','{16551}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16552}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16551}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16552}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15251','{16553}<0 and {16554}>0
-and (
-{16555}=6 or
-{16555}=7 or
-{16555}=11 or
-{16555}=62 or
-{16555}=69 or
-{16555}=117
-)
-and
-({16556}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16553}>0 and {16557}>0) or
-({16556}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15258','({16578}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16579} or
-{16580}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16579}) and
-{16579}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16578}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16579} and
-{16580}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16579}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15259','{16581}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16582}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16581}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16582}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15260','{16583}<0 and {16584}>0
-and (
-{16585}=6 or
-{16585}=7 or
-{16585}=11 or
-{16585}=62 or
-{16585}=69 or
-{16585}=117
-)
-and
-({16586}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16583}>0 and {16587}>0) or
-({16586}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15264','({16598}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16599} or
-{16600}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16599}) and
-{16599}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16598}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16599} and
-{16600}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16599}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15265','{16601}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16602}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16601}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16602}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15266','{16603}<0 and {16604}>0
-and (
-{16605}=6 or
-{16605}=7 or
-{16605}=11 or
-{16605}=62 or
-{16605}=69 or
-{16605}=117
-)
-and
-({16606}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16603}>0 and {16607}>0) or
-({16606}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15267','({16608}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16609} or
-{16610}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16609}) and
-{16609}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16608}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16609} and
-{16610}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16609}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15268','{16611}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16612}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16611}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16612}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15269','{16613}<0 and {16614}>0
-and (
-{16615}=6 or
-{16615}=7 or
-{16615}=11 or
-{16615}=62 or
-{16615}=69 or
-{16615}=117
-)
-and
-({16616}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16613}>0 and {16617}>0) or
-({16616}=2)','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15330','{16818}=1','#{#SNMPINDEX}: Fan is in critical state','','0','3','Last value: {ITEM.LASTVALUE1}.
 Please check the fan unit',NULL,'0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15331','{16819}=1','PSU {#SNMPVALUE}: Power supply is in critical state','','0','3','Last value: {ITEM.LASTVALUE1}.
@@ -4937,6 +4822,126 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Please check the fan unit',NULL,'0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15399','{16936}=1','#{#SNMPVALUE}: Power supply is in critical state','','0','3','Last value: {ITEM.LASTVALUE1}.
 Please check the power supply unit for errors',NULL,'0','2','0','','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15400','{$IFCONTROL:"{#IFNAME}"}=1 and ({16937}=2 and {16938}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down',NULL,'0','2','1','{16937}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15401','({16939}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16940} or
+{16941}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16940}) and
+{16940}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16939}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16940} and
+{16941}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16940}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15403','{16944}<0 and {16945}>0
+and (
+{16946}=6 or
+{16946}=7 or
+{16946}=11 or
+{16946}=62 or
+{16946}=69 or
+{16946}=117
+)
+and
+({16947}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16944}>0 and {16948}>0) or
+({16947}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15412','{$IFCONTROL:"{#IFNAME}"}=1 and ({16973}=2 and {16974}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down',NULL,'0','2','1','{16973}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15413','({16975}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16976} or
+{16977}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16976}) and
+{16976}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{16975}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16976} and
+{16977}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16976}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15415','{16980}<0 and {16981}>0
+and (
+{16982}=6 or
+{16982}=7 or
+{16982}=11 or
+{16982}=62 or
+{16982}=69 or
+{16982}=117
+)
+and
+({16983}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({16980}>0 and {16984}>0) or
+({16983}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15424','{$IFCONTROL:"{#IFNAME}"}=1 and ({17009}=2 and {17010}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down',NULL,'0','2','1','{17009}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15425','({17011}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17012} or
+{17013}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17012}) and
+{17012}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{17011}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17012} and
+{17013}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17012}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15427','{17016}<0 and {17017}>0
+and (
+{17018}=6 or
+{17018}=7 or
+{17018}=11 or
+{17018}=62 or
+{17018}=69 or
+{17018}=117
+)
+and
+({17019}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({17016}>0 and {17020}>0) or
+({17019}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15428','{$IFCONTROL:"{#IFNAME}"}=1 and ({17021}=2 and {17022}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down',NULL,'0','2','1','{17021}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15429','({17023}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17024} or
+{17025}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17024}) and
+{17024}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{17023}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17024} and
+{17025}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17024}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15431','{17028}<0 and {17029}>0
+and (
+{17030}=6 or
+{17030}=7 or
+{17030}=11 or
+{17030}=62 or
+{17030}=69 or
+{17030}=117
+)
+and
+({17031}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({17028}>0 and {17032}>0) or
+({17031}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15512','{$IFCONTROL:"{#IFNAME}"}=1 and ({17273}=2 and {17274}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down',NULL,'0','2','1','{17273}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15513','({17275}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17276} or
+{17277}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17276}) and
+{17276}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.',NULL,'0','2','1','{17275}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17276} and
+{17277}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17276}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15515','{17280}<0 and {17281}>0
+and (
+{17282}=6 or
+{17282}=7 or
+{17282}=11 or
+{17282}=62 or
+{17282}=69 or
+{17282}=117
+)
+and
+({17283}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.',NULL,'0','2','1','({17280}>0 and {17284}>0) or
+({17283}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15520','{17357}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17358}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold',NULL,'0','2','1','{17357}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17358}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15523','{17363}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17364}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold',NULL,'0','2','1','{17363}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17364}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15526','{17369}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17370}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold',NULL,'0','2','1','{17369}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17370}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15527','{17371}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17372}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold',NULL,'0','2','1','{17371}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17372}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15548','{17413}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17414}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold',NULL,'0','2','1','{17413}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17414}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('10045','{12927}>0','Version of zabbix_agent(d) was changed on {HOST.NAME}','','0','1','','13026','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('10047','{12550}=1','Zabbix agent on {HOST.NAME} is unreachable for 5 minutes','','0','3','','13025','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('13075','{12648}<5','Less than 5% free in the value cache','','0','3','','13074','0','0','0','','0','','0');
@@ -5017,32 +5022,24 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Last three attempts returned timeout.  Please check device connectivity.','14251','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14294','{14469}>{$ICMP_LOSS_WARN} and {14469}<100','High ICMP ping loss','','0','2','','14252','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14295','{14470}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14253','0','0','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14309','{$IFCONTROL:"{#IFNAME}"}=1 and ({14505}=2 and {14506}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14311','{14508}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14312','{14509}>{$ICMP_LOSS_WARN} and {14509}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14313','{14510}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14314','{14511}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14326','{$IFCONTROL:"{#IFNAME}"}=1 and ({14534}=2 and {14535}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14327','{14536}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14328','{14537}>{$ICMP_LOSS_WARN} and {14537}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14329','{14538}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14330','{14539}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14346','{$IFCONTROL:"{#IFNAME}"}=1 and ({14568}=2 and {14569}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14347','{14570}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14348','{14571}>{$ICMP_LOSS_WARN} and {14571}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14349','{14572}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14350','{14573}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14355','{$IFCONTROL:"{#IFNAME}"}=1 and ({14585}=2 and {14586}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14356','{14587}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14357','{14588}>{$ICMP_LOSS_WARN} and {14588}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5053,8 +5050,6 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14367','{14601}>{$CPU_UTIL_MAX}','High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14361','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14368','{14602}>{$MEMORY_UTIL_MAX}','High memory utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14362','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14369','{14603}>{$MEMORY_UTIL_MAX}','High memory utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14362','0','0','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14387','{$IFCONTROL:"{#IFNAME}"}=1 and ({14638}=2 and {14639}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14389','{14641}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14390','{14642}>{$ICMP_LOSS_WARN} and {14642}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5081,120 +5076,90 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Device serial number has changed. Ack to close','14417','0','2','2','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14437','{14722}<{$TEMP_CRIT_LOW:""}','{#SNMPVALUE}: Temperature is too low: <{$TEMP_CRIT_LOW:""}','','0','3','Last value: {ITEM.LASTVALUE1}.','14420','0','2','1','{14723}>{$TEMP_CRIT_LOW:""}+3','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14439','{14726}<{$TEMP_CRIT_LOW:""}','{#SNMPVALUE}: Temperature is too low: <{$TEMP_CRIT_LOW:""}','','0','3','Last value: {ITEM.LASTVALUE1}.','14420','0','2','1','{14727}>{$TEMP_CRIT_LOW:""}+3','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14449','{$IFCONTROL:"{#IFNAME}"}=1 and ({14744}=2 and {14745}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14451','{14747}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14452','{14748}>{$ICMP_LOSS_WARN} and {14748}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14453','{14749}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14454','{14750}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14467','{$IFCONTROL:"{#IFNAME}"}=1 and ({14774}=2 and {14775}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14468','{14776}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14469','{14777}>{$ICMP_LOSS_WARN} and {14777}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14470','{14778}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14471','{14779}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14484','{$IFCONTROL:"{#IFNAME}"}=1 and ({14803}=2 and {14804}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14486','{14806}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14487','{14807}>{$ICMP_LOSS_WARN} and {14807}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14488','{14808}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14489','{14809}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14503','{$IFCONTROL:"{#IFNAME}"}=1 and ({14835}=2 and {14836}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14505','{14838}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14506','{14839}>{$ICMP_LOSS_WARN} and {14839}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14507','{14840}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14508','{14841}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14522','{$IFCONTROL:"{#IFNAME}"}=1 and ({14868}=2 and {14869}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14254','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14524','{14871}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14288','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14525','{14872}>{$ICMP_LOSS_WARN} and {14872}<100','High ICMP ping loss','','0','2','','14289','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14526','{14873}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14290','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14527','{14874}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14291','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14532','{$IFCONTROL:"{#IFNAME}"}=1 and ({14886}=2 and {14887}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14258','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14534','{14889}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14535','{14890}>{$ICMP_LOSS_WARN} and {14890}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14536','{14891}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14537','{14892}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14542','{$IFCONTROL:"{#IFNAME}"}=1 and ({14904}=2 and {14905}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14544','{14907}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14545','{14908}>{$ICMP_LOSS_WARN} and {14908}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14546','{14909}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14547','{14910}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14580','{$IFCONTROL:"{#IFNAME}"}=1 and ({14969}=2 and {14970}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14582','{14972}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14583','{14973}>{$ICMP_LOSS_WARN} and {14973}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14584','{14974}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14585','{14975}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14597','{$IFCONTROL:"{#IFNAME}"}=1 and ({14998}=2 and {14999}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14598','{15000}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14599','{15001}>{$ICMP_LOSS_WARN} and {15001}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14600','{15002}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14601','{15003}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14613','{$IFCONTROL:"{#IFNAME}"}=1 and ({15029}=2 and {15030}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14615','{15032}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14616','{15033}>{$ICMP_LOSS_WARN} and {15033}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14617','{15034}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14618','{15035}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14651','{$IFCONTROL:"{#IFNAME}"}=1 and ({15092}=2 and {15093}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14652','{15094}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14653','{15095}>{$ICMP_LOSS_WARN} and {15095}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14654','{15096}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14655','{15097}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14672','{$IFCONTROL:"{#IFNAME}"}=1 and ({15129}=2 and {15130}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14673','{15131}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14674','{15132}>{$ICMP_LOSS_WARN} and {15132}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14675','{15133}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14676','{15134}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14689','{$IFCONTROL:"{#IFNAME}"}=1 and ({15160}=2 and {15161}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14691','{15163}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14692','{15164}>{$ICMP_LOSS_WARN} and {15164}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14693','{15165}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14694','{15166}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14703','{$IFCONTROL:"{#IFNAME}"}=1 and ({15184}=2 and {15185}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14258','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14704','{15186}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14705','{15187}>{$ICMP_LOSS_WARN} and {15187}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14706','{15188}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14707','{15189}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14716','{$IFCONTROL:"{#IFNAME}"}=1 and ({15207}=2 and {15208}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14254','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14717','{15209}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14288','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14718','{15210}>{$ICMP_LOSS_WARN} and {15210}<100','High ICMP ping loss','','0','2','','14289','0','0','0','','0','','0');
@@ -5204,8 +5169,6 @@ The device uptime is less than 10 minutes','14291','0','0','0','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14860','{15580}>{$CPU_UTIL_MAX}','#{#SNMPINDEX}: High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14247','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14861','{15581}>{$STORAGE_UTIL_CRIT}','{#SNMPVALUE}: Disk space is critically low','','0','3','Last value: {ITEM.LASTVALUE1}.','14249','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14862','{15582}>{$STORAGE_UTIL_WARN}','{#SNMPVALUE}: Disk space is low','','0','2','Last value: {ITEM.LASTVALUE1}.','14250','0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14867','{$IFCONTROL:"{#IFNAME}"}=1 and ({15594}=2 and {15595}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14869','{15597}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14870','{15598}>{$ICMP_LOSS_WARN} and {15598}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5215,16 +5178,12 @@ The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14874','{15602}>{$CPU_UTIL_MAX}','#{#SNMPINDEX}: High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14247','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14875','{15603}>{$STORAGE_UTIL_CRIT}','{#SNMPVALUE}: Disk space is critically low','','0','3','Last value: {ITEM.LASTVALUE1}.','14249','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14876','{15604}>{$STORAGE_UTIL_WARN}','{#SNMPVALUE}: Disk space is low','','0','2','Last value: {ITEM.LASTVALUE1}.','14250','0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14881','{$IFCONTROL:"{#IFNAME}"}=1 and ({15616}=2 and {15617}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14274','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14882','{15618}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14883','{15619}>{$ICMP_LOSS_WARN} and {15619}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14884','{15620}>{$ICMP_RESPONSE_TIME_WARN}','High ICMP ping response time','','0','2','','14295','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14885','{15621}<10m','{HOST.NAME} has been restarted','','0','2','Last value: {ITEM.LASTVALUE1}.
 The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14904','{$IFCONTROL:"{#IFNAME}"}=1 and ({15675}=2 and {15676}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14906','{15678}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14907','{15679}>{$ICMP_LOSS_WARN} and {15679}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5234,8 +5193,6 @@ The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14920','{15697}>{$CPU_UTIL_MAX}','#{#SNMPINDEX}: High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14247','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14921','{15698}>{$STORAGE_UTIL_CRIT}','{#SNMPVALUE}: Disk space is critically low','','0','3','Last value: {ITEM.LASTVALUE1}.','14249','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14922','{15699}>{$STORAGE_UTIL_WARN}','{#SNMPVALUE}: Disk space is low','','0','2','Last value: {ITEM.LASTVALUE1}.','14250','0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14927','{$IFCONTROL:"{#IFNAME}"}=1 and ({15711}=2 and {15712}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14928','{15713}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('14929','{15714}>{$ICMP_LOSS_WARN} and {15714}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5327,8 +5284,6 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Device serial number has changed. Ack to close','14417','0','2','2','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15214','{16457}<{$TEMP_CRIT_LOW:""}','{#SNMPVALUE}: Temperature is too low: <{$TEMP_CRIT_LOW:""}','','0','3','Last value: {ITEM.LASTVALUE1}.','14420','0','2','1','{16458}>{$TEMP_CRIT_LOW:""}+3','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15215','{16459}>{$MEMORY_UTIL_MAX}','{#SNMPVALUE}: High memory utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','14414','0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15219','{$IFCONTROL:"{#IFNAME}"}=1 and ({16470}=2 and {16471}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
-Interface is down','14266','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15220','{16472}=0','Unavailable by ICMP ping','','0','4','Last value: {ITEM.LASTVALUE1}.
 Last three attempts returned timeout.  Please check device connectivity.','14293','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15221','{16473}>{$ICMP_LOSS_WARN} and {16473}<100','High ICMP ping loss','','0','2','','14294','0','0','0','','0','','0');
@@ -5338,531 +5293,6 @@ The device uptime is less than 10 minutes','14296','0','0','0','','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15224','{16476}=0','No SNMP data collection','','0','2','Last value: {ITEM.LASTVALUE1}.
 SNMP is not available for polling. Please check device connectivity and SNMP settings.','15170','0','0','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15228','{16484}>{$CPU_UTIL_MAX}','{#SNMPVALUE}: High CPU utilization','','0','3','Last value: {ITEM.LASTVALUE1}.','15225','0','2','0','','0','','0');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15243','({16528}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16529} or
-{16530}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16529}) and
-{16529}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15240','0','2','1','{16528}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16529} and
-{16530}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16529}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15244','({16531}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16532} or
-{16533}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16532}) and
-{16532}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15240','0','2','1','{16531}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16532} and
-{16533}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16532}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15245','{16534}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16535}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15241','0','2','1','{16534}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16535}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15246','{16536}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16537}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15241','0','2','1','{16536}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16537}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15247','{16538}<0 and {16539}>0
-and (
-{16540}=6 or
-{16540}=7 or
-{16540}=11 or
-{16540}=62 or
-{16540}=69 or
-{16540}=117
-)
-and
-({16541}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15242','0','2','1','({16538}>0 and {16542}>0) or
-({16541}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15248','{16543}<0 and {16544}>0
-and (
-{16545}=6 or
-{16545}=7 or
-{16545}=11 or
-{16545}=62 or
-{16545}=69 or
-{16545}=117
-)
-and
-({16546}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15242','0','2','1','({16543}>0 and {16547}>0) or
-({16546}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15252','({16558}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16559} or
-{16560}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16559}) and
-{16559}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15249','0','2','1','{16558}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16559} and
-{16560}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16559}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15253','({16561}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16562} or
-{16563}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16562}) and
-{16562}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15249','0','2','1','{16561}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16562} and
-{16563}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16562}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15254','{16564}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16565}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15250','0','2','1','{16564}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16565}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15255','{16566}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16567}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15250','0','2','1','{16566}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16567}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15256','{16568}<0 and {16569}>0
-and (
-{16570}=6 or
-{16570}=7 or
-{16570}=11 or
-{16570}=62 or
-{16570}=69 or
-{16570}=117
-)
-and
-({16571}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15251','0','2','1','({16568}>0 and {16572}>0) or
-({16571}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15257','{16573}<0 and {16574}>0
-and (
-{16575}=6 or
-{16575}=7 or
-{16575}=11 or
-{16575}=62 or
-{16575}=69 or
-{16575}=117
-)
-and
-({16576}<>2)
-','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15251','0','2','1','({16573}>0 and {16577}>0) or
-({16576}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15261','({16588}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16589} or
-{16590}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16589}) and
-{16589}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15258','0','2','1','{16588}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16589} and
-{16590}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16589}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15262','{16591}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16592}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15259','0','2','1','{16591}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16592}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15263','{16593}<0 and {16594}>0
-and (
-{16595}=6 or
-{16595}=7 or
-{16595}=11 or
-{16595}=62 or
-{16595}=69 or
-{16595}=117
-)
-and
-({16596}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15260','0','2','1','({16593}>0 and {16597}>0) or
-({16596}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15270','({16618}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16619} or
-{16620}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16619}) and
-{16619}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16618}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16619} and
-{16620}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16619}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15271','({16621}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16622} or
-{16623}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16622}) and
-{16622}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16621}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16622} and
-{16623}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16622}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15272','({16624}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16625} or
-{16626}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16625}) and
-{16625}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16624}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16625} and
-{16626}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16625}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15273','({16627}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16628} or
-{16629}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16628}) and
-{16628}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16627}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16628} and
-{16629}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16628}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15274','({16630}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16631} or
-{16632}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16631}) and
-{16631}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16630}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16631} and
-{16632}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16631}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15275','({16633}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16634} or
-{16635}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16634}) and
-{16634}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16633}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16634} and
-{16635}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16634}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15276','({16636}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16637} or
-{16638}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16637}) and
-{16637}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16636}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16637} and
-{16638}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16637}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15277','({16639}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16640} or
-{16641}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16640}) and
-{16640}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16639}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16640} and
-{16641}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16640}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15278','({16642}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16643} or
-{16644}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16643}) and
-{16643}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16642}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16643} and
-{16644}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16643}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15279','({16645}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16646} or
-{16647}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16646}) and
-{16646}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16645}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16646} and
-{16647}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16646}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15280','({16648}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16649} or
-{16650}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16649}) and
-{16649}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16648}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16649} and
-{16650}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16649}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15281','({16651}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16652} or
-{16653}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16652}) and
-{16652}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16651}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16652} and
-{16653}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16652}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15282','({16654}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16655} or
-{16656}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16655}) and
-{16655}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16654}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16655} and
-{16656}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16655}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15283','({16657}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16658} or
-{16659}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16658}) and
-{16658}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16657}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16658} and
-{16659}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16658}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15284','({16660}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16661} or
-{16662}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16661}) and
-{16661}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16660}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16661} and
-{16662}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16661}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15285','({16663}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16664} or
-{16665}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16664}) and
-{16664}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16663}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16664} and
-{16665}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16664}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15286','({16666}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16667} or
-{16668}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16667}) and
-{16667}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16666}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16667} and
-{16668}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16667}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15287','({16669}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16670} or
-{16671}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16670}) and
-{16670}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16669}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16670} and
-{16671}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16670}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15288','({16672}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16673} or
-{16674}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16673}) and
-{16673}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16672}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16673} and
-{16674}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16673}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15289','({16675}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16676} or
-{16677}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16676}) and
-{16676}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15267','0','2','1','{16675}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16676} and
-{16677}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16676}','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15290','{16678}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16679}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16678}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16679}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15291','{16680}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16681}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16680}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16681}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15292','{16682}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16683}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16682}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16683}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15293','{16684}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16685}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16684}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16685}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15294','{16686}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16687}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16686}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16687}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15295','{16688}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16689}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16688}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16689}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15296','{16690}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16691}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16690}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16691}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15297','{16692}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16693}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16692}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16693}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15298','{16694}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16695}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16694}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16695}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15299','{16696}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16697}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16696}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16697}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15300','{16698}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16699}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16698}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16699}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15301','{16700}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16701}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16700}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16701}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15302','{16702}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16703}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16702}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16703}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15303','{16704}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16705}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16704}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16705}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15304','{16706}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16707}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16706}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16707}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15305','{16708}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16709}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16708}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16709}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15306','{16710}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16711}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16710}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16711}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15307','{16712}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16713}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16712}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16713}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15308','{16714}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16715}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16714}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16715}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15309','{16716}>{$IF_ERRORS_WARN:"{#IFNAME}"}
-or {16717}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.','15268','0','2','1','{16716}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2
-and {16717}<{$IF_ERRORS_WARN:"{#IFNAME}"}-2','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15310','{16718}<0 and {16719}>0
-and (
-{16720}=6 or
-{16720}=7 or
-{16720}=11 or
-{16720}=62 or
-{16720}=69 or
-{16720}=117
-)
-and
-({16721}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16718}>0 and {16722}>0) or
-({16721}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15311','{16723}<0 and {16724}>0
-and (
-{16725}=6 or
-{16725}=7 or
-{16725}=11 or
-{16725}=62 or
-{16725}=69 or
-{16725}=117
-)
-and
-({16726}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16723}>0 and {16727}>0) or
-({16726}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15312','{16728}<0 and {16729}>0
-and (
-{16730}=6 or
-{16730}=7 or
-{16730}=11 or
-{16730}=62 or
-{16730}=69 or
-{16730}=117
-)
-and
-({16731}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16728}>0 and {16732}>0) or
-({16731}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15313','{16733}<0 and {16734}>0
-and (
-{16735}=6 or
-{16735}=7 or
-{16735}=11 or
-{16735}=62 or
-{16735}=69 or
-{16735}=117
-)
-and
-({16736}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16733}>0 and {16737}>0) or
-({16736}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15314','{16738}<0 and {16739}>0
-and (
-{16740}=6 or
-{16740}=7 or
-{16740}=11 or
-{16740}=62 or
-{16740}=69 or
-{16740}=117
-)
-and
-({16741}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16738}>0 and {16742}>0) or
-({16741}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15315','{16743}<0 and {16744}>0
-and (
-{16745}=6 or
-{16745}=7 or
-{16745}=11 or
-{16745}=62 or
-{16745}=69 or
-{16745}=117
-)
-and
-({16746}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16743}>0 and {16747}>0) or
-({16746}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15316','{16748}<0 and {16749}>0
-and (
-{16750}=6 or
-{16750}=7 or
-{16750}=11 or
-{16750}=62 or
-{16750}=69 or
-{16750}=117
-)
-and
-({16751}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16748}>0 and {16752}>0) or
-({16751}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15317','{16753}<0 and {16754}>0
-and (
-{16755}=6 or
-{16755}=7 or
-{16755}=11 or
-{16755}=62 or
-{16755}=69 or
-{16755}=117
-)
-and
-({16756}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16753}>0 and {16757}>0) or
-({16756}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15318','{16758}<0 and {16759}>0
-and (
-{16760}=6 or
-{16760}=7 or
-{16760}=11 or
-{16760}=62 or
-{16760}=69 or
-{16760}=117
-)
-and
-({16761}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16758}>0 and {16762}>0) or
-({16761}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15319','{16763}<0 and {16764}>0
-and (
-{16765}=6 or
-{16765}=7 or
-{16765}=11 or
-{16765}=62 or
-{16765}=69 or
-{16765}=117
-)
-and
-({16766}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16763}>0 and {16767}>0) or
-({16766}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15320','{16768}<0 and {16769}>0
-and (
-{16770}=6 or
-{16770}=7 or
-{16770}=11 or
-{16770}=62 or
-{16770}=69 or
-{16770}=117
-)
-and
-({16771}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16768}>0 and {16772}>0) or
-({16771}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15321','{16773}<0 and {16774}>0
-and (
-{16775}=6 or
-{16775}=7 or
-{16775}=11 or
-{16775}=62 or
-{16775}=69 or
-{16775}=117
-)
-and
-({16776}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16773}>0 and {16777}>0) or
-({16776}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15322','{16778}<0 and {16779}>0
-and (
-{16780}=6 or
-{16780}=7 or
-{16780}=11 or
-{16780}=62 or
-{16780}=69 or
-{16780}=117
-)
-and
-({16781}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16778}>0 and {16782}>0) or
-({16781}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15323','{16783}<0 and {16784}>0
-and (
-{16785}=6 or
-{16785}=7 or
-{16785}=11 or
-{16785}=62 or
-{16785}=69 or
-{16785}=117
-)
-and
-({16786}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16783}>0 and {16787}>0) or
-({16786}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15324','{16788}<0 and {16789}>0
-and (
-{16790}=6 or
-{16790}=7 or
-{16790}=11 or
-{16790}=62 or
-{16790}=69 or
-{16790}=117
-)
-and
-({16791}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16788}>0 and {16792}>0) or
-({16791}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15325','{16793}<0 and {16794}>0
-and (
-{16795}=6 or
-{16795}=7 or
-{16795}=11 or
-{16795}=62 or
-{16795}=69 or
-{16795}=117
-)
-and
-({16796}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16793}>0 and {16797}>0) or
-({16796}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15326','{16798}<0 and {16799}>0
-and (
-{16800}=6 or
-{16800}=7 or
-{16800}=11 or
-{16800}=62 or
-{16800}=69 or
-{16800}=117
-)
-and
-({16801}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16798}>0 and {16802}>0) or
-({16801}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15327','{16803}<0 and {16804}>0
-and (
-{16805}=6 or
-{16805}=7 or
-{16805}=11 or
-{16805}=62 or
-{16805}=69 or
-{16805}=117
-)
-and
-({16806}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16803}>0 and {16807}>0) or
-({16806}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15328','{16808}<0 and {16809}>0
-and (
-{16810}=6 or
-{16810}=7 or
-{16810}=11 or
-{16810}=62 or
-{16810}=69 or
-{16810}=117
-)
-and
-({16811}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16808}>0 and {16812}>0) or
-({16811}=2)','0','','1');
-INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15329','{16813}<0 and {16814}>0
-and (
-{16815}=6 or
-{16815}=7 or
-{16815}=11 or
-{16815}=62 or
-{16815}=69 or
-{16815}=117
-)
-and
-({16816}<>2)
-','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
-This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15269','0','2','1','({16813}>0 and {16817}>0) or
-({16816}=2)','0','','1');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15348','{16848}>{$TEMP_WARN:""}
 or
 {16849}={$TEMP_WARN_STATUS}','{#SNMPVALUE}: Temperature is above warning threshold: >{$TEMP_WARN:""}','','0','2','Last value: {ITEM.LASTVALUE1}.
@@ -5917,6 +5347,606 @@ INSERT INTO triggers (triggerid,expression,description,url,status,priority,comme
 Please check the fan unit','15347','0','2','0','','0','','0');
 INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15365','{16888}=1 or {16889}=1','{#SENSOR_INFO}: Fan is in warning state','','0','2','Last value: {ITEM.LASTVALUE1}.
 Please check the fan unit','15347','0','2','0','','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15404','{$IFCONTROL:"{#IFNAME}"}=1 and ({16949}=2 and {16950}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15400','0','2','1','{16949}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15405','{$IFCONTROL:"{#IFNAME}"}=1 and ({16951}=2 and {16952}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15400','0','2','1','{16951}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15406','({16953}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16954} or
+{16955}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16954}) and
+{16954}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15401','0','2','1','{16953}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16954} and
+{16955}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16954}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15407','({16956}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16957} or
+{16958}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16957}) and
+{16957}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15401','0','2','1','{16956}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16957} and
+{16958}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16957}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15410','{16963}<0 and {16964}>0
+and (
+{16965}=6 or
+{16965}=7 or
+{16965}=11 or
+{16965}=62 or
+{16965}=69 or
+{16965}=117
+)
+and
+({16966}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15403','0','2','1','({16963}>0 and {16967}>0) or
+({16966}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15411','{16968}<0 and {16969}>0
+and (
+{16970}=6 or
+{16970}=7 or
+{16970}=11 or
+{16970}=62 or
+{16970}=69 or
+{16970}=117
+)
+and
+({16971}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15403','0','2','1','({16968}>0 and {16972}>0) or
+({16971}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15416','{$IFCONTROL:"{#IFNAME}"}=1 and ({16985}=2 and {16986}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15412','0','2','1','{16985}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15417','{$IFCONTROL:"{#IFNAME}"}=1 and ({16987}=2 and {16988}=1)','Interface {#IFDESCR}: Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15412','0','2','1','{16987}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15418','({16989}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16990} or
+{16991}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16990}) and
+{16990}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15413','0','2','1','{16989}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16990} and
+{16991}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16990}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15419','({16992}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16993} or
+{16994}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{16993}) and
+{16993}>0','Interface {#IFDESCR}: High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15413','0','2','1','{16992}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16993} and
+{16994}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{16993}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15422','{16999}<0 and {17000}>0
+and (
+{17001}=6 or
+{17001}=7 or
+{17001}=11 or
+{17001}=62 or
+{17001}=69 or
+{17001}=117
+)
+and
+({17002}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15415','0','2','1','({16999}>0 and {17003}>0) or
+({17002}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15423','{17004}<0 and {17005}>0
+and (
+{17006}=6 or
+{17006}=7 or
+{17006}=11 or
+{17006}=62 or
+{17006}=69 or
+{17006}=117
+)
+and
+({17007}<>2)
+','Interface {#IFDESCR}: Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15415','0','2','1','({17004}>0 and {17008}>0) or
+({17007}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15432','{$IFCONTROL:"{#IFNAME}"}=1 and ({17033}=2 and {17034}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17033}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15433','{$IFCONTROL:"{#IFNAME}"}=1 and ({17035}=2 and {17036}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17035}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15434','{$IFCONTROL:"{#IFNAME}"}=1 and ({17037}=2 and {17038}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17037}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15435','{$IFCONTROL:"{#IFNAME}"}=1 and ({17039}=2 and {17040}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17039}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15436','{$IFCONTROL:"{#IFNAME}"}=1 and ({17041}=2 and {17042}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17041}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15437','{$IFCONTROL:"{#IFNAME}"}=1 and ({17043}=2 and {17044}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17043}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15438','{$IFCONTROL:"{#IFNAME}"}=1 and ({17045}=2 and {17046}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17045}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15439','{$IFCONTROL:"{#IFNAME}"}=1 and ({17047}=2 and {17048}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17047}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15440','{$IFCONTROL:"{#IFNAME}"}=1 and ({17049}=2 and {17050}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17049}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15441','{$IFCONTROL:"{#IFNAME}"}=1 and ({17051}=2 and {17052}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17051}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15442','{$IFCONTROL:"{#IFNAME}"}=1 and ({17053}=2 and {17054}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17053}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15443','{$IFCONTROL:"{#IFNAME}"}=1 and ({17055}=2 and {17056}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17055}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15444','{$IFCONTROL:"{#IFNAME}"}=1 and ({17057}=2 and {17058}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17057}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15445','{$IFCONTROL:"{#IFNAME}"}=1 and ({17059}=2 and {17060}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17059}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15446','{$IFCONTROL:"{#IFNAME}"}=1 and ({17061}=2 and {17062}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17061}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15447','{$IFCONTROL:"{#IFNAME}"}=1 and ({17063}=2 and {17064}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17063}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15448','{$IFCONTROL:"{#IFNAME}"}=1 and ({17065}=2 and {17066}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17065}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15449','{$IFCONTROL:"{#IFNAME}"}=1 and ({17067}=2 and {17068}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17067}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15450','{$IFCONTROL:"{#IFNAME}"}=1 and ({17069}=2 and {17070}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17069}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15451','{$IFCONTROL:"{#IFNAME}"}=1 and ({17071}=2 and {17072}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15428','0','2','1','{17071}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15452','({17073}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17074} or
+{17075}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17074}) and
+{17074}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17073}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17074} and
+{17075}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17074}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15453','({17076}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17077} or
+{17078}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17077}) and
+{17077}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17076}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17077} and
+{17078}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17077}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15454','({17079}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17080} or
+{17081}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17080}) and
+{17080}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17079}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17080} and
+{17081}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17080}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15455','({17082}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17083} or
+{17084}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17083}) and
+{17083}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17082}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17083} and
+{17084}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17083}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15456','({17085}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17086} or
+{17087}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17086}) and
+{17086}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17085}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17086} and
+{17087}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17086}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15457','({17088}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17089} or
+{17090}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17089}) and
+{17089}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17088}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17089} and
+{17090}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17089}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15458','({17091}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17092} or
+{17093}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17092}) and
+{17092}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17091}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17092} and
+{17093}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17092}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15459','({17094}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17095} or
+{17096}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17095}) and
+{17095}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17094}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17095} and
+{17096}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17095}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15460','({17097}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17098} or
+{17099}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17098}) and
+{17098}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17097}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17098} and
+{17099}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17098}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15461','({17100}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17101} or
+{17102}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17101}) and
+{17101}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17100}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17101} and
+{17102}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17101}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15462','({17103}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17104} or
+{17105}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17104}) and
+{17104}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17103}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17104} and
+{17105}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17104}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15463','({17106}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17107} or
+{17108}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17107}) and
+{17107}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17106}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17107} and
+{17108}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17107}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15464','({17109}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17110} or
+{17111}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17110}) and
+{17110}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17109}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17110} and
+{17111}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17110}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15465','({17112}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17113} or
+{17114}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17113}) and
+{17113}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17112}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17113} and
+{17114}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17113}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15466','({17115}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17116} or
+{17117}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17116}) and
+{17116}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17115}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17116} and
+{17117}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17116}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15467','({17118}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17119} or
+{17120}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17119}) and
+{17119}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17118}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17119} and
+{17120}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17119}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15468','({17121}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17122} or
+{17123}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17122}) and
+{17122}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17121}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17122} and
+{17123}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17122}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15469','({17124}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17125} or
+{17126}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17125}) and
+{17125}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17124}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17125} and
+{17126}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17125}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15470','({17127}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17128} or
+{17129}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17128}) and
+{17128}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17127}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17128} and
+{17129}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17128}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15471','({17130}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17131} or
+{17132}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17131}) and
+{17131}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15429','0','2','1','{17130}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17131} and
+{17132}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17131}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15492','{17173}<0 and {17174}>0
+and (
+{17175}=6 or
+{17175}=7 or
+{17175}=11 or
+{17175}=62 or
+{17175}=69 or
+{17175}=117
+)
+and
+({17176}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17173}>0 and {17177}>0) or
+({17176}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15493','{17178}<0 and {17179}>0
+and (
+{17180}=6 or
+{17180}=7 or
+{17180}=11 or
+{17180}=62 or
+{17180}=69 or
+{17180}=117
+)
+and
+({17181}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17178}>0 and {17182}>0) or
+({17181}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15494','{17183}<0 and {17184}>0
+and (
+{17185}=6 or
+{17185}=7 or
+{17185}=11 or
+{17185}=62 or
+{17185}=69 or
+{17185}=117
+)
+and
+({17186}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17183}>0 and {17187}>0) or
+({17186}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15495','{17188}<0 and {17189}>0
+and (
+{17190}=6 or
+{17190}=7 or
+{17190}=11 or
+{17190}=62 or
+{17190}=69 or
+{17190}=117
+)
+and
+({17191}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17188}>0 and {17192}>0) or
+({17191}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15496','{17193}<0 and {17194}>0
+and (
+{17195}=6 or
+{17195}=7 or
+{17195}=11 or
+{17195}=62 or
+{17195}=69 or
+{17195}=117
+)
+and
+({17196}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17193}>0 and {17197}>0) or
+({17196}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15497','{17198}<0 and {17199}>0
+and (
+{17200}=6 or
+{17200}=7 or
+{17200}=11 or
+{17200}=62 or
+{17200}=69 or
+{17200}=117
+)
+and
+({17201}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17198}>0 and {17202}>0) or
+({17201}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15498','{17203}<0 and {17204}>0
+and (
+{17205}=6 or
+{17205}=7 or
+{17205}=11 or
+{17205}=62 or
+{17205}=69 or
+{17205}=117
+)
+and
+({17206}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17203}>0 and {17207}>0) or
+({17206}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15499','{17208}<0 and {17209}>0
+and (
+{17210}=6 or
+{17210}=7 or
+{17210}=11 or
+{17210}=62 or
+{17210}=69 or
+{17210}=117
+)
+and
+({17211}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17208}>0 and {17212}>0) or
+({17211}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15500','{17213}<0 and {17214}>0
+and (
+{17215}=6 or
+{17215}=7 or
+{17215}=11 or
+{17215}=62 or
+{17215}=69 or
+{17215}=117
+)
+and
+({17216}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17213}>0 and {17217}>0) or
+({17216}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15501','{17218}<0 and {17219}>0
+and (
+{17220}=6 or
+{17220}=7 or
+{17220}=11 or
+{17220}=62 or
+{17220}=69 or
+{17220}=117
+)
+and
+({17221}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17218}>0 and {17222}>0) or
+({17221}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15502','{17223}<0 and {17224}>0
+and (
+{17225}=6 or
+{17225}=7 or
+{17225}=11 or
+{17225}=62 or
+{17225}=69 or
+{17225}=117
+)
+and
+({17226}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17223}>0 and {17227}>0) or
+({17226}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15503','{17228}<0 and {17229}>0
+and (
+{17230}=6 or
+{17230}=7 or
+{17230}=11 or
+{17230}=62 or
+{17230}=69 or
+{17230}=117
+)
+and
+({17231}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17228}>0 and {17232}>0) or
+({17231}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15504','{17233}<0 and {17234}>0
+and (
+{17235}=6 or
+{17235}=7 or
+{17235}=11 or
+{17235}=62 or
+{17235}=69 or
+{17235}=117
+)
+and
+({17236}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17233}>0 and {17237}>0) or
+({17236}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15505','{17238}<0 and {17239}>0
+and (
+{17240}=6 or
+{17240}=7 or
+{17240}=11 or
+{17240}=62 or
+{17240}=69 or
+{17240}=117
+)
+and
+({17241}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17238}>0 and {17242}>0) or
+({17241}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15506','{17243}<0 and {17244}>0
+and (
+{17245}=6 or
+{17245}=7 or
+{17245}=11 or
+{17245}=62 or
+{17245}=69 or
+{17245}=117
+)
+and
+({17246}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17243}>0 and {17247}>0) or
+({17246}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15507','{17248}<0 and {17249}>0
+and (
+{17250}=6 or
+{17250}=7 or
+{17250}=11 or
+{17250}=62 or
+{17250}=69 or
+{17250}=117
+)
+and
+({17251}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17248}>0 and {17252}>0) or
+({17251}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15508','{17253}<0 and {17254}>0
+and (
+{17255}=6 or
+{17255}=7 or
+{17255}=11 or
+{17255}=62 or
+{17255}=69 or
+{17255}=117
+)
+and
+({17256}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17253}>0 and {17257}>0) or
+({17256}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15509','{17258}<0 and {17259}>0
+and (
+{17260}=6 or
+{17260}=7 or
+{17260}=11 or
+{17260}=62 or
+{17260}=69 or
+{17260}=117
+)
+and
+({17261}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17258}>0 and {17262}>0) or
+({17261}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15510','{17263}<0 and {17264}>0
+and (
+{17265}=6 or
+{17265}=7 or
+{17265}=11 or
+{17265}=62 or
+{17265}=69 or
+{17265}=117
+)
+and
+({17266}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17263}>0 and {17267}>0) or
+({17266}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15511','{17268}<0 and {17269}>0
+and (
+{17270}=6 or
+{17270}=7 or
+{17270}=11 or
+{17270}=62 or
+{17270}=69 or
+{17270}=117
+)
+and
+({17271}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15431','0','2','1','({17268}>0 and {17272}>0) or
+({17271}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15516','{$IFCONTROL:"{#IFNAME}"}=1 and ({17285}=2 and {17286}=1)','Interface {#IFNAME}({#IFALIAS}): Link down','','0','3','Last value: {ITEM.LASTVALUE1}.
+Interface is down','15512','0','2','1','{17285}<>2','0','','0');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15517','({17287}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17288} or
+{17289}>({$IF_UTIL_MAX:"{#IFNAME}"}/100)*{17288}) and
+{17288}>0','Interface {#IFNAME}({#IFALIAS}): High bandwidth usage >{$IF_UTIL_MAX:"{#IFNAME}"}%','','0','2','Last value: {ITEM.LASTVALUE1}.','15513','0','2','1','{17287}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17288} and
+{17289}<(({$IF_UTIL_MAX:"{#IFNAME}"}-3)/100)*{17288}','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15519','{17292}<0 and {17293}>0
+and (
+{17294}=6 or
+{17294}=7 or
+{17294}=11 or
+{17294}=62 or
+{17294}=69 or
+{17294}=117
+)
+and
+({17295}<>2)
+','Interface {#IFNAME}({#IFALIAS}): Ethernet has changed to lower speed than it was before','','0','1','Last value: {ITEM.LASTVALUE1}.
+This Ethernet connection has transitioned down from its known maximum speed. This might be a sign of autonegotiation issues. Ack to close.','15515','0','2','1','({17292}>0 and {17296}>0) or
+({17295}=2)','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15521','{17359}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17360}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15520','0','2','1','{17359}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17360}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15522','{17361}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17362}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15520','0','2','1','{17361}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17362}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15524','{17365}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17366}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15523','0','2','1','{17365}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17366}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15525','{17367}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17368}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFDESCR}: High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15523','0','2','1','{17367}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17368}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15528','{17373}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17374}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17373}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17374}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15529','{17375}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17376}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17375}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17376}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15530','{17377}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17378}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17377}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17378}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15531','{17379}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17380}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17379}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17380}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15532','{17381}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17382}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17381}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17382}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15533','{17383}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17384}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17383}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17384}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15534','{17385}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17386}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17385}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17386}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15535','{17387}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17388}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17387}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17388}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15536','{17389}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17390}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17389}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17390}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15537','{17391}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17392}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17391}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17392}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15538','{17393}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17394}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17393}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17394}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15539','{17395}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17396}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17395}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17396}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15540','{17397}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17398}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17397}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17398}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15541','{17399}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17400}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17399}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17400}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15542','{17401}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17402}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17401}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17402}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15543','{17403}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17404}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17403}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17404}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15544','{17405}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17406}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17405}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17406}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15545','{17407}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17408}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17407}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17408}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15546','{17409}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17410}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17409}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17410}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15547','{17411}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17412}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15527','0','2','1','{17411}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17412}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
+INSERT INTO triggers (triggerid,expression,description,url,status,priority,comments,templateid,type,flags,recovery_mode,recovery_expression,correlation_mode,correlation_tag,manual_close) values ('15549','{17415}>{$IF_ERRORS_WARN:"{#IFNAME}"}
+or {17416}>{$IF_ERRORS_WARN:"{#IFNAME}"}','Interface {#IFNAME}({#IFALIAS}): High error rate','','0','2','Last value: {ITEM.LASTVALUE1}.
+Recovers when below 80% of {$IF_ERRORS_WARN:"{#IFNAME}"} threshold','15548','0','2','1','{17415}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8
+and {17416}<{$IF_ERRORS_WARN:"{#IFNAME}"}*0.8','0','','1');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('354','14195','14205');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('355','14196','14195');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('356','14196','14205');
@@ -5956,244 +5986,6 @@ INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('390','14225','14222');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('391','14226','14222');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('392','14226','14225');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2745','14296','15170');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2746','14314','15171');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2747','14330','15172');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2748','14350','15173');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2749','14359','15174');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2750','14392','15175');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2751','14406','15176');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2752','14454','15177');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2753','14471','15178');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2754','14489','15179');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2755','14508','15180');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2756','14537','15181');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2757','14547','15182');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2758','14585','15183');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2759','14601','15184');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2760','14618','15185');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2761','14655','15186');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2762','14676','15187');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2763','14694','15188');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2764','14707','15189');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2765','14872','15190');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2766','14885','15191');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2767','14909','15192');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2768','14931','15193');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2769','15223','15224');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2770','15170','14293');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2771','15171','14311');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2772','15172','14327');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2773','15173','14347');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2774','15174','14356');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2775','15175','14389');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2776','15176','14403');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2777','15177','14451');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2778','15178','14468');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2779','15179','14486');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2780','15180','14505');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2781','15181','14534');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2782','15182','14544');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2783','15183','14582');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2784','15184','14598');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2785','15185','14615');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2786','15186','14652');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2787','15187','14673');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2788','15188','14691');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2789','15189','14704');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2790','15190','14869');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2791','15191','14882');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2792','15192','14906');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2793','15193','14928');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2794','15224','15220');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2795','15240','14254');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2796','15241','14254');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2797','15242','14254');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2798','15243','14522');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2799','15244','14716');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2800','15245','14522');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2801','15246','14716');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2802','15247','14522');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2803','15248','14716');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2804','15249','14258');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2805','15250','14258');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2806','15251','14258');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2807','15252','14532');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2808','15253','14703');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2809','15254','14532');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2810','15255','14703');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2811','15256','14532');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2812','15257','14703');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2813','14252','14251');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2814','14289','14288');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2815','14525','14524');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2816','14718','14717');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2817','14294','14293');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2818','14312','14311');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2819','14328','14327');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2820','14348','14347');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2821','14357','14356');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2822','14390','14389');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2823','14404','14403');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2824','14452','14451');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2825','14469','14468');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2826','14487','14486');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2827','14506','14505');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2828','14535','14534');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2829','14545','14544');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2830','14583','14582');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2831','14599','14598');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2832','14616','14615');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2833','14653','14652');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2834','14674','14673');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2835','14692','14691');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2836','14705','14704');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2837','14870','14869');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2838','14883','14882');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2839','14907','14906');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2840','14929','14928');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2841','15221','15220');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2842','14253','14251');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2843','14290','14288');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2844','14526','14524');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2845','14719','14717');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2846','14295','14293');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2847','14313','14311');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2848','14329','14327');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2849','14349','14347');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2850','14358','14356');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2851','14391','14389');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2852','14405','14403');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2853','14453','14451');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2854','14470','14468');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2855','14488','14486');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2856','14507','14505');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2857','14536','14534');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2858','14546','14544');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2859','14584','14582');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2860','14600','14598');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2861','14617','14615');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2862','14654','14652');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2863','14675','14673');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2864','14693','14691');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2865','14706','14704');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2866','14871','14869');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2867','14884','14882');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2868','14908','14906');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2869','14930','14928');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2870','15222','15220');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2871','14253','14252');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2872','14290','14289');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2873','14526','14525');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2874','14719','14718');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2875','14295','14294');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2876','14313','14312');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2877','14329','14328');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2878','14349','14348');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2879','14358','14357');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2880','14391','14390');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2881','14405','14404');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2882','14453','14452');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2883','14470','14469');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2884','14488','14487');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2885','14507','14506');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2886','14536','14535');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2887','14546','14545');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2888','14584','14583');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2889','14600','14599');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2890','14617','14616');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2891','14654','14653');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2892','14675','14674');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2893','14693','14692');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2894','14706','14705');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2895','14871','14870');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2896','14884','14883');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2897','14908','14907');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2898','14930','14929');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2899','15222','15221');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2900','15258','14274');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2901','15259','14274');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2902','15260','14274');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2903','15261','14881');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2904','15262','14881');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2905','15263','14881');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2906','15264','14262');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2907','15265','14262');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2908','15266','14262');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2909','15267','14266');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2910','15268','14266');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2911','15269','14266');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2912','15270','14309');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2913','15271','14326');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2914','15272','14346');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2915','15273','14355');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2916','15274','14387');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2917','15275','14449');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2918','15276','14467');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2919','15277','14484');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2920','15278','14503');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2921','15279','14542');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2922','15280','14580');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2923','15281','14597');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2924','15282','14613');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2925','15283','14651');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2926','15284','14672');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2927','15285','14689');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2928','15286','14867');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2929','15287','14904');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2930','15288','14927');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2931','15289','15219');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2932','15290','14309');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2933','15291','14326');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2934','15292','14346');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2935','15293','14355');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2936','15294','14387');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2937','15295','14449');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2938','15296','14467');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2939','15297','14484');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2940','15298','14503');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2941','15299','14542');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2942','15300','14580');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2943','15301','14597');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2944','15302','14613');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2945','15303','14651');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2946','15304','14672');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2947','15305','14689');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2948','15306','14867');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2949','15307','14904');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2950','15308','14927');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2951','15309','15219');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2952','15310','14309');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2953','15311','14326');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2954','15312','14346');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2955','15313','14355');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2956','15314','14387');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2957','15315','14449');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2958','15316','14467');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2959','15317','14484');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2960','15318','14503');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2961','15319','14542');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2962','15320','14580');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2963','15321','14597');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2964','15322','14613');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2965','15323','14651');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2966','15324','14672');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2967','15325','14689');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2968','15326','14867');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2969','15327','14904');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2970','15328','14927');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2971','15329','15219');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2972','14246','14245');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2973','14250','14249');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2974','14862','14861');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2975','14876','14875');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2976','14922','14921');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2977','14291','15161');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2978','14527','15162');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2979','14720','15163');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2980','15161','14288');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2981','15162','14524');
-INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2982','15163','14717');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2983','14658','14659');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2984','14664','14665');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('2985','14668','14667');
@@ -6237,6 +6029,244 @@ INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3023','15394','15393');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3024','14589','14590');
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3025','15396','15397');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3264','14291','15161');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3265','14527','15162');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3266','14720','15163');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3267','15161','14288');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3268','15162','14524');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3269','15163','14717');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3270','14296','15170');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3271','14314','15171');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3272','14330','15172');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3273','14350','15173');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3274','14359','15174');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3275','14392','15175');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3276','14406','15176');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3277','14454','15177');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3278','14471','15178');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3279','14489','15179');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3280','14508','15180');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3281','14537','15181');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3282','14547','15182');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3283','14585','15183');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3284','14601','15184');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3285','14618','15185');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3286','14655','15186');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3287','14676','15187');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3288','14694','15188');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3289','14707','15189');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3290','14872','15190');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3291','14885','15191');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3292','14909','15192');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3293','14931','15193');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3294','15223','15224');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3295','15170','14293');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3296','15171','14311');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3297','15172','14327');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3298','15173','14347');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3299','15174','14356');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3300','15175','14389');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3301','15176','14403');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3302','15177','14451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3303','15178','14468');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3304','15179','14486');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3305','15180','14505');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3306','15181','14534');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3307','15182','14544');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3308','15183','14582');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3309','15184','14598');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3310','15185','14615');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3311','15186','14652');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3312','15187','14673');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3313','15188','14691');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3314','15189','14704');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3315','15190','14869');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3316','15191','14882');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3317','15192','14906');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3318','15193','14928');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3319','15224','15220');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3320','14246','14245');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3321','14250','14249');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3322','14862','14861');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3323','14876','14875');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3324','14922','14921');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3325','14252','14251');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3326','14289','14288');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3327','14525','14524');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3328','14718','14717');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3329','14294','14293');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3330','14312','14311');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3331','14328','14327');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3332','14348','14347');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3333','14357','14356');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3334','14390','14389');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3335','14404','14403');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3336','14452','14451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3337','14469','14468');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3338','14487','14486');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3339','14506','14505');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3340','14535','14534');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3341','14545','14544');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3342','14583','14582');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3343','14599','14598');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3344','14616','14615');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3345','14653','14652');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3346','14674','14673');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3347','14692','14691');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3348','14705','14704');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3349','14870','14869');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3350','14883','14882');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3351','14907','14906');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3352','14929','14928');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3353','15221','15220');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3354','14253','14251');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3355','14290','14288');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3356','14526','14524');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3357','14719','14717');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3358','14295','14293');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3359','14313','14311');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3360','14329','14327');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3361','14349','14347');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3362','14358','14356');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3363','14391','14389');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3364','14405','14403');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3365','14453','14451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3366','14470','14468');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3367','14488','14486');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3368','14507','14505');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3369','14536','14534');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3370','14546','14544');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3371','14584','14582');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3372','14600','14598');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3373','14617','14615');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3374','14654','14652');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3375','14675','14673');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3376','14693','14691');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3377','14706','14704');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3378','14871','14869');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3379','14884','14882');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3380','14908','14906');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3381','14930','14928');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3382','15222','15220');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3383','14253','14252');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3384','14290','14289');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3385','14526','14525');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3386','14719','14718');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3387','14295','14294');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3388','14313','14312');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3389','14329','14328');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3390','14349','14348');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3391','14358','14357');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3392','14391','14390');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3393','14405','14404');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3394','14453','14452');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3395','14470','14469');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3396','14488','14487');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3397','14507','14506');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3398','14536','14535');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3399','14546','14545');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3400','14584','14583');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3401','14600','14599');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3402','14617','14616');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3403','14654','14653');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3404','14675','14674');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3405','14693','14692');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3406','14706','14705');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3407','14871','14870');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3408','14884','14883');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3409','14908','14907');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3410','14930','14929');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3411','15222','15221');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3412','15401','15400');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3413','15520','15400');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3414','15403','15400');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3415','15406','15404');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3416','15407','15405');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3417','15521','15404');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3418','15522','15405');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3419','15410','15404');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3420','15411','15405');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3421','15413','15412');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3422','15523','15412');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3423','15415','15412');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3424','15418','15416');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3425','15419','15417');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3426','15524','15416');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3427','15525','15417');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3428','15422','15416');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3429','15423','15417');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3430','15425','15424');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3431','15526','15424');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3432','15427','15424');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3433','15429','15428');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3434','15527','15428');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3435','15431','15428');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3436','15452','15432');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3437','15453','15433');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3438','15454','15434');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3439','15455','15435');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3440','15456','15436');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3441','15457','15437');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3442','15458','15438');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3443','15459','15439');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3444','15460','15440');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3445','15461','15441');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3446','15462','15442');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3447','15463','15443');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3448','15464','15444');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3449','15465','15445');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3450','15466','15446');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3451','15467','15447');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3452','15468','15448');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3453','15469','15449');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3454','15470','15450');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3455','15471','15451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3456','15528','15432');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3457','15529','15433');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3458','15530','15434');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3459','15531','15435');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3460','15532','15436');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3461','15533','15437');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3462','15534','15438');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3463','15535','15439');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3464','15536','15440');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3465','15537','15441');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3466','15538','15442');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3467','15539','15443');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3468','15540','15444');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3469','15541','15445');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3470','15542','15446');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3471','15543','15447');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3472','15544','15448');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3473','15545','15449');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3474','15546','15450');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3475','15547','15451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3476','15492','15432');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3477','15493','15433');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3478','15494','15434');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3479','15495','15435');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3480','15496','15436');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3481','15497','15437');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3482','15498','15438');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3483','15499','15439');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3484','15500','15440');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3485','15501','15441');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3486','15502','15442');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3487','15503','15443');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3488','15504','15444');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3489','15505','15445');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3490','15506','15446');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3491','15507','15447');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3492','15508','15448');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3493','15509','15449');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3494','15510','15450');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3495','15511','15451');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3496','15513','15512');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3497','15548','15512');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3498','15515','15512');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3499','15517','15516');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3500','15549','15516');
+INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up) values ('3501','15519','15516');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('10199','10019','10016','diff','0');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('10204','10055','10041','last','0');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('10207','10058','10044','diff','0');
@@ -6562,16 +6592,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14378','27067','14251','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14379','27066','14252','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14380','27065','14253','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14381','27077','14254','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14382','27077','14254','diff','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14393','27087','14258','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14394','27087','14258','diff','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14405','27097','14262','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14406','27097','14262','diff','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14417','27107','14266','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14418','27107','14266','diff','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14441','27127','14274','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14442','27127','14274','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14463','27138','14288','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14464','27139','14289','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14465','27140','14290','avg','5m');
@@ -6580,8 +6600,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14469','27150','14294','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14470','27151','14295','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14471','27159','14296','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14505','27188','14309','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14506','27188','14309','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14508','27192','14311','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14509','27193','14312','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14510','27194','14313','avg','5m');
@@ -6596,8 +6614,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14520','27212','14320','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14522','27214','14322','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14523','27214','14322','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14534','27223','14326','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14535','27223','14326','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14536','27225','14327','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14537','27226','14328','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14538','27227','14329','avg','5m');
@@ -6614,14 +6630,10 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14553','27247','14339','max','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14554','27247','14340','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14555','27247','14340','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14568','27259','14346','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14569','27259','14346','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14570','27261','14347','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14571','27262','14348','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14572','27263','14349','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14573','27270','14350','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14585','27280','14355','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14586','27280','14355','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14587','27282','14356','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14588','27283','14357','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14589','27284','14358','avg','5m');
@@ -6658,8 +6670,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14625','27318','14382','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14626','27320','14383','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14627','27320','14383','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14638','27329','14387','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14639','27329','14387','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14641','27333','14389','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14642','27334','14390','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14643','27335','14391','avg','5m');
@@ -6693,8 +6703,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14723','27430','14437','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14726','27447','14439','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14727','27447','14439','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14744','27458','14449','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14745','27458','14449','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14747','27462','14451','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14748','27463','14452','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14749','27464','14453','avg','5m');
@@ -6709,8 +6717,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14761','27485','14462','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14762','27483','14463','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14763','27483','14463','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14774','27494','14467','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14775','27494','14467','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14776','27496','14468','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14777','27497','14469','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14778','27498','14470','avg','5m');
@@ -6725,8 +6731,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14788','27517','14477','max','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14789','27517','14478','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14790','27517','14478','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14803','27528','14484','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14804','27528','14484','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14806','27532','14486','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14807','27533','14487','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14808','27534','14488','avg','5m');
@@ -6743,8 +6747,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14820','27553','14496','max','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14821','27553','14497','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14822','27553','14497','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14835','27564','14503','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14836','27564','14503','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14838','27568','14505','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14839','27569','14506','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14840','27570','14507','avg','5m');
@@ -6759,20 +6761,14 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14853','27579','14515','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14854','27579','14515','strlen','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14855','27590','14516','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14868','27604','14522','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14869','27604','14522','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14871','27608','14524','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14872','27609','14525','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14873','27610','14526','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14874','27617','14527','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14886','27627','14532','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14887','27627','14532','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14889','27631','14534','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14890','27632','14535','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14891','27633','14536','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14892','27640','14537','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14904','27650','14542','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14905','27650','14542','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14907','27654','14544','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14908','27655','14545','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14909','27656','14546','avg','5m');
@@ -6789,8 +6785,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14923','27678','14556','strlen','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14924','27677','14557','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14925','27677','14557','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14969','27730','14580','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14970','27730','14580','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14972','27734','14582','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14973','27735','14583','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14974','27736','14584','avg','5m');
@@ -6805,8 +6799,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14984','27751','14591','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14985','27750','14592','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14986','27750','14592','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14998','27764','14597','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('14999','27764','14597','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15000','27766','14598','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15001','27767','14599','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15002','27768','14600','avg','5m');
@@ -6817,8 +6809,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15014','27784','14606','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15015','27785','14607','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15016','27785','14607','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15029','27796','14613','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15030','27796','14613','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15032','27800','14615','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15033','27801','14616','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15034','27802','14617','avg','5m');
@@ -6834,8 +6824,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15045','27821','14625','max','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15046','27821','14626','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15047','27821','14626','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15092','27880','14651','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15093','27880','14651','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15094','27882','14652','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15095','27883','14653','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15096','27884','14654','avg','5m');
@@ -6860,8 +6848,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15116','27905','14666','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15117','27906','14667','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15118','27906','14668','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15129','27917','14672','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15130','27917','14672','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15131','27919','14673','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15132','27920','14674','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15133','27921','14675','avg','5m');
@@ -6872,8 +6858,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15139','27931','14680','strlen','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15146','27941','14683','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15147','27941','14683','min','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15160','27952','14689','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15161','27952','14689','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15163','27956','14691','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15164','27957','14692','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15165','27958','14693','avg','5m');
@@ -6884,8 +6868,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15171','27970','14698','strlen','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15172','27967','14699','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15173','27967','14699','strlen','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15184','27984','14703','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15185','27984','14703','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15186','27986','14704','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15187','27987','14705','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15188','27988','14706','avg','5m');
@@ -6896,8 +6878,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15194','27998','14710','strlen','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15195','28003','14711','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15196','28004','14712','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15207','28013','14716','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15208','28013','14716','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15209','28015','14717','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15210','28016','14718','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15211','28017','14719','avg','5m');
@@ -6909,8 +6889,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15580','28045','14860','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15581','28046','14861','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15582','28046','14862','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15594','28066','14867','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15595','28066','14867','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15597','28070','14869','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15598','28071','14870','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15599','28072','14871','avg','5m');
@@ -6918,14 +6896,10 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15602','28084','14874','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15603','28085','14875','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15604','28085','14876','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15616','28105','14881','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15617','28105','14881','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15618','28107','14882','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15619','28108','14883','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15620','28109','14884','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15621','28116','14885','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15675','28126','14904','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15676','28126','14904','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15678','28130','14906','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15679','28131','14907','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15680','28132','14908','avg','5m');
@@ -6945,8 +6919,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15697','28162','14920','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15698','28163','14921','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15699','28163','14922','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15711','28183','14927','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15712','28183','14927','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15713','28185','14928','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15714','28186','14929','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('15715','28187','14930','avg','5m');
@@ -7011,8 +6983,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16457','28218','15214','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16458','28218','15214','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16459','28221','15215','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16470','28231','15219','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16471','28231','15219','diff','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16472','28233','15220','max','#3');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16473','28234','15221','min','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16474','28235','15222','avg','5m');
@@ -7020,306 +6990,6 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16476','28243','15224','max','{$SNMP_TIMEOUT}');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16477','28246','15225','avg','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16484','28247','15228','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16518','27074','15240','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16519','27071','15240','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16520','27075','15240','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16521','27076','15241','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16522','27073','15241','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16523','27071','15242','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16524','27071','15242','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16525','27070','15242','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16526','27077','15242','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16527','27071','15242','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16528','27599','15243','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16529','27603','15243','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16530','27602','15243','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16531','28008','15244','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16532','28012','15244','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16533','28011','15244','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16534','27598','15245','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16535','27601','15245','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16536','28007','15246','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16537','28010','15246','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16538','27603','15247','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16539','27603','15247','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16540','27605','15247','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16541','27604','15247','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16542','27603','15247','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16543','28012','15248','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16544','28012','15248','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16545','28014','15248','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16546','28013','15248','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16547','28012','15248','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16548','27084','15249','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16549','27081','15249','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16550','27085','15249','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16551','27086','15250','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16552','27083','15250','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16553','27081','15251','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16554','27081','15251','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16555','27080','15251','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16556','27087','15251','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16557','27081','15251','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16558','27622','15252','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16559','27626','15252','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16560','27625','15252','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16561','27979','15253','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16562','27983','15253','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16563','27982','15253','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16564','27621','15254','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16565','27624','15254','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16566','27978','15255','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16567','27981','15255','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16568','27626','15256','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16569','27626','15256','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16570','27628','15256','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16571','27627','15256','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16572','27626','15256','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16573','27983','15257','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16574','27983','15257','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16575','27985','15257','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16576','27984','15257','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16577','27983','15257','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16578','27124','15258','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16579','27121','15258','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16580','27125','15258','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16581','27126','15259','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16582','27123','15259','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16583','27121','15260','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16584','27121','15260','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16585','27120','15260','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16586','27127','15260','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16587','27121','15260','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16588','28100','15261','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16589','28104','15261','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16590','28103','15261','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16591','28099','15262','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16592','28102','15262','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16593','28104','15263','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16594','28104','15263','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16595','28106','15263','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16596','28105','15263','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16597','28104','15263','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16598','27094','15264','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16599','27091','15264','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16600','27095','15264','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16601','27096','15265','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16602','27093','15265','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16603','27091','15266','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16604','27091','15266','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16605','27090','15266','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16606','27097','15266','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16607','27091','15266','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16608','27104','15267','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16609','27101','15267','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16610','27105','15267','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16611','27106','15268','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16612','27103','15268','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16613','27101','15269','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16614','27101','15269','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16615','27100','15269','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16616','27107','15269','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16617','27101','15269','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16618','27183','15270','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16619','27187','15270','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16620','27186','15270','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16621','27218','15271','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16622','27222','15271','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16623','27221','15271','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16624','27254','15272','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16625','27258','15272','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16626','27257','15272','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16627','27275','15273','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16628','27279','15273','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16629','27278','15273','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16630','27324','15274','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16631','27328','15274','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16632','27327','15274','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16633','27453','15275','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16634','27457','15275','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16635','27456','15275','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16636','27489','15276','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16637','27493','15276','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16638','27492','15276','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16639','27523','15277','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16640','27527','15277','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16641','27526','15277','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16642','27559','15278','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16643','27563','15278','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16644','27562','15278','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16645','27645','15279','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16646','27649','15279','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16647','27648','15279','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16648','27725','15280','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16649','27729','15280','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16650','27728','15280','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16651','27759','15281','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16652','27763','15281','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16653','27762','15281','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16654','27791','15282','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16655','27795','15282','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16656','27794','15282','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16657','27875','15283','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16658','27879','15283','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16659','27878','15283','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16660','27912','15284','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16661','27916','15284','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16662','27915','15284','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16663','27947','15285','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16664','27951','15285','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16665','27950','15285','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16666','28061','15286','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16667','28065','15286','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16668','28064','15286','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16669','28121','15287','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16670','28125','15287','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16671','28124','15287','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16672','28178','15288','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16673','28182','15288','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16674','28181','15288','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16675','28226','15289','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16676','28230','15289','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16677','28229','15289','avg','15m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16678','27182','15290','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16679','27185','15290','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16680','27217','15291','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16681','27220','15291','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16682','27253','15292','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16683','27256','15292','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16684','27274','15293','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16685','27277','15293','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16686','27323','15294','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16687','27326','15294','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16688','27452','15295','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16689','27455','15295','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16690','27488','15296','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16691','27491','15296','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16692','27522','15297','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16693','27525','15297','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16694','27558','15298','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16695','27561','15298','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16696','27644','15299','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16697','27647','15299','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16698','27724','15300','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16699','27727','15300','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16700','27758','15301','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16701','27761','15301','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16702','27790','15302','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16703','27793','15302','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16704','27874','15303','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16705','27877','15303','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16706','27911','15304','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16707','27914','15304','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16708','27946','15305','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16709','27949','15305','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16710','28060','15306','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16711','28063','15306','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16712','28120','15307','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16713','28123','15307','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16714','28177','15308','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16715','28180','15308','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16716','28225','15309','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16717','28228','15309','avg','5m');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16718','27187','15310','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16719','27187','15310','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16720','27189','15310','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16721','27188','15310','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16722','27187','15310','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16723','27222','15311','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16724','27222','15311','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16725','27224','15311','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16726','27223','15311','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16727','27222','15311','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16728','27258','15312','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16729','27258','15312','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16730','27260','15312','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16731','27259','15312','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16732','27258','15312','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16733','27279','15313','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16734','27279','15313','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16735','27281','15313','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16736','27280','15313','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16737','27279','15313','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16738','27328','15314','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16739','27328','15314','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16740','27330','15314','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16741','27329','15314','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16742','27328','15314','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16743','27457','15315','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16744','27457','15315','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16745','27459','15315','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16746','27458','15315','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16747','27457','15315','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16748','27493','15316','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16749','27493','15316','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16750','27495','15316','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16751','27494','15316','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16752','27493','15316','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16753','27527','15317','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16754','27527','15317','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16755','27529','15317','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16756','27528','15317','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16757','27527','15317','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16758','27563','15318','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16759','27563','15318','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16760','27565','15318','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16761','27564','15318','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16762','27563','15318','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16763','27649','15319','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16764','27649','15319','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16765','27651','15319','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16766','27650','15319','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16767','27649','15319','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16768','27729','15320','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16769','27729','15320','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16770','27731','15320','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16771','27730','15320','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16772','27729','15320','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16773','27763','15321','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16774','27763','15321','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16775','27765','15321','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16776','27764','15321','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16777','27763','15321','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16778','27795','15322','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16779','27795','15322','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16780','27797','15322','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16781','27796','15322','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16782','27795','15322','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16783','27879','15323','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16784','27879','15323','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16785','27881','15323','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16786','27880','15323','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16787','27879','15323','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16788','27916','15324','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16789','27916','15324','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16790','27918','15324','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16791','27917','15324','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16792','27916','15324','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16793','27951','15325','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16794','27951','15325','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16795','27953','15325','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16796','27952','15325','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16797','27951','15325','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16798','28065','15326','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16799','28065','15326','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16800','28067','15326','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16801','28066','15326','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16802','28065','15326','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16803','28125','15327','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16804','28125','15327','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16805','28127','15327','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16806','28126','15327','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16807','28125','15327','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16808','28182','15328','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16809','28182','15328','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16810','28184','15328','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16811','28183','15328','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16812','28182','15328','prev','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16813','28230','15329','change','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16814','28230','15329','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16815','28232','15329','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16816','28231','15329','last','');
-INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16817','28230','15329','prev','');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16818','27213','15330','count','#1,{$FAN_CRIT_STATUS},eq');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16819','27479','15331','count','#1,{$PSU_CRIT_STATUS},eq');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16820','27479','15332','count','#1,{$PSU_OK_STATUS},ne');
@@ -7439,6 +7109,366 @@ INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16934','27941','15397','max','5m');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16935','27942','15398','count','#1,{$FAN_CRIT_STATUS:"failed"},eq');
 INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16936','27943','15399','count','#1,{$PSU_CRIT_STATUS:"failed"},eq');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16937','27077','15400','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16938','27077','15400','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16939','27074','15401','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16940','27071','15401','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16941','27075','15401','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16944','27071','15403','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16945','27071','15403','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16946','27070','15403','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16947','27077','15403','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16948','27071','15403','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16949','27604','15404','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16950','27604','15404','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16951','28013','15405','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16952','28013','15405','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16953','27599','15406','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16954','27603','15406','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16955','27602','15406','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16956','28008','15407','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16957','28012','15407','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16958','28011','15407','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16963','27603','15410','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16964','27603','15410','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16965','27605','15410','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16966','27604','15410','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16967','27603','15410','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16968','28012','15411','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16969','28012','15411','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16970','28014','15411','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16971','28013','15411','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16972','28012','15411','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16973','27087','15412','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16974','27087','15412','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16975','27084','15413','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16976','27081','15413','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16977','27085','15413','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16980','27081','15415','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16981','27081','15415','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16982','27080','15415','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16983','27087','15415','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16984','27081','15415','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16985','27627','15416','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16986','27627','15416','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16987','27984','15417','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16988','27984','15417','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16989','27622','15418','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16990','27626','15418','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16991','27625','15418','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16992','27979','15419','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16993','27983','15419','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16994','27982','15419','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('16999','27626','15422','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17000','27626','15422','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17001','27628','15422','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17002','27627','15422','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17003','27626','15422','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17004','27983','15423','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17005','27983','15423','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17006','27985','15423','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17007','27984','15423','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17008','27983','15423','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17009','27097','15424','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17010','27097','15424','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17011','27094','15425','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17012','27091','15425','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17013','27095','15425','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17016','27091','15427','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17017','27091','15427','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17018','27090','15427','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17019','27097','15427','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17020','27091','15427','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17021','27107','15428','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17022','27107','15428','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17023','27104','15429','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17024','27101','15429','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17025','27105','15429','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17028','27101','15431','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17029','27101','15431','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17030','27100','15431','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17031','27107','15431','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17032','27101','15431','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17033','27188','15432','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17034','27188','15432','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17035','27223','15433','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17036','27223','15433','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17037','27259','15434','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17038','27259','15434','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17039','27280','15435','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17040','27280','15435','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17041','27329','15436','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17042','27329','15436','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17043','27458','15437','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17044','27458','15437','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17045','27494','15438','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17046','27494','15438','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17047','27528','15439','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17048','27528','15439','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17049','27564','15440','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17050','27564','15440','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17051','27650','15441','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17052','27650','15441','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17053','27730','15442','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17054','27730','15442','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17055','27764','15443','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17056','27764','15443','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17057','27796','15444','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17058','27796','15444','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17059','27880','15445','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17060','27880','15445','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17061','27917','15446','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17062','27917','15446','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17063','27952','15447','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17064','27952','15447','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17065','28066','15448','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17066','28066','15448','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17067','28126','15449','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17068','28126','15449','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17069','28183','15450','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17070','28183','15450','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17071','28231','15451','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17072','28231','15451','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17073','27183','15452','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17074','27187','15452','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17075','27186','15452','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17076','27218','15453','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17077','27222','15453','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17078','27221','15453','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17079','27254','15454','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17080','27258','15454','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17081','27257','15454','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17082','27275','15455','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17083','27279','15455','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17084','27278','15455','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17085','27324','15456','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17086','27328','15456','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17087','27327','15456','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17088','27453','15457','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17089','27457','15457','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17090','27456','15457','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17091','27489','15458','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17092','27493','15458','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17093','27492','15458','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17094','27523','15459','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17095','27527','15459','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17096','27526','15459','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17097','27559','15460','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17098','27563','15460','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17099','27562','15460','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17100','27645','15461','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17101','27649','15461','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17102','27648','15461','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17103','27725','15462','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17104','27729','15462','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17105','27728','15462','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17106','27759','15463','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17107','27763','15463','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17108','27762','15463','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17109','27791','15464','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17110','27795','15464','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17111','27794','15464','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17112','27875','15465','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17113','27879','15465','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17114','27878','15465','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17115','27912','15466','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17116','27916','15466','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17117','27915','15466','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17118','27947','15467','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17119','27951','15467','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17120','27950','15467','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17121','28061','15468','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17122','28065','15468','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17123','28064','15468','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17124','28121','15469','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17125','28125','15469','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17126','28124','15469','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17127','28178','15470','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17128','28182','15470','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17129','28181','15470','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17130','28226','15471','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17131','28230','15471','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17132','28229','15471','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17173','27187','15492','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17174','27187','15492','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17175','27189','15492','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17176','27188','15492','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17177','27187','15492','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17178','27222','15493','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17179','27222','15493','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17180','27224','15493','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17181','27223','15493','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17182','27222','15493','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17183','27258','15494','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17184','27258','15494','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17185','27260','15494','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17186','27259','15494','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17187','27258','15494','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17188','27279','15495','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17189','27279','15495','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17190','27281','15495','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17191','27280','15495','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17192','27279','15495','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17193','27328','15496','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17194','27328','15496','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17195','27330','15496','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17196','27329','15496','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17197','27328','15496','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17198','27457','15497','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17199','27457','15497','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17200','27459','15497','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17201','27458','15497','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17202','27457','15497','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17203','27493','15498','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17204','27493','15498','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17205','27495','15498','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17206','27494','15498','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17207','27493','15498','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17208','27527','15499','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17209','27527','15499','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17210','27529','15499','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17211','27528','15499','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17212','27527','15499','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17213','27563','15500','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17214','27563','15500','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17215','27565','15500','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17216','27564','15500','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17217','27563','15500','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17218','27649','15501','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17219','27649','15501','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17220','27651','15501','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17221','27650','15501','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17222','27649','15501','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17223','27729','15502','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17224','27729','15502','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17225','27731','15502','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17226','27730','15502','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17227','27729','15502','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17228','27763','15503','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17229','27763','15503','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17230','27765','15503','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17231','27764','15503','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17232','27763','15503','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17233','27795','15504','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17234','27795','15504','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17235','27797','15504','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17236','27796','15504','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17237','27795','15504','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17238','27879','15505','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17239','27879','15505','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17240','27881','15505','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17241','27880','15505','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17242','27879','15505','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17243','27916','15506','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17244','27916','15506','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17245','27918','15506','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17246','27917','15506','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17247','27916','15506','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17248','27951','15507','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17249','27951','15507','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17250','27953','15507','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17251','27952','15507','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17252','27951','15507','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17253','28065','15508','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17254','28065','15508','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17255','28067','15508','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17256','28066','15508','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17257','28065','15508','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17258','28125','15509','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17259','28125','15509','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17260','28127','15509','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17261','28126','15509','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17262','28125','15509','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17263','28182','15510','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17264','28182','15510','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17265','28184','15510','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17266','28183','15510','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17267','28182','15510','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17268','28230','15511','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17269','28230','15511','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17270','28232','15511','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17271','28231','15511','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17272','28230','15511','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17273','27127','15512','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17274','27127','15512','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17275','27124','15513','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17276','27121','15513','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17277','27125','15513','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17280','27121','15515','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17281','27121','15515','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17282','27120','15515','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17283','27127','15515','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17284','27121','15515','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17285','28105','15516','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17286','28105','15516','diff','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17287','28100','15517','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17288','28104','15517','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17289','28103','15517','avg','15m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17292','28104','15519','change','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17293','28104','15519','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17294','28106','15519','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17295','28105','15519','last','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17296','28104','15519','prev','');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17357','27076','15520','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17358','27073','15520','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17359','27598','15521','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17360','27601','15521','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17361','28007','15522','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17362','28010','15522','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17363','27086','15523','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17364','27083','15523','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17365','27621','15524','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17366','27624','15524','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17367','27978','15525','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17368','27981','15525','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17369','27096','15526','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17370','27093','15526','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17371','27106','15527','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17372','27103','15527','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17373','27182','15528','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17374','27185','15528','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17375','27217','15529','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17376','27220','15529','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17377','27253','15530','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17378','27256','15530','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17379','27274','15531','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17380','27277','15531','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17381','27323','15532','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17382','27326','15532','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17383','27452','15533','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17384','27455','15533','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17385','27488','15534','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17386','27491','15534','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17387','27522','15535','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17388','27525','15535','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17389','27558','15536','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17390','27561','15536','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17391','27644','15537','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17392','27647','15537','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17393','27724','15538','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17394','27727','15538','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17395','27758','15539','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17396','27761','15539','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17397','27790','15540','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17398','27793','15540','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17399','27874','15541','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17400','27877','15541','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17401','27911','15542','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17402','27914','15542','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17403','27946','15543','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17404','27949','15543','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17405','28060','15544','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17406','28063','15544','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17407','28120','15545','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17408','28123','15545','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17409','28177','15546','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17410','28180','15546','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17411','28225','15547','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17412','28228','15547','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17413','27126','15548','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17414','27123','15548','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17415','28099','15549','avg','5m');
+INSERT INTO functions (functionid,itemid,triggerid,function,parameter) values ('17416','28102','15549','avg','5m');
 INSERT INTO graphs (graphid,name,width,height,yaxismin,yaxismax,templateid,show_work_period,show_triggers,graphtype,show_legend,show_3d,percent_left,percent_right,ymin_type,ymax_type,ymin_itemid,ymax_itemid,flags) values ('387','CPU utilization','900','200','0.0000','100.0000',NULL,'1','0','1','1','0','0.0000','0.0000','1','1',NULL,NULL,'0');
 INSERT INTO graphs (graphid,name,width,height,yaxismin,yaxismax,templateid,show_work_period,show_triggers,graphtype,show_legend,show_3d,percent_left,percent_right,ymin_type,ymax_type,ymin_itemid,ymax_itemid,flags) values ('392','Zabbix server performance','900','200','0.0000','100.0000',NULL,'1','1','0','1','0','0.0000','0.0000','0','0',NULL,NULL,'0');
 INSERT INTO graphs (graphid,name,width,height,yaxismin,yaxismax,templateid,show_work_period,show_triggers,graphtype,show_legend,show_3d,percent_left,percent_right,ymin_type,ymax_type,ymin_itemid,ymax_itemid,flags) values ('404','Zabbix data gathering process busy %','900','200','0.0000','100.0000',NULL,'1','1','0','1','0','0.0000','0.0000','1','1',NULL,NULL,'0');
@@ -7913,196 +7943,6 @@ INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxiss
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4539','392','23251','5','1','C80000','1','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4540','519','23277','5','0','00C800','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4541','519','23272','5','1','C80000','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4542','738','27074','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4543','738','27075','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4544','738','27073','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4545','738','27076','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4546','738','27072','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4547','738','27069','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4548','739','27599','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4549','739','27602','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4550','739','27601','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4551','739','27598','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4552','739','27600','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4553','739','27597','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4554','740','28008','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4555','740','28011','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4556','740','28010','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4557','740','28007','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4558','740','28009','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4559','740','28006','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4560','741','27084','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4561','741','27085','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4562','741','27083','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4563','741','27086','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4564','741','27082','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4565','741','27079','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4566','742','27622','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4567','742','27625','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4568','742','27624','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4569','742','27621','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4570','742','27623','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4571','742','27620','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4572','743','27979','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4573','743','27982','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4574','743','27981','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4575','743','27978','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4576','743','27980','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4577','743','27977','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4578','766','27124','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4579','766','27125','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4580','766','27123','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4581','766','27126','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4582','766','27122','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4583','766','27119','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4584','772','28100','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4585','772','28103','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4586','772','28102','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4587','772','28099','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4588','772','28101','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4589','772','28098','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4590','744','27094','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4591','744','27095','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4592','744','27093','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4593','744','27096','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4594','744','27092','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4595','744','27089','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4596','745','27104','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4597','745','27105','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4598','745','27103','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4599','745','27106','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4600','745','27102','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4601','745','27099','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4602','746','27183','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4603','746','27186','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4604','746','27185','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4605','746','27182','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4606','746','27184','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4607','746','27181','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4608','747','27218','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4609','747','27221','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4610','747','27220','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4611','747','27217','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4612','747','27219','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4613','747','27216','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4614','748','27254','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4615','748','27257','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4616','748','27256','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4617','748','27253','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4618','748','27255','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4619','748','27252','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4620','749','27275','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4621','749','27278','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4622','749','27277','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4623','749','27274','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4624','749','27276','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4625','749','27273','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4626','750','27324','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4627','750','27327','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4628','750','27326','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4629','750','27323','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4630','750','27325','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4631','750','27322','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4632','752','27453','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4633','752','27456','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4634','752','27455','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4635','752','27452','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4636','752','27454','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4637','752','27451','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4638','753','27489','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4639','753','27492','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4640','753','27491','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4641','753','27488','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4642','753','27490','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4643','753','27487','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4644','754','27523','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4645','754','27526','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4646','754','27525','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4647','754','27522','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4648','754','27524','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4649','754','27521','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4650','755','27559','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4651','755','27562','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4652','755','27561','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4653','755','27558','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4654','755','27560','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4655','755','27557','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4656','756','27645','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4657','756','27648','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4658','756','27647','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4659','756','27644','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4660','756','27646','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4661','756','27643','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4662','758','27725','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4663','758','27728','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4664','758','27727','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4665','758','27724','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4666','758','27726','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4667','758','27723','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4668','759','27759','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4669','759','27762','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4670','759','27761','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4671','759','27758','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4672','759','27760','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4673','759','27757','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4674','760','27791','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4675','760','27794','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4676','760','27793','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4677','760','27790','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4678','760','27792','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4679','760','27789','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4680','762','27875','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4681','762','27878','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4682','762','27877','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4683','762','27874','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4684','762','27876','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4685','762','27873','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4686','763','27912','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4687','763','27915','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4688','763','27914','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4689','763','27911','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4690','763','27913','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4691','763','27910','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4692','764','27947','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4693','764','27950','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4694','764','27949','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4695','764','27946','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4696','764','27948','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4697','764','27945','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4698','769','28061','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4699','769','28064','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4700','769','28063','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4701','769','28060','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4702','769','28062','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4703','769','28059','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4704','773','28121','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4705','773','28124','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4706','773','28123','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4707','773','28120','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4708','773','28122','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4709','773','28119','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4710','778','28178','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4711','778','28181','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4712','778','28180','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4713','778','28177','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4714','778','28179','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4715','778','28176','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4716','785','28226','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4717','785','28229','2','1','2774A4','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4718','785','28228','0','2','F63100','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4719','785','28225','0','3','A54F10','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4720','785','28227','0','4','FC6EA3','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4721','785','28224','0','5','6C59DC','1','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4722','655','27036','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4723','779','27038','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4724','657','27052','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4725','767','28045','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4726','770','28084','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4727','776','28162','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4728','780','27054','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4729','781','28052','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4730','782','28091','5','0','1A7C11','0','2','0');
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4731','783','28169','5','0','1A7C11','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4732','724','27904','5','0','1A7C11','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4733','725','27899','5','0','1A7C11','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4734','668','27208','5','0','1A7C11','0','2','0');
@@ -8149,6 +7989,196 @@ INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxiss
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4775','728','27933','5','0','1A7C11','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4776','736','28031','5','0','1A7C11','0','2','0');
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4777','737','28028','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4968','655','27036','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4969','779','27038','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4970','657','27052','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4971','767','28045','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4972','770','28084','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4973','776','28162','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4974','780','27054','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4975','781','28052','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4976','782','28091','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4977','783','28169','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4978','738','27074','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4979','738','27075','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4980','738','27073','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4981','738','27076','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4982','738','27072','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4983','738','27069','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4984','739','27599','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4985','739','27602','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4986','739','27601','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4987','739','27598','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4988','739','27600','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4989','739','27597','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4990','740','28008','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4991','740','28011','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4992','740','28010','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4993','740','28007','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4994','740','28009','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4995','740','28006','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4996','741','27084','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4997','741','27085','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4998','741','27083','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('4999','741','27086','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5000','741','27082','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5001','741','27079','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5002','742','27622','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5003','742','27625','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5004','742','27624','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5005','742','27621','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5006','742','27623','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5007','742','27620','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5008','743','27979','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5009','743','27982','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5010','743','27981','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5011','743','27978','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5012','743','27980','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5013','743','27977','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5014','744','27094','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5015','744','27095','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5016','744','27093','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5017','744','27096','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5018','744','27092','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5019','744','27089','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5020','745','27104','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5021','745','27105','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5022','745','27103','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5023','745','27106','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5024','745','27102','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5025','745','27099','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5026','746','27183','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5027','746','27186','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5028','746','27185','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5029','746','27182','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5030','746','27184','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5031','746','27181','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5032','747','27218','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5033','747','27221','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5034','747','27220','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5035','747','27217','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5036','747','27219','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5037','747','27216','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5038','748','27254','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5039','748','27257','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5040','748','27256','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5041','748','27253','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5042','748','27255','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5043','748','27252','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5044','749','27275','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5045','749','27278','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5046','749','27277','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5047','749','27274','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5048','749','27276','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5049','749','27273','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5050','750','27324','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5051','750','27327','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5052','750','27326','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5053','750','27323','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5054','750','27325','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5055','750','27322','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5056','752','27453','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5057','752','27456','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5058','752','27455','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5059','752','27452','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5060','752','27454','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5061','752','27451','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5062','753','27489','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5063','753','27492','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5064','753','27491','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5065','753','27488','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5066','753','27490','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5067','753','27487','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5068','754','27523','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5069','754','27526','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5070','754','27525','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5071','754','27522','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5072','754','27524','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5073','754','27521','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5074','755','27559','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5075','755','27562','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5076','755','27561','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5077','755','27558','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5078','755','27560','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5079','755','27557','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5080','756','27645','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5081','756','27648','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5082','756','27647','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5083','756','27644','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5084','756','27646','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5085','756','27643','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5086','758','27725','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5087','758','27728','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5088','758','27727','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5089','758','27724','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5090','758','27726','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5091','758','27723','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5092','759','27759','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5093','759','27762','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5094','759','27761','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5095','759','27758','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5096','759','27760','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5097','759','27757','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5098','760','27791','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5099','760','27794','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5100','760','27793','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5101','760','27790','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5102','760','27792','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5103','760','27789','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5104','762','27875','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5105','762','27878','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5106','762','27877','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5107','762','27874','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5108','762','27876','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5109','762','27873','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5110','763','27912','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5111','763','27915','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5112','763','27914','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5113','763','27911','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5114','763','27913','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5115','763','27910','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5116','764','27947','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5117','764','27950','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5118','764','27949','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5119','764','27946','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5120','764','27948','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5121','764','27945','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5122','769','28061','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5123','769','28064','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5124','769','28063','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5125','769','28060','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5126','769','28062','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5127','769','28059','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5128','773','28121','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5129','773','28124','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5130','773','28123','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5131','773','28120','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5132','773','28122','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5133','773','28119','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5134','778','28178','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5135','778','28181','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5136','778','28180','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5137','778','28177','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5138','778','28179','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5139','778','28176','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5140','785','28226','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5141','785','28229','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5142','785','28228','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5143','785','28225','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5144','785','28227','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5145','785','28224','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5146','766','27124','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5147','766','27125','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5148','766','27123','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5149','766','27126','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5150','766','27122','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5151','766','27119','0','5','6C59DC','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5152','772','28100','5','0','1A7C11','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5153','772','28103','2','1','2774A4','0','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5154','772','28102','0','2','F63100','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5155','772','28099','0','3','A54F10','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5156','772','28101','0','4','FC6EA3','1','2','0');
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type) values ('5157','772','28098','0','5','6C59DC','1','2','0');
 INSERT INTO hostmacro (hostmacroid,hostid,macro,value) values ('351','10184','{$CPU_UTIL_MAX}','90');
 INSERT INTO hostmacro (hostmacroid,hostid,macro,value) values ('352','10184','{$MEMORY_UTIL_MAX}','90');
 INSERT INTO hostmacro (hostmacroid,hostid,macro,value) values ('353','10184','{$TEMP_CRIT}','60');
@@ -9328,667 +9358,6 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15461',
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15462','345','25668');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15463','345','23265');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15464','345','23277');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15465','800','27152');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15466','800','27153');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15467','799','27154');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15468','800','27155');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15469','800','27156');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15470','800','27157');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15471','800','27158');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15472','799','27159');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15473','804','27199');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15474','804','27197');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15475','805','27202');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15476','804','27200');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15477','804','27196');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15478','804','27195');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15479','804','27198');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15480','805','27201');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15481','812','27232');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15482','812','27230');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15483','813','27235');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15484','812','27233');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15485','812','27229');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15486','812','27228');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15487','812','27231');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15488','813','27234');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15489','821','27268');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15490','821','27266');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15491','822','27271');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15492','821','27269');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15493','821','27265');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15494','821','27264');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15495','821','27267');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15496','822','27270');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15497','824','27289');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15498','824','27287');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15499','825','27292');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15500','824','27290');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15501','824','27286');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15502','824','27285');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15503','824','27288');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15504','825','27291');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15505','841','27340');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15506','841','27338');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15507','842','27343');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15508','841','27341');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15509','841','27337');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15510','841','27336');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15511','841','27339');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15512','842','27342');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15513','846','27372');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15514','846','27370');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15515','847','27375');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15516','846','27373');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15517','846','27369');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15518','846','27368');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15519','846','27371');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15520','847','27374');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15521','875','27469');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15522','875','27467');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15523','876','27472');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15524','875','27470');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15525','875','27466');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15526','875','27465');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15527','875','27468');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15528','876','27471');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15529','884','27503');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15530','884','27501');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15531','885','27506');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15532','884','27504');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15533','884','27500');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15534','884','27499');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15535','884','27502');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15536','885','27505');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15537','893','27539');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15538','893','27537');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15539','894','27542');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15540','893','27540');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15541','893','27536');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15542','893','27535');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15543','893','27538');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15544','894','27541');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15545','902','27575');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15546','902','27573');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15547','903','27578');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15548','902','27576');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15549','902','27572');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15550','902','27571');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15551','902','27574');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15552','903','27577');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15553','914','27638');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15554','914','27636');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15555','915','27641');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15556','914','27639');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15557','914','27635');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15558','914','27634');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15559','914','27637');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15560','915','27640');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15561','917','27661');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15562','917','27659');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15563','918','27664');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15564','917','27662');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15565','917','27658');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15566','917','27657');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15567','917','27660');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15568','918','27663');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15569','935','27741');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15570','935','27739');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15571','936','27744');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15572','935','27742');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15573','935','27738');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15574','935','27737');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15575','935','27740');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15576','936','27743');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15577','943','27773');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15578','943','27771');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15579','944','27776');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15580','943','27774');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15581','943','27770');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15582','943','27769');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15583','943','27772');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15584','944','27775');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15585','950','27807');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15586','950','27805');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15587','951','27810');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15588','950','27808');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15589','950','27804');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15590','950','27803');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15591','950','27806');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15592','951','27809');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15593','970','27889');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15594','970','27887');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15595','971','27892');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15596','970','27890');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15597','970','27886');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15598','970','27885');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15599','970','27888');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15600','971','27891');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15601','978','27926');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15602','978','27924');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15603','979','27929');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15604','978','27927');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15605','978','27923');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15606','978','27922');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15607','978','27925');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15608','979','27928');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15609','987','27963');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15610','987','27961');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15611','988','27966');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15612','987','27964');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15613','987','27960');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15614','987','27959');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15615','987','27962');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15616','988','27965');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15617','993','27993');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15618','993','27991');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15619','994','27996');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15620','993','27994');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15621','993','27990');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15622','993','27989');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15623','993','27992');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15624','994','27995');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15625','1019','28077');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15626','1019','28075');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15627','1020','28080');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15628','1019','28078');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15629','1019','28074');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15630','1019','28073');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15631','1019','28076');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15632','1020','28079');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15633','1026','28114');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15634','1026','28112');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15635','1027','28117');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15636','1026','28115');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15637','1026','28111');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15638','1026','28110');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15639','1026','28113');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15640','1027','28116');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15641','1029','28137');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15642','1029','28135');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15643','1030','28140');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15644','1029','28138');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15645','1029','28134');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15646','1029','28133');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15647','1029','28136');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15648','1030','28139');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15649','1042','28192');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15650','1042','28190');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15651','1043','28195');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15652','1042','28193');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15653','1042','28189');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15654','1042','28188');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15655','1042','28191');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15656','1043','28194');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15657','1054','28240');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15658','1054','28238');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15659','1055','28243');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15660','1054','28241');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15661','1054','28237');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15662','1054','28236');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15663','1054','28239');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15664','1055','28242');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15665','770','27030');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15666','910','27607');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15667','771','27032');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15668','803','27191');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15669','840','27332');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15670','874','27461');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15671','892','27531');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15672','901','27567');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15673','913','27630');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15674','916','27653');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15675','934','27733');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15676','949','27799');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15677','986','27955');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15678','1018','28069');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15679','1028','28129');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15680','781','27069');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15681','781','27070');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15682','781','27071');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15683','781','27072');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15684','781','27073');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15685','781','27074');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15686','781','27075');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15687','781','27076');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15688','781','27077');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15689','910','27597');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15690','910','27605');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15691','910','27603');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15692','910','27600');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15693','910','27601');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15694','910','27599');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15695','910','27602');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15696','910','27598');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15697','910','27604');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15698','998','28006');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15699','998','28014');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15700','998','28012');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15701','998','28009');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15702','998','28010');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15703','998','28008');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15704','998','28011');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15705','998','28007');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15706','998','28013');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15707','782','27079');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15708','782','27080');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15709','782','27081');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15710','782','27082');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15711','782','27083');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15712','782','27084');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15713','782','27085');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15714','782','27086');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15715','782','27087');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15716','913','27620');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15717','913','27628');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15718','913','27626');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15719','913','27623');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15720','913','27624');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15721','913','27622');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15722','913','27625');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15723','913','27621');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15724','913','27627');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15725','992','27977');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15726','992','27985');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15727','992','27983');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15728','992','27980');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15729','992','27981');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15730','992','27979');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15731','992','27982');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15732','992','27978');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15733','992','27984');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15734','780','27065');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15735','780','27066');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15736','780','27067');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15737','797','27140');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15738','797','27139');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15739','797','27138');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15740','799','27151');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15741','799','27150');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15742','799','27149');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15743','805','27194');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15744','805','27193');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15745','805','27192');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15746','813','27227');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15747','813','27226');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15748','813','27225');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15749','822','27263');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15750','822','27262');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15751','822','27261');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15752','825','27284');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15753','825','27283');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15754','825','27282');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15755','842','27335');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15756','842','27334');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15757','842','27333');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15758','847','27367');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15759','847','27366');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15760','847','27365');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15761','876','27464');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15762','876','27463');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15763','876','27462');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15764','885','27498');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15765','885','27497');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15766','885','27496');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15767','894','27534');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15768','894','27533');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15769','894','27532');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15770','903','27570');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15771','903','27569');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15772','903','27568');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15773','912','27610');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15774','912','27609');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15775','912','27608');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15776','915','27633');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15777','915','27632');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15778','915','27631');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15779','918','27656');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15780','918','27655');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15781','918','27654');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15782','936','27736');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15783','936','27735');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15784','936','27734');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15785','944','27768');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15786','944','27767');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15787','944','27766');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15788','951','27802');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15789','951','27801');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15790','951','27800');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15791','971','27884');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15792','971','27883');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15793','971','27882');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15794','979','27921');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15795','979','27920');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15796','979','27919');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15797','988','27958');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15798','988','27957');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15799','988','27956');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15800','994','27988');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15801','994','27987');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15802','994','27986');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15803','1000','28017');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15804','1000','28016');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15805','1000','28015');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15806','1020','28072');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15807','1020','28071');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15808','1020','28070');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15809','1027','28109');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15810','1027','28108');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15811','1027','28107');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15812','1030','28132');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15813','1030','28131');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15814','1030','28130');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15815','1043','28187');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15816','1043','28186');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15817','1043','28185');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15818','1055','28235');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15819','1055','28234');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15820','1055','28233');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15821','786','27119');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15822','786','27120');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15823','786','27121');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15824','786','27122');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15825','786','27123');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15826','786','27124');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15827','786','27125');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15828','786','27126');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15829','786','27127');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15830','1025','28098');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15831','1025','28106');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15832','1025','28104');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15833','1025','28101');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15834','1025','28102');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15835','1025','28100');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15836','1025','28103');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15837','1025','28099');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15838','1025','28105');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15839','783','27089');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15840','783','27090');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15841','783','27091');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15842','783','27092');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15843','783','27093');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15844','783','27094');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15845','783','27095');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15846','783','27096');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15847','783','27097');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15848','784','27099');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15849','784','27100');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15850','784','27101');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15851','784','27102');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15852','784','27103');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15853','784','27104');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15854','784','27105');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15855','784','27106');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15856','784','27107');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15857','803','27181');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15858','803','27189');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15859','803','27187');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15860','803','27184');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15861','803','27185');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15862','803','27183');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15863','803','27186');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15864','803','27182');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15865','803','27188');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15866','811','27216');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15867','811','27224');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15868','811','27222');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15869','811','27219');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15870','811','27220');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15871','811','27218');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15872','811','27221');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15873','811','27217');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15874','811','27223');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15875','820','27252');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15876','820','27260');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15877','820','27258');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15878','820','27255');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15879','820','27256');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15880','820','27254');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15881','820','27257');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15882','820','27253');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15883','820','27259');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15884','823','27273');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15885','823','27281');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15886','823','27279');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15887','823','27276');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15888','823','27277');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15889','823','27275');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15890','823','27278');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15891','823','27274');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15892','823','27280');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15893','840','27322');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15894','840','27330');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15895','840','27328');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15896','840','27325');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15897','840','27326');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15898','840','27324');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15899','840','27327');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15900','840','27323');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15901','840','27329');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15902','874','27451');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15903','874','27459');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15904','874','27457');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15905','874','27454');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15906','874','27455');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15907','874','27453');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15908','874','27456');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15909','874','27452');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15910','874','27458');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15911','883','27487');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15912','883','27495');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15913','883','27493');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15914','883','27490');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15915','883','27491');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15916','883','27489');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15917','883','27492');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15918','883','27488');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15919','883','27494');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15920','892','27521');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15921','892','27529');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15922','892','27527');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15923','892','27524');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15924','892','27525');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15925','892','27523');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15926','892','27526');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15927','892','27522');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15928','892','27528');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15929','901','27557');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15930','901','27565');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15931','901','27563');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15932','901','27560');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15933','901','27561');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15934','901','27559');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15935','901','27562');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15936','901','27558');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15937','901','27564');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15938','916','27643');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15939','916','27651');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15940','916','27649');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15941','916','27646');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15942','916','27647');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15943','916','27645');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15944','916','27648');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15945','916','27644');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15946','916','27650');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15947','934','27723');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15948','934','27731');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15949','934','27729');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15950','934','27726');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15951','934','27727');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15952','934','27725');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15953','934','27728');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15954','934','27724');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15955','934','27730');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15956','942','27757');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15957','942','27765');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15958','942','27763');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15959','942','27760');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15960','942','27761');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15961','942','27759');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15962','942','27762');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15963','942','27758');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15964','942','27764');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15965','949','27789');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15966','949','27797');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15967','949','27795');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15968','949','27792');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15969','949','27793');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15970','949','27791');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15971','949','27794');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15972','949','27790');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15973','949','27796');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15974','969','27873');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15975','969','27881');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15976','969','27879');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15977','969','27876');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15978','969','27877');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15979','969','27875');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15980','969','27878');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15981','969','27874');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15982','969','27880');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15983','977','27910');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15984','977','27918');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15985','977','27916');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15986','977','27913');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15987','977','27914');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15988','977','27912');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15989','977','27915');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15990','977','27911');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15991','977','27917');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15992','986','27945');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15993','986','27953');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15994','986','27951');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15995','986','27948');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15996','986','27949');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15997','986','27947');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15998','986','27950');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('15999','986','27946');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16000','986','27952');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16001','1018','28059');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16002','1018','28067');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16003','1018','28065');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16004','1018','28062');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16005','1018','28063');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16006','1018','28061');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16007','1018','28064');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16008','1018','28060');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16009','1018','28066');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16010','1028','28119');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16011','1028','28127');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16012','1028','28125');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16013','1028','28122');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16014','1028','28123');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16015','1028','28121');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16016','1028','28124');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16017','1028','28120');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16018','1028','28126');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16019','1041','28176');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16020','1041','28184');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16021','1041','28182');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16022','1041','28179');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16023','1041','28180');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16024','1041','28178');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16025','1041','28181');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16026','1041','28177');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16027','1041','28183');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16028','1053','28224');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16029','1053','28232');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16030','1053','28230');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16031','1053','28227');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16032','1053','28228');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16033','1053','28226');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16034','1053','28229');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16035','1053','28225');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16036','1053','28231');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16037','775','27036');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16038','773','27037');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16039','773','27038');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16040','773','27039');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16041','772','27040');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16042','772','27041');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16043','772','27042');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16044','774','27043');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16045','774','27044');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16046','774','27045');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16047','772','27046');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16048','772','27047');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16049','772','27048');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16050','779','27052');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16051','777','27053');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16052','777','27054');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16053','777','27055');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16054','776','27056');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16055','776','27057');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16056','776','27058');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16057','778','27059');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16058','778','27060');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16059','778','27061');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16060','776','27062');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16061','776','27063');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16062','776','27064');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16063','1014','28045');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16064','1016','28053');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16065','1016','28052');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16066','1016','28057');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16067','1015','28054');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16068','1015','28055');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16069','1015','28056');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16070','1017','28047');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16071','1017','28046');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16072','1017','28051');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16073','1015','28048');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16074','1015','28049');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16075','1015','28050');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16076','1021','28084');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16077','1023','28092');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16078','1023','28091');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16079','1023','28096');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16080','1022','28093');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16081','1022','28094');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16082','1022','28095');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16083','1024','28086');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16084','1024','28085');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16085','1024','28090');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16086','1022','28087');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16087','1022','28088');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16088','1022','28089');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16089','1037','28162');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16090','1039','28170');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16091','1039','28169');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16092','1039','28174');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16093','1038','28171');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16094','1038','28172');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16095','1038','28173');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16096','1040','28164');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16097','1040','28163');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16098','1040','28168');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16099','1038','28165');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16100','1038','28166');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16101','1038','28167');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16102','798','27141');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16103','798','27142');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16104','797','27143');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16105','798','27144');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16106','798','27145');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16107','798','27146');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16108','798','27147');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16109','797','27148');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16110','911','27615');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16111','911','27613');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16112','912','27618');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16113','911','27616');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16114','911','27612');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16115','911','27611');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16116','911','27614');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16117','912','27617');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16118','999','28022');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16119','999','28020');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16120','1000','28025');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16121','999','28023');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16122','999','28019');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16123','999','28018');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16124','999','28021');
-INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16125','1000','28024');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16126','976','27893');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16127','976','27894');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16128','976','27895');
@@ -10215,6 +9584,667 @@ INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16348',
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16349','1002','28029');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16350','1002','28030');
 INSERT INTO items_applications (itemappid,applicationid,itemid) values ('16351','1001','28031');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17013','770','27030');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17014','910','27607');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17015','771','27032');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17016','803','27191');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17017','840','27332');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17018','874','27461');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17019','892','27531');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17020','901','27567');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17021','913','27630');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17022','916','27653');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17023','934','27733');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17024','949','27799');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17025','986','27955');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17026','1018','28069');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17027','1028','28129');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17028','798','27141');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17029','798','27142');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17030','797','27143');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17031','798','27144');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17032','798','27145');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17033','798','27146');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17034','798','27147');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17035','797','27148');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17036','911','27615');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17037','911','27613');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17038','912','27618');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17039','911','27616');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17040','911','27612');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17041','911','27611');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17042','911','27614');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17043','912','27617');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17044','999','28022');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17045','999','28020');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17046','1000','28025');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17047','999','28023');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17048','999','28019');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17049','999','28018');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17050','999','28021');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17051','1000','28024');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17052','800','27152');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17053','800','27153');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17054','799','27154');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17055','800','27155');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17056','800','27156');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17057','800','27157');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17058','800','27158');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17059','799','27159');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17060','804','27199');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17061','804','27197');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17062','805','27202');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17063','804','27200');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17064','804','27196');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17065','804','27195');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17066','804','27198');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17067','805','27201');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17068','812','27232');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17069','812','27230');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17070','813','27235');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17071','812','27233');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17072','812','27229');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17073','812','27228');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17074','812','27231');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17075','813','27234');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17076','821','27268');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17077','821','27266');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17078','822','27271');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17079','821','27269');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17080','821','27265');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17081','821','27264');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17082','821','27267');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17083','822','27270');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17084','824','27289');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17085','824','27287');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17086','825','27292');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17087','824','27290');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17088','824','27286');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17089','824','27285');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17090','824','27288');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17091','825','27291');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17092','841','27340');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17093','841','27338');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17094','842','27343');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17095','841','27341');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17096','841','27337');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17097','841','27336');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17098','841','27339');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17099','842','27342');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17100','846','27372');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17101','846','27370');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17102','847','27375');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17103','846','27373');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17104','846','27369');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17105','846','27368');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17106','846','27371');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17107','847','27374');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17108','875','27469');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17109','875','27467');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17110','876','27472');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17111','875','27470');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17112','875','27466');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17113','875','27465');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17114','875','27468');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17115','876','27471');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17116','884','27503');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17117','884','27501');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17118','885','27506');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17119','884','27504');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17120','884','27500');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17121','884','27499');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17122','884','27502');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17123','885','27505');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17124','893','27539');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17125','893','27537');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17126','894','27542');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17127','893','27540');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17128','893','27536');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17129','893','27535');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17130','893','27538');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17131','894','27541');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17132','902','27575');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17133','902','27573');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17134','903','27578');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17135','902','27576');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17136','902','27572');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17137','902','27571');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17138','902','27574');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17139','903','27577');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17140','914','27638');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17141','914','27636');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17142','915','27641');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17143','914','27639');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17144','914','27635');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17145','914','27634');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17146','914','27637');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17147','915','27640');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17148','917','27661');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17149','917','27659');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17150','918','27664');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17151','917','27662');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17152','917','27658');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17153','917','27657');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17154','917','27660');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17155','918','27663');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17156','935','27741');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17157','935','27739');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17158','936','27744');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17159','935','27742');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17160','935','27738');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17161','935','27737');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17162','935','27740');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17163','936','27743');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17164','943','27773');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17165','943','27771');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17166','944','27776');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17167','943','27774');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17168','943','27770');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17169','943','27769');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17170','943','27772');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17171','944','27775');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17172','950','27807');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17173','950','27805');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17174','951','27810');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17175','950','27808');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17176','950','27804');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17177','950','27803');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17178','950','27806');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17179','951','27809');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17180','970','27889');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17181','970','27887');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17182','971','27892');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17183','970','27890');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17184','970','27886');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17185','970','27885');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17186','970','27888');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17187','971','27891');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17188','978','27926');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17189','978','27924');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17190','979','27929');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17191','978','27927');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17192','978','27923');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17193','978','27922');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17194','978','27925');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17195','979','27928');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17196','987','27963');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17197','987','27961');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17198','988','27966');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17199','987','27964');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17200','987','27960');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17201','987','27959');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17202','987','27962');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17203','988','27965');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17204','993','27993');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17205','993','27991');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17206','994','27996');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17207','993','27994');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17208','993','27990');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17209','993','27989');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17210','993','27992');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17211','994','27995');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17212','1019','28077');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17213','1019','28075');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17214','1020','28080');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17215','1019','28078');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17216','1019','28074');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17217','1019','28073');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17218','1019','28076');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17219','1020','28079');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17220','1026','28114');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17221','1026','28112');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17222','1027','28117');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17223','1026','28115');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17224','1026','28111');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17225','1026','28110');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17226','1026','28113');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17227','1027','28116');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17228','1029','28137');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17229','1029','28135');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17230','1030','28140');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17231','1029','28138');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17232','1029','28134');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17233','1029','28133');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17234','1029','28136');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17235','1030','28139');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17236','1042','28192');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17237','1042','28190');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17238','1043','28195');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17239','1042','28193');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17240','1042','28189');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17241','1042','28188');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17242','1042','28191');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17243','1043','28194');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17244','1054','28240');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17245','1054','28238');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17246','1055','28243');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17247','1054','28241');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17248','1054','28237');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17249','1054','28236');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17250','1054','28239');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17251','1055','28242');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17252','775','27036');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17253','773','27037');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17254','773','27038');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17255','773','27039');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17256','772','27040');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17257','772','27041');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17258','772','27042');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17259','774','27043');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17260','774','27044');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17261','774','27045');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17262','772','27046');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17263','772','27047');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17264','772','27048');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17265','779','27052');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17266','777','27053');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17267','777','27054');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17268','777','27055');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17269','776','27056');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17270','776','27057');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17271','776','27058');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17272','778','27059');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17273','778','27060');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17274','778','27061');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17275','776','27062');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17276','776','27063');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17277','776','27064');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17278','1014','28045');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17279','1016','28053');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17280','1016','28052');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17281','1016','28057');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17282','1015','28054');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17283','1015','28055');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17284','1015','28056');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17285','1017','28047');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17286','1017','28046');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17287','1017','28051');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17288','1015','28048');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17289','1015','28049');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17290','1015','28050');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17291','1021','28084');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17292','1023','28092');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17293','1023','28091');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17294','1023','28096');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17295','1022','28093');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17296','1022','28094');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17297','1022','28095');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17298','1024','28086');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17299','1024','28085');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17300','1024','28090');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17301','1022','28087');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17302','1022','28088');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17303','1022','28089');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17304','1037','28162');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17305','1039','28170');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17306','1039','28169');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17307','1039','28174');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17308','1038','28171');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17309','1038','28172');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17310','1038','28173');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17311','1040','28164');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17312','1040','28163');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17313','1040','28168');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17314','1038','28165');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17315','1038','28166');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17316','1038','28167');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17317','780','27065');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17318','780','27066');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17319','780','27067');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17320','797','27140');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17321','797','27139');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17322','797','27138');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17323','799','27151');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17324','799','27150');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17325','799','27149');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17326','805','27194');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17327','805','27193');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17328','805','27192');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17329','813','27227');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17330','813','27226');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17331','813','27225');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17332','822','27263');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17333','822','27262');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17334','822','27261');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17335','825','27284');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17336','825','27283');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17337','825','27282');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17338','842','27335');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17339','842','27334');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17340','842','27333');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17341','847','27367');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17342','847','27366');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17343','847','27365');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17344','876','27464');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17345','876','27463');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17346','876','27462');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17347','885','27498');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17348','885','27497');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17349','885','27496');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17350','894','27534');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17351','894','27533');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17352','894','27532');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17353','903','27570');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17354','903','27569');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17355','903','27568');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17356','912','27610');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17357','912','27609');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17358','912','27608');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17359','915','27633');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17360','915','27632');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17361','915','27631');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17362','918','27656');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17363','918','27655');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17364','918','27654');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17365','936','27736');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17366','936','27735');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17367','936','27734');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17368','944','27768');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17369','944','27767');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17370','944','27766');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17371','951','27802');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17372','951','27801');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17373','951','27800');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17374','971','27884');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17375','971','27883');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17376','971','27882');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17377','979','27921');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17378','979','27920');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17379','979','27919');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17380','988','27958');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17381','988','27957');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17382','988','27956');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17383','994','27988');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17384','994','27987');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17385','994','27986');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17386','1000','28017');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17387','1000','28016');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17388','1000','28015');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17389','1020','28072');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17390','1020','28071');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17391','1020','28070');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17392','1027','28109');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17393','1027','28108');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17394','1027','28107');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17395','1030','28132');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17396','1030','28131');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17397','1030','28130');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17398','1043','28187');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17399','1043','28186');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17400','1043','28185');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17401','1055','28235');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17402','1055','28234');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17403','1055','28233');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17404','781','27069');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17405','781','27070');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17406','781','27071');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17407','781','27072');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17408','781','27073');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17409','781','27074');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17410','781','27075');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17411','781','27076');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17412','781','27077');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17413','910','27597');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17414','910','27605');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17415','910','27603');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17416','910','27600');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17417','910','27601');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17418','910','27599');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17419','910','27602');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17420','910','27598');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17421','910','27604');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17422','998','28006');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17423','998','28014');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17424','998','28012');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17425','998','28009');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17426','998','28010');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17427','998','28008');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17428','998','28011');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17429','998','28007');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17430','998','28013');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17431','782','27079');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17432','782','27080');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17433','782','27081');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17434','782','27082');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17435','782','27083');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17436','782','27084');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17437','782','27085');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17438','782','27086');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17439','782','27087');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17440','913','27620');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17441','913','27628');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17442','913','27626');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17443','913','27623');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17444','913','27624');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17445','913','27622');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17446','913','27625');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17447','913','27621');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17448','913','27627');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17449','992','27977');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17450','992','27985');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17451','992','27983');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17452','992','27980');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17453','992','27981');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17454','992','27979');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17455','992','27982');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17456','992','27978');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17457','992','27984');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17458','783','27089');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17459','783','27090');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17460','783','27091');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17461','783','27092');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17462','783','27093');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17463','783','27094');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17464','783','27095');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17465','783','27096');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17466','783','27097');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17467','784','27099');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17468','784','27100');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17469','784','27101');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17470','784','27102');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17471','784','27103');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17472','784','27104');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17473','784','27105');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17474','784','27106');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17475','784','27107');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17476','803','27181');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17477','803','27189');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17478','803','27187');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17479','803','27184');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17480','803','27185');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17481','803','27183');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17482','803','27186');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17483','803','27182');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17484','803','27188');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17485','811','27216');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17486','811','27224');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17487','811','27222');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17488','811','27219');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17489','811','27220');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17490','811','27218');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17491','811','27221');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17492','811','27217');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17493','811','27223');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17494','820','27252');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17495','820','27260');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17496','820','27258');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17497','820','27255');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17498','820','27256');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17499','820','27254');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17500','820','27257');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17501','820','27253');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17502','820','27259');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17503','823','27273');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17504','823','27281');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17505','823','27279');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17506','823','27276');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17507','823','27277');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17508','823','27275');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17509','823','27278');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17510','823','27274');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17511','823','27280');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17512','840','27322');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17513','840','27330');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17514','840','27328');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17515','840','27325');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17516','840','27326');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17517','840','27324');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17518','840','27327');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17519','840','27323');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17520','840','27329');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17521','874','27451');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17522','874','27459');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17523','874','27457');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17524','874','27454');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17525','874','27455');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17526','874','27453');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17527','874','27456');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17528','874','27452');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17529','874','27458');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17530','883','27487');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17531','883','27495');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17532','883','27493');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17533','883','27490');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17534','883','27491');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17535','883','27489');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17536','883','27492');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17537','883','27488');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17538','883','27494');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17539','892','27521');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17540','892','27529');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17541','892','27527');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17542','892','27524');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17543','892','27525');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17544','892','27523');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17545','892','27526');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17546','892','27522');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17547','892','27528');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17548','901','27557');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17549','901','27565');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17550','901','27563');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17551','901','27560');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17552','901','27561');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17553','901','27559');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17554','901','27562');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17555','901','27558');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17556','901','27564');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17557','916','27643');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17558','916','27651');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17559','916','27649');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17560','916','27646');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17561','916','27647');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17562','916','27645');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17563','916','27648');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17564','916','27644');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17565','916','27650');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17566','934','27723');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17567','934','27731');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17568','934','27729');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17569','934','27726');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17570','934','27727');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17571','934','27725');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17572','934','27728');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17573','934','27724');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17574','934','27730');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17575','942','27757');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17576','942','27765');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17577','942','27763');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17578','942','27760');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17579','942','27761');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17580','942','27759');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17581','942','27762');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17582','942','27758');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17583','942','27764');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17584','949','27789');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17585','949','27797');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17586','949','27795');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17587','949','27792');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17588','949','27793');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17589','949','27791');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17590','949','27794');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17591','949','27790');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17592','949','27796');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17593','969','27873');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17594','969','27881');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17595','969','27879');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17596','969','27876');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17597','969','27877');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17598','969','27875');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17599','969','27878');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17600','969','27874');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17601','969','27880');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17602','977','27910');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17603','977','27918');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17604','977','27916');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17605','977','27913');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17606','977','27914');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17607','977','27912');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17608','977','27915');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17609','977','27911');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17610','977','27917');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17611','986','27945');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17612','986','27953');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17613','986','27951');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17614','986','27948');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17615','986','27949');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17616','986','27947');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17617','986','27950');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17618','986','27946');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17619','986','27952');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17620','1018','28059');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17621','1018','28067');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17622','1018','28065');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17623','1018','28062');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17624','1018','28063');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17625','1018','28061');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17626','1018','28064');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17627','1018','28060');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17628','1018','28066');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17629','1028','28119');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17630','1028','28127');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17631','1028','28125');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17632','1028','28122');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17633','1028','28123');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17634','1028','28121');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17635','1028','28124');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17636','1028','28120');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17637','1028','28126');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17638','1041','28176');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17639','1041','28184');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17640','1041','28182');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17641','1041','28179');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17642','1041','28180');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17643','1041','28178');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17644','1041','28181');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17645','1041','28177');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17646','1041','28183');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17647','1053','28224');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17648','1053','28232');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17649','1053','28230');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17650','1053','28227');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17651','1053','28228');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17652','1053','28226');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17653','1053','28229');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17654','1053','28225');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17655','1053','28231');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17656','786','27119');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17657','786','27120');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17658','786','27121');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17659','786','27122');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17660','786','27123');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17661','786','27124');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17662','786','27125');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17663','786','27126');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17664','786','27127');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17665','1025','28098');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17666','1025','28106');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17667','1025','28104');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17668','1025','28101');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17669','1025','28102');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17670','1025','28100');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17671','1025','28103');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17672','1025','28099');
+INSERT INTO items_applications (itemappid,applicationid,itemid) values ('17673','1025','28105');
 INSERT INTO mappings (mappingid,valuemapid,value,newvalue) values ('1','1','0','Down');
 INSERT INTO mappings (mappingid,valuemapid,value,newvalue) values ('2','1','1','Up');
 INSERT INTO mappings (mappingid,valuemapid,value,newvalue) values ('3','2','0','not available');
@@ -11858,298 +11888,6 @@ INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3434'
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3435','23625','1','10','');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3436','23628','2','10','');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3437','23277','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3438','27159','1','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3439','27201','1','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3440','27234','2','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3441','27270','3','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3442','27291','4','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3443','27342','5','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3444','27374','6','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3445','27471','7','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3446','27505','8','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3447','27541','9','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3448','27577','10','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3449','27640','11','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3450','27663','12','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3451','27743','13','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3452','27775','14','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3453','27809','15','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3454','27891','16','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3455','27928','17','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3456','27965','18','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3457','27995','19','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3458','28079','20','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3459','28116','21','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3460','28139','22','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3461','28194','23','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3462','28242','24','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3463','27069','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3464','27072','2','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3465','27073','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3466','27074','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3467','27074','5','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3468','27075','6','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3469','27075','7','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3470','27076','8','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3471','27597','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3472','27600','2','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3473','27601','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3474','27599','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3475','27599','5','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3476','27602','6','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3477','27602','7','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3478','27598','8','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3479','28006','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3480','28009','10','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3481','28010','11','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3482','28008','12','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3483','28008','13','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3484','28011','14','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3485','28011','15','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3486','28007','16','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3487','27079','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3488','27082','2','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3489','27083','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3490','27084','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3491','27084','5','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3492','27085','6','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3493','27085','7','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3494','27086','8','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3495','27620','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3496','27623','2','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3497','27624','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3498','27622','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3499','27622','5','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3500','27625','6','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3501','27625','7','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3502','27621','8','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3503','27977','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3504','27980','10','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3505','27981','11','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3506','27979','12','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3507','27979','13','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3508','27982','14','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3509','27982','15','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3510','27978','16','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3511','27119','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3512','27121','2','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3513','27122','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3514','27123','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3515','27124','5','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3516','27124','6','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3517','27125','7','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3518','27125','8','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3519','27126','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3520','28098','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3521','28104','2','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3522','28101','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3523','28102','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3524','28100','5','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3525','28100','6','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3526','28103','7','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3527','28103','8','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3528','28099','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3529','27089','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3530','27091','2','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3531','27092','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3532','27093','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3533','27094','5','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3534','27094','6','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3535','27095','7','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3536','27095','8','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3537','27096','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3538','27099','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3539','27101','2','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3540','27102','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3541','27103','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3542','27104','5','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3543','27104','6','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3544','27105','7','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3545','27105','8','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3546','27106','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3547','27181','1','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3548','27187','2','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3549','27184','3','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3550','27185','4','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3551','27183','5','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3552','27183','6','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3553','27186','7','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3554','27186','8','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3555','27182','9','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3556','27216','10','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3557','27222','11','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3558','27219','12','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3559','27220','13','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3560','27218','14','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3561','27218','15','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3562','27221','16','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3563','27221','17','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3564','27217','18','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3565','27252','19','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3566','27258','20','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3567','27255','21','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3568','27256','22','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3569','27254','23','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3570','27254','24','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3571','27257','25','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3572','27257','26','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3573','27253','27','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3574','27273','28','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3575','27279','29','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3576','27276','30','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3577','27277','31','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3578','27275','32','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3579','27275','33','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3580','27278','34','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3581','27278','35','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3582','27274','36','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3583','27322','37','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3584','27328','38','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3585','27325','39','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3586','27326','40','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3587','27324','41','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3588','27324','42','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3589','27327','43','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3590','27327','44','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3591','27323','45','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3592','27451','46','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3593','27457','47','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3594','27454','48','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3595','27455','49','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3596','27453','50','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3597','27453','51','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3598','27456','52','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3599','27456','53','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3600','27452','54','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3601','27487','55','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3602','27493','56','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3603','27490','57','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3604','27491','58','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3605','27489','59','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3606','27489','60','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3607','27492','61','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3608','27492','62','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3609','27488','63','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3610','27521','64','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3611','27527','65','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3612','27524','66','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3613','27525','67','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3614','27523','68','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3615','27523','69','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3616','27526','70','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3617','27526','71','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3618','27522','72','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3619','27557','73','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3620','27563','74','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3621','27560','75','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3622','27561','76','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3623','27559','77','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3624','27559','78','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3625','27562','79','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3626','27562','80','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3627','27558','81','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3628','27643','82','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3629','27649','83','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3630','27646','84','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3631','27647','85','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3632','27645','86','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3633','27645','87','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3634','27648','88','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3635','27648','89','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3636','27644','90','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3637','27723','91','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3638','27729','92','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3639','27726','93','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3640','27727','94','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3641','27725','95','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3642','27725','96','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3643','27728','97','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3644','27728','98','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3645','27724','99','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3646','27757','100','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3647','27763','101','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3648','27760','102','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3649','27761','103','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3650','27759','104','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3651','27759','105','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3652','27762','106','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3653','27762','107','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3654','27758','108','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3655','27789','109','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3656','27795','110','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3657','27792','111','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3658','27793','112','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3659','27791','113','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3660','27791','114','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3661','27794','115','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3662','27794','116','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3663','27790','117','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3664','27873','118','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3665','27879','119','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3666','27876','120','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3667','27877','121','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3668','27875','122','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3669','27875','123','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3670','27878','124','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3671','27878','125','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3672','27874','126','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3673','27910','127','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3674','27916','128','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3675','27913','129','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3676','27914','130','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3677','27912','131','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3678','27912','132','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3679','27915','133','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3680','27915','134','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3681','27911','135','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3682','27945','136','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3683','27951','137','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3684','27948','138','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3685','27949','139','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3686','27947','140','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3687','27947','141','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3688','27950','142','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3689','27950','143','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3690','27946','144','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3691','28059','145','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3692','28065','146','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3693','28062','147','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3694','28063','148','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3695','28061','149','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3696','28061','150','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3697','28064','151','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3698','28064','152','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3699','28060','153','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3700','28119','154','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3701','28125','155','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3702','28122','156','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3703','28123','157','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3704','28121','158','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3705','28121','159','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3706','28124','160','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3707','28124','161','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3708','28120','162','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3709','28176','163','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3710','28182','164','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3711','28179','165','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3712','28180','166','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3713','28178','167','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3714','28178','168','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3715','28181','169','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3716','28181','170','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3717','28177','171','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3718','28224','172','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3719','28230','173','1','1000000');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3720','28227','174','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3721','28228','175','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3722','28226','176','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3723','28226','177','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3724','28229','178','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3725','28229','179','1','8');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3726','28225','180','10','');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3727','27148','1','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3728','27617','1','1','0.01');
-INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3729','28024','2','1','0.01');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3730','27897','1','1','0.1');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3731','27898','2','1','1024');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3732','27900','3','1','1024');
@@ -12186,5 +11924,297 @@ INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3753'
 \1');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3754','28029','1','1','1024');
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('3755','28030','2','1','1024');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4048','27148','1','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4049','27617','1','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4050','28024','2','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4051','27159','1','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4052','27201','1','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4053','27234','2','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4054','27270','3','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4055','27291','4','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4056','27342','5','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4057','27374','6','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4058','27471','7','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4059','27505','8','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4060','27541','9','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4061','27577','10','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4062','27640','11','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4063','27663','12','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4064','27743','13','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4065','27775','14','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4066','27809','15','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4067','27891','16','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4068','27928','17','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4069','27965','18','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4070','27995','19','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4071','28079','20','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4072','28116','21','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4073','28139','22','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4074','28194','23','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4075','28242','24','1','0.01');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4076','27069','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4077','27072','2','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4078','27073','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4079','27074','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4080','27074','5','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4081','27075','6','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4082','27075','7','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4083','27076','8','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4084','27597','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4085','27600','2','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4086','27601','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4087','27599','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4088','27599','5','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4089','27602','6','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4090','27602','7','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4091','27598','8','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4092','28006','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4093','28009','10','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4094','28010','11','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4095','28008','12','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4096','28008','13','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4097','28011','14','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4098','28011','15','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4099','28007','16','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4100','27079','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4101','27082','2','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4102','27083','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4103','27084','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4104','27084','5','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4105','27085','6','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4106','27085','7','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4107','27086','8','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4108','27620','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4109','27623','2','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4110','27624','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4111','27622','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4112','27622','5','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4113','27625','6','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4114','27625','7','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4115','27621','8','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4116','27977','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4117','27980','10','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4118','27981','11','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4119','27979','12','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4120','27979','13','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4121','27982','14','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4122','27982','15','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4123','27978','16','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4124','27089','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4125','27091','2','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4126','27092','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4127','27093','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4128','27094','5','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4129','27094','6','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4130','27095','7','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4131','27095','8','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4132','27096','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4133','27099','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4134','27101','2','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4135','27102','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4136','27103','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4137','27104','5','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4138','27104','6','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4139','27105','7','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4140','27105','8','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4141','27106','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4142','27181','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4143','27187','2','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4144','27184','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4145','27185','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4146','27183','5','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4147','27183','6','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4148','27186','7','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4149','27186','8','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4150','27182','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4151','27216','10','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4152','27222','11','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4153','27219','12','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4154','27220','13','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4155','27218','14','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4156','27218','15','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4157','27221','16','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4158','27221','17','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4159','27217','18','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4160','27252','19','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4161','27258','20','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4162','27255','21','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4163','27256','22','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4164','27254','23','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4165','27254','24','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4166','27257','25','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4167','27257','26','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4168','27253','27','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4169','27273','28','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4170','27279','29','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4171','27276','30','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4172','27277','31','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4173','27275','32','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4174','27275','33','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4175','27278','34','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4176','27278','35','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4177','27274','36','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4178','27322','37','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4179','27328','38','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4180','27325','39','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4181','27326','40','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4182','27324','41','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4183','27324','42','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4184','27327','43','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4185','27327','44','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4186','27323','45','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4187','27451','46','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4188','27457','47','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4189','27454','48','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4190','27455','49','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4191','27453','50','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4192','27453','51','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4193','27456','52','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4194','27456','53','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4195','27452','54','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4196','27487','55','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4197','27493','56','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4198','27490','57','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4199','27491','58','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4200','27489','59','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4201','27489','60','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4202','27492','61','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4203','27492','62','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4204','27488','63','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4205','27521','64','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4206','27527','65','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4207','27524','66','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4208','27525','67','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4209','27523','68','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4210','27523','69','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4211','27526','70','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4212','27526','71','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4213','27522','72','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4214','27557','73','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4215','27563','74','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4216','27560','75','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4217','27561','76','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4218','27559','77','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4219','27559','78','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4220','27562','79','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4221','27562','80','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4222','27558','81','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4223','27643','82','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4224','27649','83','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4225','27646','84','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4226','27647','85','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4227','27645','86','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4228','27645','87','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4229','27648','88','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4230','27648','89','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4231','27644','90','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4232','27723','91','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4233','27729','92','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4234','27726','93','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4235','27727','94','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4236','27725','95','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4237','27725','96','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4238','27728','97','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4239','27728','98','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4240','27724','99','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4241','27757','100','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4242','27763','101','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4243','27760','102','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4244','27761','103','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4245','27759','104','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4246','27759','105','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4247','27762','106','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4248','27762','107','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4249','27758','108','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4250','27789','109','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4251','27795','110','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4252','27792','111','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4253','27793','112','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4254','27791','113','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4255','27791','114','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4256','27794','115','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4257','27794','116','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4258','27790','117','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4259','27873','118','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4260','27879','119','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4261','27876','120','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4262','27877','121','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4263','27875','122','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4264','27875','123','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4265','27878','124','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4266','27878','125','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4267','27874','126','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4268','27910','127','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4269','27916','128','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4270','27913','129','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4271','27914','130','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4272','27912','131','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4273','27912','132','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4274','27915','133','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4275','27915','134','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4276','27911','135','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4277','27945','136','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4278','27951','137','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4279','27948','138','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4280','27949','139','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4281','27947','140','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4282','27947','141','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4283','27950','142','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4284','27950','143','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4285','27946','144','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4286','28059','145','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4287','28065','146','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4288','28062','147','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4289','28063','148','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4290','28061','149','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4291','28061','150','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4292','28064','151','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4293','28064','152','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4294','28060','153','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4295','28119','154','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4296','28125','155','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4297','28122','156','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4298','28123','157','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4299','28121','158','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4300','28121','159','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4301','28124','160','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4302','28124','161','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4303','28120','162','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4304','28176','163','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4305','28182','164','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4306','28179','165','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4307','28180','166','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4308','28178','167','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4309','28178','168','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4310','28181','169','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4311','28181','170','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4312','28177','171','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4313','28224','172','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4314','28230','173','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4315','28227','174','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4316','28228','175','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4317','28226','176','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4318','28226','177','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4319','28229','178','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4320','28229','179','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4321','28225','180','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4322','27119','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4323','27121','2','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4324','27122','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4325','27123','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4326','27124','5','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4327','27124','6','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4328','27125','7','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4329','27125','8','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4330','27126','9','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4331','28098','1','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4332','28104','2','1','1000000');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4333','28101','3','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4334','28102','4','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4335','28100','5','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4336','28100','6','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4337','28103','7','10','');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4338','28103','8','1','8');
+INSERT INTO item_preproc (item_preprocid,itemid,step,type,params) values ('4339','28099','9','10','');
 INSERT INTO sysmap_shape (sysmap_shapeid,sysmapid,type,x,y,width,height,text,font,font_size,font_color,text_halign,text_valign,border_type,border_width,border_color,background_color,zindex) values ('1','1','0','0','0','680','15','{MAP.NAME}','9','11','000000','0','0','0','0','000000','','0');
 COMMIT;
