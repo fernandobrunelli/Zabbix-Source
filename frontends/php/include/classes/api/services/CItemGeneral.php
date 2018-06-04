@@ -298,9 +298,14 @@ abstract class CItemGeneral extends CApiService {
 					}
 
 					// If delay is 0, there must be at least one either flexible or scheduling interval.
-					if ($delay_sec < 0 || $delay_sec > SEC_PER_DAY || ($delay_sec == 0 && !$intervals)) {
+					if ($delay_sec == 0 && !$intervals) {
 						self::exception(ZBX_API_ERROR_PARAMETERS,
-							_('Item will not be refreshed. Please enter a correct update interval.')
+							_('Item will not be refreshed. Specified update interval requires having at least one either flexible or scheduling interval.')
+						);
+					}
+					elseif ($delay_sec < 0 || $delay_sec > SEC_PER_DAY) {
+						self::exception(ZBX_API_ERROR_PARAMETERS,
+							_('Item will not be refreshed. Update interval should be between 1s and 1d. Also Scheduled/Flexible intervals can be used.')
 						);
 					}
 
@@ -1630,7 +1635,7 @@ abstract class CItemGeneral extends CApiService {
 		$master_itemids = [];
 
 		foreach ($items as $item) {
-			if ($item['type'] == ITEM_TYPE_DEPENDENT) {
+			if ($item['type'] == ITEM_TYPE_DEPENDENT && array_key_exists('master_itemid', $item)) {
 				$master_itemids[$item['master_itemid']] = true;
 			}
 		}
@@ -1645,7 +1650,7 @@ abstract class CItemGeneral extends CApiService {
 			$host_master_items = [];
 
 			foreach ($items as $item) {
-				if ($item['type'] != ITEM_TYPE_DEPENDENT) {
+				if ($item['type'] != ITEM_TYPE_DEPENDENT || !array_key_exists('master_itemid', $item)) {
 					continue;
 				}
 				$master_item = $master_items[$item['master_itemid']];
@@ -1653,7 +1658,7 @@ abstract class CItemGeneral extends CApiService {
 				if (!array_key_exists($item['hostid'], $host_master_items)) {
 					$host_master_items[$item['hostid']] = [];
 				}
-				if ($master_item['hostid'] != $item['hostid']) {
+				if (bccomp($master_item['hostid'], $item['hostid']) != 0) {
 					if (!array_key_exists($master_item['key_'], $host_master_items[$item['hostid']])) {
 						$inherited_master_items = DB::select('items', [
 							'output' => ['itemid'],
