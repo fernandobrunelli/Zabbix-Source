@@ -76,6 +76,12 @@ typedef struct
 
 	/* the performance counters to monitor */
 	zbx_vector_ptr_t	counters;
+
+	/* the performance counter query instance name */
+	char			*query_instance;
+
+	/* error information */
+	char			*error;
 }
 zbx_vmware_perf_entity_t;
 
@@ -215,6 +221,7 @@ zbx_vmware_service_t;
 typedef struct
 {
 	zbx_vector_ptr_t	services;
+	zbx_hashset_t		strpool;
 }
 zbx_vmware_t;
 
@@ -242,7 +249,7 @@ zbx_vmware_service_t	*zbx_vmware_get_service(const char* url, const char* userna
 
 int	zbx_vmware_service_get_counterid(zbx_vmware_service_t *service, const char *path, zbx_uint64_t *counterid);
 int	zbx_vmware_service_add_perf_counter(zbx_vmware_service_t *service, const char *type, const char *id,
-		zbx_uint64_t counterid);
+		zbx_uint64_t counterid, const char *instance);
 zbx_vmware_perf_entity_t	*zbx_vmware_service_get_perf_entity(zbx_vmware_service_t *service, const char *type,
 		const char *id);
 
@@ -318,6 +325,8 @@ zbx_vmware_perf_entity_t	*zbx_vmware_service_get_perf_entity(zbx_vmware_service_
 
 char	*zbx_xml_read_value(const char *data, const char *xpath);
 int	zbx_xml_read_values(const char *data, const char *xpath, zbx_vector_str_t *values);
+int	zbx_xml_try_read_value(const char *data, const char *xpath, char **value, char **error);
+
 
 /* hypervisor properties */
 #define ZBX_VMWARE_HVPROP_OVERALL_CPU_USAGE		0

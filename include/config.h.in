@@ -36,9 +36,6 @@
 /* Define to 1 if you have the <errno.h> header file. */
 #undef HAVE_ERRNO_H
 
-/* Define to 1 if you have the <event.h> header file. */
-#undef HAVE_EVENT_H
-
 /* Define to 1 if you have the <execinfo.h> header file. */
 #undef HAVE_EXECINFO_H
 
@@ -244,8 +241,8 @@
 /* Define to 1 if Oracle should be enabled. */
 #undef HAVE_ORACLE
 
-/* Define to 1 if you have the 'libpcre' library (-lpcreposix -lpcre) */
-#undef HAVE_PCREPOSIX_H
+/* Define to 1 if you have the 'libpcre' library (-lpcre) */
+#undef HAVE_PCRE_H
 
 /* Define to 1 if you have the <pdh.h> header file. */
 #undef HAVE_PDH_H
