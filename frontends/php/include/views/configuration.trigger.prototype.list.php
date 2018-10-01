@@ -21,10 +21,14 @@
 
 $widget = (new CWidget())
 	->setTitle(_('Trigger prototypes'))
-	->setControls((new CForm('get'))
-		->cleanItems()
-		->addVar('parent_discoveryid', $this->data['parent_discoveryid'])
-		->addItem((new CList())->addItem(new CSubmit('form', _('Create trigger prototype'))))
+	->setControls(
+		(new CTag('nav', true,
+			(new CList())->addItem(new CRedirectButton(_('Create trigger prototype'),
+				(new CUrl('trigger_prototypes.php'))
+					->setArgument('parent_discoveryid', $data['parent_discoveryid'])
+					->setArgument('form', 'create')
+			))
+		))->setAttribute('aria-label', _('Content controls'))
 	)
 	->addItem(get_header_host_table('triggers', $this->data['hostid'], $this->data['parent_discoveryid']));
 
@@ -46,7 +50,8 @@ $triggersTable = (new CTableInfo())
 		make_sorting_header(_('Severity'), 'priority', $data['sort'], $data['sortorder'], $url),
 		make_sorting_header(_('Name'), 'description', $data['sort'], $data['sortorder'], $url),
 		_('Expression'),
-		make_sorting_header(_('Create enabled'), 'status', $data['sort'], $data['sortorder'], $url)
+		make_sorting_header(_('Create enabled'), 'status', $data['sort'], $data['sortorder'], $url),
+		_('Tags')
 	]);
 
 $this->data['triggers'] = CMacrosResolverHelper::resolveTriggerExpressions($this->data['triggers'], [
@@ -156,7 +161,8 @@ foreach ($this->data['triggers'] as $trigger) {
 		getSeverityCell($trigger['priority'], $this->data['config']),
 		$description,
 		$expression,
-		$status
+		$status,
+		$data['tags'][$triggerid]
 	]);
 }
 
@@ -169,10 +175,10 @@ $triggersForm->addItem([
 	new CActionButtonList('action', 'g_triggerid',
 		[
 			'triggerprototype.massenable' => ['name' => _('Create enabled'),
-				'confirm' => _('Enable selected trigger prototypes?')
+				'confirm' => _('Create triggers from selected prototypes as enabled?')
 			],
 			'triggerprototype.massdisable' => ['name' => _('Create disabled'),
-				'confirm' => _('Disable selected trigger prototypes?')
+				'confirm' => _('Create triggers from selected prototypes as disabled?')
 			],
 			'triggerprototype.massupdateform' => ['name' => _('Mass update')],
 			'triggerprototype.massdelete' => ['name' => _('Delete'),

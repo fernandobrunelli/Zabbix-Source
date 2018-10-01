@@ -18,12 +18,18 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
+
 $widget = (new CWidget())
 	->setTitle(_('Discovery rules'))
-	->setControls((new CForm('get'))
-		->cleanItems()
-		->addVar('hostid', $this->data['hostid'])
-		->addItem((new CList())->addItem(new CSubmit('form', _('Create discovery rule'))))
+	->setControls(
+		(new CTag('nav', true,
+			(new CList())->addItem(new CRedirectButton(_('Create discovery rule'),
+				(new CUrl('host_discovery.php'))
+					->setArgument('form', 'create')
+					->setArgument('hostid', $data['hostid'])
+					->getUrl()
+			))
+		))->setAttribute('aria-label', _('Content controls'))
 	)
 	->addItem(get_header_host_table('discoveries', $this->data['hostid']));
 
@@ -59,23 +65,7 @@ $update_interval_parser = new CUpdateIntervalParser(['usermacros' => true]);
 foreach ($data['discoveries'] as $discovery) {
 	// description
 	$description = [];
-
-	if ($discovery['templateid']) {
-		if (array_key_exists($discovery['dbTemplate']['hostid'], $data['writable_templates'])) {
-			$description[] = (new CLink($discovery['dbTemplate']['name'],
-				'?hostid='.$discovery['dbTemplate']['hostid']
-			))
-				->addClass(ZBX_STYLE_LINK_ALT)
-				->addClass(ZBX_STYLE_GREY);
-		}
-		else {
-			$description[] = (new CSpan($discovery['dbTemplate']['name']))
-				->addClass(ZBX_STYLE_GREY);
-		}
-
-		$description[] = NAME_DELIMITER;
-	}
-
+	$description[] = makeItemTemplatePrefix($discovery['itemid'], $data['parent_templates'], ZBX_FLAG_DISCOVERY_RULE);
 	$description[] = new CLink($discovery['name_expanded'], '?form=update&itemid='.$discovery['itemid']);
 
 	// status
@@ -164,6 +154,7 @@ $discoveryForm->addItem([
 			'discoveryrule.massdisable' => ['name' => _('Disable'),
 				'confirm' =>_('Disable selected discovery rules?')
 			],
+			'discoveryrule.masscheck_now' => ['name' => _('Check now')],
 			'discoveryrule.massdelete' => ['name' => _('Delete'),
 				'confirm' =>_('Delete selected discovery rules?')
 			]

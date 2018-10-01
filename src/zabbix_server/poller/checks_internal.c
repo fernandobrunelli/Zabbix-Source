@@ -32,7 +32,7 @@ extern unsigned char	program_type;
 
 static int	compare_interfaces(const void *p1, const void *p2)
 {
-	const DC_INTERFACE2	*i1 = p1, *i2 = p2;
+	const DC_INTERFACE2	*i1 = (DC_INTERFACE2 *)p1, *i2 = (DC_INTERFACE2 *)p2;
 
 	if (i1->type > i2->type)		/* 1st criterion: 'type' in ascending order */
 		return 1;
@@ -173,7 +173,6 @@ int	get_value_internal(DC_ITEM *item, AGENT_RESULT *result)
 	int		ret = NOTSUPPORTED, nparams;
 	const char	*tmp, *tmp1;
 
-	init_result(result);
 	init_request(&request);
 
 	if (SUCCEED != parse_item_key(item->key, &request))
@@ -612,6 +611,8 @@ int	get_value_internal(DC_ITEM *item, AGENT_RESULT *result)
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_HISTORY_USED));
 			else if (0 == strcmp(tmp1, "free"))
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_HISTORY_FREE));
+			else if (0 == strcmp(tmp1, "pused"))
+				SET_DBL_RESULT(result, *(double *)DCget_stats(ZBX_STATS_HISTORY_PUSED));
 			else
 			{
 				SET_MSG_RESULT(result, zbx_strdup(NULL, "Invalid third parameter."));
@@ -634,6 +635,8 @@ int	get_value_internal(DC_ITEM *item, AGENT_RESULT *result)
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_TREND_USED));
 			else if (0 == strcmp(tmp1, "free"))
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_TREND_FREE));
+			else if (0 == strcmp(tmp1, "pused"))
+				SET_DBL_RESULT(result, *(double *)DCget_stats(ZBX_STATS_TREND_PUSED));
 			else
 			{
 				SET_MSG_RESULT(result, zbx_strdup(NULL, "Invalid third parameter."));
@@ -650,6 +653,8 @@ int	get_value_internal(DC_ITEM *item, AGENT_RESULT *result)
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_HISTORY_INDEX_USED));
 			else if (0 == strcmp(tmp1, "free"))
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCget_stats(ZBX_STATS_HISTORY_INDEX_FREE));
+			else if (0 == strcmp(tmp1, "pused"))
+				SET_DBL_RESULT(result, *(double *)DCget_stats(ZBX_STATS_HISTORY_INDEX_PUSED));
 			else
 			{
 				SET_MSG_RESULT(result, zbx_strdup(NULL, "Invalid third parameter."));
@@ -683,6 +688,8 @@ int	get_value_internal(DC_ITEM *item, AGENT_RESULT *result)
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCconfig_get_stats(ZBX_CONFSTATS_BUFFER_USED));
 			else if (0 == strcmp(tmp1, "free"))
 				SET_UI64_RESULT(result, *(zbx_uint64_t *)DCconfig_get_stats(ZBX_CONFSTATS_BUFFER_FREE));
+			else if (0 == strcmp(tmp1, "pused"))
+				SET_DBL_RESULT(result, *(double *)DCconfig_get_stats(ZBX_CONFSTATS_BUFFER_PUSED));
 			else
 			{
 				SET_MSG_RESULT(result, zbx_strdup(NULL, "Invalid third parameter."));

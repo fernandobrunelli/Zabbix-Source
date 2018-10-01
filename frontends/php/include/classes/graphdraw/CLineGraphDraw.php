@@ -445,7 +445,7 @@ class CLineGraphDraw extends CGraphDraw {
 				'SELECT DISTINCT h.host,tr.description,tr.triggerid,tr.expression,tr.priority,tr.value'.
 				' FROM triggers tr,functions f,items i,hosts h'.
 				' WHERE tr.triggerid=f.triggerid'.
-					" AND f.function IN ('last','min','avg','max')".
+					" AND f.name IN ('last','min','avg','max')".
 					' AND tr.status='.TRIGGER_STATUS_ENABLED.
 					' AND i.itemid=f.itemid'.
 					' AND h.hostid=i.hostid'.
@@ -2515,8 +2515,6 @@ class CLineGraphDraw extends CGraphDraw {
 		$this->selectTriggers();
 		$this->calcDimentions();
 
-		$this->initColors();
-
 		if (function_exists('imagecolorexactalpha') && function_exists('imagecreatetruecolor')
 				&& @imagecreatetruecolor(1, 1)
 		) {
@@ -2525,6 +2523,8 @@ class CLineGraphDraw extends CGraphDraw {
 		else {
 			$this->im = imagecreate(1, 1);
 		}
+
+		$this->initColors();
 
 		imageOut($this->im);
 	}

@@ -49,22 +49,22 @@ static zbx_config_t	cfg;
 typedef struct
 {
 	/* target table name */
-	char	*table;
+	const char	*table;
 
 	/* ID field name, required to select IDs of records that must be deleted */
 	char	*field_name;
 
 	/* Optional filter, must be empty string if not used. Only the records matching */
 	/* filter are subject to housekeeping procedures.                               */
-	char	*filter;
+	const char	*filter;
 
 	/* The oldest record in table (with filter in effect). The min_clock value is   */
 	/* read from the database when accessed for the first time and then during      */
 	/* housekeeping procedures updated to the last 'cutoff' value.                  */
-	int	min_clock;
+	int		min_clock;
 
 	/* a reference to the settings value specifying number of seconds the records must be kept */
-	int	*phistory;
+	int		*phistory;
 }
 zbx_hk_rule_t;
 
@@ -74,10 +74,10 @@ zbx_hk_rule_t;
 typedef struct
 {
 	/* housekeeper table name */
-	char		*name;
+	const char		*name;
 
 	/* a reference to housekeeping configuration enable value for this table */
-	unsigned char	*poption_mode;
+	unsigned char		*poption_mode;
 }
 zbx_hk_cleanup_table_t;
 
@@ -126,10 +126,10 @@ zbx_hk_delete_queue_t;
 typedef struct
 {
 	/* the target table name */
-	char			*table;
+	const char		*table;
 
 	/* history setting field name in items table (history|trends) */
-	char			*history;
+	const char		*history;
 
 	/* a reference to the housekeeping configuration mode (enable) option for this table */
 	unsigned char		*poption_mode;
@@ -140,14 +140,14 @@ typedef struct
 	/* a reference to the housekeeping configuration history value for this table */
 	int			*poption;
 
+	/* type for checking which values are sent to the history storage */
+	unsigned char		type;
+
 	/* the oldest item record timestamp cache for target table */
 	zbx_hashset_t		item_cache;
 
 	/* the item delete queue */
 	zbx_vector_ptr_t	delete_queue;
-
-	/* type for checking which values are sent to the history storage */
-	unsigned char		type;
 }
 zbx_hk_history_rule_t;
 
@@ -177,7 +177,7 @@ static zbx_hk_history_rule_t	hk_history_rules[] = {
 	{NULL}
 };
 
-void	zbx_housekeeper_sigusr_handler(int flags)
+static void	zbx_housekeeper_sigusr_handler(int flags)
 {
 	if (ZBX_RTC_HOUSEKEEPER_EXECUTE == ZBX_RTC_GET_MSG(flags))
 	{
@@ -255,7 +255,7 @@ static void	hk_history_delete_queue_append(zbx_hk_history_rule_t *rule, int now,
 		/* update oldest timestamp in item cache */
 		item_record->min_clock = MIN(keep_from, item_record->min_clock + HK_MAX_DELETE_PERIODS * hk_period);
 
-		update_record = zbx_malloc(NULL, sizeof(zbx_hk_delete_queue_t));
+		update_record = (zbx_hk_delete_queue_t *)zbx_malloc(NULL, sizeof(zbx_hk_delete_queue_t));
 		update_record->itemid = item_record->itemid;
 		update_record->min_clock = item_record->min_clock;
 		zbx_vector_ptr_append(&rule->delete_queue, update_record);
@@ -354,13 +354,13 @@ static void	hk_history_item_update(zbx_hk_history_rule_t *rule, int now, zbx_uin
 	if (ZBX_HK_OPTION_DISABLED == *rule->poption_mode)
 		return;
 
-	item_record = zbx_hashset_search(&rule->item_cache, &itemid);
+	item_record = (zbx_hk_item_cache_t *)zbx_hashset_search(&rule->item_cache, &itemid);
 
 	if (NULL == item_record)
 	{
 		zbx_hk_item_cache_t	item_data = {itemid, now};
 
-		item_record = zbx_hashset_insert(&rule->item_cache, &item_data, sizeof(zbx_hk_item_cache_t));
+		item_record = (zbx_hk_item_cache_t *)zbx_hashset_insert(&rule->item_cache, &item_data, sizeof(zbx_hk_item_cache_t));
 		if (NULL == item_record)
 			return;
 	}
@@ -415,12 +415,13 @@ static void	hk_history_update(zbx_hk_history_rule_t *rules, int now)
 
 				if (SUCCEED != is_time_suffix(tmp, &history, ZBX_LENGTH_UNLIMITED))
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "invalid history storage '%s' for itemid '%s'",
+					zabbix_log(LOG_LEVEL_WARNING, "invalid history storage period '%s' for itemid '%s'",
 							tmp, row[0]);
 				}
 				else if (0 != history && ZBX_HK_HISTORY_MIN > history)
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "history storage too low for itemid '%s'", row[0]);
+					zabbix_log(LOG_LEVEL_WARNING, "invalid history storage period for itemid '%s'",
+							row[0]);
 				}
 				else
 					hk_history_item_update(rule, now, itemid, history);
@@ -442,12 +443,13 @@ static void	hk_history_update(zbx_hk_history_rule_t *rules, int now)
 
 				if (SUCCEED != is_time_suffix(tmp, &trends, ZBX_LENGTH_UNLIMITED))
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "invalid trends storage '%s' for itemid '%s'",
+					zabbix_log(LOG_LEVEL_WARNING, "invalid trends storage period '%s' for itemid '%s'",
 							tmp, row[0]);
 				}
 				else if (0 != trends && ZBX_HK_TRENDS_MIN > trends)
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "trends storage too low for itemid '%s'", row[0]);
+					zabbix_log(LOG_LEVEL_WARNING, "invalid trends storage period for itemid '%s'",
+							row[0]);
 				}
 				else
 					hk_history_item_update(rule, now, itemid, trends);
@@ -553,7 +555,7 @@ static int	housekeeping_history_and_trends(int now)
 
 		for (i = 0; i < rule->delete_queue.values_num; i++)
 		{
-			zbx_hk_delete_queue_t	*item_record = rule->delete_queue.values[i];
+			zbx_hk_delete_queue_t	*item_record = (zbx_hk_delete_queue_t *)rule->delete_queue.values[i];
 
 			rc = DBexecute("delete from %s where itemid=" ZBX_FS_UI64 " and clock<%d",
 					rule->table, item_record->itemid, item_record->min_clock);
@@ -807,7 +809,7 @@ static int	hk_table_cleanup(const char *table, const char *field, zbx_uint64_t i
  * Comments: sqlite3 does not use CONFIG_MAX_HOUSEKEEPER_DELETE, deletes all  *
  *                                                                            *
  ******************************************************************************/
-static int	housekeeping_cleanup()
+static int	housekeeping_cleanup(void)
 {
 	const char		*__function_name = "housekeeping_cleanup";
 
@@ -1102,6 +1104,8 @@ ZBX_THREAD_ENTRY(housekeeper_thread, args)
 		zbx_config_clean(&cfg);
 
 		DBclose();
+
+		zbx_dc_cleanup_data_sessions();
 
 		zbx_setproctitle("%s [deleted %d hist/trends, %d items/triggers, %d events, %d sessions, %d alarms,"
 				" %d audit items in " ZBX_FS_DBL " sec, %s]",

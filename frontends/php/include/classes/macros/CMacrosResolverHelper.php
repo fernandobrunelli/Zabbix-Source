@@ -207,8 +207,7 @@ class CMacrosResolverHelper {
 		self::init();
 
 		return self::$macrosResolver->resolveTriggerNames($triggers, [
-			'references_only' => $references_only,
-			'events' => false
+			'references_only' => $references_only
 		]);
 	}
 
@@ -257,46 +256,6 @@ class CMacrosResolverHelper {
 		self::init();
 
 		return self::$macrosResolver->resolveTriggerUrls($triggers);
-	}
-
-	/**
-	 * Get trigger by id and resolve macros in trigger name.
-	 *
-	 * @static
-	 *
-	 * @param int $triggerId
-	 *
-	 * @return string
-	 */
-	public static function resolveTriggerNameById($triggerId) {
-		$macros = self::resolveTriggerNameByIds([$triggerId]);
-		$macros = reset($macros);
-
-		return $macros['description'];
-	}
-
-	/**
-	 * Get triggers by ids and resolve macros in trigger names.
-	 *
-	 * @static
-	 *
-	 * @param array $triggerIds
-	 *
-	 * @return array
-	 */
-	public static function resolveTriggerNameByIds(array $triggerIds) {
-		self::init();
-
-		$triggers = DBfetchArray(DBselect(
-			'SELECT DISTINCT t.description,t.expression,t.triggerid'.
-			' FROM triggers t'.
-			' WHERE '.dbConditionInt('t.triggerid', $triggerIds)
-		));
-
-		return self::$macrosResolver->resolveTriggerNames(zbx_toHash($triggers, 'triggerid'), [
-			'references_only' => false,
-			'events' => false
-		]);
 	}
 
 	/**
@@ -364,26 +323,6 @@ class CMacrosResolverHelper {
 		$trigger = reset($triggers);
 
 		return $trigger['expression'];
-	}
-
-	/**
-	 * Resolve macros in event description.
-	 *
-	 * @static
-	 *
-	 * @param array $event
-	 *
-	 * @return string
-	 */
-	public static function resolveEventDescription(array $event) {
-		self::init();
-
-		$events = self::$macrosResolver->resolveTriggerNames([$event['triggerid'] => $event], [
-			'references_only' => false,
-			'events' => true
-		]);
-
-		return $events[$event['triggerid']]['description'];
 	}
 
 	/**

@@ -27,6 +27,7 @@ require_once dirname(__FILE__).'/include/forms.inc.php';
 
 $page['title'] = isset($_REQUEST['parent_discoveryid']) ? _('Configuration of graph prototypes') : _('Configuration of graphs');
 $page['file'] = 'graphs.php';
+$page['scripts'] = ['colorpicker.js'];
 
 require_once dirname(__FILE__).'/include/page_header.php';
 
@@ -397,7 +398,7 @@ if (empty($_REQUEST['parent_discoveryid'])) {
 
 if (hasRequest('action') && getRequest('action') == 'graph.masscopyto' && hasRequest('group_graphid')) {
 	// render view
-	$data = getCopyElementsFormData('group_graphid');
+	$data = getCopyElementsFormData('group_graphid', _('Graphs'));
 	$data['action'] = 'graph.masscopyto';
 	$graphView = new CView('configuration.copy.elements', $data);
 	$graphView->render();

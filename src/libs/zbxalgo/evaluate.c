@@ -61,7 +61,7 @@ static size_t		max_buffer_len;	/* error message buffer size */
  * Purpose: check whether the character delimits a numeric token              *
  *                                                                            *
  ******************************************************************************/
-int	is_number_delimiter(char c)
+static int	is_number_delimiter(char c)
 {
 	return 0 == isdigit(c) && '.' != c && 0 == isalpha(c) ? SUCCEED : FAIL;
 }
@@ -707,7 +707,7 @@ int	evaluate(double *value, const char *expression, char *error, size_t max_erro
 			else if (unknown_msgs->values_num > unknown_idx)
 			{
 				zbx_snprintf(error, max_error_len, "Cannot evaluate expression: \"%s\".",
-						unknown_msgs->values[unknown_idx]);
+						(char *)(unknown_msgs->values[unknown_idx]));
 			}
 			else
 			{

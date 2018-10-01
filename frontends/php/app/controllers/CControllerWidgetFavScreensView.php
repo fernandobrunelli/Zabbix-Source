@@ -26,7 +26,7 @@ class CControllerWidgetFavScreensView extends CControllerWidget {
 	public function __construct() {
 		parent::__construct();
 
-		$this->setType(WIDGET_FAVOURITE_SCREENS);
+		$this->setType(WIDGET_FAV_SCREENS);
 		$this->setValidationRules([
 			'name' => 'string',
 			'fields' => 'json'
@@ -75,7 +75,7 @@ class CControllerWidgetFavScreensView extends CControllerWidget {
 		CArrayHelper::sort($screens, ['label']);
 
 		$this->setResponse(new CControllerResponseData([
-			'name' => $this->getInput('name', CWidgetConfig::getKnownWidgetTypes()[WIDGET_FAVOURITE_SCREENS]),
+			'name' => $this->getInput('name', CWidgetConfig::getKnownWidgetTypes()[WIDGET_FAV_SCREENS]),
 			'screens' => $screens,
 			'user' => [
 				'debug_mode' => $this->getDebugMode()

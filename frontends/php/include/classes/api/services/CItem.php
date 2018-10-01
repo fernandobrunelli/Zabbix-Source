@@ -169,7 +169,7 @@ class CItem extends CItemGeneral {
 		if (!is_null($options['interfaceids'])) {
 			zbx_value2array($options['interfaceids']);
 
-			$sqlParts['where']['interfaceid'] = dbConditionInt('i.interfaceid', $options['interfaceids']);
+			$sqlParts['where']['interfaceid'] = dbConditionId('i.interfaceid', $options['interfaceids']);
 
 			if ($options['groupCount']) {
 				$sqlParts['group']['i'] = 'i.interfaceid';
@@ -194,7 +194,7 @@ class CItem extends CItemGeneral {
 			zbx_value2array($options['proxyids']);
 
 			$sqlParts['from']['hosts'] = 'hosts h';
-			$sqlParts['where'][] = dbConditionInt('h.proxy_hostid', $options['proxyids']);
+			$sqlParts['where'][] = dbConditionId('h.proxy_hostid', $options['proxyids']);
 			$sqlParts['where'][] = 'h.hostid=i.hostid';
 
 			if ($options['groupCount']) {
@@ -309,7 +309,7 @@ class CItem extends CItemGeneral {
 
 		// group
 		if (!is_null($options['group'])) {
-			$sqlParts['from']['groups'] = 'groups g';
+			$sqlParts['from']['hstgrp'] = 'hstgrp g';
 			$sqlParts['from']['hosts_groups'] = 'hosts_groups hg';
 			$sqlParts['where']['ghg'] = 'g.groupid=hg.groupid';
 			$sqlParts['where']['hgi'] = 'hg.hostid=i.hostid';
@@ -391,6 +391,20 @@ class CItem extends CItemGeneral {
 			$result = zbx_cleanHashes($result);
 		}
 
+		// Decode ITEM_TYPE_HTTPAGENT encoded fields.
+		$json = new CJson();
+
+		foreach ($result as &$item) {
+			if (array_key_exists('query_fields', $item)) {
+				$query_fields = ($item['query_fields'] !== '') ? $json->decode($item['query_fields'], true) : [];
+				$item['query_fields'] = $json->hasError() ? [] : $query_fields;
+			}
+
+			if (array_key_exists('headers', $item)) {
+				$item['headers'] = $this->headersStringToArray($item['headers']);
+			}
+		}
+
 		return $result;
 	}
 
@@ -412,7 +426,32 @@ class CItem extends CItemGeneral {
 			unset($item['itemid']);
 		}
 		unset($item);
-		$this->validateDependentItems($items, API::Item());
+
+		$this->validateDependentItems($items, __METHOD__);
+
+		$json = new CJson();
+
+		foreach ($items as &$item) {
+			if ($item['type'] == ITEM_TYPE_HTTPAGENT) {
+				if (array_key_exists('query_fields', $item)) {
+					$item['query_fields'] = $item['query_fields'] ? $json->encode($item['query_fields']) : '';
+				}
+
+				if (array_key_exists('headers', $item)) {
+					$item['headers'] = $this->headersArrayToString($item['headers']);
+				}
+
+				if (array_key_exists('request_method', $item) && $item['request_method'] == HTTPCHECK_REQUEST_HEAD
+						&& !array_key_exists('retrieve_mode', $item)) {
+					$item['retrieve_mode'] = HTTPTEST_STEP_RETRIEVE_MODE_HEADERS;
+				}
+			}
+			else {
+				$item['query_fields'] = '';
+				$item['headers'] = '';
+			}
+		}
+		unset($item);
 
 		$this->createReal($items);
 		$this->inherit($items);
@@ -515,7 +554,100 @@ class CItem extends CItemGeneral {
 
 		parent::checkInput($items, true);
 		self::validateInventoryLinks($items, true);
-		$this->validateDependentItems($items, API::Item());
+		$this->validateDependentItems($items, __METHOD__);
+
+		$db_items = $this->get([
+			'output' => ['flags', 'type', 'master_itemid', 'authtype', 'allow_traps', 'retrieve_mode'],
+			'itemids' => zbx_objectValues($items, 'itemid'),
+			'editable' => true,
+			'preservekeys' => true
+		]);
+
+		$items = $this->extendFromObjects(zbx_toHash($items, 'itemid'), $db_items, ['flags', 'type']);
+
+		$defaults = DB::getDefaults('items');
+		$clean = [
+			ITEM_TYPE_HTTPAGENT => [
+				'url' => '',
+				'query_fields' => '',
+				'timeout' => $defaults['timeout'],
+				'status_codes' => $defaults['status_codes'],
+				'follow_redirects' => $defaults['follow_redirects'],
+				'request_method' => $defaults['request_method'],
+				'allow_traps' => $defaults['allow_traps'],
+				'post_type' => $defaults['post_type'],
+				'http_proxy' => '',
+				'headers' => '',
+				'retrieve_mode' => $defaults['retrieve_mode'],
+				'output_format' => $defaults['output_format'],
+				'ssl_key_password' => '',
+				'verify_peer' => $defaults['verify_peer'],
+				'verify_host' => $defaults['verify_host'],
+				'ssl_cert_file' => '',
+				'ssl_key_file' => '',
+				'posts' => ''
+			]
+		];
+
+		$json = new CJson();
+
+		foreach ($items as &$item) {
+			$type_change = ($item['type'] != $db_items[$item['itemid']]['type']);
+
+			if ($item['type'] != ITEM_TYPE_DEPENDENT && $db_items[$item['itemid']]['master_itemid']) {
+				$item['master_itemid'] = null;
+			}
+			elseif (!array_key_exists('master_itemid', $item)) {
+				$item['master_itemid'] = $db_items[$item['itemid']]['master_itemid'];
+			}
+
+			if ($type_change && $db_items[$item['itemid']]['type'] == ITEM_TYPE_HTTPAGENT) {
+				$item = array_merge($item, $clean[ITEM_TYPE_HTTPAGENT]);
+
+				if ($item['type'] != ITEM_TYPE_SSH) {
+					$item['authtype'] = $defaults['authtype'];
+					$item['username'] = '';
+					$item['password'] = '';
+				}
+
+				if ($item['type'] != ITEM_TYPE_TRAPPER) {
+					$item['trapper_hosts'] = '';
+				}
+			}
+
+			if ($item['type'] == ITEM_TYPE_HTTPAGENT) {
+				// Clean username and password on authtype change to HTTPTEST_AUTH_NONE.
+				if (array_key_exists('authtype', $item) && $item['authtype'] == HTTPTEST_AUTH_NONE
+						&& $item['authtype'] != $db_items[$item['itemid']]['authtype']) {
+					$item['username'] = '';
+					$item['password'] = '';
+				}
+
+				if (array_key_exists('allow_traps', $item) && $item['allow_traps'] == HTTPCHECK_ALLOW_TRAPS_OFF
+						&& $item['allow_traps'] != $db_items[$item['itemid']]['allow_traps']) {
+					$item['trapper_hosts'] = '';
+				}
+
+				if (array_key_exists('query_fields', $item) && is_array($item['query_fields'])) {
+					$item['query_fields'] = $item['query_fields'] ? $json->encode($item['query_fields']) : '';
+				}
+
+				if (array_key_exists('headers', $item) && is_array($item['headers'])) {
+					$item['headers'] = $this->headersArrayToString($item['headers']);
+				}
+
+				if (array_key_exists('request_method', $item) && $item['request_method'] == HTTPCHECK_REQUEST_HEAD
+						&& !array_key_exists('retrieve_mode', $item)
+						&& $db_items[$item['itemid']]['retrieve_mode'] != HTTPTEST_STEP_RETRIEVE_MODE_HEADERS) {
+					$item['retrieve_mode'] = HTTPTEST_STEP_RETRIEVE_MODE_HEADERS;
+				}
+			}
+			else {
+				$item['query_fields'] = '';
+				$item['headers'] = '';
+			}
+		}
+		unset($item);
 
 		$this->updateReal($items);
 		$this->inherit($items);
@@ -688,8 +820,26 @@ class CItem extends CItemGeneral {
 			'preservekeys' => true
 		]);
 
+		$json = new CJson();
+
 		foreach ($tpl_items as &$tpl_item) {
 			$tpl_item['applications'] = zbx_objectValues($tpl_item['applications'], 'applicationid');
+
+			if ($tpl_item['type'] == ITEM_TYPE_HTTPAGENT) {
+				if (array_key_exists('query_fields', $tpl_item) && is_array($tpl_item['query_fields'])) {
+					$tpl_item['query_fields'] = $tpl_item['query_fields']
+						? $json->encode($tpl_item['query_fields'])
+						: '';
+				}
+
+				if (array_key_exists('headers', $tpl_item) && is_array($tpl_item['headers'])) {
+					$tpl_item['headers'] = $this->headersArrayToString($tpl_item['headers']);
+				}
+			}
+			else {
+				$tpl_item['query_fields'] = '';
+				$tpl_item['headers'] = '';
+			}
 		}
 		unset($tpl_item);
 
@@ -1134,6 +1284,8 @@ class CItem extends CItemGeneral {
 			foreach ($result as &$item) {
 				$lastHistory = isset($history[$item['itemid']][0]) ? $history[$item['itemid']][0] : null;
 				$prevHistory = isset($history[$item['itemid']][1]) ? $history[$item['itemid']][1] : null;
+				$no_value = in_array($item['value_type'],
+						[ITEM_VALUE_TYPE_STR, ITEM_VALUE_TYPE_LOG, ITEM_VALUE_TYPE_TEXT]) ? '' : '0';
 
 				if (isset($requestedOutput['lastclock'])) {
 					$item['lastclock'] = $lastHistory ? $lastHistory['clock'] : '0';
@@ -1142,10 +1294,10 @@ class CItem extends CItemGeneral {
 					$item['lastns'] = $lastHistory ? $lastHistory['ns'] : '0';
 				}
 				if (isset($requestedOutput['lastvalue'])) {
-					$item['lastvalue'] = $lastHistory ? $lastHistory['value'] : '0';
+					$item['lastvalue'] = $lastHistory ? $lastHistory['value'] : $no_value;
 				}
 				if (isset($requestedOutput['prevvalue'])) {
-					$item['prevvalue'] = $prevHistory ? $prevHistory['value'] : '0';
+					$item['prevvalue'] = $prevHistory ? $prevHistory['value'] : $no_value;
 				}
 			}
 			unset($item);

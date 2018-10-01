@@ -21,23 +21,26 @@
 
 $this->addJsFile('gtlc.js');
 $this->addJsFile('flickerfreescreen.js');
+$this->addJsFile('layout.mode.js');
 
 $widget = (new CWidget())
 	->setTitle(_('Status of discovery'))
-	->setControls(
+	->setWebLayoutMode(CView::getLayoutMode())
+	->setControls(new CList([
 		(new CForm('get'))
 			->cleanItems()
 			->addVar('action', 'discovery.view')
-			->addVar('fullscreen', $data['fullscreen'])
+			->setAttribute('aria-label', _('Main filter'))
 			->addItem((new CList())
 				->addItem([
 					new CLabel(_('Discovery rule'), 'druleid'),
 					(new CDiv())->addClass(ZBX_STYLE_FORM_INPUT_MARGIN),
 					$data['pageFilter']->getDiscoveryCB()
 				])
-				->addItem(get_icon('fullscreen', ['fullscreen' => $data['fullscreen']]))
-			)
-	);
+			),
+		(new CTag('nav', true, get_icon('fullscreen')))
+			->setAttribute('aria-label', _('Content controls'))
+	]));
 
 $discovery_table = CScreenBuilder::getScreen([
 	'resourcetype' => SCREEN_RESOURCE_DISCOVERY,

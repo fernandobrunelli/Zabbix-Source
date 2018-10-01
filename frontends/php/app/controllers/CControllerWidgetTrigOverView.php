@@ -26,7 +26,7 @@ class CControllerWidgetTrigOverView extends CControllerWidget {
 	public function __construct() {
 		parent::__construct();
 
-		$this->setType(WIDGET_TRIG_OVERVIEW);
+		$this->setType(WIDGET_TRIG_OVER);
 		$this->setValidationRules([
 			'name' => 'string',
 			'fields' => 'json'
@@ -50,7 +50,7 @@ class CControllerWidgetTrigOverView extends CControllerWidget {
 		];
 
 		list($data['hosts'], $data['triggers']) = getTriggersOverviewData(getSubGroups($fields['groupids']),
-			$fields['application'], $fields['style'], [], $trigger_options
+			$fields['application'], $fields['style'], [], $trigger_options, $fields['show_suppressed']
 		);
 
 		$this->setResponse(new CControllerResponseData($data));

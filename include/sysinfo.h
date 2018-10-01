@@ -199,7 +199,7 @@ void	free_metrics(void);
 int	process(const char *in_command, unsigned flags, AGENT_RESULT *result);
 
 int	add_user_parameter(const char *key, char *command, char *error, size_t max_error_len);
-int	add_user_module(const char *key, int (*function)());
+int	add_user_module(const char *key, int (*function)(void));
 void	test_parameters(void);
 void	test_parameter(const char *key);
 
@@ -290,7 +290,7 @@ typedef int (*zbx_metric_func_t)(AGENT_REQUEST *request, AGENT_RESULT *result);
 typedef struct
 {
 	const char	*mode;
-	int		(*function)();
+	int		(*function)(const char *devname, AGENT_RESULT *result);
 }
 MODE_FUNCTION;
 
@@ -307,7 +307,7 @@ int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *re
 #define ZBX_MUTEX_ALL_ALLOW		0
 #define ZBX_MUTEX_THREAD_DENIED		1
 #define ZBX_MUTEX_LOGGING_DENIED	2
-zbx_uint32_t get_thread_global_mutex_flag();
+zbx_uint32_t get_thread_global_mutex_flag(void);
 #endif
 
 #endif

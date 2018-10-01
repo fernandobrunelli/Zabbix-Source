@@ -595,6 +595,7 @@ if (isset($_REQUEST['form'])) {
 			}
 		}
 
+		// Used for both, Scenario and Steps pairs.
 		$id = 1;
 		$data['pairs'] = [];
 
@@ -638,7 +639,6 @@ if (isset($_REQUEST['form'])) {
 		];
 
 		foreach ($data['steps'] as &$step) {
-			$id = 0;
 			$step['pairs'] = [];
 
 			CArrayHelper::sort($step['variables'], ['name']);
@@ -759,7 +759,9 @@ else {
 		'httpTestsLastData' => [],
 		'paging' => null,
 		'sort' => $sortField,
-		'sortorder' => $sortOrder
+		'sortorder' => $sortOrder,
+		'profileIdx' => 'web.httpconf.filter',
+		'active_tab' => CProfile::get('web.httpconf.filter.active', 1)
 	];
 
 	// show the error column only for hosts

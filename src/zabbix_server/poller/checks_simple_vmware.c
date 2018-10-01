@@ -61,9 +61,9 @@ static zbx_vmware_hv_t	*hv_get(zbx_hashset_t *hvs, const char *uuid)
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() uuid:'%s'", __function_name, uuid);
 
-	hv = zbx_hashset_search(hvs, &hv_local);
+	hv = (zbx_vmware_hv_t *)zbx_hashset_search(hvs, &hv_local);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, hv);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)hv);
 
 	return hv;
 }
@@ -78,12 +78,12 @@ static zbx_vmware_hv_t	*service_hv_get_by_vm_uuid(zbx_vmware_service_t *service,
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() uuid:'%s'", __function_name, uuid);
 
-	if (NULL != (vmi = zbx_hashset_search(&service->data->vms_index, &vmi_local)))
+	if (NULL != (vmi = (zbx_vmware_vm_index_t *)zbx_hashset_search(&service->data->vms_index, &vmi_local)))
 		hv = vmi->hv;
 	else
 		hv = NULL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, hv);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)hv);
 
 	return hv;
 
@@ -98,12 +98,12 @@ static zbx_vmware_vm_t	*service_vm_get(zbx_vmware_service_t *service, const char
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() uuid:'%s'", __function_name, uuid);
 
-	if (NULL != (vmi = zbx_hashset_search(&service->data->vms_index, &vmi_local)))
+	if (NULL != (vmi = (zbx_vmware_vm_index_t *)zbx_hashset_search(&service->data->vms_index, &vmi_local)))
 		vm = vmi->vm;
 	else
 		vm = NULL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, vm);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)vm);
 
 	return vm;
 }
@@ -127,7 +127,7 @@ static zbx_vmware_cluster_t	*cluster_get(zbx_vector_ptr_t *clusters, const char 
 
 	cluster = NULL;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, cluster);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)cluster);
 
 	return cluster;
 }
@@ -151,7 +151,7 @@ static zbx_vmware_cluster_t	*cluster_get_by_name(zbx_vector_ptr_t *clusters, con
 
 	cluster = NULL;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, cluster);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)cluster);
 
 	return cluster;
 }
@@ -236,7 +236,7 @@ static int	vmware_service_get_counter_value_by_id(zbx_vmware_service_t *service,
 	{
 		perfvalue = (zbx_ptr_pair_t *)&perfcounter->values.values[i];
 
-		if (0 == strcmp(perfvalue->first, instance))
+		if (0 == strcmp((char *)perfvalue->first, instance))
 			break;
 	}
 
@@ -247,15 +247,13 @@ static int	vmware_service_get_counter_value_by_id(zbx_vmware_service_t *service,
 	}
 
 	/* VMware returns -1 value if the performance data for the specified period is not ready - ignore it */
-	if (0 == strcmp(perfvalue->second, "-1"))
+	if (0 == strcmp((char *)perfvalue->second, "-1"))
 	{
 		ret = SYSINFO_RET_OK;
 		goto out;
 	}
 
-
-
-	if (SUCCEED == is_uint64(perfvalue->second, &value))
+	if (SUCCEED == is_uint64((char *)perfvalue->second, &value))
 	{
 		value *= coeff;
 
@@ -392,7 +390,7 @@ static zbx_vmware_service_t	*get_vmware_service(const char *url, const char *use
 		service = NULL;
 	}
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, service);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%p", __function_name, (void *)service);
 
 	return service;
 }
@@ -662,13 +660,13 @@ static void	vmware_get_events(const zbx_vector_ptr_t *events, zbx_uint64_t event
 	/* events were retrieved in reverse chronological order */
 	for (i = events->values_num - 1; i >= 0; i--)
 	{
-		const zbx_vmware_event_t	*event = events->values[i];
+		const zbx_vmware_event_t	*event = (zbx_vmware_event_t *)events->values[i];
 		AGENT_RESULT			*add_result = NULL;
 
 		if (event->key <= eventlog_last_key)
 			continue;
 
-		add_result = zbx_malloc(add_result, sizeof(AGENT_RESULT));
+		add_result = (AGENT_RESULT *)zbx_malloc(add_result, sizeof(AGENT_RESULT));
 		init_result(add_result);
 
 		if (SUCCEED == set_result_type(add_result, item->value_type, event->message))
@@ -918,7 +916,7 @@ int	check_vcenter_hv_discovery(AGENT_REQUEST *request, const char *username, con
 	zbx_json_addarray(&json_data, ZBX_PROTO_TAG_DATA);
 
 	zbx_hashset_iter_reset(&service->data->hvs, &iter);
-	while (NULL != (hv = zbx_hashset_iter_next(&iter)))
+	while (NULL != (hv = (zbx_vmware_hv_t *)zbx_hashset_iter_next(&iter)))
 	{
 		zbx_vmware_cluster_t	*cluster = NULL;
 
@@ -1507,7 +1505,7 @@ int	check_vcenter_hv_datastore_discovery(AGENT_REQUEST *request, const char *use
 
 	for (i = 0; i < hv->datastores.values_num; i++)
 	{
-		zbx_vmware_datastore_t	*datastore = hv->datastores.values[i];
+		zbx_vmware_datastore_t	*datastore = (zbx_vmware_datastore_t *)hv->datastores.values[i];
 
 		zbx_json_addobject(&json_data, NULL);
 		zbx_json_addstring(&json_data, "{#DATASTORE}", datastore->name, ZBX_JSON_TYPE_STRING);
@@ -1571,7 +1569,7 @@ int	check_vcenter_hv_datastore_read(AGENT_REQUEST *request, const char *username
 
 	for (i = 0; i < hv->datastores.values_num; i++)
 	{
-		zbx_vmware_datastore_t	*datastore = hv->datastores.values[i];
+		zbx_vmware_datastore_t	*datastore = (zbx_vmware_datastore_t *)hv->datastores.values[i];
 
 		if (0 == strcmp(name, datastore->name))
 		{
@@ -1638,7 +1636,7 @@ int	check_vcenter_hv_datastore_write(AGENT_REQUEST *request, const char *usernam
 
 	for (i = 0; i < hv->datastores.values_num; i++)
 	{
-		zbx_vmware_datastore_t	*datastore = hv->datastores.values[i];
+		zbx_vmware_datastore_t	*datastore = (zbx_vmware_datastore_t *)hv->datastores.values[i];
 
 		if (0 == strcmp(name, datastore->name))
 		{
@@ -1782,7 +1780,7 @@ int	check_vcenter_hv_datastore_size(AGENT_REQUEST *request, const char *username
 
 	for (i = 0; i < hv->datastores.values_num; i++)
 	{
-		datastore = hv->datastores.values[i];
+		datastore = (zbx_vmware_datastore_t *)hv->datastores.values[i];
 		if (0 == strcmp(name, datastore->name))
 			break;
 	}
@@ -1870,7 +1868,8 @@ int	check_vcenter_hv_perfcounter(AGENT_REQUEST *request, const char *username, c
 {
 	const char		*__function_name = "check_vcenter_hv_perfcounter";
 
-	char			*url, *uuid, *path, *instance;
+	char			*url, *uuid, *path;
+	const char 		*instance;
 	zbx_vmware_service_t	*service;
 	zbx_vmware_hv_t		*hv;
 	zbx_uint64_t		counterid;
@@ -2134,7 +2133,7 @@ int	check_vcenter_vm_discovery(AGENT_REQUEST *request, const char *username, con
 	zbx_json_addarray(&json_data, ZBX_PROTO_TAG_DATA);
 
 	zbx_hashset_iter_reset(&service->data->hvs, &iter);
-	while (NULL != (hv = zbx_hashset_iter_next(&iter)))
+	while (NULL != (hv = (zbx_vmware_hv_t *)zbx_hashset_iter_next(&iter)))
 	{
 		zbx_vmware_cluster_t	*cluster = NULL;
 
@@ -3024,7 +3023,8 @@ int	check_vcenter_vm_perfcounter(AGENT_REQUEST *request, const char *username, c
 {
 	const char		*__function_name = "check_vcenter_vm_perfcounter";
 
-	char			*url, *uuid, *path, *instance;
+	char			*url, *uuid, *path;
+	const char 		*instance;
 	zbx_vmware_service_t	*service;
 	zbx_vmware_vm_t		*vm;
 	zbx_uint64_t		counterid;

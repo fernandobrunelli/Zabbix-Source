@@ -333,6 +333,13 @@ class API {
 	}
 
 	/**
+	 * @return CTask
+	 */
+	public static function Task() {
+		return self::getApi('task');
+	}
+
+	/**
 	 * @return CTemplate
 	 */
 	public static function Template() {
@@ -393,13 +400,6 @@ class API {
 	 */
 	public static function UserMacro() {
 		return self::getApi('usermacro');
-	}
-
-	/**
-	 * @return CUserMedia
-	 */
-	public static function UserMedia() {
-		return self::getApi('usermedia');
 	}
 
 	/**

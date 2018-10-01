@@ -21,10 +21,15 @@
 
 $widget = (new CWidget())
 	->setTitle(_('Item prototypes'))
-	->setControls((new CForm('get'))
-		->cleanItems()
-		->addVar('parent_discoveryid', $this->data['parent_discoveryid'])
-		->addItem((new CList())->addItem(new CSubmit('form', _('Create item prototype'))))
+	->setControls(
+		(new CTag('nav', true,
+			(new CList())->addItem(new CRedirectButton(_('Create item prototype'),
+				(new CUrl('disc_prototypes.php'))
+					->setArgument('form', 'create')
+					->setArgument('parent_discoveryid', $data['parent_discoveryid'])
+					->getUrl()
+			))
+		))->setAttribute('aria-label', _('Content controls'))
 	)
 	->addItem(get_header_host_table('items', $this->data['hostid'], $this->data['parent_discoveryid']));
 
@@ -56,39 +61,51 @@ $itemTable = (new CTableInfo())
 
 $update_interval_parser = new CUpdateIntervalParser(['usermacros' => true, 'lldmacros' => true]);
 
-foreach ($this->data['items'] as $item) {
+foreach ($data['items'] as $item) {
 	$description = [];
-	if (!empty($item['templateid'])) {
-		$template_host = get_realhost_by_itemid($item['templateid']);
-		$templateDiscoveryRuleId = get_realrule_by_itemid_and_hostid($this->data['parent_discoveryid'], $template_host['hostid']);
+	$description[] = makeItemTemplatePrefix($item['itemid'], $data['parent_templates'], ZBX_FLAG_DISCOVERY_PROTOTYPE);
 
-		$description[] = (new CLink($template_host['name'], '?parent_discoveryid='.$templateDiscoveryRuleId))
-			->addClass(ZBX_STYLE_LINK_ALT)
-			->addClass(ZBX_STYLE_GREY);
-		$description[] = NAME_DELIMITER;
-	}
 	if ($item['type'] == ITEM_TYPE_DEPENDENT) {
-		$description[] = (new CLink(CHtml::encode($item['master_item']['name_expanded']),
-			'?form=update&parent_discoveryid='.$data['parent_discoveryid'].'&itemid='.$item['master_item']['itemid']
-		))
-			->addClass(ZBX_STYLE_LINK_ALT)
-			->addClass(ZBX_STYLE_TEAL);
+		if ($item['master_item']['type'] == ITEM_TYPE_HTTPTEST) {
+			$description[] = CHtml::encode($item['master_item']['name_expanded']);
+		}
+		else {
+			$link = ($item['master_item']['source'] === 'itemprototypes')
+				? (new CUrl('disc_prototypes.php'))->setArgument('parent_discoveryid', $data['parent_discoveryid'])
+				: (new CUrl('items.php'))->setArgument('hostid', $item['hostid']);
+
+			$description[] = (new CLink(CHtml::encode($item['master_item']['name_expanded']),
+				$link
+					->setArgument('form', 'update')
+					->setArgument('itemid', $item['master_item']['itemid'])
+					->getUrl()
+			))
+				->addClass(ZBX_STYLE_LINK_ALT)
+				->addClass(ZBX_STYLE_TEAL);
+		}
+
 		$description[] = NAME_DELIMITER;
 	}
 
 	$description[] = new CLink(
 		$item['name_expanded'],
-		'?form=update&itemid='.$item['itemid'].'&parent_discoveryid='.$this->data['parent_discoveryid']
+		(new CUrl('disc_prototypes.php'))
+			->setArgument('form', 'update')
+			->setArgument('parent_discoveryid', $data['parent_discoveryid'])
+			->setArgument('itemid', $item['itemid'])
+			->getUrl()
 	);
 
 	$status = (new CLink(
 		($item['status'] == ITEM_STATUS_DISABLED) ? _('No') : _('Yes'),
-		'?group_itemid[]='.$item['itemid'].
-			'&parent_discoveryid='.$this->data['parent_discoveryid'].
-			'&action='.(($item['status'] == ITEM_STATUS_DISABLED)
+		(new CUrl('disc_prototypes.php'))
+			->setArgument('group_itemid[]', $item['itemid'])
+			->setArgument('parent_discoveryid', $data['parent_discoveryid'])
+			->setArgument('action', ($item['status'] == ITEM_STATUS_DISABLED)
 				? 'itemprototype.massenable'
 				: 'itemprototype.massdisable'
 			)
+			->getUrl()
 	))
 		->addClass(ZBX_STYLE_LINK_ACTION)
 		->addClass(itemIndicatorStyle($item['status']))
@@ -151,10 +168,10 @@ $itemForm->addItem([
 	new CActionButtonList('action', 'group_itemid',
 		[
 			'itemprototype.massenable' => ['name' => _('Create enabled'),
-				'confirm' => _('Enable selected item prototypes?')
+				'confirm' => _('Create items from selected prototypes as enabled?')
 			],
 			'itemprototype.massdisable' => ['name' => _('Create disabled'),
-				'confirm' => _('Disable selected item prototypes?')
+				'confirm' => _('Create items from selected prototypes as disabled?')
 			],
 			'itemprototype.massdelete' => ['name' => _('Delete'),
 				'confirm' => _('Delete selected item prototypes?')

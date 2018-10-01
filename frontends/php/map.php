@@ -59,13 +59,10 @@ $options = [
 	'elements' => $map_data['elements'],
 	'links' => $map_data['links'],
 	'shapes' => $map_data['shapes'],
+	'aria_label' => $map_data['aria_label'],
 	'label_location' => $map_data['label_location'],
 	'timestamp' => $map_data['timestamp']
 ];
-
-if (getRequest('used_in_widget', 0)) {
-	$options['map_widget_footer'] = (new CList([_s('Updated: %s', zbx_date2str(TIME_FORMAT_SECONDS))]))->toString();
-}
 
 if ($map_data['id'] == -1) {
 	$options['timestamp'] = null;

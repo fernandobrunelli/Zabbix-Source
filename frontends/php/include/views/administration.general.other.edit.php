@@ -21,9 +21,14 @@
 
 $widget = (new CWidget())
 	->setTitle(_('Other configuration parameters'))
-	->setControls((new CForm())
-		->cleanItems()
-		->addItem((new CList())->addItem(makeAdministrationGeneralMenu('adm.other.php')))
+	->setControls((new CTag('nav', true,
+		(new CForm())
+			->cleanItems()
+			->addItem((new CList())
+				->addItem(makeAdministrationGeneralMenu('adm.other.php'))
+			)
+		))
+			->setAttribute('aria-label', _('Content controls'))
 	);
 
 $otherTab = new CFormList();
@@ -40,9 +45,11 @@ foreach ($data['alert_usrgrps'] as $usrgrp) {
 }
 
 $otherTab
-	->addRow(_('Refresh unsupported items'),
+	->addRow((new CLabel(_('Refresh unsupported items'), 'refresh_unsupported'))->setAsteriskMark(),
 		(new CTextBox('refresh_unsupported', $data['refresh_unsupported']))
 			->setWidth(ZBX_TEXTAREA_TINY_WIDTH)
+			->setAriaRequired()
+			->setAttribute('autofocus', 'autofocus')
 	)
 	->addRow(_('Group for discovered hosts'), $discoveryGroup)
 	->addRow(_('Default host inventory mode'),
@@ -59,6 +66,7 @@ $otherTab
 
 $otherForm = (new CForm())
 	->setName('otherForm')
+	->setAttribute('aria-labeledby', ZBX_STYLE_PAGE_TITLE)
 	->addItem(
 		(new CTabView())
 			->addTab('other', _('Other parameters'), $otherTab)

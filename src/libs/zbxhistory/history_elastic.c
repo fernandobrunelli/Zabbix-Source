@@ -38,6 +38,7 @@
 const char	*value_type_str[] = {"dbl", "str", "log", "uint", "text"};
 
 extern char	*CONFIG_HISTORY_STORAGE_URL;
+extern int	CONFIG_HISTORY_STORAGE_PIPELINES;
 
 typedef struct
 {
@@ -96,7 +97,7 @@ static history_value_t	history_str2value(char *str, unsigned char value_type)
 	switch (value_type)
 	{
 		case ITEM_VALUE_TYPE_LOG:
-			value.log = zbx_malloc(NULL, sizeof(zbx_log_value_t));
+			value.log = (zbx_log_value_t *)zbx_malloc(NULL, sizeof(zbx_log_value_t));
 			memset(value.log, 0, sizeof(zbx_log_value_t));
 			value.log->value = zbx_strdup(NULL, str);
 			break;
@@ -200,8 +201,8 @@ static void	elastic_log_error(CURL *handle, CURLcode error, const char *errbuf)
 
 		if (0 != page_r.offset)
 		{
-			zabbix_log(LOG_LEVEL_ERR, "cannot get values from elasticsearch, HTTP error: %ld,",
-					" message: %s", http_code, page_r.data);
+			zabbix_log(LOG_LEVEL_ERR, "cannot get values from elasticsearch, HTTP error: %ld, message: %s",
+					http_code, page_r.data);
 		}
 		else
 			zabbix_log(LOG_LEVEL_ERR, "cannot get values from elasticsearch, HTTP error: %ld", http_code);
@@ -224,7 +225,7 @@ static void	elastic_log_error(CURL *handle, CURLcode error, const char *errbuf)
  ************************************************************************************/
 static void	elastic_close(zbx_history_iface_t *hist)
 {
-	zbx_elastic_data_t	*data = hist->data;
+	zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 
 	zbx_free(data->buf);
 	zbx_free(data->post_url);
@@ -355,7 +356,7 @@ static void	elastic_writer_release(void)
 	int	i;
 
 	for (i = 0; i < writer.ifaces.values_num; i++)
-		elastic_close(writer.ifaces.values[i]);
+		elastic_close((zbx_history_iface_t *)writer.ifaces.values[i]);
 
 	curl_multi_cleanup(writer.handle);
 	writer.handle = NULL;
@@ -376,7 +377,7 @@ static void	elastic_writer_release(void)
  ************************************************************************************/
 static void	elastic_writer_add_iface(zbx_history_iface_t *hist)
 {
-	zbx_elastic_data_t	*data = hist->data;
+	zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 
 	elastic_writer_init();
 
@@ -410,7 +411,7 @@ static void	elastic_writer_add_iface(zbx_history_iface_t *hist)
  * Purpose: posts historical data to elastic storage                                *
  *                                                                                  *
  ************************************************************************************/
-static void	elastic_writer_flush(void)
+static int	elastic_writer_flush(void)
 {
 	const char		*__function_name = "elastic_writer_flush";
 
@@ -421,8 +422,10 @@ static void	elastic_writer_flush(void)
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
 
+	/* The writer might be uninitialized only if the history */
+	/* was already flushed. In that case, return SUCCEED */
 	if (0 == writer.initialized)
-		return;
+		return SUCCEED;
 
 	zbx_vector_ptr_create(&retries);
 
@@ -431,9 +434,9 @@ static void	elastic_writer_flush(void)
 	for (i = 0; i < writer.ifaces.values_num; i++)
 	{
 		zbx_history_iface_t	*hist = (zbx_history_iface_t *)writer.ifaces.values[i];
-		zbx_elastic_data_t	*data = hist->data;
+		zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 
-		curl_easy_setopt(data->handle, CURLOPT_HTTPHEADER, curl_headers);
+		(void)curl_easy_setopt(data->handle, CURLOPT_HTTPHEADER, curl_headers);
 
 		zabbix_log(LOG_LEVEL_DEBUG, "sending %s", data->buf);
 	}
@@ -472,17 +475,16 @@ try_again:
 				if (CURLE_OK == curl_easy_getinfo(msg->easy_handle, CURLINFO_PRIVATE,
 						(char **)&curl_page) && '\0' != *curl_page->errbuf)
 				{
-					zabbix_log(LOG_LEVEL_ERR, "%s: %s",
-							"cannot send data to elasticsearch, HTTP error message",
-							curl_page->errbuf);
+					zabbix_log(LOG_LEVEL_ERR, "cannot send data to elasticsearch, HTTP error"
+							" message: %s", curl_page->errbuf);
 				}
 				else
 				{
 					long int	err;
 
 					curl_easy_getinfo(msg->easy_handle, CURLINFO_RESPONSE_CODE, &err);
-					zabbix_log(LOG_LEVEL_ERR, "%s: %d",
-							"cannot send data to elasticsearch, HTTP error code", err);
+					zabbix_log(LOG_LEVEL_ERR, "cannot send data to elasticsearch, HTTP error code:"
+							" %ld", err);
 				}
 			}
 			else if (CURLE_OK != msg->data.result)
@@ -490,12 +492,12 @@ try_again:
 				if (CURLE_OK == curl_easy_getinfo(msg->easy_handle, CURLINFO_PRIVATE,
 						(char **)&curl_page) && '\0' != *curl_page->errbuf)
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "%s: %s", "cannot send data to elasticsearch",
+					zabbix_log(LOG_LEVEL_WARNING, "cannot send data to elasticsearch: %s",
 							curl_page->errbuf);
 				}
 				else
 				{
-					zabbix_log(LOG_LEVEL_WARNING, "%s: %s", "cannot send data to elasticsearch",
+					zabbix_log(LOG_LEVEL_WARNING, "cannot send data to elasticsearch: %s",
 							curl_easy_strerror(msg->data.result));
 				}
 
@@ -508,8 +510,8 @@ try_again:
 			else if (CURLE_OK == curl_easy_getinfo(msg->easy_handle, CURLINFO_PRIVATE, (char **)&curl_page)
 					&& SUCCEED == elastic_is_error_present(&curl_page->page, &error))
 			{
-				zabbix_log(LOG_LEVEL_WARNING, "%s() %s: %s", __function_name,
-						"cannot send data to elasticsearch", error);
+				zabbix_log(LOG_LEVEL_WARNING, "%s() cannot send data to elasticsearch: %s",
+						__function_name, error);
 				zbx_free(error);
 
 				/* If the error is due to elastic internal problems (for example an index */
@@ -545,6 +547,8 @@ try_again:
 	elastic_writer_release();
 
 	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+
+	return SUCCEED;
 }
 
 /******************************************************************************************************************
@@ -564,7 +568,7 @@ try_again:
  ************************************************************************************/
 static void	elastic_destroy(zbx_history_iface_t *hist)
 {
-	zbx_elastic_data_t	*data = hist->data;
+	zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 
 	elastic_close(hist);
 
@@ -597,7 +601,7 @@ static int	elastic_get_values(zbx_history_iface_t *hist, zbx_uint64_t itemid, in
 {
 	const char		*__function_name = "elastic_get_values";
 
-	zbx_elastic_data_t	*data = hist->data;
+	zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 	size_t			url_alloc = 0, url_offset = 0, id_alloc = 0, scroll_alloc = 0, scroll_offset = 0;
 	int			total, empty, ret;
 	CURLcode		err;
@@ -616,7 +620,7 @@ static int	elastic_get_values(zbx_history_iface_t *hist, zbx_uint64_t itemid, in
 		return FAIL;
 	}
 
-	zbx_snprintf_alloc(&data->post_url, &url_alloc, &url_offset, "%s/%s/values/_search?scroll=10s", data->base_url,
+	zbx_snprintf_alloc(&data->post_url, &url_alloc, &url_offset, "%s/%s*/values/_search?scroll=10s", data->base_url,
 			value_type_str[hist->value_type]);
 
 	/* prepare the json query for elasticsearch, apply ranges if needed */
@@ -792,6 +796,8 @@ out:
 	zbx_free(scroll_id);
 	zbx_free(scroll_query);
 
+	zbx_vector_history_record_sort(values, (zbx_compare_func_t)zbx_history_record_compare_desc_func);
+
 	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
 
 	return ret;
@@ -811,11 +817,12 @@ static int	elastic_add_values(zbx_history_iface_t *hist, const zbx_vector_ptr_t 
 {
 	const char	*__function_name = "elastic_add_values";
 
-	zbx_elastic_data_t	*data = hist->data;
+	zbx_elastic_data_t	*data = (zbx_elastic_data_t *)hist->data;
 	int			i, num = 0;
 	ZBX_DC_HISTORY		*h;
 	struct zbx_json		json_idx, json;
 	size_t			buf_alloc = 0, buf_offset = 0;
+	char			pipeline[14]; /* index name length + suffix "-pipeline" */
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
 
@@ -824,6 +831,12 @@ static int	elastic_add_values(zbx_history_iface_t *hist, const zbx_vector_ptr_t 
 	zbx_json_addobject(&json_idx, "index");
 	zbx_json_addstring(&json_idx, "_index", value_type_str[hist->value_type], ZBX_JSON_TYPE_STRING);
 	zbx_json_addstring(&json_idx, "_type", "values", ZBX_JSON_TYPE_STRING);
+
+	if (1 == CONFIG_HISTORY_STORAGE_PIPELINES)
+	{
+		zbx_snprintf(pipeline, sizeof(pipeline), "%s-pipeline", value_type_str[hist->value_type]);
+		zbx_json_addstring(&json_idx, "pipeline", pipeline, ZBX_JSON_TYPE_STRING);
+	}
 
 	zbx_json_close(&json_idx);
 	zbx_json_close(&json_idx);
@@ -891,11 +904,11 @@ static int	elastic_add_values(zbx_history_iface_t *hist, const zbx_vector_ptr_t 
  *           unrecoverable error occurs                                             *
  *                                                                                  *
  ************************************************************************************/
-static void	elastic_flush(zbx_history_iface_t *hist)
+static int	elastic_flush(zbx_history_iface_t *hist)
 {
 	ZBX_UNUSED(hist);
 
-	elastic_writer_flush();
+	return elastic_writer_flush();
 }
 
 /************************************************************************************
@@ -922,7 +935,7 @@ int	zbx_history_elastic_init(zbx_history_iface_t *hist, unsigned char value_type
 		return FAIL;
 	}
 
-	data = zbx_malloc(NULL, sizeof(zbx_elastic_data_t));
+	data = (zbx_elastic_data_t *)zbx_malloc(NULL, sizeof(zbx_elastic_data_t));
 	memset(data, 0, sizeof(zbx_elastic_data_t));
 	data->base_url = zbx_strdup(NULL, CONFIG_HISTORY_STORAGE_URL);
 	zbx_rtrim(data->base_url, "/");

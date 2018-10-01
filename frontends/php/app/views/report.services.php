@@ -18,7 +18,13 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-$widget = (new CWidget())->setTitle(_('Service availability report').': '.$data['service']['name']);
+
+$this->addJsFile('layout.mode.js');
+$web_layout_mode = CView::getLayoutMode();
+
+$widget = (new CWidget())
+	->setTitle(_('Service availability report').': '.$data['service']['name'])
+	->setWebLayoutMode($web_layout_mode);
 
 $controls = (new CList())
 	->addItem([
@@ -44,17 +50,17 @@ if ($data['period'] != 'yearly') {
 	]);
 }
 
-$controls->addItem(get_icon('fullscreen', ['fullscreen' => $data['fullscreen']]));
-
-$widget->setControls(
+$widget->setControls(new CList([
 	(new CForm())
 		->cleanItems()
 		->setMethod('get')
 		->addVar('action', 'report.services')
 		->addVar('serviceid', $data['service']['serviceid'])
-		->addVar('fullscreen', $data['fullscreen'])
-		->addItem($controls)
-);
+		->setAttribute('aria-label', _('Main filter'))
+		->addItem($controls),
+	(new CTag('nav', true, get_icon('fullscreen')))
+		->setAttribute('aria-label', _('Content controls'))
+]));
 
 $header = [
 	'yearly' => [_('Year'), null, _('Ok'), _('Problems'), _('Downtime'), _('SLA'), _('Acceptable SLA')],

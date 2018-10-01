@@ -62,6 +62,7 @@ class CApiServiceFactory extends CRegistryFactory {
 			'screen' => 'CScreen',
 			'screenitem' => 'CScreenItem',
 			'script' => 'CScript',
+			'task' => 'CTask',
 			'template' => 'CTemplate',
 			'templatescreen' => 'CTemplateScreen',
 			'templatescreenitem' => 'CTemplateScreenItem',
@@ -71,7 +72,6 @@ class CApiServiceFactory extends CRegistryFactory {
 			'user' => 'CUser',
 			'usergroup' => 'CUserGroup',
 			'usermacro' => 'CUserMacro',
-			'usermedia' => 'CUserMedia',
 			'valuemap' => 'CValueMap'
 		], $objects));
 	}

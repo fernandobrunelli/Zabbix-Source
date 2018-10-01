@@ -18,7 +18,6 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-
 global $DB, $ZBX_SERVER, $ZBX_SERVER_NAME, $ZBX_SERVER_PORT;
 
 $page_title = $data['page']['title'];
@@ -36,17 +35,24 @@ if (!empty($DB['DB'])) {
 	$theme = getUserTheme($data['user']);
 
 	$pageHeader->addStyle(getTriggerSeverityCss($config));
+	$pageHeader->addStyle(getTriggerStatusCss($config));
 
 	// perform Zabbix server check only for standard pages
 	if ($config['server_check_interval'] && !empty($ZBX_SERVER) && !empty($ZBX_SERVER_PORT)) {
 		$scripts[] = 'servercheck.js';
 	}
 }
-$pageHeader->addCssFile('styles/'.CHtml::encode($theme).'.css');
-$pageHeader->addJsBeforeScripts('var PHP_TZ_OFFSET = '.date('Z').';');
+$pageHeader
+	->addCssFile('styles/'.CHtml::encode($theme).'.css')
+	->addJsBeforeScripts(
+		'var PHP_TZ_OFFSET = '.date('Z').','.
+			'PHP_ZBX_FULL_DATE_TIME = "'.ZBX_FULL_DATE_TIME.'";'
+);
 
-// show GUI messages in pages with menus and in fullscreen mode
-$showGuiMessaging = (!defined('ZBX_PAGE_NO_MENU') || $_REQUEST['fullscreen'] == 1) ? 1 : 0;
+// show GUI messages in pages with menus and in fullscreen and kiosk mode
+$showGuiMessaging = (!defined('ZBX_PAGE_NO_MENU')
+	|| in_array($data['web_layout_mode'], [ZBX_LAYOUT_FULLSCREEN, ZBX_LAYOUT_KIOSKMODE])) ? 1 : 0;
+
 $pageHeader->addJsFile('js/browsers.js');
 $path = 'jsLoader.php?ver='.ZABBIX_VERSION.'&amp;lang='.$data['user']['lang'].'&showGuiMessaging='.$showGuiMessaging;
 $pageHeader->addJsFile($path);
@@ -56,5 +62,5 @@ if ($scripts) {
 }
 $pageHeader->display();
 
-echo '<body>';
-echo '<div class="'.ZBX_STYLE_MSG_BAD_GLOBAL.'" id="msg-bad-global"></div>';
+echo '<body lang="'.CWebUser::getLang().'">';
+echo '<output class="'.ZBX_STYLE_MSG_BAD_GLOBAL.'" id="msg-bad-global"></output>';

@@ -25,19 +25,18 @@ foreach ($data['maps'] as $map) {
 	$table->addRow([
 		new CLink($map['label'], (new CUrl('zabbix.php'))
 			->setArgument('action', 'map.view')
-			->setArgument('sysmapid', $map['sysmapid'])),
+			->setArgument('sysmapid', $map['sysmapid'])
+		),
 		(new CButton())
 			->onClick("rm4favorites('sysmapid','".$map['sysmapid']."')")
 			->addClass(ZBX_STYLE_REMOVE_BTN)
+			->setAttribute('aria-label', _xs('Remove, %1$s', 'screen reader', $map['label']))
 	]);
 }
 
 $output = [
 	'header' => $data['name'],
-	'body' => $table->toString(),
-	'footer' => (new CList([
-		_s('Updated: %s', zbx_date2str(TIME_FORMAT_SECONDS))
-	]))->toString()
+	'body' => $table->toString()
 ];
 
 if (($messages = getMessages()) !== null) {

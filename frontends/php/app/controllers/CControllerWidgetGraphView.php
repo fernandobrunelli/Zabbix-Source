@@ -34,42 +34,25 @@ class CControllerWidgetGraphView extends CControllerWidget {
 			'fields' => 'json',
 			'dynamic_hostid' => 'db hosts.hostid',
 			'content_width' => 'int32',
-			'content_height' => 'int32',
-			'only_footer' => 'in 1',
-			'period' => 'int32'
+			'content_height' => 'int32'
 		]);
 	}
 
 	protected function doAction() {
-		if ($this->getInput('only_footer', 0)) {
-			$this->setResponse(new CControllerResponseData([
-				'only_footer' => true,
-				'period_string' => $this->hasInput('period')
-					? ' ('.zbx_date2age(0, $this->getInput('period', 0)).')'
-					: '',
-				'user' => [
-					'debug_mode' => $this->getDebugMode()
-				]
-			]));
-
-			return;
-		}
-
 		$fields = $this->getForm()->getFieldsData();
 
 		$uniqueid = $this->getInput('uniqueid');
 		$edit_mode = (int) $this->getInput('edit_mode', 0);
 
-		$width = $this->getInput('content_width', '100');
-		$height = $this->getInput('content_height', '100');
+		$width = (int) $this->getInput('content_width', 100);
+		$height = (int) $this->getInput('content_height', 100);
 
 		$dataid = 'graph_'.$uniqueid;
 		$containerid = 'graph_container_'.$uniqueid;
 		$dynamic_hostid = $this->getInput('dynamic_hostid', 0);
-		$dashboardid = $this->getInput('dashboardid', 0);
 		$resourceid = null;
-		$profileIdx = 'web.dashbrd';
-		$profileIdx2 = $dashboardid;
+		$profileIdx = 'web.dashbrd.filter';
+		$profileIdx2 = $this->getInput('dashboardid', 0);
 		$unavailable_object = false;
 		$header_label = '';
 
@@ -82,7 +65,7 @@ class CControllerWidgetGraphView extends CControllerWidget {
 		}
 		elseif ($fields['source_type'] == ZBX_WIDGET_FIELD_RESOURCE_SIMPLE_GRAPH && $fields['itemid']) {
 			$resource_type = SCREEN_RESOURCE_SIMPLE_GRAPH;
-			$resourceid = $fields['itemid'];
+			$resourceid = $fields['itemid'][0];
 			$graph_dims = getGraphDims();
 			$graph_dims['graphHeight'] = $height;
 			$graph_dims['width'] = $width;
@@ -93,14 +76,9 @@ class CControllerWidgetGraphView extends CControllerWidget {
 		}
 		$graph_dims['shiftYtop'] = CLineGraphDraw::DEFAULT_TOP_BOTTOM_PADDING;
 
-		// Prepare timeline details
-		$timeline = calculateTime([
+		$timeline = getTimeSelectorPeriod([
 			'profileIdx' => $profileIdx,
-			'profileIdx2' => $profileIdx2,
-			'updateProfile' => false,
-			'period' => null,
-			'stime' => null,
-			'isNow' => null
+			'profileIdx2' => $profileIdx2
 		]);
 
 		$time_control_data = [
@@ -109,8 +87,6 @@ class CControllerWidgetGraphView extends CControllerWidget {
 			'objDims' => $graph_dims,
 			'loadSBox' => 0,
 			'loadImage' => 1,
-			'periodFixed' => CProfile::get($profileIdx.'.timelinefixed', 1),
-			'sliderMaximumTimePeriod' => ZBX_MAX_PERIOD,
 			'reloadOnAdd' => 1,
 			'onDashboard' => 1
 		];
@@ -122,8 +98,7 @@ class CControllerWidgetGraphView extends CControllerWidget {
 			'timeline' => $timeline,
 			'resourcetype' => $resource_type,
 			'profileIdx' => $profileIdx,
-			'profileIdx2' => $profileIdx2,
-			'updateProfile' => false
+			'profileIdx2' => $profileIdx2
 		];
 
 		// Replace graph item by particular host item if dynamic items are used.
@@ -277,9 +252,8 @@ class CControllerWidgetGraphView extends CControllerWidget {
 					$graph_src = new CUrl('chart3.php');
 				}
 
-				$graph_src->setArgument('period', $timeline['period']);
-				$graph_src->setArgument('stime', $timeline['stime']);
-				$graph_src->setArgument('isNow', $timeline['isNow']);
+				$graph_src->setArgument('from', $timeline['from']);
+				$graph_src->setArgument('to', $timeline['to']);
 
 				$item = CMacrosResolverHelper::resolveItemNames([$item])[0];
 				$header_label = $item['hosts'][0]['name'].NAME_DELIMITER.$item['name_expanded'];
@@ -320,8 +294,6 @@ class CControllerWidgetGraphView extends CControllerWidget {
 						$graph_src = new CUrl('chart6.php');
 						$graph_src->setArgument('graphid', $resourceid);
 					}
-
-					$timeline['starttime'] = date(TIMESTAMP_FORMAT, get_min_itemclock_by_graphid($resourceid));
 				}
 				else {
 					if ($fields['dynamic'] == WIDGET_SIMPLE_ITEM || $graph_src === '') {
@@ -337,16 +309,14 @@ class CControllerWidgetGraphView extends CControllerWidget {
 				$graph_src->setArgument('width', $width);
 				$graph_src->setArgument('height', $height);
 				$graph_src->setArgument('legend', ($fields['show_legend'] == 1 && $graph['show_legend'] == 1) ? 1 : 0);
-				$graph_src->setArgument('period', $timeline['period']);
-				$graph_src->setArgument('stime', $timeline['stime']);
-				$graph_src->setArgument('isNow', $timeline['isNow']);
+				$graph_src->setArgument('from', $timeline['from']);
+				$graph_src->setArgument('to', $timeline['to']);
 
 				if ($graph_dims['graphtype'] == GRAPH_TYPE_PIE || $graph_dims['graphtype'] == GRAPH_TYPE_EXPLODED) {
 					$graph_src->setArgument('graph3d', $graph['show_3d']);
 				}
 			}
 
-			$graph_src->setArgument('updateProfile', false);
 			$graph_src->setArgument('profileIdx', $profileIdx);
 			$graph_src->setArgument('profileIdx2', $profileIdx2);
 
@@ -356,16 +326,27 @@ class CControllerWidgetGraphView extends CControllerWidget {
 
 			$graph_src->setArgument('widget_view', '1');
 			$time_control_data['src'] = $graph_src->getUrl();
+
+			if ($fields['source_type'] == ZBX_WIDGET_FIELD_RESOURCE_GRAPH) {
+				$item_graph_url = (new CUrl('charts.php'))->setArgument('graphid', $resourceid);
+			}
+			else {
+				$item_graph_url = (new CUrl('history.php'))->setArgument('itemids', [$resourceid]);
+			}
+			$item_graph_url
+				->setArgument('from', $timeline['from'])
+				->setArgument('to', $timeline['to']);
 		}
 
 		$response = [
-			'name' => $this->getInput('name', ''),
+			'name' => $this->getInput('name', $header_label),
 			'graph' => [
 				'dataid' => $dataid,
 				'containerid' => $containerid,
 				'timestamp' => time(),
 				'unavailable_object' => $unavailable_object
 			],
+			'item_graph_url' => $unavailable_object ? '' : $item_graph_url,
 			'widget' => [
 				'uniqueid' => $uniqueid,
 				'initial_load' => (int) $this->getInput('initial_load', 0),
@@ -373,17 +354,10 @@ class CControllerWidgetGraphView extends CControllerWidget {
 			'time_control_data' => $time_control_data,
 			'timeline' => $timeline,
 			'fs_data' => $fs_data,
-			'dashboardid' => $dashboardid,
-			'only_footer' => false,
 			'user' => [
 				'debug_mode' => $this->getDebugMode()
 			]
 		];
-
-		if ($response['name'] === '') {
-			$response['name'] = $header_label;
-			$response['period_string'] = ' ('.zbx_date2age(0, $timeline['period']).')';
-		}
 
 		$this->setResponse(new CControllerResponseData($response));
 	}

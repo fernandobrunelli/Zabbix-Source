@@ -21,19 +21,20 @@
 
 require_once dirname(__FILE__).'/js/configuration.item.list.js.php';
 
-if (empty($this->data['hostid'])) {
-	$create_button = (new CSubmit('form', _('Create item (select host first)')))->setEnabled(false);
-}
-else {
-	$create_button = new CSubmit('form', _('Create item'));
-}
-
 $widget = (new CWidget())
 	->setTitle(_('Items'))
-	->setControls((new CForm('get'))
-		->cleanItems()
-		->addVar('hostid', $this->data['hostid'])
-		->addItem((new CList())->addItem($create_button))
+	->setControls(
+		(new CTag('nav', true,
+			(new CList())->addItem(
+				($data['hostid'] != 0)
+					? new CRedirectButton(_('Create item'), (new CUrl('items.php'))
+						->setArgument('form', 'create')
+						->setArgument('hostid', $data['hostid'])
+						->getUrl()
+					)
+					: (new CButton('form', _('Create item (select host first)')))->setEnabled(false)
+			)
+		))->setAttribute('aria-label', _('Content controls'))
 	);
 
 if (!empty($this->data['hostid'])) {
@@ -84,23 +85,10 @@ $this->data['itemTriggers'] = CMacrosResolverHelper::resolveTriggerExpressions($
 
 $update_interval_parser = new CUpdateIntervalParser(['usermacros' => true]);
 
-foreach ($this->data['items'] as $item) {
+foreach ($data['items'] as $item) {
 	// description
 	$description = [];
-	if (!empty($item['template_host'])) {
-		if (array_key_exists($item['template_host']['hostid'], $data['writable_templates'])) {
-			$description[] = (new CLink(CHtml::encode($item['template_host']['name']),
-				'?hostid='.$item['template_host']['hostid'].'&filter_set=1'
-			))
-				->addClass(ZBX_STYLE_LINK_ALT)
-				->addClass(ZBX_STYLE_GREY);
-		}
-		else {
-			$description[] = (new CSpan(CHtml::encode($item['template_host']['name'])))->addClass(ZBX_STYLE_GREY);
-		}
-
-		$description[] = NAME_DELIMITER;
-	}
+	$description[] = makeItemTemplatePrefix($item['itemid'], $data['parent_templates'], ZBX_FLAG_DISCOVERY_NORMAL);
 
 	if (!empty($item['discoveryRule'])) {
 		$description[] = (new CLink(CHtml::encode($item['discoveryRule']['name']),
@@ -170,8 +158,7 @@ foreach ($this->data['items'] as $item) {
 
 		if ($trigger['templateid'] > 0) {
 			if (!isset($this->data['triggerRealHosts'][$trigger['triggerid']])) {
-				$trigger_description[] = (new CSpan('HOST'))->addClass(ZBX_STYLE_GREY);
-				$trigger_description[] = ':';
+				$trigger_description[] = (new CSpan('Inaccessible template'))->addClass(ZBX_STYLE_GREY);
 			}
 			else {
 				$realHost = reset($this->data['triggerRealHosts'][$trigger['triggerid']]);
@@ -184,9 +171,8 @@ foreach ($this->data['items'] as $item) {
 				else {
 					$trigger_description[] = (new CSpan(CHtml::encode($realHost['name'])))->addClass(ZBX_STYLE_GREY);
 				}
-
-				$trigger_description[] = ':';
 			}
+			$trigger_description[] = NAME_DELIMITER;
 		}
 
 		$trigger['hosts'] = zbx_toHash($trigger['hosts'], 'hostid');
@@ -230,8 +216,7 @@ foreach ($this->data['items'] as $item) {
 	unset($trigger);
 
 	if (!empty($item['triggers'])) {
-		$triggerInfo = (new CSpan(_('Triggers')))
-			->addClass(ZBX_STYLE_LINK_ACTION)
+		$triggerInfo = (new CLinkAction(_('Triggers')))
 			->setHint($triggerHintTable);
 		$triggerInfo = [$triggerInfo];
 		$triggerInfo[] = CViewHelper::showNum(count($item['triggers']));
@@ -313,6 +298,7 @@ $itemForm->addItem([
 		[
 			'item.massenable' => ['name' => _('Enable'), 'confirm' => _('Enable selected items?')],
 			'item.massdisable' => ['name' => _('Disable'), 'confirm' => _('Disable selected items?')],
+			'item.masscheck_now' => ['name' => _('Check now')],
 			'item.massclearhistory' => ['name' => _('Clear history'),
 				'confirm' => _('Delete history of selected items?')
 			],

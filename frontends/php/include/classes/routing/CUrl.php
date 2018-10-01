@@ -69,6 +69,8 @@ class CUrl {
 		$this->arguments = $_GET;
 
 		$this->formatQuery();
+
+		return $this;
 	}
 
 	public function formatArguments($query = null) {
@@ -93,6 +95,7 @@ class CUrl {
 		}
 		$this->formatQuery();
 	}
+
 	/**
 	 * Return relative url.
 	 *
@@ -121,7 +124,7 @@ class CUrl {
 	}
 
 	public function setArgumentSID() {
-		$this->arguments['sid'] = substr($_COOKIE['zbx_sessionid'], 16, 16);
+		$this->arguments['sid'] = substr($_COOKIE[ZBX_SESSION_NAME], 16, 16);
 
 		return $this;
 	}

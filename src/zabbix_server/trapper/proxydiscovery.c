@@ -50,12 +50,13 @@ void	recv_discovery_data(zbx_socket_t *sock, struct zbx_json_parse *jp, zbx_time
 
 	if (SUCCEED != zbx_proxy_check_permissions(&proxy, sock, &error))
 	{
-		zabbix_log(LOG_LEVEL_WARNING, "cannot accept connection from proxy \"%s\" at \"%s\": %s",
-				proxy.host, sock->peer, error);
+		zabbix_log(LOG_LEVEL_WARNING, "cannot accept connection from proxy \"%s\" at \"%s\", allowed address:"
+				" \"%s\": %s", proxy.host, sock->peer, proxy.proxy_address, error);
 		goto out;
 	}
 
-	zbx_proxy_update_version(&proxy, jp);
+	zbx_update_proxy_data(&proxy, zbx_get_protocol_version(jp), time(NULL),
+			(0 != (sock->protocol & ZBX_TCP_COMPRESS) ? 1 : 0));
 
 	if (SUCCEED != (ret = process_discovery_data(jp, ts, &error)))
 	{

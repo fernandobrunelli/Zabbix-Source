@@ -21,10 +21,7 @@
 
 show_messages();
 
-// end of article div
-echo '</div>'."\n";
-
-if ($data['fullscreen'] == 0) {
+if ($data['web_layout_mode'] === ZBX_LAYOUT_NORMAL) {
 	makePageFooter()->show();
 }
 
