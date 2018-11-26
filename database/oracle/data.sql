@@ -300,7 +300,7 @@ values ('5','Windows service startup states for discovery','automatic')
 /
 
 INSERT INTO expressions (expressionid,regexpid,expression,expression_type,exp_delimiter,case_sensitive)
-values ('1','1','^(btrfs|ext2|ext3|ext4|jfs|reiser|xfs|ffs|ufs|jfs|jfs2|vxfs|hfs|refs|ntfs|fat32|zfs)$','3',',','0')
+values ('1','1','^(btrfs|ext2|ext3|ext4|reiser|xfs|ffs|ufs|jfs|jfs2|vxfs|hfs|refs|ntfs|fat32|zfs)$','3',',','0')
 /
 
 INSERT INTO expressions (expressionid,regexpid,expression,expression_type,exp_delimiter,case_sensitive)
@@ -384,7 +384,7 @@ values ('10081',NULL,'Template OS Windows','3','0','-1','2','','','0','0','0','T
 /
 
 INSERT INTO hosts (hostid,proxy_hostid,host,status,available,ipmi_authtype,ipmi_privilege,ipmi_username,ipmi_password,ipmi_available,snmp_available,jmx_available,name,flags,templateid,description,tls_connect,tls_accept,tls_issuer,tls_subject,tls_psk_identity,tls_psk,proxy_address,auto_compress)
-values ('10084',NULL,'Zabbix server','0','0','-1','2','','','0','0','0','Zabbix server','0',NULL,'','1','1','','','','','','1')
+values ('10084',NULL,'Zabbix server','0','2','-1','2','','','0','0','0','Zabbix server','0',NULL,'','1','1','','','','','','1')
 /
 
 INSERT INTO hosts (hostid,proxy_hostid,host,status,available,ipmi_authtype,ipmi_privilege,ipmi_username,ipmi_password,ipmi_available,snmp_available,jmx_available,name,flags,templateid,description,tls_connect,tls_accept,tls_issuer,tls_subject,tls_psk_identity,tls_psk,proxy_address,auto_compress)
@@ -3005,6 +3005,54 @@ values ('10057','0','','','10001','Host name','system.hostname','1h','1w','0','0
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
 values ('10058','0','','','10001','System information','system.uname','1h','1w','0','0','1','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','The information as normally returned by ''uname -a''.','5','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10061','5','','','10047','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10062','5','','','10047','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10063','5','','','10047','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10064','5','','','10047','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10065','5','','','10047','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10066','5','','','10047','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10067','5','','','10048','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10068','5','','','10048','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10069','5','','','10048','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10070','5','','','10048','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10071','5','','','10048','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10072','5','','','10048','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
@@ -7048,11 +7096,43 @@ values ('28496','4','{$SNMP_COMMUNITY}','1.3.6.1.4.1.21317.1.3.1.2.{#SNMPINDEX}'
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('28497','0','','','10001','CPU guest time','system.cpu.util[,guest]','1m','1w','365d','0','0','','%','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','The time spent running a virtual CPU for guest operating systems','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('28499','0','','','10001','CPU guest nice time','system.cpu.util[,guest_nice]','1m','1w','365d','0','0','','%','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','The time spent running a niced guest (virtual CPU for guest operating systems)','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
 values ('10020','0','','','10001','Agent ping','agent.ping','1m','1w','365d','0','3','','','','0','','','','','22232','10','','','0','','','','','0',NULL,'','The agent always returns 1 for this item. It could be used in combination with nodata() for availability check.','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
 values ('10059','0','','','10001','Version of zabbix_agent(d) running','agent.version','1h','1w','0','0','1','','','','0','','','','','22231',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10073','5','','','10084','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','','10061',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10074','5','','','10084','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','','10062',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10075','5','','','10084','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','','10063',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10076','5','','','10084','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','','10064',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10077','5','','','10084','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','','10065',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+/
+
+INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
+values ('10078','5','','','10084','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','','10066',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
@@ -10456,75 +10536,11 @@ values ('28492','5','','','10259','SNMP availability','zabbix[host,snmp,availabl
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10061','5','','','10047','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+values ('28498','0','','','10084','CPU guest time','system.cpu.util[,guest]','1m','1w','365d','0','0','','%','','0','','','','','28497',NULL,'','','0','','','','','0','1','','The time spent running a virtual CPU for guest operating systems','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
 /
 
 INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10062','5','','','10047','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10063','5','','','10047','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10064','5','','','10047','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10065','5','','','10047','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10066','5','','','10047','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10067','5','','','10048','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10068','5','','','10048','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10069','5','','','10048','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10070','5','','','10048','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10071','5','','','10048','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10072','5','','','10048','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','',NULL,NULL,'','','0','','','','','0',NULL,'','','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','1','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10073','5','','','10084','Number of processed numeric (float) values per second','zabbix[wcache,values,float]','1m','1w','365d','0','0','','','','0','','','','','10061',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10074','5','','','10084','Number of processed character values per second','zabbix[wcache,values,str]','1m','1w','365d','0','0','','','','0','','','','','10062',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10075','5','','','10084','Number of processed log values per second','zabbix[wcache,values,log]','1m','1w','365d','0','0','','','','0','','','','','10063',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10076','5','','','10084','Number of processed numeric (unsigned) values per second','zabbix[wcache,values,uint]','1m','1w','365d','0','0','','','','0','','','','','10064',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10077','5','','','10084','Number of processed text values per second','zabbix[wcache,values,text]','1m','1w','365d','0','0','','','','0','','','','','10065',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
-/
-
-INSERT INTO items (itemid,type,snmp_community,snmp_oid,hostid,name,key_,delay,history,trends,status,value_type,trapper_hosts,units,snmpv3_securityname,snmpv3_securitylevel,snmpv3_authpassphrase,snmpv3_privpassphrase,formula,logtimefmt,templateid,valuemapid,params,ipmi_sensor,authtype,username,password,publickey,privatekey,flags,interfaceid,port,description,inventory_link,lifetime,snmpv3_authprotocol,snmpv3_privprotocol,snmpv3_contextname,evaltype,jmx_endpoint,master_itemid,timeout,url,query_fields,posts,status_codes,follow_redirects,post_type,headers,retrieve_mode,request_method,output_format,verify_peer,verify_host,allow_traps)
-values ('10078','5','','','10084','Number of processed not supported values per second','zabbix[wcache,values,not supported]','1m','1w','365d','0','0','','','','0','','','','','10066',NULL,'','','0','','','','','0',NULL,'','','0','0','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
+values ('28500','0','','','10084','CPU guest nice time','system.cpu.util[,guest_nice]','1m','1w','365d','0','0','','%','','0','','','','','28499',NULL,'','','0','','','','','0','1','','The time spent running a niced guest (virtual CPU for guest operating systems)','0','30d','0','0','','0','',NULL,'3s','','','','200','1','0','','0','0','0','0','0','0')
 /
 
 INSERT INTO optemplate (optemplateid,operationid,templateid)
@@ -24420,67 +24436,35 @@ values ('6110','524','23295','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6111','387','22665','1','0','FF5555','0','2','0')
+values ('6111','387','22665','1','2','FF5555','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6112','387','22668','1','1','55FF55','0','2','0')
+values ('6112','387','22668','1','3','55FF55','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6113','387','22671','1','2','009999','0','2','0')
+values ('6113','387','22671','1','4','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6114','387','17358','1','3','990099','0','2','0')
+values ('6114','387','17358','1','5','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6115','387','17362','1','4','999900','0','2','0')
+values ('6115','387','17362','1','6','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6116','387','17360','1','5','990000','0','2','0')
+values ('6116','387','17360','1','7','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6117','387','17356','1','6','000099','0','2','0')
+values ('6117','387','17356','1','8','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6118','387','17354','1','7','009900','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6119','525','23304','1','0','FF5555','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6120','525','23303','1','1','55FF55','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6121','525','23300','1','2','009999','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6122','525','23302','1','3','990099','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6123','525','23301','1','4','999900','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6124','525','23305','1','5','990000','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6125','525','23306','1','6','000099','0','2','0')
-/
-
-INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('6126','525','23299','1','7','009900','0','2','0')
+values ('6118','387','17354','1','9','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
@@ -24537,6 +24521,54 @@ values ('6139','494','23077','5','0','00AA00','0','2','0')
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
 values ('6140','494','23078','5','1','3333FF','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6141','387','28499','0','0','F230E0','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6142','387','28497','0','1','5CCD18','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6143','525','23304','1','2','FF5555','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6144','525','23303','1','3','55FF55','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6145','525','23300','1','4','009999','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6146','525','23302','1','5','990099','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6147','525','23301','1','6','999900','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6148','525','23305','1','7','990000','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6149','525','23306','1','8','000099','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6150','525','23299','1','9','009900','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6151','525','28500','0','0','F230E0','0','2','0')
+/
+
+INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
+values ('6152','525','28498','0','1','5CCD18','0','2','0')
 /
 
 INSERT INTO hostmacro (hostmacroid,hostid,macro,value)
@@ -33745,6 +33777,38 @@ values ('21045','345','10077')
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
 values ('21046','345','10078')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21047','13','28497')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21048','17','28497')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21049','346','28498')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21050','352','28498')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21051','13','28499')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21052','17','28499')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21053','346','28500')
+/
+
+INSERT INTO items_applications (itemappid,applicationid,itemid)
+values ('21054','352','28500')
 /
 
 INSERT INTO mappings (mappingid,valuemapid,value,newvalue)
