@@ -1,7 +1,7 @@
 <?php
 /*
 ** Zabbix
-** Copyright (C) 2001-2018 Zabbix SIA
+** Copyright (C) 2001-2019 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -330,7 +330,7 @@ class CScreenProblem extends CScreenBase {
 						'selectItems' => ['itemid', 'hostid', 'name', 'key_', 'value_type', 'units', 'valuemapid'],
 						'triggerids' => array_keys($triggerids),
 						'monitored' => true,
-						'skipDependent' => true,
+						'skipDependent' => ($filter['show'] == TRIGGERS_OPTION_ALL) ? null : true,
 						'preservekeys' => true
 					];
 
@@ -378,19 +378,19 @@ class CScreenProblem extends CScreenBase {
 			}
 		}
 
-		$maintenances = $maintenanceids
-			? API::Maintenance()->get([
+		if ($maintenanceids) {
+			$maintenances = API::Maintenance()->get([
 				'output' => ['name'],
 				'maintenanceids' => $maintenanceids,
 				'preservekeys' => true
-			])
-			: [];
+			]);
 
-		if ($maintenances) {
 			foreach ($problems as &$problem) {
 				if (array_key_exists('suppression_data', $problem) && $problem['suppression_data']) {
 					foreach ($problem['suppression_data'] as &$data) {
-						$data['maintenance_name'] = $maintenances[$data['maintenanceid']]['name'];
+						$data['maintenance_name'] = array_key_exists($data['maintenanceid'], $maintenances)
+							? $maintenances[$data['maintenanceid']]['name']
+							: _('Inaccessible maintenance');
 					}
 					unset($data);
 				}
@@ -1235,6 +1235,6 @@ class CScreenProblem extends CScreenBase {
 			->setHint($hint_table, '', true)
 		);
 
-		return new CCol($tooltip);
+		return (new CCol($tooltip))->addClass('latest-value');
 	}
 }

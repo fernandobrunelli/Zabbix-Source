@@ -1,6 +1,6 @@
 /*
 ** Zabbix
-** Copyright (C) 2001-2018 Zabbix SIA
+** Copyright (C) 2001-2019 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -1325,6 +1325,10 @@ done:
 			if (HOST_STATUS_MONITORED == status && HOST_STATUS_MONITORED != host->status)
 				host->data_expected_from = now;
 
+			/* reset host status if host status has been changed (e.g., if host has been disabled) */
+			if (status != host->status)
+				host->reset_availability = 1;
+
 			/* reset host status if host proxy assignment has been changed */
 			if (proxy_hostid != host->proxy_hostid)
 				host->reset_availability = 1;
@@ -2129,8 +2133,6 @@ static void	DCsync_interfaces(zbx_dbsync_t *sync)
 
 	for (; SUCCEED == ret; ret = zbx_dbsync_next(sync, &rowid, &row, &tag))
 	{
-		ZBX_DC_HOST	*host;
-
 		if (NULL == (interface = (ZBX_DC_INTERFACE *)zbx_hashset_search(&config->interfaces, &rowid)))
 			continue;
 
