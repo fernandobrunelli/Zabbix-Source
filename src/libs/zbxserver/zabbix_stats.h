@@ -1,6 +1,6 @@
 /*
 ** Zabbix
-** Copyright (C) 2001-2019 Zabbix SIA
+** Copyright (C) 2001-2018 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -17,21 +17,12 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-#ifndef ZABBIX_VERSION_H
-#define ZABBIX_VERSION_H
+#ifndef ZABBIX_ZABBIX_STATS_H_
+#define ZABBIX_ZABBIX_STATS_H_
 
-#define ZBX_STR2(str)	#str
-#define ZBX_STR(str)	ZBX_STR2(str)
+extern int	CONFIG_SERVER_STARTUP_TIME;
 
-#define APPLICATION_NAME	"Zabbix Agent"
-#define ZABBIX_REVDATE		"25 February 2019"
-#define ZABBIX_VERSION_MAJOR	4
-#define ZABBIX_VERSION_MINOR	0
-#define ZABBIX_VERSION_PATCH	5
-#define ZABBIX_VERSION_REVISION	90164
-#define ZABBIX_VERSION_RC	""
-#define ZABBIX_VERSION		ZBX_STR(ZABBIX_VERSION_MAJOR) "." ZBX_STR(ZABBIX_VERSION_MINOR) "." \
-				ZBX_STR(ZABBIX_VERSION_PATCH) ZABBIX_VERSION_RC
-#define ZABBIX_REVISION		ZBX_STR(ZABBIX_VERSION_REVISION)
+void	zbx_get_zabbix_stats(struct zbx_json *json);
+void	zbx_get_zabbix_stats_ext(struct zbx_json *json);
 
-#endif
+#endif /* ZABBIX_ZABBIX_STATS_H_ */

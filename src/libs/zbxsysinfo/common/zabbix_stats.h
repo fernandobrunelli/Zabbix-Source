@@ -1,6 +1,6 @@
 /*
 ** Zabbix
-** Copyright (C) 2001-2019 Zabbix SIA
+** Copyright (C) 2001-2018 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -17,21 +17,16 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-#ifndef ZABBIX_VERSION_H
-#define ZABBIX_VERSION_H
+#ifndef ZABBIX_SYSINFO_COMMON_ZABBIX_STATS_H_
+#define ZABBIX_SYSINFO_COMMON_ZABBIX_STATS_H_
 
-#define ZBX_STR2(str)	#str
-#define ZBX_STR(str)	ZBX_STR2(str)
+extern char	*CONFIG_SOURCE_IP;
+extern int	CONFIG_TIMEOUT;
 
-#define APPLICATION_NAME	"Zabbix Agent"
-#define ZABBIX_REVDATE		"25 February 2019"
-#define ZABBIX_VERSION_MAJOR	4
-#define ZABBIX_VERSION_MINOR	0
-#define ZABBIX_VERSION_PATCH	5
-#define ZABBIX_VERSION_REVISION	90164
-#define ZABBIX_VERSION_RC	""
-#define ZABBIX_VERSION		ZBX_STR(ZABBIX_VERSION_MAJOR) "." ZBX_STR(ZABBIX_VERSION_MINOR) "." \
-				ZBX_STR(ZABBIX_VERSION_PATCH) ZABBIX_VERSION_RC
-#define ZABBIX_REVISION		ZBX_STR(ZABBIX_VERSION_REVISION)
+int	zbx_get_remote_zabbix_stats(const char *ip, unsigned short port, AGENT_RESULT *result);
+int	zbx_get_remote_zabbix_stats_queue(const char *ip, unsigned short port, const char *from, const char *to,
+		AGENT_RESULT *result);
 
-#endif
+int	ZABBIX_STATS(AGENT_REQUEST *request, AGENT_RESULT *result);
+
+#endif /* ZABBIX_SYSINFO_COMMON_ZABBIX_STATS_H_ */
