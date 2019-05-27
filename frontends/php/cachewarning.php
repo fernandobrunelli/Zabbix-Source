@@ -1,4 +1,4 @@
-
+<?php
 /*
 ** Zabbix
 ** Copyright (C) 2001-2019 Zabbix SIA
@@ -18,12 +18,26 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-#ifndef ZABBIX_DISCOVERY_H
-#define ZABBIX_DISCOVERY_H
 
-#include "comms.h"
+require_once dirname(__FILE__).'/include/classes/user/CWebUser.php';
+CWebUser::disableSessionCookie();
 
-void	discovery_update_host(DB_DHOST *dhost, int status, int now);
-void	discovery_update_service(DB_DRULE *drule, zbx_uint64_t dcheckid, DB_DHOST *dhost,
-		const char *ip, const char *dns, int port, int status, const char *value, int now);
-#endif
+require_once dirname(__FILE__).'/include/config.inc.php';
+require_once dirname(__FILE__).'/include/forms.inc.php';
+
+$page['title'] = _('ZABBIX');
+$page['file'] = 'cachewarning.php';
+
+if ((new CAssetsFileCache(ZBase::getRootDir()))->build()) {
+	redirect('index.php');
+
+	exit;
+}
+
+(new CView('general.warning', [
+	'header' => _('Insufficient file system permissions.'),
+	'messages' => [
+		_('Assets cache directory is not writable.')
+	],
+	'theme' => ZBX_DEFAULT_THEME
+]))->render();

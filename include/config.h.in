@@ -320,6 +320,9 @@
 /* Define to 1 if '_res._u._ext.ext' exists. /BSD/ */
 #undef HAVE_RES_U_EXT_EXT
 
+/* Define to 1 if you have the `round' function. */
+#undef HAVE_ROUND
+
 /* Define to 1 if union 'semun' exists. */
 #undef HAVE_SEMUN
 
