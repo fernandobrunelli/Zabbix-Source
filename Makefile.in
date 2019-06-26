@@ -441,7 +441,8 @@ EXTRA_DIST = \
 @ZBXCMOCKA_TRUE@WRAP_IO_FUNCS = \
 @ZBXCMOCKA_TRUE@	-Wl,--wrap=fopen \
 @ZBXCMOCKA_TRUE@	-Wl,--wrap=fclose \
-@ZBXCMOCKA_TRUE@	-Wl,--wrap=fgets
+@ZBXCMOCKA_TRUE@	-Wl,--wrap=fgets \
+@ZBXCMOCKA_TRUE@	-Wl,--wrap=open
 
 @ZBXCMOCKA_TRUE@WRAP_FS_FUNCS = \
 @ZBXCMOCKA_TRUE@	-Wl,--wrap=opendir \
@@ -455,8 +456,7 @@ EXTRA_DIST = \
 
 @ZBXCMOCKA_TRUE@WRAP_COMM_FUNCS = \
 @ZBXCMOCKA_TRUE@	-Wl,--wrap=read \
-@ZBXCMOCKA_TRUE@	-Wl,--wrap=connect \
-@ZBXCMOCKA_TRUE@	-Wl,--wrap=open
+@ZBXCMOCKA_TRUE@	-Wl,--wrap=connect
 
 @ZBXCMOCKA_TRUE@WRAP_LOG = \
 @ZBXCMOCKA_TRUE@	-Wl,--wrap=__zbx_zabbix_log
@@ -977,6 +977,7 @@ dist-hook:
 
 	rm -rf `find $(top_distdir) -name ".gitignore" -o -name ".gitattributes"`
 	rm -f $(top_distdir)/include/config.h
+	rm -f $(top_distdir)/include/config.h.in~
 	rm -f $(top_distdir)/frontends/php/conf/zabbix.conf.php
 	rm -rf $(top_distdir)/frontends/php/tests
 	rm -f $(top_distdir)/sass/*.html
