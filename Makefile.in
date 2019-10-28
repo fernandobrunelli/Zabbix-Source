@@ -694,6 +694,11 @@ distdir: $(DISTFILES)
 	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
 	  ! -type d ! -perm -444 -exec $(install_sh) -c -m a+r {} {} \; \
 	|| chmod -R a+r "$(distdir)"
+	@if test -z "$(am__skip_length_check)" && find "$(distdir)" -type f -print | \
+	  grep '^...................................................................................................' 1>&2; then \
+	  echo 'error: the above filenames are too long' 1>&2; \
+	  exit 1; \
+	else :; fi
 dist-gzip: distdir
 	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
 	$(am__post_remove_distdir)
@@ -972,15 +977,13 @@ dist-hook:
 	cat $(top_distdir)/src/zabbix_java/src/com/zabbix/gateway/GeneralInformation.java|sed "s/{ZABBIX_REVISION}/$$zabbix_revision/g" > \
 		$(top_distdir)/src/zabbix_java/src/com/zabbix/gateway/GeneralInformation.java.new; \
 	mv $(top_distdir)/src/zabbix_java/src/com/zabbix/gateway/GeneralInformation.java.new \
-		$(top_distdir)/src/zabbix_java/src/com/zabbix/gateway/GeneralInformation.java; \
-	rm -f $(top_distdir)/conf_tests.m4
+		$(top_distdir)/src/zabbix_java/src/com/zabbix/gateway/GeneralInformation.java
 
 	rm -rf `find $(top_distdir) -name ".gitignore" -o -name ".gitattributes"`
 	rm -f $(top_distdir)/include/config.h
 	rm -f $(top_distdir)/include/config.h.in~
 	rm -f $(top_distdir)/frontends/php/conf/zabbix.conf.php
 	rm -rf $(top_distdir)/frontends/php/tests
-	rm -f $(top_distdir)/sass/*.html
 	rm -rf $(top_distdir)/sass/img_source
 
 @DBSCHEMA_TRUE@dbschema_ibm_db2:

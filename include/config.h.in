@@ -572,7 +572,7 @@
 /* Define to 1 if you are using Linux 2.6.x */
 #undef KERNEL_2_6
 
-/* Define to 1 if LDAP depricated functions is used. */
+/* Define to 1 if LDAP deprecated functions is used. */
 #undef LDAP_DEPRECATED
 
 /* Defined if libcurl supports AsynchDNS */
@@ -629,7 +629,7 @@
 /* Define to 1 if you are using Mac OS X. */
 #undef MAC_OS_X
 
-/* Define to 1 if OPENIPMI depricated functions is used. */
+/* Define to 1 if OPENIPMI deprecated functions is used. */
 #undef OPENIPMI_DEPRECATED
 
 /* Name of package */
