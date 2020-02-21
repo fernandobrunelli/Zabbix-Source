@@ -341,6 +341,9 @@
 /* Define to 1 if SQLite libraries are available */
 #undef HAVE_SQLITE3
 
+/* Define to 1 if you have the 'libssh' library (-lssh) */
+#undef HAVE_SSH
+
 /* Define to 1 if you have the 'libssh2' library (-lssh2) */
 #undef HAVE_SSH2
 
