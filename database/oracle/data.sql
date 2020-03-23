@@ -716,31 +716,31 @@ values ('10269',NULL,'Template Module HOST-RESOURCES-MIB CPU SNMPv1','3','0','-1
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('93','10176','{#CLUSTER.NAME}',NULL,NULL)
+values ('100','10176','{#CLUSTER.NAME}',NULL,NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('94','10176','{#DATACENTER.NAME}',NULL,NULL)
+values ('101','10176','{#DATACENTER.NAME}',NULL,NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('95','10176','','7',NULL)
+values ('102','10176','','7',NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('96','10177','{#CLUSTER.NAME} (vm)',NULL,NULL)
+values ('103','10177','{#CLUSTER.NAME} (vm)',NULL,NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('97','10177','{#DATACENTER.NAME} (vm)',NULL,NULL)
+values ('104','10177','{#DATACENTER.NAME} (vm)',NULL,NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('98','10177','{#HV.NAME}',NULL,NULL)
+values ('105','10177','{#HV.NAME}',NULL,NULL)
 /
 
 INSERT INTO group_prototype (group_prototypeid,hostid,name,groupid,templateid)
-values ('99','10177','','6',NULL)
+values ('106','10177','','6',NULL)
 /
 
 INSERT INTO screens (screenid,name,hsize,vsize,templateid,userid,private)
@@ -824,259 +824,259 @@ values ('46','16','0','525','400','100','1','1','1','1','0','0','0','0','','0','
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('653','22','0','806','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('717','22','0','806','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('654','22','0','804','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('718','22','0','804','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('655','22','0','805','500','100','0','1','1','1','0','1','0','0','','0','0','','3')
+values ('719','22','0','805','500','100','0','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('656','22','0','803','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
+values ('720','22','0','803','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('657','21','0','802','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('721','21','0','802','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('658','21','0','799','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
+values ('722','21','0','799','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('659','21','0','800','555','114','0','1','1','1','0','1','0','0','','0','0','','3')
+values ('723','21','0','800','555','114','0','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('660','21','0','798','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
+values ('724','21','0','798','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('661','21','0','797','500','160','0','2','1','1','0','0','0','0','','0','0','','3')
+values ('725','21','0','797','500','160','0','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('662','21','0','801','500','160','1','2','1','1','0','0','0','0','','0','0','','3')
+values ('726','21','0','801','500','160','1','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('663','17','0','532','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('727','17','0','532','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('664','17','0','530','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('728','17','0','530','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('665','17','0','531','500','100','0','1','1','1','0','1','0','0','','0','0','','3')
+values ('729','17','0','531','500','100','0','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('666','17','0','529','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
+values ('730','17','0','529','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('667','4','0','392','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('731','4','0','392','500','212','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('668','4','0','404','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('732','4','0','404','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('669','4','0','406','555','114','0','1','1','1','0','1','0','0','','0','0','','3')
+values ('733','4','0','406','555','114','0','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('670','4','0','410','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
+values ('734','4','0','410','500','128','1','1','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('671','4','0','527','500','160','0','2','1','1','0','0','0','0','','0','0','','3')
+values ('735','4','0','527','500','160','0','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('672','4','0','788','500','160','1','2','1','1','0','0','0','0','','0','0','','3')
+values ('736','4','0','788','500','160','1','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('673','20','0','650','500','200','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('737','20','0','650','500','200','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('674','20','0','649','500','270','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('738','20','0','649','500','270','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('675','5','0','469','500','148','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('739','5','0','469','500','148','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('676','5','0','471','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
+values ('740','5','0','471','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('677','5','0','498','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('741','5','0','498','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('678','5','0','540','500','100','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('742','5','0','540','500','100','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('679','7','0','463','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('743','7','0','463','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('680','7','0','462','500','106','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('744','7','0','462','500','106','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('681','7','0','541','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('745','7','0','541','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('682','7','0','464','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('746','7','0','464','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('683','6','0','475','500','114','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('747','6','0','475','500','114','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('684','6','0','474','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('748','6','0','474','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('685','6','0','542','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('749','6','0','542','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('686','3','0','433','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('750','3','0','433','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('687','3','0','387','500','148','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('751','3','0','387','500','148','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('688','3','0','533','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('752','3','0','533','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('689','3','0','436','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('753','3','0','436','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('690','3','1','10009','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
+values ('754','3','1','10009','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('691','3','1','10013','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
+values ('755','3','1','10013','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('692','18','0','487','500','100','0','0','1','1','0','0','0','0','','0','0','','3')
+values ('756','18','0','487','500','100','0','0','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('693','18','0','543','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('757','18','0','543','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('694','9','0','457','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('758','9','0','457','500','120','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('695','9','0','456','500','106','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('759','9','0','456','500','106','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('696','9','0','544','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('760','9','0','544','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('697','9','0','458','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('761','9','0','458','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('698','9','1','22838','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
+values ('762','9','1','22838','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('699','9','1','22837','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
+values ('763','9','1','22837','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('700','10','0','481','500','114','0','0','1','1','0','1','0','0','','0','0','','3')
+values ('764','10','0','481','500','114','0','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('701','10','0','480','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
+values ('765','10','0','480','500','100','1','0','1','1','0','1','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('702','10','0','545','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('766','10','0','545','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('703','10','0','482','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('767','10','0','482','500','300','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('704','10','1','22998','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
+values ('768','10','1','22998','500','100','0','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('705','10','1','22997','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
+values ('769','10','1','22997','500','100','1','2','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('706','19','0','495','500','100','0','0','1','1','0','0','0','0','','0','0','','3')
+values ('770','19','0','495','500','100','0','0','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('707','19','0','546','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
+values ('771','19','0','546','500','100','1','0','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('708','19','1','23140','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
+values ('772','19','1','23140','500','100','0','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('709','19','1','23138','500','100','1','1','1','1','0','0','0','0','','0','0','','3')
+values ('773','19','1','23138','500','100','1','1','1','1','0','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('710','25','0','832','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
+values ('774','25','0','832','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('711','25','20','830','750','100','0','1','1','1','25','0','0','0','','0','0','','3')
+values ('775','25','20','830','750','100','0','1','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('712','25','20','828','750','100','0','2','1','1','25','0','0','0','','0','0','','3')
+values ('776','25','20','828','750','100','0','2','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('713','23','0','822','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
+values ('777','23','0','822','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('714','23','20','816','750','100','0','1','1','1','25','0','0','0','','0','0','','3')
+values ('778','23','20','816','750','100','0','1','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('715','23','20','810','750','100','0','2','1','1','25','0','0','0','','0','0','','3')
+values ('779','23','20','810','750','100','0','2','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO screens_items (screenitemid,screenid,resourcetype,resourceid,width,height,x,y,colspan,rowspan,elements,valign,halign,style,url,dynamic,sort_triggers,application,max_columns)
-values ('716','24','20','766','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
+values ('780','24','20','766','750','100','0','0','1','1','25','0','0','0','','0','0','','3')
 /
 
 INSERT INTO applications (applicationid,hostid,name,flags)
@@ -15300,1687 +15300,1687 @@ values ('15981','{18286}>{$MEMORY.UTIL.MAX}','{#MEMNAME}: High memory utilizatio
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7824','14195','14205')
+values ('8245','14195','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7825','14196','14195')
+values ('8246','14196','14195')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7826','14196','14205')
+values ('8247','14196','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7827','14197','14205')
+values ('8248','14197','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7828','14198','14197')
+values ('8249','14198','14197')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7829','14198','14205')
+values ('8250','14198','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7830','14200','14199')
+values ('8251','14200','14199')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7831','14201','14205')
+values ('8252','14201','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7832','14202','14201')
+values ('8253','14202','14201')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7833','14202','14205')
+values ('8254','14202','14205')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7834','14204','14203')
+values ('8255','14204','14203')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7835','14206','14222')
+values ('8256','14206','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7836','14207','14206')
+values ('8257','14207','14206')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7837','14207','14222')
+values ('8258','14207','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7838','14208','14222')
+values ('8259','14208','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7839','14209','14208')
+values ('8260','14209','14208')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7840','14209','14222')
+values ('8261','14209','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7841','14210','14222')
+values ('8262','14210','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7842','14211','14210')
+values ('8263','14211','14210')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7843','14211','14222')
+values ('8264','14211','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7844','14212','14222')
+values ('8265','14212','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7845','14213','14212')
+values ('8266','14213','14212')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7846','14213','14222')
+values ('8267','14213','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7847','14214','14222')
+values ('8268','14214','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7848','14215','14214')
+values ('8269','14215','14214')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7849','14215','14222')
+values ('8270','14215','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7850','14217','14216')
+values ('8271','14217','14216')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7851','14218','14222')
+values ('8272','14218','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7852','14219','14218')
+values ('8273','14219','14218')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7853','14219','14222')
+values ('8274','14219','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7854','14220','14222')
+values ('8275','14220','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7855','14221','14220')
+values ('8276','14221','14220')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7856','14221','14222')
+values ('8277','14221','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7857','14223','14222')
+values ('8278','14223','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7858','14224','14222')
+values ('8279','14224','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7859','14224','14223')
+values ('8280','14224','14223')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7860','14225','14222')
+values ('8281','14225','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7861','14226','14222')
+values ('8282','14226','14222')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7862','14226','14225')
+values ('8283','14226','14225')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7863','14252','14251')
+values ('8284','14252','14251')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7864','14289','14288')
+values ('8285','14289','14288')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7865','14525','14524')
+values ('8286','14525','14524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7866','14718','14717')
+values ('8287','14718','14717')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7867','15799','15798')
+values ('8288','15799','15798')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7868','14294','14293')
+values ('8289','14294','14293')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7869','14312','14311')
+values ('8290','14312','14311')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7870','14328','14327')
+values ('8291','14328','14327')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7871','14348','14347')
+values ('8292','14348','14347')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7872','14357','14356')
+values ('8293','14357','14356')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7873','14390','14389')
+values ('8294','14390','14389')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7874','14404','14403')
+values ('8295','14404','14403')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7875','14452','14451')
+values ('8296','14452','14451')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7876','14469','14468')
+values ('8297','14469','14468')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7877','14487','14486')
+values ('8298','14487','14486')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7878','14506','14505')
+values ('8299','14506','14505')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7879','14535','14534')
+values ('8300','14535','14534')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7880','14545','14544')
+values ('8301','14545','14544')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7881','14583','14582')
+values ('8302','14583','14582')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7882','14599','14598')
+values ('8303','14599','14598')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7883','14616','14615')
+values ('8304','14616','14615')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7884','14653','14652')
+values ('8305','14653','14652')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7885','14674','14673')
+values ('8306','14674','14673')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7886','14692','14691')
+values ('8307','14692','14691')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7887','14705','14704')
+values ('8308','14705','14704')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7888','14870','14869')
+values ('8309','14870','14869')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7889','14883','14882')
+values ('8310','14883','14882')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7890','14907','14906')
+values ('8311','14907','14906')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7891','14929','14928')
+values ('8312','14929','14928')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7892','15221','15220')
+values ('8313','15221','15220')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7893','15702','15701')
+values ('8314','15702','15701')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7894','15724','15723')
+values ('8315','15724','15723')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7895','15756','15755')
+values ('8316','15756','15755')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7896','15820','15819')
+values ('8317','15820','15819')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7897','15841','15840')
+values ('8318','15841','15840')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7898','15909','15908')
+values ('8319','15909','15908')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7899','14253','14252')
+values ('8320','14253','14252')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7900','14290','14289')
+values ('8321','14290','14289')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7901','14526','14525')
+values ('8322','14526','14525')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7902','14719','14718')
+values ('8323','14719','14718')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7903','15800','15799')
+values ('8324','15800','15799')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7904','14295','14294')
+values ('8325','14295','14294')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7905','14313','14312')
+values ('8326','14313','14312')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7906','14329','14328')
+values ('8327','14329','14328')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7907','14349','14348')
+values ('8328','14349','14348')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7908','14358','14357')
+values ('8329','14358','14357')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7909','14391','14390')
+values ('8330','14391','14390')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7910','14405','14404')
+values ('8331','14405','14404')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7911','14453','14452')
+values ('8332','14453','14452')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7912','14470','14469')
+values ('8333','14470','14469')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7913','14488','14487')
+values ('8334','14488','14487')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7914','14507','14506')
+values ('8335','14507','14506')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7915','14536','14535')
+values ('8336','14536','14535')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7916','14546','14545')
+values ('8337','14546','14545')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7917','14584','14583')
+values ('8338','14584','14583')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7918','14600','14599')
+values ('8339','14600','14599')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7919','14617','14616')
+values ('8340','14617','14616')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7920','14654','14653')
+values ('8341','14654','14653')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7921','14675','14674')
+values ('8342','14675','14674')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7922','14693','14692')
+values ('8343','14693','14692')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7923','14706','14705')
+values ('8344','14706','14705')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7924','14871','14870')
+values ('8345','14871','14870')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7925','14884','14883')
+values ('8346','14884','14883')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7926','14908','14907')
+values ('8347','14908','14907')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7927','14930','14929')
+values ('8348','14930','14929')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7928','15222','15221')
+values ('8349','15222','15221')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7929','15703','15702')
+values ('8350','15703','15702')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7930','15725','15724')
+values ('8351','15725','15724')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7931','15757','15756')
+values ('8352','15757','15756')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7932','15821','15820')
+values ('8353','15821','15820')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7933','15842','15841')
+values ('8354','15842','15841')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7934','15910','15909')
+values ('8355','15910','15909')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7935','14253','14251')
+values ('8356','14253','14251')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7936','14290','14288')
+values ('8357','14290','14288')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7937','14526','14524')
+values ('8358','14526','14524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7938','14719','14717')
+values ('8359','14719','14717')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7939','15800','15798')
+values ('8360','15800','15798')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7940','14295','14293')
+values ('8361','14295','14293')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7941','14313','14311')
+values ('8362','14313','14311')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7942','14329','14327')
+values ('8363','14329','14327')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7943','14349','14347')
+values ('8364','14349','14347')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7944','14358','14356')
+values ('8365','14358','14356')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7945','14391','14389')
+values ('8366','14391','14389')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7946','14405','14403')
+values ('8367','14405','14403')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7947','14453','14451')
+values ('8368','14453','14451')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7948','14470','14468')
+values ('8369','14470','14468')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7949','14488','14486')
+values ('8370','14488','14486')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7950','14507','14505')
+values ('8371','14507','14505')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7951','14536','14534')
+values ('8372','14536','14534')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7952','14546','14544')
+values ('8373','14546','14544')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7953','14584','14582')
+values ('8374','14584','14582')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7954','14600','14598')
+values ('8375','14600','14598')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7955','14617','14615')
+values ('8376','14617','14615')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7956','14654','14652')
+values ('8377','14654','14652')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7957','14675','14673')
+values ('8378','14675','14673')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7958','14693','14691')
+values ('8379','14693','14691')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7959','14706','14704')
+values ('8380','14706','14704')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7960','14871','14869')
+values ('8381','14871','14869')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7961','14884','14882')
+values ('8382','14884','14882')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7962','14908','14906')
+values ('8383','14908','14906')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7963','14930','14928')
+values ('8384','14930','14928')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7964','15222','15220')
+values ('8385','15222','15220')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7965','15703','15701')
+values ('8386','15703','15701')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7966','15725','15723')
+values ('8387','15725','15723')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7967','15757','15755')
+values ('8388','15757','15755')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7968','15821','15819')
+values ('8389','15821','15819')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7969','15842','15840')
+values ('8390','15842','15840')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7970','15910','15908')
+values ('8391','15910','15908')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7971','15642','15161')
+values ('8392','15642','15161')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7972','15643','15162')
+values ('8393','15643','15162')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7973','15644','15163')
+values ('8394','15644','15163')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7974','15801','15802')
+values ('8395','15801','15802')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7975','15161','14288')
+values ('8396','15161','14288')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7976','15162','14524')
+values ('8397','15162','14524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7977','15163','14717')
+values ('8398','15163','14717')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7978','15802','15798')
+values ('8399','15802','15798')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7979','15645','15170')
+values ('8400','15645','15170')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7980','15646','15171')
+values ('8401','15646','15171')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7981','15647','15172')
+values ('8402','15647','15172')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7982','15648','15173')
+values ('8403','15648','15173')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7983','15649','15174')
+values ('8404','15649','15174')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7984','15650','15175')
+values ('8405','15650','15175')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7985','15651','15176')
+values ('8406','15651','15176')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7986','15652','15177')
+values ('8407','15652','15177')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7987','15653','15178')
+values ('8408','15653','15178')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7988','15654','15179')
+values ('8409','15654','15179')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7989','15655','15180')
+values ('8410','15655','15180')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7990','15656','15181')
+values ('8411','15656','15181')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7991','15657','15182')
+values ('8412','15657','15182')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7992','15658','15183')
+values ('8413','15658','15183')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7993','15659','15184')
+values ('8414','15659','15184')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7994','15660','15185')
+values ('8415','15660','15185')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7995','15661','15186')
+values ('8416','15661','15186')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7996','15662','15187')
+values ('8417','15662','15187')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7997','15663','15188')
+values ('8418','15663','15188')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7998','15664','15189')
+values ('8419','15664','15189')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('7999','15665','15190')
+values ('8420','15665','15190')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8000','15666','15191')
+values ('8421','15666','15191')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8001','15667','15192')
+values ('8422','15667','15192')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8002','15668','15193')
+values ('8423','15668','15193')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8003','15669','15224')
+values ('8424','15669','15224')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8004','15704','15705')
+values ('8425','15704','15705')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8005','15726','15727')
+values ('8426','15726','15727')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8006','15758','15759')
+values ('8427','15758','15759')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8007','15822','15823')
+values ('8428','15822','15823')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8008','15843','15844')
+values ('8429','15843','15844')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8009','15911','15912')
+values ('8430','15911','15912')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8010','15170','14293')
+values ('8431','15170','14293')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8011','15171','14311')
+values ('8432','15171','14311')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8012','15172','14327')
+values ('8433','15172','14327')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8013','15173','14347')
+values ('8434','15173','14347')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8014','15174','14356')
+values ('8435','15174','14356')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8015','15175','14389')
+values ('8436','15175','14389')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8016','15176','14403')
+values ('8437','15176','14403')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8017','15177','14451')
+values ('8438','15177','14451')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8018','15178','14468')
+values ('8439','15178','14468')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8019','15179','14486')
+values ('8440','15179','14486')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8020','15180','14505')
+values ('8441','15180','14505')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8021','15181','14534')
+values ('8442','15181','14534')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8022','15182','14544')
+values ('8443','15182','14544')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8023','15183','14582')
+values ('8444','15183','14582')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8024','15184','14598')
+values ('8445','15184','14598')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8025','15185','14615')
+values ('8446','15185','14615')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8026','15186','14652')
+values ('8447','15186','14652')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8027','15187','14673')
+values ('8448','15187','14673')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8028','15188','14691')
+values ('8449','15188','14691')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8029','15189','14704')
+values ('8450','15189','14704')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8030','15190','14869')
+values ('8451','15190','14869')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8031','15191','14882')
+values ('8452','15191','14882')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8032','15192','14906')
+values ('8453','15192','14906')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8033','15193','14928')
+values ('8454','15193','14928')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8034','15224','15220')
+values ('8455','15224','15220')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8035','15705','15701')
+values ('8456','15705','15701')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8036','15727','15723')
+values ('8457','15727','15723')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8037','15759','15755')
+values ('8458','15759','15755')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8038','15823','15819')
+values ('8459','15823','15819')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8039','15844','15840')
+values ('8460','15844','15840')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8040','15912','15908')
+values ('8461','15912','15908')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8041','15977','15976')
+values ('8462','15977','15976')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8042','15980','15979')
+values ('8463','15980','15979')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8043','15953','15952')
+values ('8464','15953','15952')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8044','15960','15955')
+values ('8465','15960','15955')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8045','15961','15956')
+values ('8466','15961','15956')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8046','15962','15957')
+values ('8467','15962','15957')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8047','15963','15958')
+values ('8468','15963','15958')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8048','15964','15959')
+values ('8469','15964','15959')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8049','15574','15506')
+values ('8470','15574','15506')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8050','15575','15506')
+values ('8471','15575','15506')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8051','15670','15506')
+values ('8472','15670','15506')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8052','15577','15508')
+values ('8473','15577','15508')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8053','15578','15508')
+values ('8474','15578','15508')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8054','15671','15508')
+values ('8475','15671','15508')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8055','15580','15510')
+values ('8476','15580','15510')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8056','15581','15511')
+values ('8477','15581','15511')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8057','15582','15512')
+values ('8478','15582','15512')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8058','15583','15513')
+values ('8479','15583','15513')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8059','15584','15514')
+values ('8480','15584','15514')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8060','15585','15515')
+values ('8481','15585','15515')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8061','15586','15516')
+values ('8482','15586','15516')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8062','15587','15517')
+values ('8483','15587','15517')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8063','15588','15518')
+values ('8484','15588','15518')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8064','15589','15519')
+values ('8485','15589','15519')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8065','15590','15520')
+values ('8486','15590','15520')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8066','15591','15521')
+values ('8487','15591','15521')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8067','15592','15522')
+values ('8488','15592','15522')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8068','15593','15523')
+values ('8489','15593','15523')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8069','15594','15524')
+values ('8490','15594','15524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8070','15595','15525')
+values ('8491','15595','15525')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8071','15596','15526')
+values ('8492','15596','15526')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8072','15597','15527')
+values ('8493','15597','15527')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8073','15598','15528')
+values ('8494','15598','15528')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8074','15599','15529')
+values ('8495','15599','15529')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8075','15707','15709')
+values ('8496','15707','15709')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8076','15600','15510')
+values ('8497','15600','15510')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8077','15601','15511')
+values ('8498','15601','15511')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8078','15602','15512')
+values ('8499','15602','15512')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8079','15603','15513')
+values ('8500','15603','15513')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8080','15604','15514')
+values ('8501','15604','15514')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8081','15605','15515')
+values ('8502','15605','15515')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8082','15606','15516')
+values ('8503','15606','15516')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8083','15607','15517')
+values ('8504','15607','15517')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8084','15608','15518')
+values ('8505','15608','15518')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8085','15609','15519')
+values ('8506','15609','15519')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8086','15610','15520')
+values ('8507','15610','15520')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8087','15611','15521')
+values ('8508','15611','15521')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8088','15612','15522')
+values ('8509','15612','15522')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8089','15613','15523')
+values ('8510','15613','15523')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8090','15614','15524')
+values ('8511','15614','15524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8091','15615','15525')
+values ('8512','15615','15525')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8092','15616','15526')
+values ('8513','15616','15526')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8093','15617','15527')
+values ('8514','15617','15527')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8094','15618','15528')
+values ('8515','15618','15528')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8095','15619','15529')
+values ('8516','15619','15529')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8096','15706','15709')
+values ('8517','15706','15709')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8097','15672','15510')
+values ('8518','15672','15510')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8098','15673','15511')
+values ('8519','15673','15511')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8099','15674','15512')
+values ('8520','15674','15512')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8100','15675','15513')
+values ('8521','15675','15513')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8101','15676','15514')
+values ('8522','15676','15514')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8102','15677','15515')
+values ('8523','15677','15515')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8103','15678','15516')
+values ('8524','15678','15516')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8104','15679','15517')
+values ('8525','15679','15517')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8105','15680','15518')
+values ('8526','15680','15518')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8106','15681','15519')
+values ('8527','15681','15519')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8107','15682','15520')
+values ('8528','15682','15520')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8108','15683','15521')
+values ('8529','15683','15521')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8109','15684','15522')
+values ('8530','15684','15522')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8110','15685','15523')
+values ('8531','15685','15523')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8111','15686','15524')
+values ('8532','15686','15524')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8112','15687','15525')
+values ('8533','15687','15525')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8113','15688','15526')
+values ('8534','15688','15526')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8114','15689','15527')
+values ('8535','15689','15527')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8115','15690','15528')
+values ('8536','15690','15528')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8116','15691','15529')
+values ('8537','15691','15529')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8117','15708','15709')
+values ('8538','15708','15709')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8118','15550','15490')
+values ('8539','15550','15490')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8119','15551','15490')
+values ('8540','15551','15490')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8120','15692','15490')
+values ('8541','15692','15490')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8121','15553','15492')
+values ('8542','15553','15492')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8122','15554','15493')
+values ('8543','15554','15493')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8123','15555','15492')
+values ('8544','15555','15492')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8124','15556','15493')
+values ('8545','15556','15493')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8125','15693','15492')
+values ('8546','15693','15492')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8126','15694','15493')
+values ('8547','15694','15493')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8127','15559','15496')
+values ('8548','15559','15496')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8128','15560','15496')
+values ('8549','15560','15496')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8129','15695','15496')
+values ('8550','15695','15496')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8130','15562','15498')
+values ('8551','15562','15498')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8131','15563','15499')
+values ('8552','15563','15499')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8132','15564','15498')
+values ('8553','15564','15498')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8133','15565','15499')
+values ('8554','15565','15499')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8134','15696','15498')
+values ('8555','15696','15498')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8135','15697','15499')
+values ('8556','15697','15499')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8136','15970','15502')
+values ('8557','15970','15502')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8137','15971','15502')
+values ('8558','15971','15502')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8138','15698','15502')
+values ('8559','15698','15502')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8139','15972','15504')
+values ('8560','15972','15504')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8140','15973','15504')
+values ('8561','15973','15504')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8141','15699','15504')
+values ('8562','15699','15504')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8142','14318','14319')
+values ('8563','14318','14319')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8143','15714','15715')
+values ('8564','15714','15715')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8144','15721','15720')
+values ('8565','15721','15720')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8145','15390','14339')
+values ('8566','15390','14339')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8146','15392','15391')
+values ('8567','15392','15391')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8147','15394','15393')
+values ('8568','15394','15393')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8148','15380','15379')
+values ('8569','15380','15379')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8149','15382','15381')
+values ('8570','15382','15381')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8150','14372','14373')
+values ('8571','14372','14373')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8151','14375','14376')
+values ('8572','14375','14376')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8152','15384','15383')
+values ('8573','15384','15383')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8153','15386','15385')
+values ('8574','15386','15385')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8154','14380','14381')
+values ('8575','14380','14381')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8155','15342','15343')
+values ('8576','15342','15343')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8156','15345','15344')
+values ('8577','15345','15344')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8157','15347','15346')
+values ('8578','15347','15346')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8158','15348','15351')
+values ('8579','15348','15351')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8159','15349','15352')
+values ('8580','15349','15352')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8160','15350','15353')
+values ('8581','15350','15353')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8161','15357','15354')
+values ('8582','15357','15354')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8162','15358','15355')
+values ('8583','15358','15355')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8163','15359','15356')
+values ('8584','15359','15356')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8164','15363','15360')
+values ('8585','15363','15360')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8165','15364','15361')
+values ('8586','15364','15361')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8166','15365','15362')
+values ('8587','15365','15362')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8167','15332','15331')
+values ('8588','15332','15331')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8168','15334','15333')
+values ('8589','15334','15333')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8169','14460','14461')
+values ('8590','14460','14461')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8170','14476','14477')
+values ('8591','14476','14477')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8171','14495','14496')
+values ('8592','14495','14496')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8172','14511','15368')
+values ('8593','14511','15368')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8173','14551','14552')
+values ('8594','14551','14552')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8174','14914','14915')
+values ('8595','14914','14915')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8175','15374','15373')
+values ('8596','15374','15373')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8176','15376','15375')
+values ('8597','15376','15375')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8177','14589','14590')
+values ('8598','14589','14590')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8178','15335','15336')
+values ('8599','15335','15336')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8179','15338','15337')
+values ('8600','15338','15337')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8180','14624','14625')
+values ('8601','14624','14625')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8181','15387','14934')
+values ('8602','15387','14934')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8182','14658','14659')
+values ('8603','14658','14659')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8183','14664','14665')
+values ('8604','14664','14665')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8184','14668','14667')
+values ('8605','14668','14667')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8185','15396','15397')
+values ('8606','15396','15397')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8186','15913','15914')
+values ('8607','15913','15914')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8187','15916','15917')
+values ('8608','15916','15917')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8188','15919','15920')
+values ('8609','15919','15920')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8189','15922','15923')
+values ('8610','15922','15923')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8190','15925','15926')
+values ('8611','15925','15926')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8191','15929','15928')
+values ('8612','15929','15928')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8192','15931','15930')
+values ('8613','15931','15930')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8193','15934','15933')
+values ('8614','15934','15933')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8194','15936','15935')
+values ('8615','15936','15935')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8195','15939','15938')
+values ('8616','15939','15938')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8196','15940','15938')
+values ('8617','15940','15938')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8197','15940','15939')
+values ('8618','15940','15939')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8198','15942','15941')
+values ('8619','15942','15941')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8199','15729','15728')
+values ('8620','15729','15728')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8200','15730','15728')
+values ('8621','15730','15728')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8201','15730','15729')
+values ('8622','15730','15729')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8202','15733','15734')
+values ('8623','15733','15734')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8203','15736','15737')
+values ('8624','15736','15737')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8204','15740','15739')
+values ('8625','15740','15739')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8205','15742','15741')
+values ('8626','15742','15741')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8206','15744','15743')
+values ('8627','15744','15743')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8207','15746','15743')
+values ('8628','15746','15743')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8208','15748','15747')
+values ('8629','15748','15747')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8209','15750','15749')
+values ('8630','15750','15749')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8210','15751','15750')
+values ('8631','15751','15750')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8211','15751','15749')
+values ('8632','15751','15749')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8212','15752','15754')
+values ('8633','15752','15754')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8213','15753','15754')
+values ('8634','15753','15754')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8214','15753','15752')
+values ('8635','15753','15752')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8215','15944','15943')
+values ('8636','15944','15943')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8216','15763','15764')
+values ('8637','15763','15764')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8217','15766','15767')
+values ('8638','15766','15767')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8218','15769','15770')
+values ('8639','15769','15770')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8219','15772','15773')
+values ('8640','15772','15773')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8220','15775','15776')
+values ('8641','15775','15776')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8221','15778','15779')
+values ('8642','15778','15779')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8222','15782','15781')
+values ('8643','15782','15781')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8223','15784','15783')
+values ('8644','15784','15783')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8224','15786','15785')
+values ('8645','15786','15785')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8225','15788','15787')
+values ('8646','15788','15787')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8226','15789','15787')
+values ('8647','15789','15787')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8227','15789','15788')
+values ('8648','15789','15788')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8228','15791','15790')
+values ('8649','15791','15790')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8229','15793','15792')
+values ('8650','15793','15792')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8230','15794','15792')
+values ('8651','15794','15792')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8231','15797','15796')
+values ('8652','15797','15796')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8232','15804','15803')
+values ('8653','15804','15803')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8233','15805','15803')
+values ('8654','15805','15803')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8234','15805','15804')
+values ('8655','15805','15804')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8235','15807','15808')
+values ('8656','15807','15808')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8236','15810','15811')
+values ('8657','15810','15811')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8237','15813','15814')
+values ('8658','15813','15814')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8238','15825','15824')
+values ('8659','15825','15824')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8239','15826','15824')
+values ('8660','15826','15824')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8240','15826','15825')
+values ('8661','15826','15825')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8241','15828','15829')
+values ('8662','15828','15829')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8242','15831','15832')
+values ('8663','15831','15832')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8243','15834','15835')
+values ('8664','15834','15835')
 /
 
 INSERT INTO trigger_depends (triggerdepid,triggerid_down,triggerid_up)
-values ('8244','15845','15846')
+values ('8665','15845','15846')
 /
 
 INSERT INTO functions (functionid,itemid,triggerid,name,parameter)
@@ -24212,2503 +24212,2503 @@ values ('832','CPU utilization','900','200','0.0000','100.0000','831','1','1','0
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11327','793','28532','0','0','C80000','0','2','0')
+values ('11952','793','28532','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11328','793','28503','0','1','00C800','0','2','0')
+values ('11953','793','28503','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11329','793','28504','0','2','0000C8','0','2','0')
+values ('11954','793','28504','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11330','794','28505','0','0','C80000','0','2','0')
+values ('11955','794','28505','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11331','794','28506','0','1','00C800','0','2','0')
+values ('11956','794','28506','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11332','794','28507','0','2','0000C8','0','2','0')
+values ('11957','794','28507','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11333','795','28508','0','0','C80000','0','2','0')
+values ('11958','795','28508','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11334','795','28509','0','1','00C800','0','2','0')
+values ('11959','795','28509','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11335','795','28510','0','2','0000C8','0','2','0')
+values ('11960','795','28510','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11336','796','28515','0','0','C80000','0','2','0')
+values ('11961','796','28515','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11337','796','28518','0','1','00C800','0','2','0')
+values ('11962','796','28518','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11338','796','28516','0','2','0000C8','0','2','0')
+values ('11963','796','28516','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11339','638','26892','0','0','C80000','0','2','0')
+values ('11964','638','26892','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11340','638','26891','0','1','00C800','0','2','0')
+values ('11965','638','26891','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11341','638','26910','0','2','0000C8','0','2','0')
+values ('11966','638','26910','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11342','639','26879','0','0','C80000','0','2','0')
+values ('11967','639','26879','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11343','639','26880','0','1','00C800','0','2','0')
+values ('11968','639','26880','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11344','640','26906','0','0','C80000','0','2','0')
+values ('11969','640','26906','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11345','640','26895','0','1','00C800','0','2','0')
+values ('11970','640','26895','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11346','640','26889','0','2','0000C8','0','2','0')
+values ('11971','640','26889','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11347','640','26884','0','3','C8C800','0','2','0')
+values ('11972','640','26884','0','3','C8C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11348','640','26896','0','4','00C8C9','0','2','0')
+values ('11973','640','26896','0','4','00C8C9','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11349','640','26887','0','5','C800C8','0','2','0')
+values ('11974','640','26887','0','5','C800C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11350','641','26900','0','0','C80000','0','2','0')
+values ('11975','641','26900','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11351','641','26901','0','1','00C800','0','2','0')
+values ('11976','641','26901','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11352','641','26902','0','2','0000C8','0','2','0')
+values ('11977','641','26902','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11353','642','26883','0','0','C80000','0','2','0')
+values ('11978','642','26883','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11354','642','26882','0','1','00C800','0','2','0')
+values ('11979','642','26882','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11355','642','26864','0','2','0000C8','0','2','0')
+values ('11980','642','26864','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11356','643','26863','0','0','C80000','0','2','0')
+values ('11981','643','26863','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11357','643','26865','0','1','00C800','0','2','0')
+values ('11982','643','26865','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11358','643','26866','0','2','0000C8','0','2','0')
+values ('11983','643','26866','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11359','644','26867','0','0','C80000','0','2','0')
+values ('11984','644','26867','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11360','644','26862','0','1','00C800','0','2','0')
+values ('11985','644','26862','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11361','644','26861','0','2','0000C8','0','2','0')
+values ('11986','644','26861','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11362','645','26857','0','0','C80000','0','2','0')
+values ('11987','645','26857','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11363','645','26856','0','1','00C800','0','2','0')
+values ('11988','645','26856','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11364','645','26858','0','2','0000C8','0','2','0')
+values ('11989','645','26858','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11365','646','26859','0','0','0000C8','0','2','0')
+values ('11990','646','26859','0','0','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11366','646','26860','0','1','C80000','0','2','0')
+values ('11991','646','26860','0','1','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11367','646','26868','0','2','00C800','0','2','0')
+values ('11992','646','26868','0','2','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11368','647','26869','0','0','C80000','0','2','0')
+values ('11993','647','26869','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11369','647','26878','0','1','00C800','0','2','0')
+values ('11994','647','26878','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11370','647','26877','0','2','0000C8','0','2','0')
+values ('11995','647','26877','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11371','648','26872','0','0','C80000','0','2','0')
+values ('11996','648','26872','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11372','648','26870','0','1','00C800','0','2','0')
+values ('11997','648','26870','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11373','648','26873','0','2','0000C8','0','2','0')
+values ('11998','648','26873','0','2','0000C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11374','803','28590','0','0','DD0000','0','2','0')
+values ('11999','803','28590','0','0','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11375','803','28587','0','1','00DDDD','0','2','0')
+values ('12000','803','28587','0','1','00DDDD','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11376','803','28588','0','2','3333FF','0','2','0')
+values ('12001','803','28588','0','2','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11377','803','28589','0','3','00FF00','0','2','0')
+values ('12002','803','28589','0','3','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11378','804','28593','0','0','990099','0','2','0')
+values ('12003','804','28593','0','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11379','804','28597','0','1','990000','0','2','0')
+values ('12004','804','28597','0','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11380','804','28599','0','2','0000EE','0','2','0')
+values ('12005','804','28599','0','2','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11381','804','28606','0','3','FF33FF','0','2','0')
+values ('12006','804','28606','0','3','FF33FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11382','804','28601','0','4','00EE00','0','2','0')
+values ('12007','804','28601','0','4','00EE00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11383','804','28602','0','5','003300','0','2','0')
+values ('12008','804','28602','0','5','003300','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11384','804','28607','0','6','33FFFF','0','2','0')
+values ('12009','804','28607','0','6','33FFFF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11385','804','28598','0','7','DD0000','0','2','0')
+values ('12010','804','28598','0','7','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11386','804','28595','0','8','000099','0','2','0')
+values ('12011','804','28595','0','8','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11387','804','28579','0','9','00FF00','0','2','0')
+values ('12012','804','28579','0','9','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11388','805','28603','0','0','FFAA00','0','2','0')
+values ('12013','805','28603','0','0','FFAA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11389','805','28591','0','1','990099','0','2','0')
+values ('12014','805','28591','0','1','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11390','805','28604','0','2','EE0000','0','2','0')
+values ('12015','805','28604','0','2','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11391','805','28596','0','3','FF66FF','0','2','0')
+values ('12016','805','28596','0','3','FF66FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11392','805','28605','0','4','960000','0','2','0')
+values ('12017','805','28605','0','4','960000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11393','805','28592','0','5','009600','0','2','0')
+values ('12018','805','28592','0','5','009600','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11394','805','28594','0','6','009999','0','2','0')
+values ('12019','805','28594','0','6','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11395','805','28600','0','7','BBBB00','0','2','0')
+values ('12020','805','28600','0','7','BBBB00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11396','806','28586','0','0','00C800','0','2','0')
+values ('12021','806','28586','0','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11397','806','28577','0','1','C80000','0','2','0')
+values ('12022','806','28577','0','1','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11398','797','28540','0','0','C80000','0','2','0')
+values ('12023','797','28540','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11399','797','28539','0','1','00C800','0','2','0')
+values ('12024','797','28539','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11400','798','28545','0','0','009900','0','2','0')
+values ('12025','798','28545','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11401','798','28537','0','1','DD0000','0','2','0')
+values ('12026','798','28537','0','1','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11402','798','28536','0','2','00DDDD','0','2','0')
+values ('12027','798','28536','0','2','00DDDD','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11403','798','28543','0','3','3333FF','0','2','0')
+values ('12028','798','28543','0','3','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11404','798','28538','0','4','999900','0','2','0')
+values ('12029','798','28538','0','4','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11405','798','28542','0','5','00FF00','0','2','0')
+values ('12030','798','28542','0','5','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11406','799','28575','0','0','990099','0','2','0')
+values ('12031','799','28575','0','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11407','799','28568','0','1','990000','0','2','0')
+values ('12032','799','28568','0','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11408','799','28565','0','2','0000EE','0','2','0')
+values ('12033','799','28565','0','2','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11409','799','28559','0','3','FF33FF','0','2','0')
+values ('12034','799','28559','0','3','FF33FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11410','799','28564','0','4','009600','0','2','0')
+values ('12035','799','28564','0','4','009600','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11411','799','28563','0','5','003300','0','2','0')
+values ('12036','799','28563','0','5','003300','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11412','799','28571','0','6','CCCC00','0','2','0')
+values ('12037','799','28571','0','6','CCCC00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11413','799','28546','0','7','33FFFF','0','2','0')
+values ('12038','799','28546','0','7','33FFFF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11414','799','28567','0','8','DD0000','0','2','0')
+values ('12039','799','28567','0','8','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11415','799','28573','0','9','000099','0','2','0')
+values ('12040','799','28573','0','9','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11416','799','28553','0','10','00FF00','0','2','0')
+values ('12041','799','28553','0','10','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11417','800','28566','0','0','00EE00','0','2','0')
+values ('12042','800','28566','0','0','00EE00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11418','800','28560','0','1','0000EE','0','2','0')
+values ('12043','800','28560','0','1','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11419','800','28562','0','2','FFAA00','0','2','0')
+values ('12044','800','28562','0','2','FFAA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11420','800','28555','0','3','00EEEE','0','2','0')
+values ('12045','800','28555','0','3','00EEEE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11421','800','28558','0','4','990099','0','2','0')
+values ('12046','800','28558','0','4','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11422','800','28561','0','5','EE0000','0','2','0')
+values ('12047','800','28561','0','5','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11423','800','28572','0','6','FF66FF','0','2','0')
+values ('12048','800','28572','0','6','FF66FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11424','800','28574','0','7','009999','0','2','0')
+values ('12049','800','28574','0','7','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11425','800','28556','0','8','BBBB00','0','2','0')
+values ('12050','800','28556','0','8','BBBB00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11426','800','28557','0','9','AA0000','0','2','0')
+values ('12051','800','28557','0','9','AA0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11427','800','28569','0','10','990000','0','2','0')
+values ('12052','800','28569','0','10','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11428','800','28570','0','11','008800','0','2','0')
+values ('12053','800','28570','0','11','008800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11429','801','28554','5','0','1A7C11','0','2','0')
+values ('12054','801','28554','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11430','802','28544','5','0','00C800','0','2','0')
+values ('12055','802','28544','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11431','802','28534','5','1','C80000','0','2','0')
+values ('12056','802','28534','5','1','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11432','529','23357','0','0','DD0000','0','2','0')
+values ('12057','529','23357','0','0','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11433','529','23341','0','1','00DDDD','0','2','0')
+values ('12058','529','23341','0','1','00DDDD','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11434','529','23342','0','2','3333FF','0','2','0')
+values ('12059','529','23342','0','2','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11435','529','28251','0','3','00FF00','0','2','0')
+values ('12060','529','28251','0','3','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11436','530','23345','0','0','990099','0','2','0')
+values ('12061','530','23345','0','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11437','530','23348','0','1','990000','0','2','0')
+values ('12062','530','23348','0','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11438','530','23355','0','2','0000EE','0','2','0')
+values ('12063','530','23355','0','2','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11439','530','23352','0','3','FF33FF','0','2','0')
+values ('12064','530','23352','0','3','FF33FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11440','530','23356','0','4','007700','0','2','0')
+values ('12065','530','23356','0','4','007700','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11441','530','23354','0','5','003300','0','2','0')
+values ('12066','530','23354','0','5','003300','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11442','530','23346','0','6','33FFFF','0','2','0')
+values ('12067','530','23346','0','6','33FFFF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11443','530','23349','0','7','DD0000','0','2','0')
+values ('12068','530','23349','0','7','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11444','530','23344','0','8','000099','0','7','0')
+values ('12069','530','23344','0','8','000099','0','7','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11445','530','28250','0','9','00FF00','0','2','0')
+values ('12070','530','28250','0','9','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11446','531','23353','0','0','FFAA00','0','2','0')
+values ('12071','531','23353','0','0','FFAA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11447','531','23347','0','1','990099','0','2','0')
+values ('12072','531','23347','0','1','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11448','531','23350','0','2','EE0000','0','2','0')
+values ('12073','531','23350','0','2','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11449','531','23343','0','3','FF66FF','0','2','0')
+values ('12074','531','23343','0','3','FF66FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11450','531','23351','0','4','960000','0','2','0')
+values ('12075','531','23351','0','4','960000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11451','531','23360','0','5','007700','0','2','0')
+values ('12076','531','23360','0','5','007700','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11452','531','25369','0','6','009999','0','2','0')
+values ('12077','531','25369','0','6','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11453','531','25368','0','6','BBBB00','0','2','0')
+values ('12078','531','25368','0','6','BBBB00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11454','532','23340','5','0','00C800','0','2','0')
+values ('12079','532','23340','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11455','532','23358','5','1','C80000','1','2','0')
+values ('12080','532','23358','5','1','C80000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11456','527','22199','0','0','C80000','0','2','0')
+values ('12081','527','22199','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11457','527','22196','0','1','00C800','0','2','0')
+values ('12082','527','22196','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11458','528','23628','0','0','C80000','0','2','0')
+values ('12083','528','23628','0','0','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11459','528','23625','0','1','00C800','0','2','0')
+values ('12084','528','23625','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11460','410','22185','0','0','009900','0','2','0')
+values ('12085','410','22185','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11461','410','22189','0','1','DD0000','0','2','0')
+values ('12086','410','22189','0','1','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11462','410','22396','0','2','00DDDD','0','2','0')
+values ('12087','410','22396','0','2','00DDDD','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11463','410','22183','0','3','3333FF','0','2','0')
+values ('12088','410','22183','0','3','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11464','410','22191','0','4','999900','0','2','0')
+values ('12089','410','22191','0','4','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11465','410','23634','0','5','00FF00','0','2','0')
+values ('12090','410','23634','0','5','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11466','520','23276','0','0','009900','0','2','0')
+values ('12091','520','23276','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11467','520','23273','0','1','DD0000','0','2','0')
+values ('12092','520','23273','0','1','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11468','520','23275','0','2','00DDDD','0','2','0')
+values ('12093','520','23275','0','2','00DDDD','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11469','520','23274','0','3','3333FF','0','2','0')
+values ('12094','520','23274','0','3','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11470','520','23620','0','4','999900','0','2','0')
+values ('12095','520','23620','0','4','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11471','520','23635','0','5','00FF00','0','2','0')
+values ('12096','520','23635','0','5','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11472','404','22404','0','0','990099','0','2','0')
+values ('12097','404','22404','0','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11473','404','22399','0','1','990000','0','2','0')
+values ('12098','404','22399','0','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11474','404','22416','0','2','0000EE','0','2','0')
+values ('12099','404','22416','0','2','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11475','404','22430','0','3','FF33FF','0','2','0')
+values ('12100','404','22430','0','3','FF33FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11476','404','22418','0','4','009600','0','2','0')
+values ('12101','404','22418','0','4','009600','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11477','404','22402','0','5','003300','0','2','0')
+values ('12102','404','22402','0','5','003300','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11478','404','22420','0','6','CCCC00','0','2','0')
+values ('12103','404','22420','0','6','CCCC00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11479','404','22400','0','7','33FFFF','0','2','0')
+values ('12104','404','22400','0','7','33FFFF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11480','404','22689','0','8','DD0000','0','2','0')
+values ('12105','404','22689','0','8','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11481','404','23171','0','9','000099','0','2','0')
+values ('12106','404','23171','0','9','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11482','404','22401','0','10','00FF00','0','2','0')
+values ('12107','404','22401','0','10','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11483','518','23269','0','0','990099','0','2','0')
+values ('12108','518','23269','0','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11484','518','23264','0','1','990000','0','2','0')
+values ('12109','518','23264','0','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11485','518','23261','0','2','0000EE','0','2','0')
+values ('12110','518','23261','0','2','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11486','518','23255','0','3','FF33FF','0','2','0')
+values ('12111','518','23255','0','3','FF33FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11487','518','23260','0','4','009600','0','2','0')
+values ('12112','518','23260','0','4','009600','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11488','518','23259','0','5','003300','0','2','0')
+values ('12113','518','23259','0','5','003300','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11489','518','23265','0','6','CCCC00','0','2','0')
+values ('12114','518','23265','0','6','CCCC00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11490','518','23270','0','7','33FFFF','0','2','0')
+values ('12115','518','23270','0','7','33FFFF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11491','518','23262','0','8','DD0000','0','2','0')
+values ('12116','518','23262','0','8','DD0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11492','518','23267','0','9','000099','0','2','0')
+values ('12117','518','23267','0','9','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11493','518','23328','0','10','00FF00','0','2','0')
+values ('12118','518','23328','0','10','00FF00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11494','406','22426','0','0','00EE00','0','2','0')
+values ('12119','406','22426','0','0','00EE00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11495','406','22422','0','1','0000EE','0','2','0')
+values ('12120','406','22422','0','1','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11496','406','22408','0','2','FFAA00','0','2','0')
+values ('12121','406','22408','0','2','FFAA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11497','406','22424','0','3','00EEEE','0','2','0')
+values ('12122','406','22424','0','3','00EEEE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11498','406','22412','0','4','990099','0','2','0')
+values ('12123','406','22412','0','4','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11499','406','22406','0','5','EE0000','0','2','0')
+values ('12124','406','22406','0','5','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11500','406','22414','0','6','FF66FF','0','2','0')
+values ('12125','406','22414','0','6','FF66FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11501','406','23663','0','7','009999','0','2','0')
+values ('12126','406','23663','0','7','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11502','406','25366','0','8','BBBB00','0','2','0')
+values ('12127','406','25366','0','8','BBBB00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11503','406','25370','0','9','AA0000','0','2','0')
+values ('12128','406','25370','0','9','AA0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11504','406','25665','0','10','990000','0','2','0')
+values ('12129','406','25665','0','10','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11505','406','25666','0','11','008800','0','2','0')
+values ('12130','406','25666','0','11','008800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11506','517','23268','0','0','00EE00','0','2','0')
+values ('12131','517','23268','0','0','00EE00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11507','517','23256','0','1','0000EE','0','2','0')
+values ('12132','517','23256','0','1','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11508','517','23258','0','2','FFAA00','0','2','0')
+values ('12133','517','23258','0','2','FFAA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11509','517','23252','0','3','00EEEE','0','2','0')
+values ('12134','517','23252','0','3','00EEEE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11510','517','23253','0','4','990099','0','2','0')
+values ('12135','517','23253','0','4','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11511','517','23257','0','5','EE0000','0','2','0')
+values ('12136','517','23257','0','5','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11512','517','23266','0','6','FF66FF','0','2','0')
+values ('12137','517','23266','0','6','FF66FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11513','517','23664','0','7','009999','0','2','0')
+values ('12138','517','23664','0','7','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11514','517','25367','0','8','BBBB00','0','2','0')
+values ('12139','517','25367','0','8','BBBB00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11515','517','25371','0','9','AA0000','0','2','0')
+values ('12140','517','25371','0','9','AA0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11516','517','25667','0','10','990000','0','2','0')
+values ('12141','517','25667','0','10','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11517','517','25668','0','11','008800','0','2','0')
+values ('12142','517','25668','0','11','008800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11518','788','28248','5','0','1A7C11','0','2','0')
+values ('12143','788','28248','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11519','789','28249','5','0','1A7C11','0','2','0')
+values ('12144','789','28249','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11520','392','22187','5','0','00C800','0','2','0')
+values ('12145','392','22187','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11521','392','23251','5','1','C80000','1','2','0')
+values ('12146','392','23251','5','1','C80000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11522','519','23277','5','0','00C800','0','2','0')
+values ('12147','519','23277','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11523','519','23272','5','1','C80000','1','2','0')
+values ('12148','519','23272','5','1','C80000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11524','649','26920','5','0','00AA00','0','2','0')
+values ('12149','649','26920','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11525','649','26919','5','1','3333FF','0','2','0')
+values ('12150','649','26919','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11526','650','26921','0','0','C8C800','0','2','0')
+values ('12151','650','26921','0','0','C8C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11527','650','26922','0','1','006400','0','2','0')
+values ('12152','650','26922','0','1','006400','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11528','650','26923','0','2','C80000','0','2','0')
+values ('12153','650','26923','0','2','C80000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11529','650','26918','0','3','0000EE','0','2','0')
+values ('12154','650','26918','0','3','0000EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11530','650','26917','0','4','640000','0','2','0')
+values ('12155','650','26917','0','4','640000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11531','650','26912','0','5','00C800','0','2','0')
+values ('12156','650','26912','0','5','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11532','650','26911','0','6','C800C8','0','2','0')
+values ('12157','650','26911','0','6','C800C8','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11533','472','22945','5','0','00AA00','0','2','0')
+values ('12158','472','22945','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11534','472','22946','5','1','3333FF','0','2','0')
+values ('12159','472','22946','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11535','473','22950','0','0','C80000','0','2','2')
+values ('12160','473','22950','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11536','473','22948','0','1','00C800','0','2','0')
+values ('12161','473','22948','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11537','471','22924','0','0','009900','0','2','0')
+values ('12162','471','22924','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11538','471','22920','0','1','000099','0','2','0')
+values ('12163','471','22920','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11539','469','22922','0','0','009900','0','2','0')
+values ('12164','469','22922','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11540','469','22923','0','1','000099','0','2','0')
+values ('12165','469','22923','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11541','469','22921','0','2','990000','0','2','0')
+values ('12166','469','22921','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11542','498','23109','0','0','009999','0','2','0')
+values ('12167','498','23109','0','0','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11543','498','23112','0','1','990099','0','2','0')
+values ('12168','498','23112','0','1','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11544','498','23115','0','2','999900','0','2','0')
+values ('12169','498','23115','0','2','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11545','498','23113','0','3','990000','0','2','0')
+values ('12170','498','23113','0','3','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11546','498','23114','0','4','000099','0','2','0')
+values ('12171','498','23114','0','4','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11547','498','23110','0','5','009900','0','2','0')
+values ('12172','498','23110','0','5','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11548','540','22942','5','0','00C800','0','2','0')
+values ('12173','540','22942','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11549','492','23073','5','0','00AA00','0','2','0')
+values ('12174','492','23073','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11550','492','23074','5','1','3333FF','0','2','0')
+values ('12175','492','23074','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11551','467','22910','0','0','C80000','0','2','2')
+values ('12176','467','22910','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11552','467','22908','0','1','00C800','0','2','0')
+values ('12177','467','22908','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11553','465','22884','0','0','009900','0','2','0')
+values ('12178','465','22884','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11554','465','22880','0','1','000099','0','2','0')
+values ('12179','465','22880','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11555','463','22882','0','0','009900','0','2','0')
+values ('12180','463','22882','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11556','463','22883','0','1','000099','0','2','0')
+values ('12181','463','22883','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11557','463','22881','0','2','990000','0','2','0')
+values ('12182','463','22881','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11558','462','22886','1','0','009999','0','2','0')
+values ('12183','462','22886','1','0','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11559','462','22888','1','1','990099','0','2','0')
+values ('12184','462','22888','1','1','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11560','462','22891','1','2','990000','0','2','0')
+values ('12185','462','22891','1','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11561','462','22892','1','3','000099','0','2','0')
+values ('12186','462','22892','1','3','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11562','462','22885','1','4','009900','0','2','0')
+values ('12187','462','22885','1','4','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11563','541','22902','5','0','00C800','0','2','0')
+values ('12188','541','22902','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11564','464','22897','0','0','AA0000','0','2','2')
+values ('12189','464','22897','0','0','AA0000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11565','464','22895','0','1','00AA00','0','2','0')
+values ('12190','464','22895','0','1','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11566','478','22985','5','0','00AA00','0','2','0')
+values ('12191','478','22985','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11567','478','22986','5','1','3333FF','0','2','0')
+values ('12192','478','22986','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11568','479','22990','0','0','C80000','0','2','2')
+values ('12193','479','22990','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11569','479','22988','0','1','00C800','0','2','0')
+values ('12194','479','22988','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11570','475','22962','0','0','009900','0','2','0')
+values ('12195','475','22962','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11571','475','22963','0','1','000099','0','2','0')
+values ('12196','475','22963','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11572','475','22961','0','2','990000','0','2','0')
+values ('12197','475','22961','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11573','474','22968','1','0','990099','0','2','0')
+values ('12198','474','22968','1','0','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11574','474','22971','1','1','990000','0','2','0')
+values ('12199','474','22971','1','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11575','474','22972','1','2','000099','0','2','0')
+values ('12200','474','22972','1','2','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11576','474','22965','1','3','009900','0','2','0')
+values ('12201','474','22965','1','3','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11577','542','22982','5','0','00C800','0','2','0')
+values ('12202','542','22982','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11578','420','22446','5','0','00AA00','0','2','0')
+values ('12203','420','22446','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11579','420','22448','5','1','3333FF','0','2','0')
+values ('12204','420','22448','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11580','521','23280','5','0','00AA00','0','2','0')
+values ('12205','521','23280','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11581','521','23281','5','1','3333FF','0','2','0')
+values ('12206','521','23281','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11582','442','22456','0','0','C80000','0','2','2')
+values ('12207','442','22456','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11583','442','22452','0','1','00C800','0','2','0')
+values ('12208','442','22452','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11584','522','23285','0','0','C80000','0','2','2')
+values ('12209','522','23285','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11585','522','23283','0','1','00C800','0','2','0')
+values ('12210','522','23283','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11586','439','22680','0','0','009900','0','2','0')
+values ('12211','439','22680','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11587','439','22683','0','1','000099','0','2','0')
+values ('12212','439','22683','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11588','523','23298','0','0','009900','0','2','0')
+values ('12213','523','23298','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11589','523','23294','0','1','000099','0','2','0')
+values ('12214','523','23294','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11590','433','10010','0','0','009900','0','2','0')
+values ('12215','433','10010','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11591','433','22674','0','1','000099','0','2','0')
+values ('12216','433','22674','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11592','433','22677','0','2','990000','0','2','0')
+values ('12217','433','22677','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11593','524','23296','0','0','009900','0','2','0')
+values ('12218','524','23296','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11594','524','23297','0','1','000099','0','2','0')
+values ('12219','524','23297','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11595','524','23295','0','2','990000','0','2','0')
+values ('12220','524','23295','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11596','387','28499','0','0','F230E0','0','2','0')
+values ('12221','387','28499','0','0','F230E0','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11597','387','28497','0','1','5CCD18','0','2','0')
+values ('12222','387','28497','0','1','5CCD18','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11598','387','22665','1','2','FF5555','0','2','0')
+values ('12223','387','22665','1','2','FF5555','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11599','387','22668','1','3','55FF55','0','2','0')
+values ('12224','387','22668','1','3','55FF55','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11600','387','22671','1','4','009999','0','2','0')
+values ('12225','387','22671','1','4','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11601','387','17358','1','5','990099','0','2','0')
+values ('12226','387','17358','1','5','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11602','387','17362','1','6','999900','0','2','0')
+values ('12227','387','17362','1','6','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11603','387','17360','1','7','990000','0','2','0')
+values ('12228','387','17360','1','7','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11604','387','17356','1','8','000099','0','2','0')
+values ('12229','387','17356','1','8','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11605','387','17354','1','9','009900','0','2','0')
+values ('12230','387','17354','1','9','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11606','525','28500','0','0','F230E0','0','2','0')
+values ('12231','525','28500','0','0','F230E0','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11607','525','28498','0','1','5CCD18','0','2','0')
+values ('12232','525','28498','0','1','5CCD18','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11608','525','23304','1','2','FF5555','0','2','0')
+values ('12233','525','23304','1','2','FF5555','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11609','525','23303','1','3','55FF55','0','2','0')
+values ('12234','525','23303','1','3','55FF55','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11610','525','23300','1','4','009999','0','2','0')
+values ('12235','525','23300','1','4','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11611','525','23302','1','5','990099','0','2','0')
+values ('12236','525','23302','1','5','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11612','525','23301','1','6','999900','0','2','0')
+values ('12237','525','23301','1','6','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11613','525','23305','1','7','990000','0','2','0')
+values ('12238','525','23305','1','7','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11614','525','23306','1','8','000099','0','2','0')
+values ('12239','525','23306','1','8','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11615','525','23299','1','9','009900','0','2','0')
+values ('12240','525','23299','1','9','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11616','533','22181','5','0','00C800','0','2','0')
+values ('12241','533','22181','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11617','534','23316','5','0','00C800','0','2','0')
+values ('12242','534','23316','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11618','436','10030','0','0','AA0000','0','2','2')
+values ('12243','436','10030','0','0','AA0000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11619','436','10014','0','1','00AA00','0','2','0')
+values ('12244','436','10014','0','1','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11620','526','23311','0','0','AA0000','0','2','2')
+values ('12245','526','23311','0','0','AA0000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11621','526','23309','0','1','00AA00','0','2','0')
+values ('12246','526','23309','0','1','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11622','491','23070','0','0','C80000','0','2','2')
+values ('12247','491','23070','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11623','491','23068','0','1','00C800','0','2','0')
+values ('12248','491','23068','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11624','487','23042','0','0','009900','0','2','0')
+values ('12249','487','23042','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11625','487','23043','0','1','000099','0','2','0')
+values ('12250','487','23043','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11626','487','23041','0','2','990000','0','2','0')
+values ('12251','487','23041','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11627','543','23062','5','0','00C800','0','2','0')
+values ('12252','543','23062','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11628','494','23077','5','0','00AA00','0','2','0')
+values ('12253','494','23077','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11629','494','23078','5','1','3333FF','0','2','0')
+values ('12254','494','23078','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11630','493','23075','5','0','00AA00','0','2','0')
+values ('12255','493','23075','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11631','493','23076','5','1','3333FF','0','2','0')
+values ('12256','493','23076','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11632','461','22870','0','0','C80000','0','2','2')
+values ('12257','461','22870','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11633','461','22868','0','1','00C800','0','2','0')
+values ('12258','461','22868','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11634','459','22844','0','0','009900','0','2','0')
+values ('12259','459','22844','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11635','459','22840','0','1','000099','0','2','0')
+values ('12260','459','22840','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11636','457','22842','0','0','009900','0','2','0')
+values ('12261','457','22842','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11637','457','22843','0','1','000099','0','2','0')
+values ('12262','457','22843','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11638','457','22841','0','2','990000','0','2','0')
+values ('12263','457','22841','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11639','456','22846','1','0','009999','0','2','0')
+values ('12264','456','22846','1','0','009999','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11640','456','22848','1','1','990099','0','2','0')
+values ('12265','456','22848','1','1','990099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11641','456','22851','1','2','990000','0','2','0')
+values ('12266','456','22851','1','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11642','456','22852','1','3','000099','0','2','0')
+values ('12267','456','22852','1','3','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11643','456','22845','1','4','009900','0','2','0')
+values ('12268','456','22845','1','4','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11644','544','22862','5','0','00C800','0','2','0')
+values ('12269','544','22862','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11645','458','22857','0','0','AA0000','0','2','2')
+values ('12270','458','22857','0','0','AA0000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11646','458','22855','0','1','00AA00','0','2','0')
+values ('12271','458','22855','0','1','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11647','484','23025','5','0','00AA00','0','2','0')
+values ('12272','484','23025','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11648','484','23026','5','1','3333FF','0','2','0')
+values ('12273','484','23026','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11649','485','23030','0','0','C80000','0','2','2')
+values ('12274','485','23030','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11650','485','23028','0','1','00C800','0','2','0')
+values ('12275','485','23028','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11651','483','23004','0','0','009900','0','2','0')
+values ('12276','483','23004','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11652','483','23000','0','1','000099','0','2','0')
+values ('12277','483','23000','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11653','481','23002','0','0','009900','0','2','0')
+values ('12278','481','23002','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11654','481','23003','0','1','000099','0','2','0')
+values ('12279','481','23003','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11655','481','23001','0','2','990000','0','2','0')
+values ('12280','481','23001','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11656','480','23007','1','0','999900','0','2','0')
+values ('12281','480','23007','1','0','999900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11657','480','23011','1','1','990000','0','2','0')
+values ('12282','480','23011','1','1','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11658','480','23012','1','2','000099','0','2','0')
+values ('12283','480','23012','1','2','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11659','480','23005','1','3','009900','0','2','0')
+values ('12284','480','23005','1','3','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11660','545','23022','5','0','00C800','0','2','0')
+values ('12285','545','23022','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11661','482','23017','0','0','AA0000','0','2','2')
+values ('12286','482','23017','0','0','AA0000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11662','482','23015','0','1','00AA00','0','2','0')
+values ('12287','482','23015','0','1','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11663','497','23169','5','0','00AA00','0','2','0')
+values ('12288','497','23169','5','0','00AA00','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11664','497','23170','5','1','3333FF','0','2','0')
+values ('12289','497','23170','5','1','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11665','496','23167','0','0','C80000','0','2','2')
+values ('12290','496','23167','0','0','C80000','0','2','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11666','496','23164','0','1','00C800','0','2','0')
+values ('12291','496','23164','0','1','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11667','495','23143','0','0','009900','0','2','0')
+values ('12292','495','23143','0','0','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11668','495','23145','0','1','000099','0','2','0')
+values ('12293','495','23145','0','1','000099','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11669','495','23144','0','2','990000','0','2','0')
+values ('12294','495','23144','0','2','990000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11670','546','23158','5','0','00C800','0','2','0')
+values ('12295','546','23158','5','0','00C800','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11671','651','26928','5','0','EE0000','0','2','0')
+values ('12296','651','26928','5','0','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11672','651','26927','0','1','000000','1','2','0')
+values ('12297','651','26927','0','1','000000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11673','652','26925','2','0','880000','0','2','0')
+values ('12298','652','26925','2','0','880000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11674','652','26932','0','1','009900','0','2','0')
+values ('12299','652','26932','0','1','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11675','652','26930','0','2','00CCCC','0','2','0')
+values ('12300','652','26930','0','2','00CCCC','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11676','652','26931','0','3','000000','0','2','0')
+values ('12301','652','26931','0','3','000000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11677','652','26929','0','4','3333FF','0','2','0')
+values ('12302','652','26929','0','4','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11678','652','26926','0','5','777700','0','2','0')
+values ('12303','652','26926','0','5','777700','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11679','653','26933','2','0','EE0000','0','2','0')
+values ('12304','653','26933','2','0','EE0000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11680','653','26943','2','1','EE00EE','0','2','0')
+values ('12305','653','26943','2','1','EE00EE','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11681','653','26935','0','2','000000','1','2','0')
+values ('12306','653','26935','0','2','000000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11682','653','26936','4','3','000000','1','2','0')
+values ('12307','653','26936','4','3','000000','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11683','654','26934','2','0','880000','0','2','0')
+values ('12308','654','26934','2','0','880000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11684','654','26939','0','1','009900','0','2','0')
+values ('12309','654','26939','0','1','009900','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11685','654','26942','0','2','00CCCC','0','2','0')
+values ('12310','654','26942','0','2','00CCCC','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11686','654','26938','0','3','000000','0','2','0')
+values ('12311','654','26938','0','3','000000','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11687','654','26937','0','4','3333FF','0','2','0')
+values ('12312','654','26937','0','4','3333FF','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11688','827','28716','0','0','969696','0','9','2')
+values ('12313','827','28716','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11689','827','28715','0','1','C80000','0','9','0')
+values ('12314','827','28715','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11690','828','28722','0','0','969696','0','9','2')
+values ('12315','828','28722','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11691','828','28721','0','1','C80000','0','9','0')
+values ('12316','828','28721','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11692','829','28720','5','0','1A7C11','0','2','0')
+values ('12317','829','28720','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11693','830','28726','5','0','1A7C11','0','2','0')
+values ('12318','830','28726','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11694','831','28709','5','0','1A7C11','0','2','0')
+values ('12319','831','28709','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11695','832','28710','5','0','1A7C11','0','2','0')
+values ('12320','832','28710','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11696','809','28674','0','0','969696','0','9','2')
+values ('12321','809','28674','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11697','809','28673','0','1','C80000','0','9','0')
+values ('12322','809','28673','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11698','810','28680','0','0','969696','0','9','2')
+values ('12323','810','28680','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11699','810','28679','0','1','C80000','0','9','0')
+values ('12324','810','28679','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11700','811','28686','0','0','969696','0','9','2')
+values ('12325','811','28686','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11701','811','28685','0','1','C80000','0','9','0')
+values ('12326','811','28685','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11702','812','28692','0','0','969696','0','9','2')
+values ('12327','812','28692','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11703','812','28691','0','1','C80000','0','9','0')
+values ('12328','812','28691','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11704','813','28698','0','0','969696','0','9','2')
+values ('12329','813','28698','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11705','813','28697','0','1','C80000','0','9','0')
+values ('12330','813','28697','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11706','814','28704','0','0','969696','0','9','2')
+values ('12331','814','28704','0','0','969696','0','9','2')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11707','814','28703','0','1','C80000','0','9','0')
+values ('12332','814','28703','0','1','C80000','0','9','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11708','815','28678','5','0','1A7C11','0','2','0')
+values ('12333','815','28678','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11709','816','28684','5','0','1A7C11','0','2','0')
+values ('12334','816','28684','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11710','817','28690','5','0','1A7C11','0','2','0')
+values ('12335','817','28690','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11711','818','28696','5','0','1A7C11','0','2','0')
+values ('12336','818','28696','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11712','819','28702','5','0','1A7C11','0','2','0')
+values ('12337','819','28702','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11713','820','28708','5','0','1A7C11','0','2','0')
+values ('12338','820','28708','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11714','821','28655','5','0','1A7C11','0','2','0')
+values ('12339','821','28655','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11715','822','28656','5','0','1A7C11','0','2','0')
+values ('12340','822','28656','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11716','823','28657','5','0','1A7C11','0','2','0')
+values ('12341','823','28657','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11717','824','28658','5','0','1A7C11','0','2','0')
+values ('12342','824','28658','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11718','825','28659','5','0','1A7C11','0','2','0')
+values ('12343','825','28659','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11719','826','28660','5','0','1A7C11','0','2','0')
+values ('12344','826','28660','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11720','744','27094','5','0','1A7C11','0','2','0')
+values ('12345','744','27094','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11721','744','27095','2','1','2774A4','0','2','0')
+values ('12346','744','27095','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11722','744','27093','0','2','F63100','1','2','0')
+values ('12347','744','27093','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11723','744','27096','0','3','A54F10','1','2','0')
+values ('12348','744','27096','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11724','744','27092','0','4','FC6EA3','1','2','0')
+values ('12349','744','27092','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11725','744','27089','0','5','6C59DC','1','2','0')
+values ('12350','744','27089','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11726','745','27104','5','0','1A7C11','0','2','0')
+values ('12351','745','27104','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11727','745','27105','2','1','2774A4','0','2','0')
+values ('12352','745','27105','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11728','745','27103','0','2','F63100','1','2','0')
+values ('12353','745','27103','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11729','745','27106','0','3','A54F10','1','2','0')
+values ('12354','745','27106','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11730','745','27102','0','4','FC6EA3','1','2','0')
+values ('12355','745','27102','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11731','745','27099','0','5','6C59DC','1','2','0')
+values ('12356','745','27099','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11732','746','27183','5','0','1A7C11','0','2','0')
+values ('12357','746','27183','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11733','746','27186','2','1','2774A4','0','2','0')
+values ('12358','746','27186','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11734','746','27185','0','2','F63100','1','2','0')
+values ('12359','746','27185','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11735','746','27182','0','3','A54F10','1','2','0')
+values ('12360','746','27182','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11736','746','27184','0','4','FC6EA3','1','2','0')
+values ('12361','746','27184','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11737','746','27181','0','5','6C59DC','1','2','0')
+values ('12362','746','27181','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11738','747','27218','5','0','1A7C11','0','2','0')
+values ('12363','747','27218','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11739','747','27221','2','1','2774A4','0','2','0')
+values ('12364','747','27221','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11740','747','27220','0','2','F63100','1','2','0')
+values ('12365','747','27220','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11741','747','27217','0','3','A54F10','1','2','0')
+values ('12366','747','27217','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11742','747','27219','0','4','FC6EA3','1','2','0')
+values ('12367','747','27219','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11743','747','27216','0','5','6C59DC','1','2','0')
+values ('12368','747','27216','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11744','748','27254','5','0','1A7C11','0','2','0')
+values ('12369','748','27254','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11745','748','27257','2','1','2774A4','0','2','0')
+values ('12370','748','27257','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11746','748','27256','0','2','F63100','1','2','0')
+values ('12371','748','27256','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11747','748','27253','0','3','A54F10','1','2','0')
+values ('12372','748','27253','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11748','748','27255','0','4','FC6EA3','1','2','0')
+values ('12373','748','27255','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11749','748','27252','0','5','6C59DC','1','2','0')
+values ('12374','748','27252','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11750','749','27275','5','0','1A7C11','0','2','0')
+values ('12375','749','27275','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11751','749','27278','2','1','2774A4','0','2','0')
+values ('12376','749','27278','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11752','749','27277','0','2','F63100','1','2','0')
+values ('12377','749','27277','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11753','749','27274','0','3','A54F10','1','2','0')
+values ('12378','749','27274','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11754','749','27276','0','4','FC6EA3','1','2','0')
+values ('12379','749','27276','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11755','749','27273','0','5','6C59DC','1','2','0')
+values ('12380','749','27273','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11756','750','27324','5','0','1A7C11','0','2','0')
+values ('12381','750','27324','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11757','750','27327','2','1','2774A4','0','2','0')
+values ('12382','750','27327','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11758','750','27326','0','2','F63100','1','2','0')
+values ('12383','750','27326','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11759','750','27323','0','3','A54F10','1','2','0')
+values ('12384','750','27323','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11760','750','27325','0','4','FC6EA3','1','2','0')
+values ('12385','750','27325','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11761','750','27322','0','5','6C59DC','1','2','0')
+values ('12386','750','27322','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11762','752','27453','5','0','1A7C11','0','2','0')
+values ('12387','752','27453','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11763','752','27456','2','1','2774A4','0','2','0')
+values ('12388','752','27456','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11764','752','27455','0','2','F63100','1','2','0')
+values ('12389','752','27455','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11765','752','27452','0','3','A54F10','1','2','0')
+values ('12390','752','27452','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11766','752','27454','0','4','FC6EA3','1','2','0')
+values ('12391','752','27454','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11767','752','27451','0','5','6C59DC','1','2','0')
+values ('12392','752','27451','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11768','753','27489','5','0','1A7C11','0','2','0')
+values ('12393','753','27489','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11769','753','27492','2','1','2774A4','0','2','0')
+values ('12394','753','27492','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11770','753','27491','0','2','F63100','1','2','0')
+values ('12395','753','27491','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11771','753','27488','0','3','A54F10','1','2','0')
+values ('12396','753','27488','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11772','753','27490','0','4','FC6EA3','1','2','0')
+values ('12397','753','27490','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11773','753','27487','0','5','6C59DC','1','2','0')
+values ('12398','753','27487','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11774','754','27523','5','0','1A7C11','0','2','0')
+values ('12399','754','27523','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11775','754','27526','2','1','2774A4','0','2','0')
+values ('12400','754','27526','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11776','754','27525','0','2','F63100','1','2','0')
+values ('12401','754','27525','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11777','754','27522','0','3','A54F10','1','2','0')
+values ('12402','754','27522','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11778','754','27524','0','4','FC6EA3','1','2','0')
+values ('12403','754','27524','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11779','754','27521','0','5','6C59DC','1','2','0')
+values ('12404','754','27521','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11780','755','27559','5','0','1A7C11','0','2','0')
+values ('12405','755','27559','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11781','755','27562','2','1','2774A4','0','2','0')
+values ('12406','755','27562','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11782','755','27561','0','2','F63100','1','2','0')
+values ('12407','755','27561','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11783','755','27558','0','3','A54F10','1','2','0')
+values ('12408','755','27558','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11784','755','27560','0','4','FC6EA3','1','2','0')
+values ('12409','755','27560','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11785','755','27557','0','5','6C59DC','1','2','0')
+values ('12410','755','27557','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11786','756','27645','5','0','1A7C11','0','2','0')
+values ('12411','756','27645','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11787','756','27648','2','1','2774A4','0','2','0')
+values ('12412','756','27648','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11788','756','27647','0','2','F63100','1','2','0')
+values ('12413','756','27647','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11789','756','27644','0','3','A54F10','1','2','0')
+values ('12414','756','27644','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11790','756','27646','0','4','FC6EA3','1','2','0')
+values ('12415','756','27646','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11791','756','27643','0','5','6C59DC','1','2','0')
+values ('12416','756','27643','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11792','758','27725','5','0','1A7C11','0','2','0')
+values ('12417','758','27725','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11793','758','27728','2','1','2774A4','0','2','0')
+values ('12418','758','27728','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11794','758','27727','0','2','F63100','1','2','0')
+values ('12419','758','27727','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11795','758','27724','0','3','A54F10','1','2','0')
+values ('12420','758','27724','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11796','758','27726','0','4','FC6EA3','1','2','0')
+values ('12421','758','27726','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11797','758','27723','0','5','6C59DC','1','2','0')
+values ('12422','758','27723','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11798','759','27759','5','0','1A7C11','0','2','0')
+values ('12423','759','27759','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11799','759','27762','2','1','2774A4','0','2','0')
+values ('12424','759','27762','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11800','759','27761','0','2','F63100','1','2','0')
+values ('12425','759','27761','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11801','759','27758','0','3','A54F10','1','2','0')
+values ('12426','759','27758','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11802','759','27760','0','4','FC6EA3','1','2','0')
+values ('12427','759','27760','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11803','759','27757','0','5','6C59DC','1','2','0')
+values ('12428','759','27757','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11804','760','27791','5','0','1A7C11','0','2','0')
+values ('12429','760','27791','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11805','760','27794','2','1','2774A4','0','2','0')
+values ('12430','760','27794','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11806','760','27793','0','2','F63100','1','2','0')
+values ('12431','760','27793','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11807','760','27790','0','3','A54F10','1','2','0')
+values ('12432','760','27790','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11808','760','27792','0','4','FC6EA3','1','2','0')
+values ('12433','760','27792','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11809','760','27789','0','5','6C59DC','1','2','0')
+values ('12434','760','27789','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11810','762','27875','5','0','1A7C11','0','2','0')
+values ('12435','762','27875','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11811','762','27878','2','1','2774A4','0','2','0')
+values ('12436','762','27878','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11812','762','27877','0','2','F63100','1','2','0')
+values ('12437','762','27877','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11813','762','27874','0','3','A54F10','1','2','0')
+values ('12438','762','27874','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11814','762','27876','0','4','FC6EA3','1','2','0')
+values ('12439','762','27876','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11815','762','27873','0','5','6C59DC','1','2','0')
+values ('12440','762','27873','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11816','763','27912','5','0','1A7C11','0','2','0')
+values ('12441','763','27912','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11817','763','27915','2','1','2774A4','0','2','0')
+values ('12442','763','27915','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11818','763','27914','0','2','F63100','1','2','0')
+values ('12443','763','27914','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11819','763','27911','0','3','A54F10','1','2','0')
+values ('12444','763','27911','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11820','763','27913','0','4','FC6EA3','1','2','0')
+values ('12445','763','27913','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11821','763','27910','0','5','6C59DC','1','2','0')
+values ('12446','763','27910','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11822','764','27947','5','0','1A7C11','0','2','0')
+values ('12447','764','27947','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11823','764','27950','2','1','2774A4','0','2','0')
+values ('12448','764','27950','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11824','764','27949','0','2','F63100','1','2','0')
+values ('12449','764','27949','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11825','764','27946','0','3','A54F10','1','2','0')
+values ('12450','764','27946','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11826','764','27948','0','4','FC6EA3','1','2','0')
+values ('12451','764','27948','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11827','764','27945','0','5','6C59DC','1','2','0')
+values ('12452','764','27945','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11828','769','28061','5','0','1A7C11','0','2','0')
+values ('12453','769','28061','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11829','769','28064','2','1','2774A4','0','2','0')
+values ('12454','769','28064','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11830','769','28063','0','2','F63100','1','2','0')
+values ('12455','769','28063','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11831','769','28060','0','3','A54F10','1','2','0')
+values ('12456','769','28060','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11832','769','28062','0','4','FC6EA3','1','2','0')
+values ('12457','769','28062','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11833','769','28059','0','5','6C59DC','1','2','0')
+values ('12458','769','28059','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11834','773','28121','5','0','1A7C11','0','2','0')
+values ('12459','773','28121','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11835','773','28124','2','1','2774A4','0','2','0')
+values ('12460','773','28124','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11836','773','28123','0','2','F63100','1','2','0')
+values ('12461','773','28123','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11837','773','28120','0','3','A54F10','1','2','0')
+values ('12462','773','28120','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11838','773','28122','0','4','FC6EA3','1','2','0')
+values ('12463','773','28122','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11839','773','28119','0','5','6C59DC','1','2','0')
+values ('12464','773','28119','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11840','778','28178','5','0','1A7C11','0','2','0')
+values ('12465','778','28178','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11841','778','28181','2','1','2774A4','0','2','0')
+values ('12466','778','28181','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11842','778','28180','0','2','F63100','1','2','0')
+values ('12467','778','28180','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11843','778','28177','0','3','A54F10','1','2','0')
+values ('12468','778','28177','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11844','778','28179','0','4','FC6EA3','1','2','0')
+values ('12469','778','28179','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11845','778','28176','0','5','6C59DC','1','2','0')
+values ('12470','778','28176','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11846','785','28226','5','0','1A7C11','0','2','0')
+values ('12471','785','28226','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11847','785','28229','2','1','2774A4','0','2','0')
+values ('12472','785','28229','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11848','785','28228','0','2','F63100','1','2','0')
+values ('12473','785','28228','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11849','785','28225','0','3','A54F10','1','2','0')
+values ('12474','785','28225','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11850','785','28227','0','4','FC6EA3','1','2','0')
+values ('12475','785','28227','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11851','785','28224','0','5','6C59DC','1','2','0')
+values ('12476','785','28224','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11852','790','28296','5','0','1A7C11','0','2','0')
+values ('12477','790','28296','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11853','790','28299','2','1','2774A4','0','2','0')
+values ('12478','790','28299','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11854','790','28298','0','2','F63100','1','2','0')
+values ('12479','790','28298','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11855','790','28295','0','3','A54F10','1','2','0')
+values ('12480','790','28295','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11856','790','28297','0','4','FC6EA3','1','2','0')
+values ('12481','790','28297','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11857','790','28294','0','5','6C59DC','1','2','0')
+values ('12482','790','28294','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11858','738','27074','5','0','1A7C11','0','2','0')
+values ('12483','738','27074','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11859','738','27075','2','1','2774A4','0','2','0')
+values ('12484','738','27075','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11860','738','27073','0','2','F63100','1','2','0')
+values ('12485','738','27073','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11861','738','27076','0','3','A54F10','1','2','0')
+values ('12486','738','27076','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11862','738','27072','0','4','FC6EA3','1','2','0')
+values ('12487','738','27072','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11863','738','27069','0','5','6C59DC','1','2','0')
+values ('12488','738','27069','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11864','739','27599','5','0','1A7C11','0','2','0')
+values ('12489','739','27599','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11865','739','27602','2','1','2774A4','0','2','0')
+values ('12490','739','27602','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11866','739','27601','0','2','F63100','1','2','0')
+values ('12491','739','27601','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11867','739','27598','0','3','A54F10','1','2','0')
+values ('12492','739','27598','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11868','739','27600','0','4','FC6EA3','1','2','0')
+values ('12493','739','27600','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11869','739','27597','0','5','6C59DC','1','2','0')
+values ('12494','739','27597','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11870','740','28008','5','0','1A7C11','0','2','0')
+values ('12495','740','28008','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11871','740','28011','2','1','2774A4','0','2','0')
+values ('12496','740','28011','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11872','740','28010','0','2','F63100','1','2','0')
+values ('12497','740','28010','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11873','740','28007','0','3','A54F10','1','2','0')
+values ('12498','740','28007','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11874','740','28009','0','4','FC6EA3','1','2','0')
+values ('12499','740','28009','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11875','740','28006','0','5','6C59DC','1','2','0')
+values ('12500','740','28006','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11876','741','27084','5','0','1A7C11','0','2','0')
+values ('12501','741','27084','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11877','741','27085','2','1','2774A4','0','2','0')
+values ('12502','741','27085','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11878','741','27083','0','2','F63100','1','2','0')
+values ('12503','741','27083','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11879','741','27086','0','3','A54F10','1','2','0')
+values ('12504','741','27086','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11880','741','27082','0','4','FC6EA3','1','2','0')
+values ('12505','741','27082','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11881','741','27079','0','5','6C59DC','1','2','0')
+values ('12506','741','27079','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11882','742','27622','5','0','1A7C11','0','2','0')
+values ('12507','742','27622','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11883','742','27625','2','1','2774A4','0','2','0')
+values ('12508','742','27625','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11884','742','27624','0','2','F63100','1','2','0')
+values ('12509','742','27624','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11885','742','27621','0','3','A54F10','1','2','0')
+values ('12510','742','27621','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11886','742','27623','0','4','FC6EA3','1','2','0')
+values ('12511','742','27623','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11887','742','27620','0','5','6C59DC','1','2','0')
+values ('12512','742','27620','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11888','743','27979','5','0','1A7C11','0','2','0')
+values ('12513','743','27979','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11889','743','27982','2','1','2774A4','0','2','0')
+values ('12514','743','27982','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11890','743','27981','0','2','F63100','1','2','0')
+values ('12515','743','27981','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11891','743','27978','0','3','A54F10','1','2','0')
+values ('12516','743','27978','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11892','743','27980','0','4','FC6EA3','1','2','0')
+values ('12517','743','27980','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11893','743','27977','0','5','6C59DC','1','2','0')
+values ('12518','743','27977','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11894','766','27124','5','0','1A7C11','0','2','0')
+values ('12519','766','27124','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11895','766','27125','2','1','2774A4','0','2','0')
+values ('12520','766','27125','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11896','766','27123','0','2','F63100','1','2','0')
+values ('12521','766','27123','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11897','766','27126','0','3','A54F10','1','2','0')
+values ('12522','766','27126','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11898','766','27122','0','4','FC6EA3','1','2','0')
+values ('12523','766','27122','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11899','766','27119','0','5','6C59DC','1','2','0')
+values ('12524','766','27119','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11900','772','28100','5','0','1A7C11','0','2','0')
+values ('12525','772','28100','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11901','772','28103','2','1','2774A4','0','2','0')
+values ('12526','772','28103','2','1','2774A4','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11902','772','28102','0','2','F63100','1','2','0')
+values ('12527','772','28102','0','2','F63100','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11903','772','28099','0','3','A54F10','1','2','0')
+values ('12528','772','28099','0','3','A54F10','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11904','772','28101','0','4','FC6EA3','1','2','0')
+values ('12529','772','28101','0','4','FC6EA3','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11905','772','28098','0','5','6C59DC','1','2','0')
+values ('12530','772','28098','0','5','6C59DC','1','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11906','668','27208','5','0','1A7C11','0','2','0')
+values ('12531','668','27208','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11907','669','27205','5','0','1A7C11','0','2','0')
+values ('12532','669','27205','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11908','671','27240','5','0','1A7C11','0','2','0')
+values ('12533','671','27240','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11909','672','27239','5','0','1A7C11','0','2','0')
+values ('12534','672','27239','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11910','675','27294','5','0','1A7C11','0','2','0')
+values ('12535','675','27294','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11911','676','27299','5','0','1A7C11','0','2','0')
+values ('12536','676','27299','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11912','677','27301','5','0','1A7C11','0','2','0')
+values ('12537','677','27301','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11913','678','27293','5','0','1A7C11','0','2','0')
+values ('12538','678','27293','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11914','679','27298','5','0','1A7C11','0','2','0')
+values ('12539','679','27298','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11915','680','27300','5','0','1A7C11','0','2','0')
+values ('12540','680','27300','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11916','683','27414','5','0','1A7C11','0','2','0')
+values ('12541','683','27414','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11917','684','27424','5','0','1A7C11','0','2','0')
+values ('12542','684','27424','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11918','686','27442','5','0','1A7C11','0','2','0')
+values ('12543','686','27442','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11919','784','28221','5','0','1A7C11','0','2','0')
+values ('12544','784','28221','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11920','687','27417','5','0','1A7C11','0','2','0')
+values ('12545','687','27417','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11921','688','27427','5','0','1A7C11','0','2','0')
+values ('12546','688','27427','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11922','786','28246','5','0','1A7C11','0','2','0')
+values ('12547','786','28246','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11923','787','28247','5','0','1A7C11','0','2','0')
+values ('12548','787','28247','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11924','691','27376','5','0','1A7C11','0','2','0')
+values ('12549','691','27376','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11925','692','27380','5','0','1A7C11','0','2','0')
+values ('12550','692','27380','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11926','694','27478','5','0','1A7C11','0','2','0')
+values ('12551','694','27478','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11927','695','27477','5','0','1A7C11','0','2','0')
+values ('12552','695','27477','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11928','697','27516','5','0','1A7C11','0','2','0')
+values ('12553','697','27516','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11929','698','27511','5','0','1A7C11','0','2','0')
+values ('12554','698','27511','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11930','700','27552','5','0','1A7C11','0','2','0')
+values ('12555','700','27552','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11931','701','27547','5','0','1A7C11','0','2','0')
+values ('12556','701','27547','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11932','703','27590','5','0','1A7C11','0','2','0')
+values ('12557','703','27590','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11933','704','27586','5','0','1A7C11','0','2','0')
+values ('12558','704','27586','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11934','708','27671','5','0','1A7C11','0','2','0')
+values ('12559','708','27671','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11935','709','27670','5','0','1A7C11','0','2','0')
+values ('12560','709','27670','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11936','774','28151','5','0','1A7C11','0','2','0')
+values ('12561','774','28151','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11937','775','28143','5','0','1A7C11','0','2','0')
+values ('12562','775','28143','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11938','714','27753','5','0','1A7C11','0','2','0')
+values ('12563','714','27753','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11939','715','27752','5','0','1A7C11','0','2','0')
+values ('12564','715','27752','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11940','807','28613','5','0','1A7C11','0','2','0')
+values ('12565','807','28613','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11941','719','27819','5','0','1A7C11','0','2','0')
+values ('12566','719','27819','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11942','724','27904','5','0','1A7C11','0','2','0')
+values ('12567','724','27904','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11943','725','27899','5','0','1A7C11','0','2','0')
+values ('12568','725','27899','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11944','727','27936','5','0','1A7C11','0','2','0')
+values ('12569','727','27936','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11945','728','27933','5','0','1A7C11','0','2','0')
+values ('12570','728','27933','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11946','730','27975','5','0','1A7C11','0','2','0')
+values ('12571','730','27975','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11947','731','27974','5','0','1A7C11','0','2','0')
+values ('12572','731','27974','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11948','733','28003','5','0','1A7C11','0','2','0')
+values ('12573','733','28003','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11949','734','28004','5','0','1A7C11','0','2','0')
+values ('12574','734','28004','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11950','736','28031','5','0','1A7C11','0','2','0')
+values ('12575','736','28031','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO graphs_items (gitemid,graphid,itemid,drawtype,sortorder,color,yaxisside,calc_fnc,type)
-values ('11951','737','28028','5','0','1A7C11','0','2','0')
+values ('12576','737','28028','5','0','1A7C11','0','2','0')
 /
 
 INSERT INTO hostmacro (hostmacroid,hostid,macro,value)
@@ -28968,7519 +28968,7519 @@ values ('245','10184','10267')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36724','1107','28501')
+values ('38603','1107','28501')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36725','1108','28502')
+values ('38604','1108','28502')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36726','1105','28503')
+values ('38605','1105','28503')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36727','1105','28504')
+values ('38606','1105','28504')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36728','1106','28505')
+values ('38607','1106','28505')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36729','1106','28506')
+values ('38608','1106','28506')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36730','1106','28507')
+values ('38609','1106','28507')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36731','1107','28508')
+values ('38610','1107','28508')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36732','1107','28509')
+values ('38611','1107','28509')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36733','1107','28510')
+values ('38612','1107','28510')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36734','1109','28511')
+values ('38613','1109','28511')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36735','1106','28512')
+values ('38614','1106','28512')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36736','1105','28513')
+values ('38615','1105','28513')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36737','1108','28514')
+values ('38616','1108','28514')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36738','1108','28515')
+values ('38617','1108','28515')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36739','1108','28516')
+values ('38618','1108','28516')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36740','1107','28517')
+values ('38619','1107','28517')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36741','1108','28518')
+values ('38620','1108','28518')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36742','1105','28519')
+values ('38621','1105','28519')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36743','1105','28520')
+values ('38622','1105','28520')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36744','1105','28521')
+values ('38623','1105','28521')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36745','1105','28522')
+values ('38624','1105','28522')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36746','1105','28523')
+values ('38625','1105','28523')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36747','1106','28524')
+values ('38626','1106','28524')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36748','1106','28525')
+values ('38627','1106','28525')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36749','1106','28526')
+values ('38628','1106','28526')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36750','1106','28527')
+values ('38629','1106','28527')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36751','1106','28528')
+values ('38630','1106','28528')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36752','1107','28529')
+values ('38631','1107','28529')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36753','1107','28530')
+values ('38632','1107','28530')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36754','1107','28531')
+values ('38633','1107','28531')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36755','1105','28532')
+values ('38634','1105','28532')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36756','446','23644')
+values ('38635','446','23644')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36757','736','26856')
+values ('38636','736','26856')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36758','736','26857')
+values ('38637','736','26857')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36759','736','26858')
+values ('38638','736','26858')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36760','736','26859')
+values ('38639','736','26859')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36761','736','26860')
+values ('38640','736','26860')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36762','736','26861')
+values ('38641','736','26861')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36763','736','26862')
+values ('38642','736','26862')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36764','736','26863')
+values ('38643','736','26863')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36765','736','26864')
+values ('38644','736','26864')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36766','736','26865')
+values ('38645','736','26865')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36767','736','26866')
+values ('38646','736','26866')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36768','736','26867')
+values ('38647','736','26867')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36769','736','26868')
+values ('38648','736','26868')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36770','736','26869')
+values ('38649','736','26869')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36771','739','26870')
+values ('38650','739','26870')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36772','738','26871')
+values ('38651','738','26871')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36773','739','26872')
+values ('38652','739','26872')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36774','739','26873')
+values ('38653','739','26873')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36775','739','26874')
+values ('38654','739','26874')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36776','738','26875')
+values ('38655','738','26875')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36777','738','26876')
+values ('38656','738','26876')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36778','736','26877')
+values ('38657','736','26877')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36779','736','26878')
+values ('38658','736','26878')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36780','737','26879')
+values ('38659','737','26879')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36781','737','26880')
+values ('38660','737','26880')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36782','737','26881')
+values ('38661','737','26881')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36783','736','26882')
+values ('38662','736','26882')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36784','736','26883')
+values ('38663','736','26883')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36785','734','26884')
+values ('38664','734','26884')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36786','734','26885')
+values ('38665','734','26885')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36787','734','26886')
+values ('38666','734','26886')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36788','734','26887')
+values ('38667','734','26887')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36789','734','26888')
+values ('38668','734','26888')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36790','734','26889')
+values ('38669','734','26889')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36791','734','26890')
+values ('38670','734','26890')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36792','732','26891')
+values ('38671','732','26891')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36793','732','26892')
+values ('38672','732','26892')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36794','733','26893')
+values ('38673','733','26893')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36795','733','26894')
+values ('38674','733','26894')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36796','734','26895')
+values ('38675','734','26895')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36797','734','26896')
+values ('38676','734','26896')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36798','734','26897')
+values ('38677','734','26897')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36799','735','26898')
+values ('38678','735','26898')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36800','735','26899')
+values ('38679','735','26899')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36801','736','26900')
+values ('38680','736','26900')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36802','736','26901')
+values ('38681','736','26901')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36803','736','26902')
+values ('38682','736','26902')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36804','735','26903')
+values ('38683','735','26903')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36805','735','26904')
+values ('38684','735','26904')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36806','734','26905')
+values ('38685','734','26905')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36807','734','26906')
+values ('38686','734','26906')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36808','735','26907')
+values ('38687','735','26907')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36809','735','26908')
+values ('38688','735','26908')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36810','735','26909')
+values ('38689','735','26909')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36811','732','26910')
+values ('38690','732','26910')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36812','447','23645')
+values ('38691','447','23645')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36813','448','23646')
+values ('38692','448','23646')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36814','449','23647')
+values ('38693','449','23647')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36815','450','23648')
+values ('38694','450','23648')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36816','451','23649')
+values ('38695','451','23649')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36817','452','23650')
+values ('38696','452','23650')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36818','453','23651')
+values ('38697','453','23651')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36819','1111','28576')
+values ('38698','1111','28576')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36820','1111','28577')
+values ('38699','1111','28577')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36821','1111','28578')
+values ('38700','1111','28578')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36822','1111','28579')
+values ('38701','1111','28579')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36823','1111','28580')
+values ('38702','1111','28580')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36824','1111','28581')
+values ('38703','1111','28581')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36825','1111','28582')
+values ('38704','1111','28582')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36826','1111','28583')
+values ('38705','1111','28583')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36827','1111','28584')
+values ('38706','1111','28584')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36828','1111','28585')
+values ('38707','1111','28585')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36829','1111','28586')
+values ('38708','1111','28586')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36830','1111','28587')
+values ('38709','1111','28587')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36831','1111','28588')
+values ('38710','1111','28588')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36832','1111','28589')
+values ('38711','1111','28589')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36833','1111','28590')
+values ('38712','1111','28590')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36834','1111','28591')
+values ('38713','1111','28591')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36835','1111','28592')
+values ('38714','1111','28592')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36836','1111','28593')
+values ('38715','1111','28593')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36837','1111','28594')
+values ('38716','1111','28594')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36838','1111','28595')
+values ('38717','1111','28595')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36839','1111','28596')
+values ('38718','1111','28596')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36840','1111','28597')
+values ('38719','1111','28597')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36841','1111','28598')
+values ('38720','1111','28598')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36842','1111','28599')
+values ('38721','1111','28599')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36843','1111','28600')
+values ('38722','1111','28600')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36844','1111','28601')
+values ('38723','1111','28601')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36845','1111','28602')
+values ('38724','1111','28602')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36846','1111','28603')
+values ('38725','1111','28603')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36847','1111','28604')
+values ('38726','1111','28604')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36848','1111','28605')
+values ('38727','1111','28605')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36849','1111','28606')
+values ('38728','1111','28606')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36850','1111','28607')
+values ('38729','1111','28607')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36851','1110','28533')
+values ('38730','1110','28533')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36852','1110','28534')
+values ('38731','1110','28534')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36853','1110','28535')
+values ('38732','1110','28535')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36854','1110','28536')
+values ('38733','1110','28536')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36855','1110','28537')
+values ('38734','1110','28537')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36856','1110','28538')
+values ('38735','1110','28538')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36857','1110','28539')
+values ('38736','1110','28539')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36858','1110','28540')
+values ('38737','1110','28540')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36859','1110','28541')
+values ('38738','1110','28541')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36860','1110','28542')
+values ('38739','1110','28542')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36861','1110','28543')
+values ('38740','1110','28543')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36862','1110','28544')
+values ('38741','1110','28544')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36863','1110','28545')
+values ('38742','1110','28545')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36864','1110','28546')
+values ('38743','1110','28546')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36865','1110','28547')
+values ('38744','1110','28547')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36866','1110','28548')
+values ('38745','1110','28548')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36867','1110','28549')
+values ('38746','1110','28549')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36868','1110','28550')
+values ('38747','1110','28550')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36869','1110','28551')
+values ('38748','1110','28551')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36870','1110','28552')
+values ('38749','1110','28552')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36871','1110','28553')
+values ('38750','1110','28553')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36872','1110','28554')
+values ('38751','1110','28554')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36873','1110','28555')
+values ('38752','1110','28555')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36874','1110','28556')
+values ('38753','1110','28556')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36875','1110','28557')
+values ('38754','1110','28557')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36876','1110','28558')
+values ('38755','1110','28558')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36877','1110','28559')
+values ('38756','1110','28559')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36878','1110','28560')
+values ('38757','1110','28560')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36879','1110','28561')
+values ('38758','1110','28561')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36880','1110','28562')
+values ('38759','1110','28562')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36881','1110','28563')
+values ('38760','1110','28563')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36882','1110','28564')
+values ('38761','1110','28564')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36883','1110','28565')
+values ('38762','1110','28565')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36884','1110','28566')
+values ('38763','1110','28566')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36885','1110','28567')
+values ('38764','1110','28567')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36886','1110','28568')
+values ('38765','1110','28568')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36887','1110','28569')
+values ('38766','1110','28569')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36888','1110','28570')
+values ('38767','1110','28570')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36889','1110','28571')
+values ('38768','1110','28571')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36890','1110','28572')
+values ('38769','1110','28572')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36891','1110','28573')
+values ('38770','1110','28573')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36892','1110','28574')
+values ('38771','1110','28574')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36893','1110','28575')
+values ('38772','1110','28575')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36894','454','23652')
+values ('38773','454','23652')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36895','455','23653')
+values ('38774','455','23653')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36896','456','23654')
+values ('38775','456','23654')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36897','206','22231')
+values ('38776','206','22231')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36898','206','22232')
+values ('38777','206','22232')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36899','206','23318')
+values ('38778','206','23318')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36900','207','10020')
+values ('38779','207','10020')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36901','207','10059')
+values ('38780','207','10059')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36902','252','22833')
+values ('38781','252','22833')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36903','252','22834')
+values ('38782','252','22834')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36904','262','22873')
+values ('38783','262','22873')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36905','262','22874')
+values ('38784','262','22874')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36906','272','22913')
+values ('38785','272','22913')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36907','272','22914')
+values ('38786','272','22914')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36908','282','22953')
+values ('38787','282','22953')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36909','282','22954')
+values ('38788','282','22954')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36910','292','22993')
+values ('38789','292','22993')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36911','292','22994')
+values ('38790','292','22994')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36912','302','23033')
+values ('38791','302','23033')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36913','302','23034')
+values ('38792','302','23034')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36914','329','23160')
+values ('38793','329','23160')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36915','329','23161')
+values ('38794','329','23161')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36916','207','23319')
+values ('38795','207','23319')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36917','252','23320')
+values ('38796','252','23320')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36918','262','23321')
+values ('38797','262','23321')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36919','272','23322')
+values ('38798','272','23322')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36920','282','23323')
+values ('38799','282','23323')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36921','292','23324')
+values ('38800','292','23324')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36922','302','23325')
+values ('38801','302','23325')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36923','329','23326')
+values ('38802','329','23326')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36924','355','23287')
+values ('38803','355','23287')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36925','355','23288')
+values ('38804','355','23288')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36926','355','23327')
+values ('38805','355','23327')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36927','356','10067')
+values ('38806','356','10067')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36928','356','10068')
+values ('38807','356','10068')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36929','356','10069')
+values ('38808','356','10069')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36930','356','10070')
+values ('38809','356','10070')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36931','356','10071')
+values ('38810','356','10071')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36932','356','10072')
+values ('38811','356','10072')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36933','356','23340')
+values ('38812','356','23340')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36934','356','23341')
+values ('38813','356','23341')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36935','356','23342')
+values ('38814','356','23342')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36936','356','23343')
+values ('38815','356','23343')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36937','356','23344')
+values ('38816','356','23344')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36938','356','23345')
+values ('38817','356','23345')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36939','356','23346')
+values ('38818','356','23346')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36940','356','23347')
+values ('38819','356','23347')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36941','356','23348')
+values ('38820','356','23348')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36942','356','23349')
+values ('38821','356','23349')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36943','356','23350')
+values ('38822','356','23350')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36944','356','23351')
+values ('38823','356','23351')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36945','356','23352')
+values ('38824','356','23352')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36946','356','23353')
+values ('38825','356','23353')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36947','356','23354')
+values ('38826','356','23354')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36948','356','23355')
+values ('38827','356','23355')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36949','356','23356')
+values ('38828','356','23356')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36950','356','23357')
+values ('38829','356','23357')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36951','356','23358')
+values ('38830','356','23358')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36952','356','23359')
+values ('38831','356','23359')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36953','356','23360')
+values ('38832','356','23360')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36954','356','25368')
+values ('38833','356','25368')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36955','356','25369')
+values ('38834','356','25369')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36956','356','28250')
+values ('38835','356','28250')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36957','356','28251')
+values ('38836','356','28251')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36958','179','10061')
+values ('38837','179','10061')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36959','179','10062')
+values ('38838','179','10062')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36960','179','10063')
+values ('38839','179','10063')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36961','179','10064')
+values ('38840','179','10064')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36962','179','10065')
+values ('38841','179','10065')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36963','179','10066')
+values ('38842','179','10066')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36964','179','22183')
+values ('38843','179','22183')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36965','179','22185')
+values ('38844','179','22185')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36966','179','22187')
+values ('38845','179','22187')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36967','179','22189')
+values ('38846','179','22189')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36968','179','22191')
+values ('38847','179','22191')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36969','179','22196')
+values ('38848','179','22196')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36970','179','22199')
+values ('38849','179','22199')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36971','179','22219')
+values ('38850','179','22219')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36972','179','22396')
+values ('38851','179','22396')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36973','179','22399')
+values ('38852','179','22399')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36974','179','22400')
+values ('38853','179','22400')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36975','179','22401')
+values ('38854','179','22401')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36976','179','22402')
+values ('38855','179','22402')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36977','179','22404')
+values ('38856','179','22404')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36978','179','22406')
+values ('38857','179','22406')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36979','179','22408')
+values ('38858','179','22408')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36980','179','22412')
+values ('38859','179','22412')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36981','179','22414')
+values ('38860','179','22414')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36982','179','22416')
+values ('38861','179','22416')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36983','179','22418')
+values ('38862','179','22418')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36984','179','22420')
+values ('38863','179','22420')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36985','179','22422')
+values ('38864','179','22422')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36986','179','22424')
+values ('38865','179','22424')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36987','179','22426')
+values ('38866','179','22426')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36988','179','22430')
+values ('38867','179','22430')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36989','179','22689')
+values ('38868','179','22689')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36990','179','23171')
+values ('38869','179','23171')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36991','179','23251')
+values ('38870','179','23251')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36992','179','23634')
+values ('38871','179','23634')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36993','179','23661')
+values ('38872','179','23661')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36994','179','23663')
+values ('38873','179','23663')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36995','179','25366')
+values ('38874','179','25366')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36996','179','25370')
+values ('38875','179','25370')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36997','179','25665')
+values ('38876','179','25665')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36998','179','25666')
+values ('38877','179','25666')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('36999','179','28248')
+values ('38878','179','28248')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37000','345','10073')
+values ('38879','345','10073')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37001','345','10074')
+values ('38880','345','10074')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37002','345','10075')
+values ('38881','345','10075')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37003','345','10076')
+values ('38882','345','10076')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37004','345','10077')
+values ('38883','345','10077')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37005','345','10078')
+values ('38884','345','10078')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37006','345','23252')
+values ('38885','345','23252')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37007','345','23253')
+values ('38886','345','23253')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37008','345','23255')
+values ('38887','345','23255')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37009','345','23256')
+values ('38888','345','23256')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37010','345','23257')
+values ('38889','345','23257')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37011','345','23258')
+values ('38890','345','23258')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37012','345','23259')
+values ('38891','345','23259')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37013','345','23260')
+values ('38892','345','23260')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37014','345','23261')
+values ('38893','345','23261')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37015','345','23262')
+values ('38894','345','23262')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37016','345','23264')
+values ('38895','345','23264')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37017','345','23265')
+values ('38896','345','23265')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37018','345','23266')
+values ('38897','345','23266')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37019','345','23267')
+values ('38898','345','23267')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37020','345','23268')
+values ('38899','345','23268')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37021','345','23269')
+values ('38900','345','23269')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37022','345','23270')
+values ('38901','345','23270')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37023','345','23271')
+values ('38902','345','23271')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37024','345','23272')
+values ('38903','345','23272')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37025','345','23273')
+values ('38904','345','23273')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37026','345','23274')
+values ('38905','345','23274')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37027','345','23275')
+values ('38906','345','23275')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37028','345','23276')
+values ('38907','345','23276')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37029','345','23277')
+values ('38908','345','23277')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37030','345','23328')
+values ('38909','345','23328')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37031','345','23620')
+values ('38910','345','23620')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37032','345','23625')
+values ('38911','345','23625')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37033','345','23628')
+values ('38912','345','23628')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37034','345','23635')
+values ('38913','345','23635')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37035','345','23662')
+values ('38914','345','23662')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37036','345','23664')
+values ('38915','345','23664')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37037','345','25367')
+values ('38916','345','25367')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37038','345','25371')
+values ('38917','345','25371')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37039','345','25667')
+values ('38918','345','25667')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37040','345','25668')
+values ('38919','345','25668')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37041','345','28249')
+values ('38920','345','28249')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37042','740','26911')
+values ('38921','740','26911')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37043','740','26912')
+values ('38922','740','26912')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37044','740','26913')
+values ('38923','740','26913')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37045','740','26914')
+values ('38924','740','26914')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37046','740','26915')
+values ('38925','740','26915')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37047','740','26916')
+values ('38926','740','26916')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37048','740','26917')
+values ('38927','740','26917')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37049','740','26918')
+values ('38928','740','26918')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37050','740','26919')
+values ('38929','740','26919')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37051','740','26920')
+values ('38930','740','26920')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37052','740','26921')
+values ('38931','740','26921')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37053','740','26922')
+values ('38932','740','26922')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37054','740','26923')
+values ('38933','740','26923')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37055','740','26924')
+values ('38934','740','26924')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37056','280','22917')
+values ('38935','280','22917')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37057','280','22918')
+values ('38936','280','22918')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37058','273','22920')
+values ('38937','273','22920')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37059','279','22920')
+values ('38938','279','22920')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37060','273','22921')
+values ('38939','273','22921')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37061','279','22921')
+values ('38940','279','22921')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37062','273','22922')
+values ('38941','273','22922')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37063','279','22922')
+values ('38942','279','22922')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37064','273','22923')
+values ('38943','273','22923')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37065','279','22923')
+values ('38944','279','22923')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37066','273','22924')
+values ('38945','273','22924')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37067','279','22924')
+values ('38946','279','22924')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37068','275','22933')
+values ('38947','275','22933')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37069','278','22933')
+values ('38948','278','22933')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37070','275','22934')
+values ('38949','275','22934')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37071','278','22934')
+values ('38950','278','22934')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37072','275','22938')
+values ('38951','275','22938')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37073','278','22938')
+values ('38952','278','22938')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37074','275','22939')
+values ('38953','275','22939')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37075','278','22939')
+values ('38954','278','22939')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37076','278','22940')
+values ('38955','278','22940')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37077','281','22940')
+values ('38956','281','22940')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37078','281','22941')
+values ('38957','281','22941')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37079','276','22942')
+values ('38958','276','22942')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37080','276','22943')
+values ('38959','276','22943')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37081','273','23108')
+values ('38960','273','23108')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37082','331','23108')
+values ('38961','331','23108')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37083','279','23108')
+values ('38962','279','23108')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37084','273','23109')
+values ('38963','273','23109')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37085','331','23109')
+values ('38964','331','23109')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37086','279','23109')
+values ('38965','279','23109')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37087','273','23110')
+values ('38966','273','23110')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37088','279','23110')
+values ('38967','279','23110')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37089','273','23111')
+values ('38968','273','23111')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37090','331','23111')
+values ('38969','331','23111')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37091','279','23111')
+values ('38970','279','23111')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37092','273','23112')
+values ('38971','273','23112')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37093','331','23112')
+values ('38972','331','23112')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37094','279','23112')
+values ('38973','279','23112')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37095','273','23113')
+values ('38974','273','23113')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37096','279','23113')
+values ('38975','279','23113')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37097','273','23114')
+values ('38976','273','23114')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37098','279','23114')
+values ('38977','279','23114')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37099','273','23115')
+values ('38978','273','23115')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37100','279','23115')
+values ('38979','279','23115')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37101','274','23116')
+values ('38980','274','23116')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37102','279','23116')
+values ('38981','279','23116')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37103','274','23117')
+values ('38982','274','23117')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37104','279','23117')
+values ('38983','279','23117')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37105','273','23118')
+values ('38984','273','23118')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37106','331','23118')
+values ('38985','331','23118')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37107','273','23119')
+values ('38986','273','23119')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37108','279','23119')
+values ('38987','279','23119')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37109','273','23120')
+values ('38988','273','23120')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37110','279','23120')
+values ('38989','279','23120')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37111','273','23121')
+values ('38990','273','23121')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37112','279','23121')
+values ('38991','279','23121')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37113','276','23122')
+values ('38992','276','23122')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37114','279','23122')
+values ('38993','279','23122')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37115','273','23123')
+values ('38994','273','23123')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37116','279','23123')
+values ('38995','279','23123')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37117','276','23124')
+values ('38996','276','23124')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37118','276','23125')
+values ('38997','276','23125')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37119','276','23126')
+values ('38998','276','23126')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37120','276','23127')
+values ('38999','276','23127')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37121','276','23128')
+values ('39000','276','23128')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37122','276','23129')
+values ('39001','276','23129')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37123','276','23130')
+values ('39002','276','23130')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37124','276','23131')
+values ('39003','276','23131')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37125','277','22945')
+values ('39004','277','22945')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37126','277','22946')
+values ('39005','277','22946')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37127','274','22948')
+values ('39006','274','22948')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37128','274','22949')
+values ('39007','274','22949')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37129','274','22950')
+values ('39008','274','22950')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37130','274','22951')
+values ('39009','274','22951')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37131','274','22952')
+values ('39010','274','22952')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37132','268','22875')
+values ('39011','268','22875')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37133','268','22876')
+values ('39012','268','22876')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37134','270','22877')
+values ('39013','270','22877')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37135','270','22878')
+values ('39014','270','22878')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37136','265','22879')
+values ('39015','265','22879')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37137','268','22879')
+values ('39016','268','22879')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37138','263','22880')
+values ('39017','263','22880')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37139','269','22880')
+values ('39018','269','22880')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37140','263','22881')
+values ('39019','263','22881')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37141','269','22881')
+values ('39020','269','22881')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37142','263','22882')
+values ('39021','263','22882')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37143','269','22882')
+values ('39022','269','22882')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37144','263','22883')
+values ('39023','263','22883')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37145','269','22883')
+values ('39024','269','22883')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37146','263','22884')
+values ('39025','263','22884')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37147','269','22884')
+values ('39026','269','22884')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37148','263','22885')
+values ('39027','263','22885')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37149','269','22885')
+values ('39028','269','22885')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37150','263','22886')
+values ('39029','263','22886')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37151','269','22886')
+values ('39030','269','22886')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37152','263','22888')
+values ('39031','263','22888')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37153','269','22888')
+values ('39032','269','22888')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37154','263','22891')
+values ('39033','263','22891')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37155','269','22891')
+values ('39034','269','22891')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37156','263','22892')
+values ('39035','263','22892')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37157','269','22892')
+values ('39036','269','22892')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37158','265','22893')
+values ('39037','265','22893')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37159','268','22893')
+values ('39038','268','22893')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37160','265','22894')
+values ('39039','265','22894')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37161','268','22894')
+values ('39040','268','22894')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37162','266','22895')
+values ('39041','266','22895')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37163','266','22896')
+values ('39042','266','22896')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37164','266','22897')
+values ('39043','266','22897')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37165','265','22898')
+values ('39044','265','22898')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37166','268','22898')
+values ('39045','268','22898')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37167','265','22899')
+values ('39046','265','22899')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37168','268','22899')
+values ('39047','268','22899')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37169','268','22900')
+values ('39048','268','22900')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37170','271','22900')
+values ('39049','271','22900')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37171','271','22901')
+values ('39050','271','22901')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37172','266','22902')
+values ('39051','266','22902')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37173','266','22903')
+values ('39052','266','22903')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37174','264','22908')
+values ('39053','264','22908')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37175','264','22909')
+values ('39054','264','22909')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37176','264','22910')
+values ('39055','264','22910')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37177','264','22911')
+values ('39056','264','22911')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37178','264','22912')
+values ('39057','264','22912')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37179','267','23073')
+values ('39058','267','23073')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37180','267','23074')
+values ('39059','267','23074')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37181','283','22961')
+values ('39060','283','22961')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37182','289','22961')
+values ('39061','289','22961')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37183','283','22962')
+values ('39062','283','22962')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37184','289','22962')
+values ('39063','289','22962')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37185','283','22963')
+values ('39064','283','22963')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37186','289','22963')
+values ('39065','289','22963')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37187','283','22965')
+values ('39066','283','22965')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37188','289','22965')
+values ('39067','289','22965')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37189','283','22968')
+values ('39068','283','22968')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37190','289','22968')
+values ('39069','289','22968')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37191','283','22971')
+values ('39070','283','22971')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37192','289','22971')
+values ('39071','289','22971')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37193','283','22972')
+values ('39072','283','22972')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37194','289','22972')
+values ('39073','289','22972')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37195','285','22973')
+values ('39074','285','22973')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37196','288','22973')
+values ('39075','288','22973')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37197','285','22974')
+values ('39076','285','22974')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37198','288','22974')
+values ('39077','288','22974')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37199','285','22978')
+values ('39078','285','22978')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37200','288','22978')
+values ('39079','288','22978')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37201','288','22980')
+values ('39080','288','22980')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37202','291','22980')
+values ('39081','291','22980')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37203','291','22981')
+values ('39082','291','22981')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37204','286','22982')
+values ('39083','286','22982')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37205','286','22983')
+values ('39084','286','22983')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37206','287','22985')
+values ('39085','287','22985')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37207','287','22986')
+values ('39086','287','22986')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37208','284','22988')
+values ('39087','284','22988')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37209','284','22989')
+values ('39088','284','22989')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37210','284','22990')
+values ('39089','284','22990')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37211','284','22991')
+values ('39090','284','22991')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37212','284','22992')
+values ('39091','284','22992')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37213','9','10009')
+values ('39092','9','10009')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37214','13','10010')
+values ('39093','13','10010')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37215','17','10010')
+values ('39094','17','10010')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37216','9','10013')
+values ('39095','9','10013')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37217','15','10014')
+values ('39096','15','10014')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37218','1','10016')
+values ('39097','1','10016')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37219','23','10016')
+values ('39098','23','10016')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37220','23','10019')
+values ('39099','23','10019')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37221','21','10025')
+values ('39100','21','10025')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37222','1','10025')
+values ('39101','1','10025')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37223','15','10026')
+values ('39102','15','10026')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37224','15','10030')
+values ('39103','15','10030')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37225','1','10055')
+values ('39104','1','10055')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37226','1','10056')
+values ('39105','1','10056')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37227','21','10057')
+values ('39106','21','10057')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37228','1','10057')
+values ('39107','1','10057')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37229','21','10058')
+values ('39108','21','10058')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37230','1','10058')
+values ('39109','1','10058')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37231','21','17318')
+values ('39110','21','17318')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37232','1','17318')
+values ('39111','1','17318')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37233','15','17350')
+values ('39112','15','17350')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37234','21','17352')
+values ('39113','21','17352')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37235','1','17352')
+values ('39114','1','17352')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37236','13','17354')
+values ('39115','13','17354')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37237','17','17354')
+values ('39116','17','17354')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37238','13','17356')
+values ('39117','13','17356')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37239','17','17356')
+values ('39118','17','17356')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37240','13','17358')
+values ('39119','13','17358')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37241','17','17358')
+values ('39120','17','17358')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37242','13','17360')
+values ('39121','13','17360')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37243','17','17360')
+values ('39122','17','17360')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37244','13','17362')
+values ('39123','13','17362')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37245','17','17362')
+values ('39124','17','17362')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37246','15','22181')
+values ('39125','15','22181')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37247','13','22665')
+values ('39126','13','22665')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37248','17','22665')
+values ('39127','17','22665')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37249','13','22668')
+values ('39128','13','22668')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37250','17','22668')
+values ('39129','17','22668')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37251','13','22671')
+values ('39130','13','22671')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37252','17','22671')
+values ('39131','17','22671')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37253','13','22674')
+values ('39132','13','22674')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37254','17','22674')
+values ('39133','17','22674')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37255','13','22677')
+values ('39134','13','22677')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37256','17','22677')
+values ('39135','17','22677')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37257','13','22680')
+values ('39136','13','22680')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37258','17','22680')
+values ('39137','17','22680')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37259','13','22683')
+values ('39138','13','22683')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37260','17','22683')
+values ('39139','17','22683')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37261','13','28497')
+values ('39140','13','28497')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37262','17','28497')
+values ('39141','17','28497')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37263','13','28499')
+values ('39142','13','28499')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37264','17','28499')
+values ('39143','17','28499')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37265','351','23289')
+values ('39144','351','23289')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37266','351','23290')
+values ('39145','351','23290')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37267','353','23291')
+values ('39146','353','23291')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37268','353','23292')
+values ('39147','353','23292')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37269','348','23293')
+values ('39148','348','23293')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37270','351','23293')
+values ('39149','351','23293')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37271','346','23294')
+values ('39150','346','23294')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37272','352','23294')
+values ('39151','352','23294')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37273','346','23295')
+values ('39152','346','23295')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37274','352','23295')
+values ('39153','352','23295')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37275','346','23296')
+values ('39154','346','23296')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37276','352','23296')
+values ('39155','352','23296')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37277','346','23297')
+values ('39156','346','23297')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37278','352','23297')
+values ('39157','352','23297')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37279','346','23298')
+values ('39158','346','23298')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37280','352','23298')
+values ('39159','352','23298')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37281','346','23299')
+values ('39160','346','23299')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37282','352','23299')
+values ('39161','352','23299')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37283','346','23300')
+values ('39162','346','23300')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37284','352','23300')
+values ('39163','352','23300')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37285','346','23301')
+values ('39164','346','23301')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37286','352','23301')
+values ('39165','352','23301')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37287','346','23302')
+values ('39166','346','23302')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37288','352','23302')
+values ('39167','352','23302')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37289','346','23303')
+values ('39168','346','23303')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37290','352','23303')
+values ('39169','352','23303')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37291','346','23304')
+values ('39170','346','23304')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37292','352','23304')
+values ('39171','352','23304')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37293','346','23305')
+values ('39172','346','23305')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37294','352','23305')
+values ('39173','352','23305')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37295','346','23306')
+values ('39174','346','23306')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37296','352','23306')
+values ('39175','352','23306')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37297','348','23307')
+values ('39176','348','23307')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37298','351','23307')
+values ('39177','351','23307')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37299','348','23308')
+values ('39178','348','23308')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37300','351','23308')
+values ('39179','351','23308')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37301','349','23309')
+values ('39180','349','23309')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37302','349','23310')
+values ('39181','349','23310')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37303','349','23311')
+values ('39182','349','23311')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37304','348','23312')
+values ('39183','348','23312')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37305','351','23312')
+values ('39184','351','23312')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37306','348','23313')
+values ('39185','348','23313')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37307','351','23313')
+values ('39186','351','23313')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37308','351','23314')
+values ('39187','351','23314')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37309','354','23314')
+values ('39188','354','23314')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37310','354','23315')
+values ('39189','354','23315')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37311','349','23316')
+values ('39190','349','23316')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37312','349','23317')
+values ('39191','349','23317')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37313','346','28498')
+values ('39192','346','28498')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37314','352','28498')
+values ('39193','352','28498')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37315','346','28500')
+values ('39194','346','28500')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37316','352','28500')
+values ('39195','352','28500')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37317','7','22446')
+values ('39196','7','22446')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37318','7','22448')
+values ('39197','7','22448')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37319','5','22452')
+values ('39198','5','22452')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37320','5','22454')
+values ('39199','5','22454')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37321','5','22456')
+values ('39200','5','22456')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37322','5','22458')
+values ('39201','5','22458')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37323','5','22686')
+values ('39202','5','22686')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37324','350','23280')
+values ('39203','350','23280')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37325','350','23281')
+values ('39204','350','23281')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37326','347','23282')
+values ('39205','347','23282')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37327','347','23283')
+values ('39206','347','23283')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37328','347','23284')
+values ('39207','347','23284')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37329','347','23285')
+values ('39208','347','23285')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37330','347','23286')
+values ('39209','347','23286')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37331','308','23035')
+values ('39210','308','23035')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37332','308','23036')
+values ('39211','308','23036')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37333','305','23039')
+values ('39212','305','23039')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37334','308','23039')
+values ('39213','308','23039')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37335','303','23041')
+values ('39214','303','23041')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37336','309','23041')
+values ('39215','309','23041')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37337','303','23042')
+values ('39216','303','23042')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37338','309','23042')
+values ('39217','309','23042')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37339','303','23043')
+values ('39218','303','23043')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37340','309','23043')
+values ('39219','309','23043')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37341','305','23053')
+values ('39220','305','23053')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37342','308','23053')
+values ('39221','308','23053')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37343','305','23054')
+values ('39222','305','23054')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37344','308','23054')
+values ('39223','308','23054')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37345','305','23058')
+values ('39224','305','23058')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37346','308','23058')
+values ('39225','308','23058')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37347','305','23059')
+values ('39226','305','23059')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37348','308','23059')
+values ('39227','308','23059')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37349','308','23060')
+values ('39228','308','23060')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37350','311','23060')
+values ('39229','311','23060')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37351','311','23061')
+values ('39230','311','23061')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37352','306','23062')
+values ('39231','306','23062')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37353','306','23063')
+values ('39232','306','23063')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37354','307','23077')
+values ('39233','307','23077')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37355','307','23078')
+values ('39234','307','23078')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37356','304','23068')
+values ('39235','304','23068')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37357','304','23069')
+values ('39236','304','23069')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37358','304','23070')
+values ('39237','304','23070')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37359','304','23071')
+values ('39238','304','23071')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37360','304','23072')
+values ('39239','304','23072')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37361','258','22835')
+values ('39240','258','22835')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37362','258','22836')
+values ('39241','258','22836')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37363','260','22837')
+values ('39242','260','22837')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37364','260','22838')
+values ('39243','260','22838')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37365','255','22839')
+values ('39244','255','22839')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37366','258','22839')
+values ('39245','258','22839')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37367','253','22840')
+values ('39246','253','22840')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37368','259','22840')
+values ('39247','259','22840')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37369','253','22841')
+values ('39248','253','22841')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37370','259','22841')
+values ('39249','259','22841')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37371','253','22842')
+values ('39250','253','22842')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37372','259','22842')
+values ('39251','259','22842')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37373','253','22843')
+values ('39252','253','22843')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37374','259','22843')
+values ('39253','259','22843')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37375','253','22844')
+values ('39254','253','22844')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37376','259','22844')
+values ('39255','259','22844')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37377','253','22845')
+values ('39256','253','22845')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37378','259','22845')
+values ('39257','259','22845')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37379','253','22846')
+values ('39258','253','22846')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37380','259','22846')
+values ('39259','259','22846')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37381','253','22848')
+values ('39260','253','22848')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37382','259','22848')
+values ('39261','259','22848')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37383','253','22851')
+values ('39262','253','22851')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37384','259','22851')
+values ('39263','259','22851')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37385','253','22852')
+values ('39264','253','22852')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37386','259','22852')
+values ('39265','259','22852')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37387','255','22853')
+values ('39266','255','22853')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37388','258','22853')
+values ('39267','258','22853')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37389','255','22854')
+values ('39268','255','22854')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37390','258','22854')
+values ('39269','258','22854')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37391','256','22855')
+values ('39270','256','22855')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37392','256','22856')
+values ('39271','256','22856')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37393','256','22857')
+values ('39272','256','22857')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37394','255','22858')
+values ('39273','255','22858')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37395','258','22858')
+values ('39274','258','22858')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37396','255','22859')
+values ('39275','255','22859')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37397','258','22859')
+values ('39276','258','22859')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37398','258','22860')
+values ('39277','258','22860')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37399','261','22860')
+values ('39278','261','22860')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37400','261','22861')
+values ('39279','261','22861')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37401','256','22862')
+values ('39280','256','22862')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37402','256','22863')
+values ('39281','256','22863')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37403','254','22868')
+values ('39282','254','22868')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37404','254','22869')
+values ('39283','254','22869')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37405','254','22870')
+values ('39284','254','22870')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37406','254','22871')
+values ('39285','254','22871')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37407','254','22872')
+values ('39286','254','22872')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37408','257','23075')
+values ('39287','257','23075')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37409','257','23076')
+values ('39288','257','23076')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37410','298','22996')
+values ('39289','298','22996')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37411','300','22997')
+values ('39290','300','22997')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37412','300','22998')
+values ('39291','300','22998')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37413','295','22999')
+values ('39292','295','22999')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37414','298','22999')
+values ('39293','298','22999')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37415','293','23000')
+values ('39294','293','23000')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37416','299','23000')
+values ('39295','299','23000')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37417','293','23001')
+values ('39296','293','23001')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37418','299','23001')
+values ('39297','299','23001')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37419','293','23002')
+values ('39298','293','23002')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37420','299','23002')
+values ('39299','299','23002')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37421','293','23003')
+values ('39300','293','23003')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37422','299','23003')
+values ('39301','299','23003')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37423','293','23004')
+values ('39302','293','23004')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37424','299','23004')
+values ('39303','299','23004')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37425','293','23005')
+values ('39304','293','23005')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37426','299','23005')
+values ('39305','299','23005')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37427','293','23007')
+values ('39306','293','23007')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37428','299','23007')
+values ('39307','299','23007')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37429','293','23011')
+values ('39308','293','23011')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37430','299','23011')
+values ('39309','299','23011')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37431','293','23012')
+values ('39310','293','23012')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37432','299','23012')
+values ('39311','299','23012')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37433','295','23013')
+values ('39312','295','23013')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37434','298','23013')
+values ('39313','298','23013')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37435','295','23014')
+values ('39314','295','23014')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37436','298','23014')
+values ('39315','298','23014')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37437','296','23015')
+values ('39316','296','23015')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37438','296','23016')
+values ('39317','296','23016')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37439','296','23017')
+values ('39318','296','23017')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37440','295','23018')
+values ('39319','295','23018')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37441','298','23018')
+values ('39320','298','23018')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37442','295','23019')
+values ('39321','295','23019')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37443','298','23019')
+values ('39322','298','23019')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37444','298','23020')
+values ('39323','298','23020')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37445','301','23020')
+values ('39324','301','23020')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37446','301','23021')
+values ('39325','301','23021')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37447','296','23022')
+values ('39326','296','23022')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37448','296','23023')
+values ('39327','296','23023')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37449','297','23025')
+values ('39328','297','23025')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37450','297','23026')
+values ('39329','297','23026')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37451','294','23028')
+values ('39330','294','23028')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37452','294','23029')
+values ('39331','294','23029')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37453','294','23030')
+values ('39332','294','23030')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37454','294','23031')
+values ('39333','294','23031')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37455','294','23032')
+values ('39334','294','23032')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37456','322','23134')
+values ('39335','322','23134')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37457','320','23134')
+values ('39336','320','23134')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37458','322','23135')
+values ('39337','322','23135')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37459','320','23135')
+values ('39338','320','23135')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37460','322','23136')
+values ('39339','322','23136')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37461','320','23136')
+values ('39340','320','23136')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37462','322','23137')
+values ('39341','322','23137')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37463','320','23137')
+values ('39342','320','23137')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37464','323','23138')
+values ('39343','323','23138')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37465','324','23140')
+values ('39344','324','23140')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37466','325','23143')
+values ('39345','325','23143')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37467','320','23143')
+values ('39346','320','23143')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37468','325','23144')
+values ('39347','325','23144')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37469','320','23144')
+values ('39348','320','23144')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37470','325','23145')
+values ('39349','325','23145')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37471','320','23145')
+values ('39350','320','23145')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37472','328','23147')
+values ('39351','328','23147')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37473','328','23148')
+values ('39352','328','23148')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37474','319','23149')
+values ('39353','319','23149')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37475','323','23149')
+values ('39354','323','23149')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37476','319','23150')
+values ('39355','319','23150')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37477','328','23158')
+values ('39356','328','23158')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37478','328','23159')
+values ('39357','328','23159')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37479','328','23668')
+values ('39358','328','23668')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37480','322','23164')
+values ('39359','322','23164')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37481','322','23165')
+values ('39360','322','23165')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37482','322','23167')
+values ('39361','322','23167')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37483','322','23168')
+values ('39362','322','23168')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37484','330','23169')
+values ('39363','330','23169')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37485','330','23170')
+values ('39364','330','23170')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37486','321','23666')
+values ('39365','321','23666')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37487','743','26925')
+values ('39366','743','26925')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37488','743','26926')
+values ('39367','743','26926')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37489','741','26927')
+values ('39368','741','26927')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37490','742','26928')
+values ('39369','742','26928')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37491','743','26929')
+values ('39370','743','26929')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37492','743','26930')
+values ('39371','743','26930')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37493','743','26931')
+values ('39372','743','26931')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37494','743','26932')
+values ('39373','743','26932')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37495','745','26933')
+values ('39374','745','26933')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37496','746','26934')
+values ('39375','746','26934')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37497','744','26935')
+values ('39376','744','26935')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37498','744','26936')
+values ('39377','744','26936')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37499','746','26937')
+values ('39378','746','26937')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37500','746','26938')
+values ('39379','746','26938')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37501','746','26939')
+values ('39380','746','26939')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37502','746','26940')
+values ('39381','746','26940')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37503','746','26941')
+values ('39382','746','26941')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37504','746','26942')
+values ('39383','746','26942')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37505','745','26943')
+values ('39384','745','26943')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37506','748','26944')
+values ('39385','748','26944')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37507','748','26945')
+values ('39386','748','26945')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37508','749','26946')
+values ('39387','749','26946')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37509','755','26947')
+values ('39388','755','26947')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37510','755','26948')
+values ('39389','755','26948')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37511','755','26949')
+values ('39390','755','26949')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37512','753','26950')
+values ('39391','753','26950')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37513','757','26951')
+values ('39392','757','26951')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37514','753','26952')
+values ('39393','753','26952')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37515','757','26953')
+values ('39394','757','26953')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37516','757','26954')
+values ('39395','757','26954')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37517','755','26955')
+values ('39396','755','26955')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37518','755','26956')
+values ('39397','755','26956')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37519','750','26957')
+values ('39398','750','26957')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37520','750','26958')
+values ('39399','750','26958')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37521','750','26959')
+values ('39400','750','26959')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37522','753','26960')
+values ('39401','753','26960')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37523','753','26961')
+values ('39402','753','26961')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37524','755','26962')
+values ('39403','755','26962')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37525','755','26963')
+values ('39404','755','26963')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37526','755','26964')
+values ('39405','755','26964')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37527','753','26965')
+values ('39406','753','26965')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37528','763','26966')
+values ('39407','763','26966')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37529','763','26967')
+values ('39408','763','26967')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37530','762','26968')
+values ('39409','762','26968')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37531','762','26969')
+values ('39410','762','26969')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37532','760','26970')
+values ('39411','760','26970')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37533','760','26971')
+values ('39412','760','26971')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37534','760','26972')
+values ('39413','760','26972')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37535','760','26973')
+values ('39414','760','26973')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37536','760','26974')
+values ('39415','760','26974')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37537','761','26975')
+values ('39416','761','26975')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37538','761','26976')
+values ('39417','761','26976')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37539','758','26977')
+values ('39418','758','26977')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37540','761','26977')
+values ('39419','761','26977')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37541','760','26978')
+values ('39420','760','26978')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37542','760','26979')
+values ('39421','760','26979')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37543','758','26980')
+values ('39422','758','26980')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37544','758','26981')
+values ('39423','758','26981')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37545','761','26981')
+values ('39424','761','26981')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37546','758','26982')
+values ('39425','758','26982')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37547','761','26982')
+values ('39426','761','26982')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37548','761','26983')
+values ('39427','761','26983')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37549','761','26984')
+values ('39428','761','26984')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37550','762','26984')
+values ('39429','762','26984')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37551','758','26985')
+values ('39430','758','26985')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37552','761','26985')
+values ('39431','761','26985')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37553','760','26986')
+values ('39432','760','26986')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37554','747','26994')
+values ('39433','747','26994')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37555','754','26995')
+values ('39434','754','26995')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37556','754','26996')
+values ('39435','754','26996')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37557','754','26997')
+values ('39436','754','26997')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37558','754','26998')
+values ('39437','754','26998')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37559','751','26999')
+values ('39438','751','26999')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37560','751','27000')
+values ('39439','751','27000')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37561','751','27001')
+values ('39440','751','27001')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37562','751','27002')
+values ('39441','751','27002')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37563','752','27003')
+values ('39442','752','27003')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37564','752','27004')
+values ('39443','752','27004')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37565','752','27005')
+values ('39444','752','27005')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37566','752','27006')
+values ('39445','752','27006')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37567','759','27007')
+values ('39446','759','27007')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37568','759','27008')
+values ('39447','759','27008')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37569','759','27009')
+values ('39448','759','27009')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37570','759','27010')
+values ('39449','759','27010')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37571','1112','28609')
+values ('39450','1112','28609')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37572','1112','28610')
+values ('39451','1112','28610')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37573','1112','28611')
+values ('39452','1112','28611')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37574','1112','28612')
+values ('39453','1112','28612')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37575','780','27065')
+values ('39454','780','27065')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37576','780','27066')
+values ('39455','780','27066')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37577','780','27067')
+values ('39456','780','27067')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37578','797','27138')
+values ('39457','797','27138')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37579','797','27139')
+values ('39458','797','27139')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37580','797','27140')
+values ('39459','797','27140')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37581','799','27149')
+values ('39460','799','27149')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37582','799','27150')
+values ('39461','799','27150')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37583','799','27151')
+values ('39462','799','27151')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37584','805','27192')
+values ('39463','805','27192')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37585','805','27193')
+values ('39464','805','27193')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37586','805','27194')
+values ('39465','805','27194')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37587','813','27225')
+values ('39466','813','27225')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37588','813','27226')
+values ('39467','813','27226')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37589','813','27227')
+values ('39468','813','27227')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37590','822','27261')
+values ('39469','822','27261')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37591','822','27262')
+values ('39470','822','27262')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37592','822','27263')
+values ('39471','822','27263')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37593','825','27282')
+values ('39472','825','27282')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37594','825','27283')
+values ('39473','825','27283')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37595','825','27284')
+values ('39474','825','27284')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37596','842','27333')
+values ('39475','842','27333')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37597','842','27334')
+values ('39476','842','27334')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37598','842','27335')
+values ('39477','842','27335')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37599','847','27365')
+values ('39478','847','27365')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37600','847','27366')
+values ('39479','847','27366')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37601','847','27367')
+values ('39480','847','27367')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37602','876','27462')
+values ('39481','876','27462')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37603','876','27463')
+values ('39482','876','27463')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37604','876','27464')
+values ('39483','876','27464')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37605','885','27496')
+values ('39484','885','27496')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37606','885','27497')
+values ('39485','885','27497')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37607','885','27498')
+values ('39486','885','27498')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37608','894','27532')
+values ('39487','894','27532')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37609','894','27533')
+values ('39488','894','27533')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37610','894','27534')
+values ('39489','894','27534')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37611','903','27568')
+values ('39490','903','27568')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37612','903','27569')
+values ('39491','903','27569')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37613','903','27570')
+values ('39492','903','27570')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37614','912','27608')
+values ('39493','912','27608')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37615','912','27609')
+values ('39494','912','27609')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37616','912','27610')
+values ('39495','912','27610')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37617','915','27631')
+values ('39496','915','27631')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37618','915','27632')
+values ('39497','915','27632')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37619','915','27633')
+values ('39498','915','27633')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37620','918','27654')
+values ('39499','918','27654')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37621','918','27655')
+values ('39500','918','27655')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37622','918','27656')
+values ('39501','918','27656')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37623','936','27734')
+values ('39502','936','27734')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37624','936','27735')
+values ('39503','936','27735')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37625','936','27736')
+values ('39504','936','27736')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37626','944','27766')
+values ('39505','944','27766')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37627','944','27767')
+values ('39506','944','27767')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37628','944','27768')
+values ('39507','944','27768')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37629','951','27800')
+values ('39508','951','27800')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37630','951','27801')
+values ('39509','951','27801')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37631','951','27802')
+values ('39510','951','27802')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37632','971','27882')
+values ('39511','971','27882')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37633','971','27883')
+values ('39512','971','27883')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37634','971','27884')
+values ('39513','971','27884')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37635','979','27919')
+values ('39514','979','27919')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37636','979','27920')
+values ('39515','979','27920')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37637','979','27921')
+values ('39516','979','27921')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37638','988','27956')
+values ('39517','988','27956')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37639','988','27957')
+values ('39518','988','27957')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37640','988','27958')
+values ('39519','988','27958')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37641','994','27986')
+values ('39520','994','27986')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37642','994','27987')
+values ('39521','994','27987')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37643','994','27988')
+values ('39522','994','27988')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37644','1000','28015')
+values ('39523','1000','28015')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37645','1000','28016')
+values ('39524','1000','28016')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37646','1000','28017')
+values ('39525','1000','28017')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37647','1020','28070')
+values ('39526','1020','28070')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37648','1020','28071')
+values ('39527','1020','28071')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37649','1020','28072')
+values ('39528','1020','28072')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37650','1027','28107')
+values ('39529','1027','28107')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37651','1027','28108')
+values ('39530','1027','28108')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37652','1027','28109')
+values ('39531','1027','28109')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37653','1030','28130')
+values ('39532','1030','28130')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37654','1030','28131')
+values ('39533','1030','28131')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37655','1030','28132')
+values ('39534','1030','28132')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37656','1043','28185')
+values ('39535','1043','28185')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37657','1043','28186')
+values ('39536','1043','28186')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37658','1043','28187')
+values ('39537','1043','28187')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37659','1055','28233')
+values ('39538','1055','28233')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37660','1055','28234')
+values ('39539','1055','28234')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37661','1055','28235')
+values ('39540','1055','28235')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37662','1060','28282')
+values ('39541','1060','28282')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37663','1060','28283')
+values ('39542','1060','28283')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37664','1060','28284')
+values ('39543','1060','28284')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37665','1070','28330')
+values ('39544','1070','28330')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37666','1070','28331')
+values ('39545','1070','28331')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37667','1070','28332')
+values ('39546','1070','28332')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37668','1079','28377')
+values ('39547','1079','28377')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37669','1079','28378')
+values ('39548','1079','28378')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37670','1079','28379')
+values ('39549','1079','28379')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37671','1088','28426')
+values ('39550','1088','28426')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37672','1088','28427')
+values ('39551','1088','28427')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37673','1088','28428')
+values ('39552','1088','28428')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37674','1095','28454')
+values ('39553','1095','28454')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37675','1095','28455')
+values ('39554','1095','28455')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37676','1095','28456')
+values ('39555','1095','28456')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37677','1102','28482')
+values ('39556','1102','28482')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37678','1102','28483')
+values ('39557','1102','28483')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37679','1102','28484')
+values ('39558','1102','28484')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37680','1114','28614')
+values ('39559','1114','28614')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37681','1114','28615')
+values ('39560','1114','28615')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37682','1114','28616')
+values ('39561','1114','28616')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37683','770','27030')
+values ('39562','770','27030')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37684','910','27607')
+values ('39563','910','27607')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37685','771','27032')
+values ('39564','771','27032')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37686','803','27191')
+values ('39565','803','27191')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37687','840','27332')
+values ('39566','840','27332')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37688','874','27461')
+values ('39567','874','27461')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37689','892','27531')
+values ('39568','892','27531')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37690','901','27567')
+values ('39569','901','27567')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37691','913','27630')
+values ('39570','913','27630')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37692','916','27653')
+values ('39571','916','27653')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37693','934','27733')
+values ('39572','934','27733')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37694','949','27799')
+values ('39573','949','27799')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37695','986','27955')
+values ('39574','986','27955')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37696','1018','28069')
+values ('39575','1018','28069')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37697','1028','28129')
+values ('39576','1028','28129')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37698','1058','28281')
+values ('39577','1058','28281')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37699','798','27141')
+values ('39578','798','27141')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37700','798','27142')
+values ('39579','798','27142')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37701','797','27143')
+values ('39580','797','27143')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37702','798','27144')
+values ('39581','798','27144')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37703','798','27145')
+values ('39582','798','27145')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37704','798','27146')
+values ('39583','798','27146')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37705','798','27147')
+values ('39584','798','27147')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37706','797','28252')
+values ('39585','797','28252')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37707','911','27611')
+values ('39586','911','27611')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37708','911','27612')
+values ('39587','911','27612')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37709','911','27613')
+values ('39588','911','27613')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37710','911','27614')
+values ('39589','911','27614')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37711','911','27615')
+values ('39590','911','27615')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37712','911','27616')
+values ('39591','911','27616')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37713','912','27618')
+values ('39592','912','27618')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37714','999','28018')
+values ('39593','999','28018')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37715','999','28019')
+values ('39594','999','28019')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37716','999','28020')
+values ('39595','999','28020')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37717','999','28021')
+values ('39596','999','28021')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37718','999','28022')
+values ('39597','999','28022')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37719','999','28023')
+values ('39598','999','28023')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37720','1000','28025')
+values ('39599','1000','28025')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37721','912','28253')
+values ('39600','912','28253')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37722','1000','28254')
+values ('39601','1000','28254')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37723','1087','28429')
+values ('39602','1087','28429')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37724','1087','28430')
+values ('39603','1087','28430')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37725','1087','28431')
+values ('39604','1087','28431')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37726','1087','28432')
+values ('39605','1087','28432')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37727','1087','28433')
+values ('39606','1087','28433')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37728','1087','28434')
+values ('39607','1087','28434')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37729','1088','28435')
+values ('39608','1088','28435')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37730','1088','28436')
+values ('39609','1088','28436')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37731','800','27152')
+values ('39610','800','27152')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37732','800','27153')
+values ('39611','800','27153')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37733','799','27154')
+values ('39612','799','27154')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37734','800','27155')
+values ('39613','800','27155')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37735','800','27156')
+values ('39614','800','27156')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37736','800','27157')
+values ('39615','800','27157')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37737','800','27158')
+values ('39616','800','27158')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37738','799','28255')
+values ('39617','799','28255')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37739','804','27195')
+values ('39618','804','27195')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37740','804','27196')
+values ('39619','804','27196')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37741','804','27197')
+values ('39620','804','27197')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37742','804','27198')
+values ('39621','804','27198')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37743','804','27199')
+values ('39622','804','27199')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37744','804','27200')
+values ('39623','804','27200')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37745','805','27202')
+values ('39624','805','27202')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37746','812','27228')
+values ('39625','812','27228')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37747','812','27229')
+values ('39626','812','27229')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37748','812','27230')
+values ('39627','812','27230')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37749','812','27231')
+values ('39628','812','27231')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37750','812','27232')
+values ('39629','812','27232')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37751','812','27233')
+values ('39630','812','27233')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37752','813','27235')
+values ('39631','813','27235')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37753','821','27264')
+values ('39632','821','27264')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37754','821','27265')
+values ('39633','821','27265')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37755','821','27266')
+values ('39634','821','27266')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37756','821','27267')
+values ('39635','821','27267')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37757','821','27268')
+values ('39636','821','27268')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37758','821','27269')
+values ('39637','821','27269')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37759','822','27271')
+values ('39638','822','27271')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37760','824','27285')
+values ('39639','824','27285')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37761','824','27286')
+values ('39640','824','27286')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37762','824','27287')
+values ('39641','824','27287')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37763','824','27288')
+values ('39642','824','27288')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37764','824','27289')
+values ('39643','824','27289')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37765','824','27290')
+values ('39644','824','27290')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37766','825','27292')
+values ('39645','825','27292')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37767','841','27336')
+values ('39646','841','27336')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37768','841','27337')
+values ('39647','841','27337')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37769','841','27338')
+values ('39648','841','27338')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37770','841','27339')
+values ('39649','841','27339')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37771','841','27340')
+values ('39650','841','27340')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37772','841','27341')
+values ('39651','841','27341')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37773','842','27343')
+values ('39652','842','27343')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37774','846','27368')
+values ('39653','846','27368')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37775','846','27369')
+values ('39654','846','27369')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37776','846','27370')
+values ('39655','846','27370')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37777','846','27371')
+values ('39656','846','27371')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37778','846','27372')
+values ('39657','846','27372')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37779','846','27373')
+values ('39658','846','27373')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37780','847','27375')
+values ('39659','847','27375')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37781','875','27465')
+values ('39660','875','27465')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37782','875','27466')
+values ('39661','875','27466')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37783','875','27467')
+values ('39662','875','27467')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37784','875','27468')
+values ('39663','875','27468')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37785','875','27469')
+values ('39664','875','27469')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37786','875','27470')
+values ('39665','875','27470')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37787','876','27472')
+values ('39666','876','27472')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37788','884','27499')
+values ('39667','884','27499')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37789','884','27500')
+values ('39668','884','27500')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37790','884','27501')
+values ('39669','884','27501')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37791','884','27502')
+values ('39670','884','27502')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37792','884','27503')
+values ('39671','884','27503')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37793','884','27504')
+values ('39672','884','27504')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37794','885','27506')
+values ('39673','885','27506')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37795','893','27535')
+values ('39674','893','27535')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37796','893','27536')
+values ('39675','893','27536')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37797','893','27537')
+values ('39676','893','27537')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37798','893','27538')
+values ('39677','893','27538')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37799','893','27539')
+values ('39678','893','27539')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37800','893','27540')
+values ('39679','893','27540')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37801','894','27542')
+values ('39680','894','27542')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37802','902','27571')
+values ('39681','902','27571')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37803','902','27572')
+values ('39682','902','27572')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37804','902','27573')
+values ('39683','902','27573')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37805','902','27574')
+values ('39684','902','27574')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37806','902','27575')
+values ('39685','902','27575')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37807','902','27576')
+values ('39686','902','27576')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37808','903','27578')
+values ('39687','903','27578')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37809','914','27634')
+values ('39688','914','27634')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37810','914','27635')
+values ('39689','914','27635')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37811','914','27636')
+values ('39690','914','27636')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37812','914','27637')
+values ('39691','914','27637')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37813','914','27638')
+values ('39692','914','27638')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37814','914','27639')
+values ('39693','914','27639')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37815','915','27641')
+values ('39694','915','27641')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37816','917','27657')
+values ('39695','917','27657')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37817','917','27658')
+values ('39696','917','27658')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37818','917','27659')
+values ('39697','917','27659')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37819','917','27660')
+values ('39698','917','27660')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37820','917','27661')
+values ('39699','917','27661')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37821','917','27662')
+values ('39700','917','27662')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37822','918','27664')
+values ('39701','918','27664')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37823','935','27737')
+values ('39702','935','27737')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37824','935','27738')
+values ('39703','935','27738')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37825','935','27739')
+values ('39704','935','27739')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37826','935','27740')
+values ('39705','935','27740')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37827','935','27741')
+values ('39706','935','27741')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37828','935','27742')
+values ('39707','935','27742')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37829','936','27744')
+values ('39708','936','27744')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37830','943','27769')
+values ('39709','943','27769')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37831','943','27770')
+values ('39710','943','27770')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37832','943','27771')
+values ('39711','943','27771')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37833','943','27772')
+values ('39712','943','27772')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37834','943','27773')
+values ('39713','943','27773')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37835','943','27774')
+values ('39714','943','27774')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37836','944','27776')
+values ('39715','944','27776')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37837','950','27803')
+values ('39716','950','27803')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37838','950','27804')
+values ('39717','950','27804')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37839','950','27805')
+values ('39718','950','27805')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37840','950','27806')
+values ('39719','950','27806')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37841','950','27807')
+values ('39720','950','27807')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37842','950','27808')
+values ('39721','950','27808')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37843','951','27810')
+values ('39722','951','27810')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37844','970','27885')
+values ('39723','970','27885')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37845','970','27886')
+values ('39724','970','27886')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37846','970','27887')
+values ('39725','970','27887')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37847','970','27888')
+values ('39726','970','27888')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37848','970','27889')
+values ('39727','970','27889')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37849','970','27890')
+values ('39728','970','27890')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37850','971','27892')
+values ('39729','971','27892')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37851','978','27922')
+values ('39730','978','27922')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37852','978','27923')
+values ('39731','978','27923')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37853','978','27924')
+values ('39732','978','27924')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37854','978','27925')
+values ('39733','978','27925')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37855','978','27926')
+values ('39734','978','27926')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37856','978','27927')
+values ('39735','978','27927')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37857','979','27929')
+values ('39736','979','27929')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37858','987','27959')
+values ('39737','987','27959')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37859','987','27960')
+values ('39738','987','27960')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37860','987','27961')
+values ('39739','987','27961')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37861','987','27962')
+values ('39740','987','27962')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37862','987','27963')
+values ('39741','987','27963')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37863','987','27964')
+values ('39742','987','27964')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37864','988','27966')
+values ('39743','988','27966')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37865','993','27989')
+values ('39744','993','27989')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37866','993','27990')
+values ('39745','993','27990')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37867','993','27991')
+values ('39746','993','27991')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37868','993','27992')
+values ('39747','993','27992')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37869','993','27993')
+values ('39748','993','27993')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37870','993','27994')
+values ('39749','993','27994')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37871','994','27996')
+values ('39750','994','27996')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37872','1019','28073')
+values ('39751','1019','28073')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37873','1019','28074')
+values ('39752','1019','28074')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37874','1019','28075')
+values ('39753','1019','28075')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37875','1019','28076')
+values ('39754','1019','28076')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37876','1019','28077')
+values ('39755','1019','28077')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37877','1019','28078')
+values ('39756','1019','28078')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37878','1020','28080')
+values ('39757','1020','28080')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37879','1026','28110')
+values ('39758','1026','28110')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37880','1026','28111')
+values ('39759','1026','28111')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37881','1026','28112')
+values ('39760','1026','28112')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37882','1026','28113')
+values ('39761','1026','28113')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37883','1026','28114')
+values ('39762','1026','28114')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37884','1026','28115')
+values ('39763','1026','28115')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37885','1027','28117')
+values ('39764','1027','28117')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37886','1029','28133')
+values ('39765','1029','28133')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37887','1029','28134')
+values ('39766','1029','28134')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37888','1029','28135')
+values ('39767','1029','28135')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37889','1029','28136')
+values ('39768','1029','28136')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37890','1029','28137')
+values ('39769','1029','28137')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37891','1029','28138')
+values ('39770','1029','28138')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37892','1030','28140')
+values ('39771','1030','28140')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37893','1042','28188')
+values ('39772','1042','28188')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37894','1042','28189')
+values ('39773','1042','28189')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37895','1042','28190')
+values ('39774','1042','28190')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37896','1042','28191')
+values ('39775','1042','28191')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37897','1042','28192')
+values ('39776','1042','28192')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37898','1042','28193')
+values ('39777','1042','28193')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37899','1043','28195')
+values ('39778','1043','28195')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37900','1054','28236')
+values ('39779','1054','28236')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37901','1054','28237')
+values ('39780','1054','28237')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37902','1054','28238')
+values ('39781','1054','28238')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37903','1054','28239')
+values ('39782','1054','28239')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37904','1054','28240')
+values ('39783','1054','28240')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37905','1054','28241')
+values ('39784','1054','28241')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37906','1055','28243')
+values ('39785','1055','28243')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37907','805','28256')
+values ('39786','805','28256')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37908','813','28257')
+values ('39787','813','28257')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37909','822','28258')
+values ('39788','822','28258')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37910','825','28259')
+values ('39789','825','28259')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37911','842','28260')
+values ('39790','842','28260')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37912','847','28261')
+values ('39791','847','28261')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37913','876','28262')
+values ('39792','876','28262')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37914','885','28263')
+values ('39793','885','28263')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37915','894','28264')
+values ('39794','894','28264')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37916','903','28265')
+values ('39795','903','28265')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37917','915','28266')
+values ('39796','915','28266')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37918','918','28267')
+values ('39797','918','28267')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37919','936','28268')
+values ('39798','936','28268')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37920','944','28269')
+values ('39799','944','28269')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37921','951','28270')
+values ('39800','951','28270')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37922','971','28271')
+values ('39801','971','28271')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37923','979','28272')
+values ('39802','979','28272')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37924','988','28273')
+values ('39803','988','28273')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37925','994','28274')
+values ('39804','994','28274')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37926','1020','28275')
+values ('39805','1020','28275')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37927','1027','28276')
+values ('39806','1027','28276')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37928','1030','28277')
+values ('39807','1030','28277')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37929','1043','28278')
+values ('39808','1043','28278')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37930','1055','28279')
+values ('39809','1055','28279')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37931','1059','28285')
+values ('39810','1059','28285')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37932','1059','28286')
+values ('39811','1059','28286')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37933','1059','28287')
+values ('39812','1059','28287')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37934','1059','28288')
+values ('39813','1059','28288')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37935','1059','28289')
+values ('39814','1059','28289')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37936','1059','28290')
+values ('39815','1059','28290')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37937','1060','28291')
+values ('39816','1060','28291')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37938','1060','28292')
+values ('39817','1060','28292')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37939','1069','28333')
+values ('39818','1069','28333')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37940','1069','28334')
+values ('39819','1069','28334')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37941','1069','28335')
+values ('39820','1069','28335')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37942','1069','28336')
+values ('39821','1069','28336')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37943','1069','28337')
+values ('39822','1069','28337')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37944','1069','28338')
+values ('39823','1069','28338')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37945','1070','28339')
+values ('39824','1070','28339')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37946','1070','28340')
+values ('39825','1070','28340')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37947','1078','28380')
+values ('39826','1078','28380')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37948','1078','28381')
+values ('39827','1078','28381')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37949','1078','28382')
+values ('39828','1078','28382')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37950','1078','28383')
+values ('39829','1078','28383')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37951','1078','28384')
+values ('39830','1078','28384')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37952','1078','28385')
+values ('39831','1078','28385')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37953','1079','28386')
+values ('39832','1079','28386')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37954','1079','28387')
+values ('39833','1079','28387')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37955','1094','28457')
+values ('39834','1094','28457')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37956','1094','28458')
+values ('39835','1094','28458')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37957','1094','28459')
+values ('39836','1094','28459')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37958','1094','28460')
+values ('39837','1094','28460')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37959','1094','28461')
+values ('39838','1094','28461')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37960','1094','28462')
+values ('39839','1094','28462')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37961','1095','28463')
+values ('39840','1095','28463')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37962','1095','28464')
+values ('39841','1095','28464')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37963','1101','28485')
+values ('39842','1101','28485')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37964','1101','28486')
+values ('39843','1101','28486')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37965','1101','28487')
+values ('39844','1101','28487')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37966','1101','28488')
+values ('39845','1101','28488')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37967','1101','28489')
+values ('39846','1101','28489')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37968','1101','28490')
+values ('39847','1101','28490')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37969','1102','28491')
+values ('39848','1102','28491')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37970','1102','28492')
+values ('39849','1102','28492')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37971','1113','28617')
+values ('39850','1113','28617')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37972','1113','28618')
+values ('39851','1113','28618')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37973','1113','28619')
+values ('39852','1113','28619')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37974','1113','28620')
+values ('39853','1113','28620')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37975','1113','28621')
+values ('39854','1113','28621')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37976','1113','28622')
+values ('39855','1113','28622')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37977','1114','28623')
+values ('39856','1114','28623')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37978','1114','28624')
+values ('39857','1114','28624')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37979','1142','28709')
+values ('39858','1142','28709')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37980','1145','28710')
+values ('39859','1145','28710')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37981','1141','28718')
+values ('39860','1141','28718')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37982','1141','28719')
+values ('39861','1141','28719')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37983','1141','28720')
+values ('39862','1141','28720')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37984','1144','28724')
+values ('39863','1144','28724')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37985','1144','28725')
+values ('39864','1144','28725')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37986','1144','28726')
+values ('39865','1144','28726')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37987','1124','28655')
+values ('39866','1124','28655')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37988','1127','28656')
+values ('39867','1127','28656')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37989','1130','28657')
+values ('39868','1130','28657')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37990','1133','28658')
+values ('39869','1133','28658')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37991','1136','28659')
+values ('39870','1136','28659')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37992','1139','28660')
+values ('39871','1139','28660')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37993','1123','28676')
+values ('39872','1123','28676')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37994','1123','28677')
+values ('39873','1123','28677')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37995','1123','28678')
+values ('39874','1123','28678')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37996','1126','28682')
+values ('39875','1126','28682')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37997','1126','28683')
+values ('39876','1126','28683')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37998','1126','28684')
+values ('39877','1126','28684')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('37999','1129','28688')
+values ('39878','1129','28688')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38000','1129','28689')
+values ('39879','1129','28689')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38001','1129','28690')
+values ('39880','1129','28690')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38002','1132','28694')
+values ('39881','1132','28694')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38003','1132','28695')
+values ('39882','1132','28695')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38004','1132','28696')
+values ('39883','1132','28696')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38005','1135','28700')
+values ('39884','1135','28700')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38006','1135','28701')
+values ('39885','1135','28701')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38007','1135','28702')
+values ('39886','1135','28702')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38008','1138','28706')
+values ('39887','1138','28706')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38009','1138','28707')
+values ('39888','1138','28707')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38010','1138','28708')
+values ('39889','1138','28708')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38011','783','27089')
+values ('39890','783','27089')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38012','783','27090')
+values ('39891','783','27090')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38013','783','27091')
+values ('39892','783','27091')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38014','783','27092')
+values ('39893','783','27092')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38015','783','27093')
+values ('39894','783','27093')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38016','783','27094')
+values ('39895','783','27094')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38017','783','27095')
+values ('39896','783','27095')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38018','783','27096')
+values ('39897','783','27096')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38019','783','27097')
+values ('39898','783','27097')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38020','784','27099')
+values ('39899','784','27099')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38021','784','27100')
+values ('39900','784','27100')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38022','784','27101')
+values ('39901','784','27101')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38023','784','27102')
+values ('39902','784','27102')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38024','784','27103')
+values ('39903','784','27103')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38025','784','27104')
+values ('39904','784','27104')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38026','784','27105')
+values ('39905','784','27105')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38027','784','27106')
+values ('39906','784','27106')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38028','784','27107')
+values ('39907','784','27107')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38029','803','27181')
+values ('39908','803','27181')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38030','803','27182')
+values ('39909','803','27182')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38031','803','27183')
+values ('39910','803','27183')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38032','803','27184')
+values ('39911','803','27184')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38033','803','27185')
+values ('39912','803','27185')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38034','803','27186')
+values ('39913','803','27186')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38035','803','27187')
+values ('39914','803','27187')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38036','803','27188')
+values ('39915','803','27188')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38037','803','27189')
+values ('39916','803','27189')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38038','811','27216')
+values ('39917','811','27216')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38039','811','27217')
+values ('39918','811','27217')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38040','811','27218')
+values ('39919','811','27218')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38041','811','27219')
+values ('39920','811','27219')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38042','811','27220')
+values ('39921','811','27220')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38043','811','27221')
+values ('39922','811','27221')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38044','811','27222')
+values ('39923','811','27222')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38045','811','27223')
+values ('39924','811','27223')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38046','811','27224')
+values ('39925','811','27224')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38047','820','27252')
+values ('39926','820','27252')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38048','820','27253')
+values ('39927','820','27253')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38049','820','27254')
+values ('39928','820','27254')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38050','820','27255')
+values ('39929','820','27255')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38051','820','27256')
+values ('39930','820','27256')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38052','820','27257')
+values ('39931','820','27257')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38053','820','27258')
+values ('39932','820','27258')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38054','820','27259')
+values ('39933','820','27259')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38055','820','27260')
+values ('39934','820','27260')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38056','823','27273')
+values ('39935','823','27273')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38057','823','27274')
+values ('39936','823','27274')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38058','823','27275')
+values ('39937','823','27275')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38059','823','27276')
+values ('39938','823','27276')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38060','823','27277')
+values ('39939','823','27277')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38061','823','27278')
+values ('39940','823','27278')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38062','823','27279')
+values ('39941','823','27279')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38063','823','27280')
+values ('39942','823','27280')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38064','823','27281')
+values ('39943','823','27281')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38065','840','27322')
+values ('39944','840','27322')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38066','840','27323')
+values ('39945','840','27323')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38067','840','27324')
+values ('39946','840','27324')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38068','840','27325')
+values ('39947','840','27325')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38069','840','27326')
+values ('39948','840','27326')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38070','840','27327')
+values ('39949','840','27327')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38071','840','27328')
+values ('39950','840','27328')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38072','840','27329')
+values ('39951','840','27329')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38073','840','27330')
+values ('39952','840','27330')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38074','874','27451')
+values ('39953','874','27451')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38075','874','27452')
+values ('39954','874','27452')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38076','874','27453')
+values ('39955','874','27453')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38077','874','27454')
+values ('39956','874','27454')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38078','874','27455')
+values ('39957','874','27455')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38079','874','27456')
+values ('39958','874','27456')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38080','874','27457')
+values ('39959','874','27457')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38081','874','27458')
+values ('39960','874','27458')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38082','874','27459')
+values ('39961','874','27459')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38083','883','27487')
+values ('39962','883','27487')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38084','883','27488')
+values ('39963','883','27488')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38085','883','27489')
+values ('39964','883','27489')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38086','883','27490')
+values ('39965','883','27490')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38087','883','27491')
+values ('39966','883','27491')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38088','883','27492')
+values ('39967','883','27492')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38089','883','27493')
+values ('39968','883','27493')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38090','883','27494')
+values ('39969','883','27494')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38091','883','27495')
+values ('39970','883','27495')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38092','892','27521')
+values ('39971','892','27521')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38093','892','27522')
+values ('39972','892','27522')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38094','892','27523')
+values ('39973','892','27523')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38095','892','27524')
+values ('39974','892','27524')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38096','892','27525')
+values ('39975','892','27525')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38097','892','27526')
+values ('39976','892','27526')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38098','892','27527')
+values ('39977','892','27527')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38099','892','27528')
+values ('39978','892','27528')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38100','892','27529')
+values ('39979','892','27529')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38101','901','27557')
+values ('39980','901','27557')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38102','901','27558')
+values ('39981','901','27558')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38103','901','27559')
+values ('39982','901','27559')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38104','901','27560')
+values ('39983','901','27560')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38105','901','27561')
+values ('39984','901','27561')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38106','901','27562')
+values ('39985','901','27562')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38107','901','27563')
+values ('39986','901','27563')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38108','901','27564')
+values ('39987','901','27564')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38109','901','27565')
+values ('39988','901','27565')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38110','916','27643')
+values ('39989','916','27643')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38111','916','27644')
+values ('39990','916','27644')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38112','916','27645')
+values ('39991','916','27645')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38113','916','27646')
+values ('39992','916','27646')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38114','916','27647')
+values ('39993','916','27647')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38115','916','27648')
+values ('39994','916','27648')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38116','916','27649')
+values ('39995','916','27649')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38117','916','27650')
+values ('39996','916','27650')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38118','916','27651')
+values ('39997','916','27651')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38119','934','27723')
+values ('39998','934','27723')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38120','934','27724')
+values ('39999','934','27724')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38121','934','27725')
+values ('40000','934','27725')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38122','934','27726')
+values ('40001','934','27726')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38123','934','27727')
+values ('40002','934','27727')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38124','934','27728')
+values ('40003','934','27728')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38125','934','27729')
+values ('40004','934','27729')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38126','934','27730')
+values ('40005','934','27730')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38127','934','27731')
+values ('40006','934','27731')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38128','942','27757')
+values ('40007','942','27757')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38129','942','27758')
+values ('40008','942','27758')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38130','942','27759')
+values ('40009','942','27759')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38131','942','27760')
+values ('40010','942','27760')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38132','942','27761')
+values ('40011','942','27761')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38133','942','27762')
+values ('40012','942','27762')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38134','942','27763')
+values ('40013','942','27763')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38135','942','27764')
+values ('40014','942','27764')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38136','942','27765')
+values ('40015','942','27765')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38137','949','27789')
+values ('40016','949','27789')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38138','949','27790')
+values ('40017','949','27790')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38139','949','27791')
+values ('40018','949','27791')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38140','949','27792')
+values ('40019','949','27792')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38141','949','27793')
+values ('40020','949','27793')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38142','949','27794')
+values ('40021','949','27794')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38143','949','27795')
+values ('40022','949','27795')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38144','949','27796')
+values ('40023','949','27796')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38145','949','27797')
+values ('40024','949','27797')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38146','969','27873')
+values ('40025','969','27873')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38147','969','27874')
+values ('40026','969','27874')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38148','969','27875')
+values ('40027','969','27875')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38149','969','27876')
+values ('40028','969','27876')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38150','969','27877')
+values ('40029','969','27877')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38151','969','27878')
+values ('40030','969','27878')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38152','969','27879')
+values ('40031','969','27879')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38153','969','27880')
+values ('40032','969','27880')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38154','969','27881')
+values ('40033','969','27881')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38155','977','27910')
+values ('40034','977','27910')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38156','977','27911')
+values ('40035','977','27911')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38157','977','27912')
+values ('40036','977','27912')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38158','977','27913')
+values ('40037','977','27913')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38159','977','27914')
+values ('40038','977','27914')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38160','977','27915')
+values ('40039','977','27915')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38161','977','27916')
+values ('40040','977','27916')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38162','977','27917')
+values ('40041','977','27917')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38163','977','27918')
+values ('40042','977','27918')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38164','986','27945')
+values ('40043','986','27945')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38165','986','27946')
+values ('40044','986','27946')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38166','986','27947')
+values ('40045','986','27947')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38167','986','27948')
+values ('40046','986','27948')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38168','986','27949')
+values ('40047','986','27949')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38169','986','27950')
+values ('40048','986','27950')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38170','986','27951')
+values ('40049','986','27951')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38171','986','27952')
+values ('40050','986','27952')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38172','986','27953')
+values ('40051','986','27953')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38173','1018','28059')
+values ('40052','1018','28059')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38174','1018','28060')
+values ('40053','1018','28060')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38175','1018','28061')
+values ('40054','1018','28061')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38176','1018','28062')
+values ('40055','1018','28062')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38177','1018','28063')
+values ('40056','1018','28063')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38178','1018','28064')
+values ('40057','1018','28064')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38179','1018','28065')
+values ('40058','1018','28065')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38180','1018','28066')
+values ('40059','1018','28066')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38181','1018','28067')
+values ('40060','1018','28067')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38182','1028','28119')
+values ('40061','1028','28119')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38183','1028','28120')
+values ('40062','1028','28120')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38184','1028','28121')
+values ('40063','1028','28121')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38185','1028','28122')
+values ('40064','1028','28122')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38186','1028','28123')
+values ('40065','1028','28123')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38187','1028','28124')
+values ('40066','1028','28124')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38188','1028','28125')
+values ('40067','1028','28125')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38189','1028','28126')
+values ('40068','1028','28126')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38190','1028','28127')
+values ('40069','1028','28127')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38191','1041','28176')
+values ('40070','1041','28176')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38192','1041','28177')
+values ('40071','1041','28177')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38193','1041','28178')
+values ('40072','1041','28178')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38194','1041','28179')
+values ('40073','1041','28179')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38195','1041','28180')
+values ('40074','1041','28180')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38196','1041','28181')
+values ('40075','1041','28181')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38197','1041','28182')
+values ('40076','1041','28182')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38198','1041','28183')
+values ('40077','1041','28183')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38199','1041','28184')
+values ('40078','1041','28184')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38200','1053','28224')
+values ('40079','1053','28224')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38201','1053','28225')
+values ('40080','1053','28225')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38202','1053','28226')
+values ('40081','1053','28226')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38203','1053','28227')
+values ('40082','1053','28227')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38204','1053','28228')
+values ('40083','1053','28228')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38205','1053','28229')
+values ('40084','1053','28229')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38206','1053','28230')
+values ('40085','1053','28230')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38207','1053','28231')
+values ('40086','1053','28231')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38208','1053','28232')
+values ('40087','1053','28232')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38209','1058','28294')
+values ('40088','1058','28294')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38210','1058','28295')
+values ('40089','1058','28295')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38211','1058','28296')
+values ('40090','1058','28296')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38212','1058','28297')
+values ('40091','1058','28297')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38213','1058','28298')
+values ('40092','1058','28298')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38214','1058','28299')
+values ('40093','1058','28299')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38215','1058','28300')
+values ('40094','1058','28300')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38216','1058','28301')
+values ('40095','1058','28301')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38217','1058','28302')
+values ('40096','1058','28302')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38218','781','27069')
+values ('40097','781','27069')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38219','781','27070')
+values ('40098','781','27070')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38220','781','27071')
+values ('40099','781','27071')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38221','781','27072')
+values ('40100','781','27072')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38222','781','27073')
+values ('40101','781','27073')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38223','781','27074')
+values ('40102','781','27074')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38224','781','27075')
+values ('40103','781','27075')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38225','781','27076')
+values ('40104','781','27076')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38226','781','27077')
+values ('40105','781','27077')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38227','910','27597')
+values ('40106','910','27597')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38228','910','27598')
+values ('40107','910','27598')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38229','910','27599')
+values ('40108','910','27599')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38230','910','27600')
+values ('40109','910','27600')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38231','910','27601')
+values ('40110','910','27601')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38232','910','27602')
+values ('40111','910','27602')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38233','910','27603')
+values ('40112','910','27603')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38234','910','27604')
+values ('40113','910','27604')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38235','910','27605')
+values ('40114','910','27605')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38236','998','28006')
+values ('40115','998','28006')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38237','998','28007')
+values ('40116','998','28007')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38238','998','28008')
+values ('40117','998','28008')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38239','998','28009')
+values ('40118','998','28009')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38240','998','28010')
+values ('40119','998','28010')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38241','998','28011')
+values ('40120','998','28011')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38242','998','28012')
+values ('40121','998','28012')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38243','998','28013')
+values ('40122','998','28013')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38244','998','28014')
+values ('40123','998','28014')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38245','782','27079')
+values ('40124','782','27079')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38246','782','27080')
+values ('40125','782','27080')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38247','782','27081')
+values ('40126','782','27081')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38248','782','27082')
+values ('40127','782','27082')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38249','782','27083')
+values ('40128','782','27083')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38250','782','27084')
+values ('40129','782','27084')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38251','782','27085')
+values ('40130','782','27085')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38252','782','27086')
+values ('40131','782','27086')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38253','782','27087')
+values ('40132','782','27087')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38254','913','27620')
+values ('40133','913','27620')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38255','913','27621')
+values ('40134','913','27621')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38256','913','27622')
+values ('40135','913','27622')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38257','913','27623')
+values ('40136','913','27623')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38258','913','27624')
+values ('40137','913','27624')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38259','913','27625')
+values ('40138','913','27625')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38260','913','27626')
+values ('40139','913','27626')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38261','913','27627')
+values ('40140','913','27627')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38262','913','27628')
+values ('40141','913','27628')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38263','992','27977')
+values ('40142','992','27977')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38264','992','27978')
+values ('40143','992','27978')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38265','992','27979')
+values ('40144','992','27979')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38266','992','27980')
+values ('40145','992','27980')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38267','992','27981')
+values ('40146','992','27981')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38268','992','27982')
+values ('40147','992','27982')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38269','992','27983')
+values ('40148','992','27983')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38270','992','27984')
+values ('40149','992','27984')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38271','992','27985')
+values ('40150','992','27985')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38272','810','27203')
+values ('40151','810','27203')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38273','810','27204')
+values ('40152','810','27204')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38274','807','27205')
+values ('40153','807','27205')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38275','807','27206')
+values ('40154','807','27206')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38276','807','27207')
+values ('40155','807','27207')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38277','806','27208')
+values ('40156','806','27208')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38278','808','27212')
+values ('40157','808','27212')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38279','809','27213')
+values ('40158','809','27213')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38280','810','27214')
+values ('40159','810','27214')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38281','1068','28323')
+values ('40160','1068','28323')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38282','1068','28324')
+values ('40161','1068','28324')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38283','1062','28325')
+values ('40162','1062','28325')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38284','1062','28326')
+values ('40163','1062','28326')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38285','1064','28327')
+values ('40164','1064','28327')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38286','1064','28328')
+values ('40165','1064','28328')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38287','1066','28329')
+values ('40166','1066','28329')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38288','819','27236')
+values ('40167','819','27236')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38289','819','27237')
+values ('40168','819','27237')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38290','813','27238')
+values ('40169','813','27238')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38291','815','27239')
+values ('40170','815','27239')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38292','814','27240')
+values ('40171','814','27240')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38293','816','27246')
+values ('40172','816','27246')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38294','816','27247')
+values ('40173','816','27247')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38295','817','27248')
+values ('40174','817','27248')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38296','818','27249')
+values ('40175','818','27249')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38297','818','27250')
+values ('40176','818','27250')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38298','827','27293')
+values ('40177','827','27293')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38299','826','27294')
+values ('40178','826','27294')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38300','831','27295')
+values ('40179','831','27295')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38301','831','27296')
+values ('40180','831','27296')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38302','835','27297')
+values ('40181','835','27297')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38303','837','27298')
+values ('40182','837','27298')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38304','836','27299')
+values ('40183','836','27299')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38305','839','27300')
+values ('40184','839','27300')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38306','838','27301')
+values ('40185','838','27301')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38307','829','27312')
+values ('40186','829','27312')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38308','830','27313')
+values ('40187','830','27313')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38309','828','27314')
+values ('40188','828','27314')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38310','828','27315')
+values ('40189','828','27315')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38311','833','27316')
+values ('40190','833','27316')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38312','834','27317')
+values ('40191','834','27317')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38313','832','27318')
+values ('40192','832','27318')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38314','835','27319')
+values ('40193','835','27319')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38315','835','27320')
+values ('40194','835','27320')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38316','851','27376')
+values ('40195','851','27376')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38317','852','27377')
+values ('40196','852','27377')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38318','852','27378')
+values ('40197','852','27378')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38319','852','27379')
+values ('40198','852','27379')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38320','869','27380')
+values ('40199','869','27380')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38321','870','27381')
+values ('40200','870','27381')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38322','870','27382')
+values ('40201','870','27382')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38323','870','27383')
+values ('40202','870','27383')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38324','858','27384')
+values ('40203','858','27384')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38325','858','27385')
+values ('40204','858','27385')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38326','858','27386')
+values ('40205','858','27386')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38327','1048','28209')
+values ('40206','1048','28209')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38328','1048','28210')
+values ('40207','1048','28210')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38329','1048','28211')
+values ('40208','1048','28211')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38330','848','27414')
+values ('40209','848','27414')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38331','848','27415')
+values ('40210','848','27415')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38332','848','27416')
+values ('40211','848','27416')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38333','849','27417')
+values ('40212','849','27417')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38334','852','27419')
+values ('40213','852','27419')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38335','853','27420')
+values ('40214','853','27420')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38336','853','27421')
+values ('40215','853','27421')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38337','854','27422')
+values ('40216','854','27422')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38338','855','27423')
+values ('40217','855','27423')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38339','1056','28246')
+values ('40218','1056','28246')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38340','856','27424')
+values ('40219','856','27424')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38341','856','27425')
+values ('40220','856','27425')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38342','856','27426')
+values ('40221','856','27426')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38343','857','27427')
+values ('40222','857','27427')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38344','858','27428')
+values ('40223','858','27428')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38345','859','27429')
+values ('40224','859','27429')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38346','859','27430')
+values ('40225','859','27430')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38347','860','27431')
+values ('40226','860','27431')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38348','861','27432')
+values ('40227','861','27432')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38349','868','27442')
+values ('40228','868','27442')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38350','868','27443')
+values ('40229','868','27443')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38351','868','27444')
+values ('40230','868','27444')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38352','870','27445')
+values ('40231','870','27445')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38353','871','27446')
+values ('40232','871','27446')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38354','871','27447')
+values ('40233','871','27447')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38355','872','27448')
+values ('40234','872','27448')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38356','873','27449')
+values ('40235','873','27449')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38357','1048','28208')
+values ('40236','1048','28208')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38358','1049','28215')
+values ('40237','1049','28215')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38359','1050','28216')
+values ('40238','1050','28216')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38360','1051','28217')
+values ('40239','1051','28217')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38361','1051','28218')
+values ('40240','1051','28218')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38362','1052','28220')
+values ('40241','1052','28220')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38363','1052','28221')
+values ('40242','1052','28221')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38364','1052','28222')
+values ('40243','1052','28222')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38365','1057','28247')
+values ('40244','1057','28247')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38366','878','27477')
+values ('40245','878','27477')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38367','877','27478')
+values ('40246','877','27478')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38368','880','27479')
+values ('40247','880','27479')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38369','881','27480')
+values ('40248','881','27480')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38370','882','27481')
+values ('40249','882','27481')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38371','882','27482')
+values ('40250','882','27482')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38372','882','27483')
+values ('40251','882','27483')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38373','882','27484')
+values ('40252','882','27484')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38374','879','27485')
+values ('40253','879','27485')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38375','891','27507')
+values ('40254','891','27507')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38376','891','27508')
+values ('40255','891','27508')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38377','891','27509')
+values ('40256','891','27509')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38378','891','27510')
+values ('40257','891','27510')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38379','886','27511')
+values ('40258','886','27511')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38380','887','27516')
+values ('40259','887','27516')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38381','888','27517')
+values ('40260','888','27517')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38382','890','27518')
+values ('40261','890','27518')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38383','889','27519')
+values ('40262','889','27519')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38384','900','27543')
+values ('40263','900','27543')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38385','900','27544')
+values ('40264','900','27544')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38386','900','27545')
+values ('40265','900','27545')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38387','900','27546')
+values ('40266','900','27546')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38388','895','27547')
+values ('40267','895','27547')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38389','896','27552')
+values ('40268','896','27552')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38390','897','27553')
+values ('40269','897','27553')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38391','899','27554')
+values ('40270','899','27554')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38392','898','27555')
+values ('40271','898','27555')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38393','909','27579')
+values ('40272','909','27579')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38394','909','27580')
+values ('40273','909','27580')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38395','909','27581')
+values ('40274','909','27581')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38396','909','27582')
+values ('40275','909','27582')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38397','909','27583')
+values ('40276','909','27583')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38398','906','27584')
+values ('40277','906','27584')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38399','906','27585')
+values ('40278','906','27585')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38400','904','27586')
+values ('40279','904','27586')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38401','905','27590')
+values ('40280','905','27590')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38402','905','27591')
+values ('40281','905','27591')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38403','905','27592')
+values ('40282','905','27592')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38404','907','27593')
+values ('40283','907','27593')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38405','908','27594')
+values ('40284','908','27594')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38406','908','27595')
+values ('40285','908','27595')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38407','920','27670')
+values ('40286','920','27670')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38408','919','27671')
+values ('40287','919','27671')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38409','921','27672')
+values ('40288','921','27672')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38410','922','27673')
+values ('40289','922','27673')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38411','923','27674')
+values ('40290','923','27674')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38412','924','27675')
+values ('40291','924','27675')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38413','924','27676')
+values ('40292','924','27676')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38414','924','27677')
+values ('40293','924','27677')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38415','924','27678')
+values ('40294','924','27678')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38416','924','27679')
+values ('40295','924','27679')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38417','1036','28141')
+values ('40296','1036','28141')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38418','1036','28142')
+values ('40297','1036','28142')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38419','1031','28143')
+values ('40298','1031','28143')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38420','1033','28150')
+values ('40299','1033','28150')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38421','1032','28151')
+values ('40300','1032','28151')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38422','1032','28152')
+values ('40301','1032','28152')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38423','1032','28153')
+values ('40302','1032','28153')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38424','1034','28154')
+values ('40303','1034','28154')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38425','1035','28155')
+values ('40304','1035','28155')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38426','1033','28156')
+values ('40305','1033','28156')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38427','1036','28157')
+values ('40306','1036','28157')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38428','1036','28158')
+values ('40307','1036','28158')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38429','941','27748')
+values ('40308','941','27748')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38430','941','27749')
+values ('40309','941','27749')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38431','941','27750')
+values ('40310','941','27750')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38432','939','27751')
+values ('40311','939','27751')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38433','938','27752')
+values ('40312','938','27752')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38434','937','27753')
+values ('40313','937','27753')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38435','941','27754')
+values ('40314','941','27754')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38436','940','27755')
+values ('40315','940','27755')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38437','948','27777')
+values ('40316','948','27777')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38438','948','27778')
+values ('40317','948','27778')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38439','945','27783')
+values ('40318','945','27783')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38440','945','27784')
+values ('40319','945','27784')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38441','948','27785')
+values ('40320','948','27785')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38442','946','27786')
+values ('40321','946','27786')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38443','947','27787')
+values ('40322','947','27787')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38444','957','27811')
+values ('40323','957','27811')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38445','957','27812')
+values ('40324','957','27812')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38446','957','27813')
+values ('40325','957','27813')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38447','951','27814')
+values ('40326','951','27814')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38448','953','27819')
+values ('40327','953','27819')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38449','954','27821')
+values ('40328','954','27821')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38450','956','27822')
+values ('40329','956','27822')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38451','955','27823')
+values ('40330','955','27823')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38452','952','28613')
+values ('40331','952','28613')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38453','1044','28200')
+values ('40332','1044','28200')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38454','1044','28201')
+values ('40333','1044','28201')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38455','1045','28202')
+values ('40334','1045','28202')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38456','1045','28203')
+values ('40335','1045','28203')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38457','1047','28204')
+values ('40336','1047','28204')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38458','1047','28205')
+values ('40337','1047','28205')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38459','1046','28206')
+values ('40338','1046','28206')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38460','976','27893')
+values ('40339','976','27893')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38461','976','27894')
+values ('40340','976','27894')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38462','976','27895')
+values ('40341','976','27895')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38463','976','27896')
+values ('40342','976','27896')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38464','974','27897')
+values ('40343','974','27897')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38465','973','27898')
+values ('40344','973','27898')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38466','973','27899')
+values ('40345','973','27899')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38467','973','27900')
+values ('40346','973','27900')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38468','972','27904')
+values ('40347','972','27904')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38469','974','27905')
+values ('40348','974','27905')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38470','975','27906')
+values ('40349','975','27906')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38471','975','27907')
+values ('40350','975','27907')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38472','975','27908')
+values ('40351','975','27908')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38473','985','27930')
+values ('40352','985','27930')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38474','985','27931')
+values ('40353','985','27931')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38475','985','27932')
+values ('40354','985','27932')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38476','981','27933')
+values ('40355','981','27933')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38477','981','27934')
+values ('40356','981','27934')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38478','981','27935')
+values ('40357','981','27935')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38479','980','27936')
+values ('40358','980','27936')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38480','982','27940')
+values ('40359','982','27940')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38481','982','27941')
+values ('40360','982','27941')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38482','984','27942')
+values ('40361','984','27942')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38483','983','27943')
+values ('40362','983','27943')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38484','991','27967')
+values ('40363','991','27967')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38485','991','27968')
+values ('40364','991','27968')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38486','991','27969')
+values ('40365','991','27969')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38487','991','27970')
+values ('40366','991','27970')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38488','991','27971')
+values ('40367','991','27971')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38489','990','27972')
+values ('40368','990','27972')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38490','990','27973')
+values ('40369','990','27973')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38491','990','27974')
+values ('40370','990','27974')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38492','989','27975')
+values ('40371','989','27975')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38493','997','27997')
+values ('40372','997','27997')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38494','997','27998')
+values ('40373','997','27998')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38495','997','27999')
+values ('40374','997','27999')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38496','997','28000')
+values ('40375','997','28000')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38497','995','28003')
+values ('40376','995','28003')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38498','996','28004')
+values ('40377','996','28004')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38499','1003','28026')
+values ('40378','1003','28026')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38500','1003','28027')
+values ('40379','1003','28027')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38501','1002','28028')
+values ('40380','1002','28028')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38502','1002','28029')
+values ('40381','1002','28029')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38503','1002','28030')
+values ('40382','1002','28030')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38504','1001','28031')
+values ('40383','1001','28031')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38505','1120','28634')
+values ('40384','1120','28634')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38506','1120','28635')
+values ('40385','1120','28635')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38507','1120','28636')
+values ('40386','1120','28636')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38508','1120','28637')
+values ('40387','1120','28637')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38509','1120','28638')
+values ('40388','1120','28638')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38510','1119','28639')
+values ('40389','1119','28639')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38511','1114','28640')
+values ('40390','1114','28640')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38512','1117','28641')
+values ('40391','1117','28641')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38513','1117','28642')
+values ('40392','1117','28642')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38514','1116','28643')
+values ('40393','1116','28643')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38515','1118','28644')
+values ('40394','1118','28644')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38516','1118','28645')
+values ('40395','1118','28645')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38517','1118','28646')
+values ('40396','1118','28646')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38518','1118','28647')
+values ('40397','1118','28647')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38519','1121','28648')
+values ('40398','1121','28648')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38520','1121','28649')
+values ('40399','1121','28649')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38521','1121','28650')
+values ('40400','1121','28650')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38522','1115','28651')
+values ('40401','1115','28651')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38523','1115','28652')
+values ('40402','1115','28652')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38524','1115','28653')
+values ('40403','1115','28653')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38525','1070','28341')
+values ('40404','1070','28341')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38526','1073','28342')
+values ('40405','1073','28342')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38527','1073','28343')
+values ('40406','1073','28343')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38528','1073','28344')
+values ('40407','1073','28344')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38529','1073','28345')
+values ('40408','1073','28345')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38530','1076','28354')
+values ('40409','1076','28354')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38531','1076','28355')
+values ('40410','1076','28355')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38532','1076','28356')
+values ('40411','1076','28356')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38533','1076','28357')
+values ('40412','1076','28357')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38534','1075','28358')
+values ('40413','1075','28358')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38535','1072','28359')
+values ('40414','1072','28359')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38536','1072','28360')
+values ('40415','1072','28360')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38537','1074','28361')
+values ('40416','1074','28361')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38538','1074','28362')
+values ('40417','1074','28362')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38539','1074','28363')
+values ('40418','1074','28363')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38540','1074','28364')
+values ('40419','1074','28364')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38541','1074','28365')
+values ('40420','1074','28365')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38542','1074','28366')
+values ('40421','1074','28366')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38543','1074','28367')
+values ('40422','1074','28367')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38544','1077','28368')
+values ('40423','1077','28368')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38545','1077','28369')
+values ('40424','1077','28369')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38546','1077','28370')
+values ('40425','1077','28370')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38547','1077','28371')
+values ('40426','1077','28371')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38548','1077','28372')
+values ('40427','1077','28372')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38549','1077','28373')
+values ('40428','1077','28373')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38550','1071','28374')
+values ('40429','1071','28374')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38551','1071','28375')
+values ('40430','1071','28375')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38552','1071','28376')
+values ('40431','1071','28376')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38553','1085','28388')
+values ('40432','1085','28388')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38554','1082','28390')
+values ('40433','1082','28390')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38555','1082','28391')
+values ('40434','1082','28391')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38556','1079','28654')
+values ('40435','1079','28654')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38557','1085','28404')
+values ('40436','1085','28404')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38558','1085','28405')
+values ('40437','1085','28405')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38559','1085','28406')
+values ('40438','1085','28406')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38560','1085','28407')
+values ('40439','1085','28407')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38561','1085','28408')
+values ('40440','1085','28408')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38562','1085','28409')
+values ('40441','1085','28409')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38563','1085','28410')
+values ('40442','1085','28410')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38564','1084','28411')
+values ('40443','1084','28411')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38565','1081','28412')
+values ('40444','1081','28412')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38566','1080','28413')
+values ('40445','1080','28413')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38567','1080','28414')
+values ('40446','1080','28414')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38568','1080','28415')
+values ('40447','1080','28415')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38569','1080','28416')
+values ('40448','1080','28416')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38570','1083','28417')
+values ('40449','1083','28417')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38571','1083','28418')
+values ('40450','1083','28418')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38572','1083','28419')
+values ('40451','1083','28419')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38573','1083','28420')
+values ('40452','1083','28420')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38574','1083','28421')
+values ('40453','1083','28421')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38575','1083','28422')
+values ('40454','1083','28422')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38576','1086','28423')
+values ('40455','1086','28423')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38577','1086','28424')
+values ('40456','1086','28424')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38578','1086','28425')
+values ('40457','1086','28425')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38579','1088','28437')
+values ('40458','1088','28437')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38580','1090','28438')
+values ('40459','1090','28438')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38581','1090','28439')
+values ('40460','1090','28439')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38582','1093','28446')
+values ('40461','1093','28446')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38583','1093','28447')
+values ('40462','1093','28447')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38584','1093','28448')
+values ('40463','1093','28448')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38585','1092','28449')
+values ('40464','1092','28449')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38586','1089','28450')
+values ('40465','1089','28450')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38587','1089','28451')
+values ('40466','1089','28451')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38588','1091','28452')
+values ('40467','1091','28452')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38589','1091','28453')
+values ('40468','1091','28453')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38590','1095','28465')
+values ('40469','1095','28465')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38591','1097','28466')
+values ('40470','1097','28466')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38592','1097','28467')
+values ('40471','1097','28467')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38593','1100','28474')
+values ('40472','1100','28474')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38594','1100','28475')
+values ('40473','1100','28475')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38595','1100','28476')
+values ('40474','1100','28476')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38596','1099','28477')
+values ('40475','1099','28477')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38597','1096','28478')
+values ('40476','1096','28478')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38598','1096','28479')
+values ('40477','1096','28479')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38599','1098','28480')
+values ('40478','1098','28480')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38600','1098','28481')
+values ('40479','1098','28481')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38601','1104','28495')
+values ('40480','1104','28495')
 /
 
 INSERT INTO items_applications (itemappid,applicationid,itemid)
-values ('38602','1103','28496')
+values ('40481','1103','28496')
 /
 
 INSERT INTO mappings (mappingid,valuemapid,value,newvalue)
@@ -44888,2355 +44888,2355 @@ values ('43','11','28723')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10260','28501','1','10','')
+values ('10848','28501','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10261','28514','1','10','')
+values ('10849','28514','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10262','28517','1','10','')
+values ('10850','28517','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10263','28519','1','10','')
+values ('10851','28519','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10264','28520','1','1','0.001')
+values ('10852','28520','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10265','28521','1','10','')
+values ('10853','28521','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10266','28522','1','10','')
+values ('10854','28522','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10267','28523','1','10','')
+values ('10855','28523','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10268','28524','1','10','')
+values ('10856','28524','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10269','28525','1','1','0.001')
+values ('10857','28525','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10270','28526','1','10','')
+values ('10858','28526','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10271','28527','1','10','')
+values ('10859','28527','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10272','28528','1','10','')
+values ('10860','28528','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10273','28529','1','10','')
+values ('10861','28529','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10274','28530','1','1','0.001')
+values ('10862','28530','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10275','28531','1','10','')
+values ('10863','28531','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10276','26876','1','1','0.001')
+values ('10864','26876','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10277','26881','1','1','100')
+values ('10865','26881','1','1','100')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10278','26884','1','10','')
+values ('10866','26884','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10279','26885','1','1','0.001')
+values ('10867','26885','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10280','26886','1','1','0.001')
+values ('10868','26886','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10281','26887','1','10','')
+values ('10869','26887','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10282','26888','1','1','0.001')
+values ('10870','26888','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10283','26889','1','10','')
+values ('10871','26889','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10284','26890','1','1','0.001')
+values ('10872','26890','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10285','26894','1','1','0.001')
+values ('10873','26894','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10286','26895','1','10','')
+values ('10874','26895','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10287','26896','1','10','')
+values ('10875','26896','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10288','26897','1','1','0.001')
+values ('10876','26897','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10289','26905','1','1','0.001')
+values ('10877','26905','1','1','0.001')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10290','26906','1','10','')
+values ('10878','26906','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10291','28577','1','12','$.queue')
+values ('10879','28577','1','12','$.queue')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10292','28578','1','12','$.queue')
+values ('10880','28578','1','12','$.queue')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10293','28579','1','12','$.data.process[''vmware collector''].busy.avg')
+values ('10881','28579','1','12','$.data.process[''vmware collector''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10294','28580','1','12','$.data.wcache.values.uint')
+values ('10882','28580','1','12','$.data.wcache.values.uint')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10295','28580','2','10','')
+values ('10883','28580','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10296','28581','1','12','$.data.wcache.values.text')
+values ('10884','28581','1','12','$.data.wcache.values.text')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10297','28581','2','10','')
+values ('10885','28581','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10298','28582','1','12','$.data.wcache.values.str')
+values ('10886','28582','1','12','$.data.wcache.values.str')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10299','28582','2','10','')
+values ('10887','28582','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10300','28583','1','12','$.data.wcache.values[''not supported'']')
+values ('10888','28583','1','12','$.data.wcache.values[''not supported'']')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10301','28583','2','10','')
+values ('10889','28583','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10302','28584','1','12','$.data.wcache.values.log')
+values ('10890','28584','1','12','$.data.wcache.values.log')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10303','28584','2','10','')
+values ('10891','28584','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10304','28585','1','12','$.data.wcache.values.float')
+values ('10892','28585','1','12','$.data.wcache.values.float')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10305','28585','2','10','')
+values ('10893','28585','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10306','28586','1','12','$.data.wcache.values.all')
+values ('10894','28586','1','12','$.data.wcache.values.all')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10307','28586','2','10','')
+values ('10895','28586','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10308','28587','1','12','$.data.wcache.index.pused')
+values ('10896','28587','1','12','$.data.wcache.index.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10309','28588','1','12','$.data.wcache.history.pused')
+values ('10897','28588','1','12','$.data.wcache.history.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10310','28589','1','12','$.data.vmware.pused')
+values ('10898','28589','1','12','$.data.vmware.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10311','28590','1','12','$.data.rcache.pused')
+values ('10899','28590','1','12','$.data.rcache.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10312','28591','1','12','$.data.process[''configuration syncer''].busy.avg')
+values ('10900','28591','1','12','$.data.process[''configuration syncer''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10313','28592','1','12','$.data.process[''data sender''].busy.avg')
+values ('10901','28592','1','12','$.data.process[''data sender''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10314','28593','1','12','$.data.process.trapper.busy.avg')
+values ('10902','28593','1','12','$.data.process.trapper.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10315','28594','1','12','$.data.process[''task manager''].busy.avg')
+values ('10903','28594','1','12','$.data.process[''task manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10316','28595','1','12','$.data.process[''snmp trapper''].busy.avg')
+values ('10904','28595','1','12','$.data.process[''snmp trapper''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10317','28596','1','12','$.data.process[''self-monitoring''].busy.avg')
+values ('10905','28596','1','12','$.data.process[''self-monitoring''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10318','28597','1','12','$.data.process.poller.busy.avg')
+values ('10906','28597','1','12','$.data.process.poller.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10319','28598','1','12','$.data.process[''java poller''].busy.avg')
+values ('10907','28598','1','12','$.data.process[''java poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10320','28599','1','12','$.data.process[''ipmi poller''].busy.avg')
+values ('10908','28599','1','12','$.data.process[''ipmi poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10321','28600','1','12','$.data.process[''ipmi manager''].busy.avg')
+values ('10909','28600','1','12','$.data.process[''ipmi manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10322','28601','1','12','$.data.process[''icmp pinger''].busy.avg')
+values ('10910','28601','1','12','$.data.process[''icmp pinger''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10323','28602','1','12','$.data.process[''http poller''].busy.avg')
+values ('10911','28602','1','12','$.data.process[''http poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10324','28603','1','12','$.data.process.housekeeper.busy.avg')
+values ('10912','28603','1','12','$.data.process.housekeeper.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10325','28604','1','12','$.data.process[''history syncer''].busy.avg')
+values ('10913','28604','1','12','$.data.process[''history syncer''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10326','28605','1','12','$.data.process[''heartbeat sender''].busy.avg')
+values ('10914','28605','1','12','$.data.process[''heartbeat sender''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10327','28606','1','12','$.data.process.discoverer.busy.avg')
+values ('10915','28606','1','12','$.data.process.discoverer.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10328','28607','1','12','$.data.process[''unreachable poller''].busy.avg')
+values ('10916','28607','1','12','$.data.process[''unreachable poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10329','28534','1','12','$.queue')
+values ('10917','28534','1','12','$.queue')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10330','28535','1','12','$.queue')
+values ('10918','28535','1','12','$.queue')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10331','28536','1','12','$.data.wcache.index.pused')
+values ('10919','28536','1','12','$.data.wcache.index.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10332','28537','1','12','$.data.rcache.pused')
+values ('10920','28537','1','12','$.data.rcache.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10333','28538','1','12','$.data.vcache.buffer.pused')
+values ('10921','28538','1','12','$.data.vcache.buffer.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10334','28539','1','12','$.data.vcache.cache.hits')
+values ('10922','28539','1','12','$.data.vcache.cache.hits')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10335','28539','2','10','')
+values ('10923','28539','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10336','28540','1','12','$.data.vcache.cache.misses')
+values ('10924','28540','1','12','$.data.vcache.cache.misses')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10337','28540','2','10','')
+values ('10925','28540','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10338','28541','1','12','$.data.vcache.cache.mode')
+values ('10926','28541','1','12','$.data.vcache.cache.mode')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10339','28542','1','12','$.data.vmware.pused')
+values ('10927','28542','1','12','$.data.vmware.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10340','28543','1','12','$.data.wcache.history.pused')
+values ('10928','28543','1','12','$.data.wcache.history.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10341','28544','1','12','$.data.wcache.values.all')
+values ('10929','28544','1','12','$.data.wcache.values.all')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10342','28544','2','10','')
+values ('10930','28544','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10343','28545','1','12','$.data.wcache.trend.pused')
+values ('10931','28545','1','12','$.data.wcache.trend.pused')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10344','28546','1','12','$.data.process[''unreachable poller''].busy.avg')
+values ('10932','28546','1','12','$.data.process[''unreachable poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10345','28547','1','12','$.data.wcache.values.float')
+values ('10933','28547','1','12','$.data.wcache.values.float')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10346','28547','2','10','')
+values ('10934','28547','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10347','28548','1','12','$.data.wcache.values.log')
+values ('10935','28548','1','12','$.data.wcache.values.log')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10348','28548','2','10','')
+values ('10936','28548','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10349','28549','1','12','$.data.wcache.values[''not supported'']')
+values ('10937','28549','1','12','$.data.wcache.values[''not supported'']')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10350','28549','2','10','')
+values ('10938','28549','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10351','28550','1','12','$.data.wcache.values.str')
+values ('10939','28550','1','12','$.data.wcache.values.str')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10352','28550','2','10','')
+values ('10940','28550','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10353','28551','1','12','$.data.wcache.values.text')
+values ('10941','28551','1','12','$.data.wcache.values.text')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10354','28551','2','10','')
+values ('10942','28551','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10355','28552','1','12','$.data.wcache.values.uint')
+values ('10943','28552','1','12','$.data.wcache.values.uint')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10356','28552','2','10','')
+values ('10944','28552','2','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10357','28553','1','12','$.data.process[''vmware collector''].busy.avg')
+values ('10945','28553','1','12','$.data.process[''vmware collector''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10358','28554','1','12','$.data.preprocessing_queue')
+values ('10946','28554','1','12','$.data.preprocessing_queue')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10359','28555','1','12','$.data.process.alerter.busy.avg')
+values ('10947','28555','1','12','$.data.process.alerter.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10360','28556','1','12','$.data.process[''ipmi manager''].busy.avg')
+values ('10948','28556','1','12','$.data.process[''ipmi manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10361','28557','1','12','$.data.process[''alert manager''].busy.avg')
+values ('10949','28557','1','12','$.data.process[''alert manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10362','28558','1','12','$.data.process[''configuration syncer''].busy.avg')
+values ('10950','28558','1','12','$.data.process[''configuration syncer''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10363','28559','1','12','$.data.process.discoverer.busy.avg')
+values ('10951','28559','1','12','$.data.process.discoverer.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10364','28560','1','12','$.data.process.escalator.busy.avg')
+values ('10952','28560','1','12','$.data.process.escalator.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10365','28561','1','12','$.data.process[''history syncer''].busy.avg')
+values ('10953','28561','1','12','$.data.process[''history syncer''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10366','28562','1','12','$.data.process.housekeeper.busy.avg')
+values ('10954','28562','1','12','$.data.process.housekeeper.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10367','28563','1','12','$.data.process[''http poller''].busy.avg')
+values ('10955','28563','1','12','$.data.process[''http poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10368','28564','1','12','$.data.process[''icmp pinger''].busy.avg')
+values ('10956','28564','1','12','$.data.process[''icmp pinger''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10369','28565','1','12','$.data.process[''ipmi poller''].busy.avg')
+values ('10957','28565','1','12','$.data.process[''ipmi poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10370','28566','1','12','$.data.process.timer.busy.avg')
+values ('10958','28566','1','12','$.data.process.timer.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10371','28567','1','12','$.data.process[''java poller''].busy.avg')
+values ('10959','28567','1','12','$.data.process[''java poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10372','28568','1','12','$.data.process.poller.busy.avg')
+values ('10960','28568','1','12','$.data.process.poller.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10373','28569','1','12','$.data.process[''preprocessing manager''].busy.avg')
+values ('10961','28569','1','12','$.data.process[''preprocessing manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10374','28570','1','12','$.data.process[''preprocessing worker''].busy.avg')
+values ('10962','28570','1','12','$.data.process[''preprocessing worker''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10375','28571','1','12','$.data.process[''proxy poller''].busy.avg')
+values ('10963','28571','1','12','$.data.process[''proxy poller''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10376','28572','1','12','$.data.process[''self-monitoring''].busy.avg')
+values ('10964','28572','1','12','$.data.process[''self-monitoring''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10377','28573','1','12','$.data.process[''snmp trapper''].busy.avg')
+values ('10965','28573','1','12','$.data.process[''snmp trapper''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10378','28574','1','12','$.data.process[''task manager''].busy.avg')
+values ('10966','28574','1','12','$.data.process[''task manager''].busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10379','28575','1','12','$.data.process.trapper.busy.avg')
+values ('10967','28575','1','12','$.data.process.trapper.busy.avg')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10380','10067','1','10','')
+values ('10968','10067','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10381','10068','1','10','')
+values ('10969','10068','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10382','10069','1','10','')
+values ('10970','10069','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10383','10070','1','10','')
+values ('10971','10070','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10384','10071','1','10','')
+values ('10972','10071','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10385','10072','1','10','')
+values ('10973','10072','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10386','23340','1','10','')
+values ('10974','23340','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10387','10061','1','10','')
+values ('10975','10061','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10388','10062','1','10','')
+values ('10976','10062','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10389','10063','1','10','')
+values ('10977','10063','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10390','10064','1','10','')
+values ('10978','10064','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10391','10065','1','10','')
+values ('10979','10065','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10392','10066','1','10','')
+values ('10980','10066','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10393','22187','1','10','')
+values ('10981','22187','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10394','22196','1','10','')
+values ('10982','22196','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10395','22199','1','10','')
+values ('10983','22199','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10396','10073','1','10','')
+values ('10984','10073','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10397','10074','1','10','')
+values ('10985','10074','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10398','10075','1','10','')
+values ('10986','10075','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10399','10076','1','10','')
+values ('10987','10076','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10400','10077','1','10','')
+values ('10988','10077','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10401','10078','1','10','')
+values ('10989','10078','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10402','23277','1','10','')
+values ('10990','23277','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10403','23625','1','10','')
+values ('10991','23625','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10404','23628','1','10','')
+values ('10992','23628','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10405','26911','1','10','')
+values ('10993','26911','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10406','26912','1','10','')
+values ('10994','26912','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10407','26913','1','10','')
+values ('10995','26913','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10408','26917','1','10','')
+values ('10996','26917','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10409','26918','1','10','')
+values ('10997','26918','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10410','26919','1','10','')
+values ('10998','26919','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10411','26920','1','10','')
+values ('10999','26920','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10412','26921','1','10','')
+values ('11000','26921','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10413','26922','1','10','')
+values ('11001','26922','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10414','26923','1','10','')
+values ('11002','26923','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10415','22920','1','10','')
+values ('11003','22920','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10416','22924','1','10','')
+values ('11004','22924','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10417','22945','1','10','')
+values ('11005','22945','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10418','22945','2','1','8')
+values ('11006','22945','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10419','22946','1','10','')
+values ('11007','22946','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10420','22946','2','1','8')
+values ('11008','22946','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10421','22880','1','10','')
+values ('11009','22880','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10422','22884','1','10','')
+values ('11010','22884','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10423','23073','1','10','')
+values ('11011','23073','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10424','23073','2','1','8')
+values ('11012','23073','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10425','23074','1','10','')
+values ('11013','23074','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10426','23074','2','1','8')
+values ('11014','23074','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10427','22985','1','10','')
+values ('11015','22985','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10428','22985','2','1','8')
+values ('11016','22985','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10429','22986','1','10','')
+values ('11017','22986','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10430','22986','2','1','8')
+values ('11018','22986','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10431','22680','1','10','')
+values ('11019','22680','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10432','22683','1','10','')
+values ('11020','22683','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10433','23294','1','10','')
+values ('11021','23294','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10434','23298','1','10','')
+values ('11022','23298','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10435','22446','1','10','')
+values ('11023','22446','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10436','22446','2','1','8')
+values ('11024','22446','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10437','22448','1','10','')
+values ('11025','22448','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10438','22448','2','1','8')
+values ('11026','22448','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10439','23280','1','10','')
+values ('11027','23280','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10440','23280','2','1','8')
+values ('11028','23280','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10441','23281','1','10','')
+values ('11029','23281','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10442','23281','2','1','8')
+values ('11030','23281','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10443','23077','1','10','')
+values ('11031','23077','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10444','23077','2','1','8')
+values ('11032','23077','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10445','23078','1','10','')
+values ('11033','23078','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10446','23078','2','1','8')
+values ('11034','23078','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10447','22840','1','10','')
+values ('11035','22840','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10448','22844','1','10','')
+values ('11036','22844','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10449','23075','1','10','')
+values ('11037','23075','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10450','23075','2','1','8')
+values ('11038','23075','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10451','23076','1','10','')
+values ('11039','23076','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10452','23076','2','1','8')
+values ('11040','23076','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10453','23000','1','10','')
+values ('11041','23000','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10454','23004','1','10','')
+values ('11042','23004','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10455','23025','1','10','')
+values ('11043','23025','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10456','23025','2','1','8')
+values ('11044','23025','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10457','23026','1','10','')
+values ('11045','23026','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10458','23026','2','1','8')
+values ('11046','23026','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10459','23169','1','10','')
+values ('11047','23169','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10460','23169','2','1','8')
+values ('11048','23169','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10461','23170','1','10','')
+values ('11049','23170','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10462','23170','2','1','8')
+values ('11050','23170','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10463','28252','1','1','0.01')
+values ('11051','28252','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10464','28253','1','1','0.01')
+values ('11052','28253','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10465','28254','1','1','0.01')
+values ('11053','28254','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10466','28435','1','1','0.01')
+values ('11054','28435','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10467','28255','1','1','0.01')
+values ('11055','28255','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10468','28256','1','1','0.01')
+values ('11056','28256','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10469','28257','1','1','0.01')
+values ('11057','28257','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10470','28258','1','1','0.01')
+values ('11058','28258','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10471','28259','1','1','0.01')
+values ('11059','28259','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10472','28260','1','1','0.01')
+values ('11060','28260','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10473','28261','1','1','0.01')
+values ('11061','28261','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10474','28262','1','1','0.01')
+values ('11062','28262','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10475','28263','1','1','0.01')
+values ('11063','28263','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10476','28264','1','1','0.01')
+values ('11064','28264','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10477','28265','1','1','0.01')
+values ('11065','28265','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10478','28266','1','1','0.01')
+values ('11066','28266','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10479','28267','1','1','0.01')
+values ('11067','28267','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10480','28268','1','1','0.01')
+values ('11068','28268','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10481','28269','1','1','0.01')
+values ('11069','28269','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10482','28270','1','1','0.01')
+values ('11070','28270','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10483','28271','1','1','0.01')
+values ('11071','28271','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10484','28272','1','1','0.01')
+values ('11072','28272','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10485','28273','1','1','0.01')
+values ('11073','28273','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10486','28274','1','1','0.01')
+values ('11074','28274','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10487','28275','1','1','0.01')
+values ('11075','28275','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10488','28276','1','1','0.01')
+values ('11076','28276','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10489','28277','1','1','0.01')
+values ('11077','28277','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10490','28278','1','1','0.01')
+values ('11078','28278','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10491','28279','1','1','0.01')
+values ('11079','28279','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10492','28291','1','1','0.01')
+values ('11080','28291','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10493','28339','1','1','0.01')
+values ('11081','28339','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10494','28386','1','1','0.01')
+values ('11082','28386','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10495','28463','1','1','0.01')
+values ('11083','28463','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10496','28491','1','1','0.01')
+values ('11084','28491','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10497','28623','1','1','0.01')
+values ('11085','28623','1','1','0.01')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10498','28709','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11086','28709','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10499','28710','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11087','28710','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10500','28715','1','1','{#ALLOC_UNITS}')
+values ('11088','28715','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10501','28716','1','1','{#ALLOC_UNITS}')
+values ('11089','28716','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10502','28718','1','1','{#ALLOC_UNITS}')
+values ('11090','28718','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10503','28719','1','1','{#ALLOC_UNITS}')
+values ('11091','28719','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10504','28721','1','1','{#ALLOC_UNITS}')
+values ('11092','28721','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10505','28722','1','1','{#ALLOC_UNITS}')
+values ('11093','28722','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10506','28724','1','1','{#ALLOC_UNITS}')
+values ('11094','28724','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10507','28725','1','1','{#ALLOC_UNITS}')
+values ('11095','28725','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10508','28655','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11096','28655','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10509','28656','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11097','28656','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10510','28657','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11098','28657','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10511','28658','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11099','28658','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10512','28659','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11100','28659','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10513','28660','1','12','$..[''{#CPU.UTIL}''].avg()')
+values ('11101','28660','1','12','$..[''{#CPU.UTIL}''].avg()')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10514','28673','1','1','{#ALLOC_UNITS}')
+values ('11102','28673','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10515','28674','1','1','{#ALLOC_UNITS}')
+values ('11103','28674','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10516','28676','1','1','{#ALLOC_UNITS}')
+values ('11104','28676','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10517','28677','1','1','{#ALLOC_UNITS}')
+values ('11105','28677','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10518','28679','1','1','{#ALLOC_UNITS}')
+values ('11106','28679','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10519','28680','1','1','{#ALLOC_UNITS}')
+values ('11107','28680','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10520','28682','1','1','{#ALLOC_UNITS}')
+values ('11108','28682','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10521','28683','1','1','{#ALLOC_UNITS}')
+values ('11109','28683','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10522','28685','1','1','{#ALLOC_UNITS}')
+values ('11110','28685','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10523','28686','1','1','{#ALLOC_UNITS}')
+values ('11111','28686','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10524','28688','1','1','{#ALLOC_UNITS}')
+values ('11112','28688','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10525','28689','1','1','{#ALLOC_UNITS}')
+values ('11113','28689','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10526','28691','1','1','{#ALLOC_UNITS}')
+values ('11114','28691','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10527','28692','1','1','{#ALLOC_UNITS}')
+values ('11115','28692','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10528','28694','1','1','{#ALLOC_UNITS}')
+values ('11116','28694','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10529','28695','1','1','{#ALLOC_UNITS}')
+values ('11117','28695','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10530','28697','1','1','{#ALLOC_UNITS}')
+values ('11118','28697','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10531','28698','1','1','{#ALLOC_UNITS}')
+values ('11119','28698','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10532','28700','1','1','{#ALLOC_UNITS}')
+values ('11120','28700','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10533','28701','1','1','{#ALLOC_UNITS}')
+values ('11121','28701','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10534','28703','1','1','{#ALLOC_UNITS}')
+values ('11122','28703','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10535','28704','1','1','{#ALLOC_UNITS}')
+values ('11123','28704','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10536','28706','1','1','{#ALLOC_UNITS}')
+values ('11124','28706','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10537','28707','1','1','{#ALLOC_UNITS}')
+values ('11125','28707','1','1','{#ALLOC_UNITS}')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10538','27089','1','10','')
+values ('11126','27089','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10539','27091','1','1','1000000')
+values ('11127','27091','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10540','27092','1','10','')
+values ('11128','27092','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10541','27093','1','10','')
+values ('11129','27093','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10542','27094','1','10','')
+values ('11130','27094','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10543','27094','2','1','8')
+values ('11131','27094','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10544','27095','1','10','')
+values ('11132','27095','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10545','27095','2','1','8')
+values ('11133','27095','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10546','27096','1','10','')
+values ('11134','27096','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10547','27099','1','10','')
+values ('11135','27099','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10548','27101','1','1','1000000')
+values ('11136','27101','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10549','27102','1','10','')
+values ('11137','27102','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10550','27103','1','10','')
+values ('11138','27103','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10551','27104','1','10','')
+values ('11139','27104','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10552','27104','2','1','8')
+values ('11140','27104','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10553','27105','1','10','')
+values ('11141','27105','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10554','27105','2','1','8')
+values ('11142','27105','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10555','27106','1','10','')
+values ('11143','27106','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10556','27181','1','10','')
+values ('11144','27181','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10557','27182','1','10','')
+values ('11145','27182','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10558','27183','1','10','')
+values ('11146','27183','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10559','27183','2','1','8')
+values ('11147','27183','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10560','27184','1','10','')
+values ('11148','27184','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10561','27185','1','10','')
+values ('11149','27185','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10562','27186','1','10','')
+values ('11150','27186','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10563','27186','2','1','8')
+values ('11151','27186','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10564','27187','1','1','1000000')
+values ('11152','27187','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10565','27216','1','10','')
+values ('11153','27216','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10566','27217','1','10','')
+values ('11154','27217','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10567','27218','1','10','')
+values ('11155','27218','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10568','27218','2','1','8')
+values ('11156','27218','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10569','27219','1','10','')
+values ('11157','27219','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10570','27220','1','10','')
+values ('11158','27220','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10571','27221','1','10','')
+values ('11159','27221','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10572','27221','2','1','8')
+values ('11160','27221','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10573','27222','1','1','1000000')
+values ('11161','27222','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10574','27252','1','10','')
+values ('11162','27252','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10575','27253','1','10','')
+values ('11163','27253','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10576','27254','1','10','')
+values ('11164','27254','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10577','27254','2','1','8')
+values ('11165','27254','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10578','27255','1','10','')
+values ('11166','27255','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10579','27256','1','10','')
+values ('11167','27256','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10580','27257','1','10','')
+values ('11168','27257','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10581','27257','2','1','8')
+values ('11169','27257','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10582','27258','1','1','1000000')
+values ('11170','27258','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10583','27273','1','10','')
+values ('11171','27273','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10584','27274','1','10','')
+values ('11172','27274','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10585','27275','1','10','')
+values ('11173','27275','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10586','27275','2','1','8')
+values ('11174','27275','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10587','27276','1','10','')
+values ('11175','27276','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10588','27277','1','10','')
+values ('11176','27277','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10589','27278','1','10','')
+values ('11177','27278','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10590','27278','2','1','8')
+values ('11178','27278','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10591','27279','1','1','1000000')
+values ('11179','27279','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10592','27322','1','10','')
+values ('11180','27322','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10593','27323','1','10','')
+values ('11181','27323','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10594','27324','1','10','')
+values ('11182','27324','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10595','27324','2','1','8')
+values ('11183','27324','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10596','27325','1','10','')
+values ('11184','27325','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10597','27326','1','10','')
+values ('11185','27326','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10598','27327','1','10','')
+values ('11186','27327','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10599','27327','2','1','8')
+values ('11187','27327','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10600','27328','1','1','1000000')
+values ('11188','27328','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10601','27451','1','10','')
+values ('11189','27451','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10602','27452','1','10','')
+values ('11190','27452','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10603','27453','1','10','')
+values ('11191','27453','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10604','27453','2','1','8')
+values ('11192','27453','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10605','27454','1','10','')
+values ('11193','27454','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10606','27455','1','10','')
+values ('11194','27455','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10607','27456','1','10','')
+values ('11195','27456','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10608','27456','2','1','8')
+values ('11196','27456','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10609','27457','1','1','1000000')
+values ('11197','27457','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10610','27487','1','10','')
+values ('11198','27487','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10611','27488','1','10','')
+values ('11199','27488','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10612','27489','1','10','')
+values ('11200','27489','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10613','27489','2','1','8')
+values ('11201','27489','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10614','27490','1','10','')
+values ('11202','27490','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10615','27491','1','10','')
+values ('11203','27491','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10616','27492','1','10','')
+values ('11204','27492','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10617','27492','2','1','8')
+values ('11205','27492','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10618','27493','1','1','1000000')
+values ('11206','27493','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10619','27521','1','10','')
+values ('11207','27521','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10620','27522','1','10','')
+values ('11208','27522','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10621','27523','1','10','')
+values ('11209','27523','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10622','27523','2','1','8')
+values ('11210','27523','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10623','27524','1','10','')
+values ('11211','27524','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10624','27525','1','10','')
+values ('11212','27525','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10625','27526','1','10','')
+values ('11213','27526','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10626','27526','2','1','8')
+values ('11214','27526','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10627','27527','1','1','1000000')
+values ('11215','27527','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10628','27557','1','10','')
+values ('11216','27557','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10629','27558','1','10','')
+values ('11217','27558','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10630','27559','1','10','')
+values ('11218','27559','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10631','27559','2','1','8')
+values ('11219','27559','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10632','27560','1','10','')
+values ('11220','27560','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10633','27561','1','10','')
+values ('11221','27561','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10634','27562','1','10','')
+values ('11222','27562','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10635','27562','2','1','8')
+values ('11223','27562','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10636','27563','1','1','1000000')
+values ('11224','27563','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10637','27643','1','10','')
+values ('11225','27643','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10638','27644','1','10','')
+values ('11226','27644','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10639','27645','1','10','')
+values ('11227','27645','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10640','27645','2','1','8')
+values ('11228','27645','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10641','27646','1','10','')
+values ('11229','27646','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10642','27647','1','10','')
+values ('11230','27647','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10643','27648','1','10','')
+values ('11231','27648','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10644','27648','2','1','8')
+values ('11232','27648','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10645','27649','1','1','1000000')
+values ('11233','27649','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10646','27723','1','10','')
+values ('11234','27723','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10647','27724','1','10','')
+values ('11235','27724','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10648','27725','1','10','')
+values ('11236','27725','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10649','27725','2','1','8')
+values ('11237','27725','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10650','27726','1','10','')
+values ('11238','27726','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10651','27727','1','10','')
+values ('11239','27727','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10652','27728','1','10','')
+values ('11240','27728','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10653','27728','2','1','8')
+values ('11241','27728','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10654','27729','1','1','1000000')
+values ('11242','27729','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10655','27757','1','10','')
+values ('11243','27757','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10656','27758','1','10','')
+values ('11244','27758','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10657','27759','1','10','')
+values ('11245','27759','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10658','27759','2','1','8')
+values ('11246','27759','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10659','27760','1','10','')
+values ('11247','27760','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10660','27761','1','10','')
+values ('11248','27761','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10661','27762','1','10','')
+values ('11249','27762','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10662','27762','2','1','8')
+values ('11250','27762','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10663','27763','1','1','1000000')
+values ('11251','27763','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10664','27789','1','10','')
+values ('11252','27789','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10665','27790','1','10','')
+values ('11253','27790','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10666','27791','1','10','')
+values ('11254','27791','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10667','27791','2','1','8')
+values ('11255','27791','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10668','27792','1','10','')
+values ('11256','27792','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10669','27793','1','10','')
+values ('11257','27793','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10670','27794','1','10','')
+values ('11258','27794','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10671','27794','2','1','8')
+values ('11259','27794','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10672','27795','1','1','1000000')
+values ('11260','27795','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10673','27873','1','10','')
+values ('11261','27873','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10674','27874','1','10','')
+values ('11262','27874','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10675','27875','1','10','')
+values ('11263','27875','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10676','27875','2','1','8')
+values ('11264','27875','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10677','27876','1','10','')
+values ('11265','27876','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10678','27877','1','10','')
+values ('11266','27877','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10679','27878','1','10','')
+values ('11267','27878','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10680','27878','2','1','8')
+values ('11268','27878','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10681','27879','1','1','1000000')
+values ('11269','27879','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10682','27910','1','10','')
+values ('11270','27910','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10683','27911','1','10','')
+values ('11271','27911','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10684','27912','1','10','')
+values ('11272','27912','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10685','27912','2','1','8')
+values ('11273','27912','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10686','27913','1','10','')
+values ('11274','27913','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10687','27914','1','10','')
+values ('11275','27914','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10688','27915','1','10','')
+values ('11276','27915','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10689','27915','2','1','8')
+values ('11277','27915','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10690','27916','1','1','1000000')
+values ('11278','27916','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10691','27945','1','10','')
+values ('11279','27945','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10692','27946','1','10','')
+values ('11280','27946','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10693','27947','1','10','')
+values ('11281','27947','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10694','27947','2','1','8')
+values ('11282','27947','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10695','27948','1','10','')
+values ('11283','27948','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10696','27949','1','10','')
+values ('11284','27949','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10697','27950','1','10','')
+values ('11285','27950','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10698','27950','2','1','8')
+values ('11286','27950','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10699','27951','1','1','1000000')
+values ('11287','27951','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10700','28059','1','10','')
+values ('11288','28059','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10701','28060','1','10','')
+values ('11289','28060','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10702','28061','1','10','')
+values ('11290','28061','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10703','28061','2','1','8')
+values ('11291','28061','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10704','28062','1','10','')
+values ('11292','28062','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10705','28063','1','10','')
+values ('11293','28063','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10706','28064','1','10','')
+values ('11294','28064','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10707','28064','2','1','8')
+values ('11295','28064','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10708','28065','1','1','1000000')
+values ('11296','28065','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10709','28119','1','10','')
+values ('11297','28119','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10710','28120','1','10','')
+values ('11298','28120','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10711','28121','1','10','')
+values ('11299','28121','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10712','28121','2','1','8')
+values ('11300','28121','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10713','28122','1','10','')
+values ('11301','28122','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10714','28123','1','10','')
+values ('11302','28123','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10715','28124','1','10','')
+values ('11303','28124','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10716','28124','2','1','8')
+values ('11304','28124','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10717','28125','1','1','1000000')
+values ('11305','28125','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10718','28176','1','10','')
+values ('11306','28176','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10719','28177','1','10','')
+values ('11307','28177','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10720','28178','1','10','')
+values ('11308','28178','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10721','28178','2','1','8')
+values ('11309','28178','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10722','28179','1','10','')
+values ('11310','28179','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10723','28180','1','10','')
+values ('11311','28180','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10724','28181','1','10','')
+values ('11312','28181','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10725','28181','2','1','8')
+values ('11313','28181','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10726','28182','1','1','1000000')
+values ('11314','28182','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10727','28224','1','10','')
+values ('11315','28224','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10728','28225','1','10','')
+values ('11316','28225','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10729','28226','1','10','')
+values ('11317','28226','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10730','28226','2','1','8')
+values ('11318','28226','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10731','28227','1','10','')
+values ('11319','28227','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10732','28228','1','10','')
+values ('11320','28228','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10733','28229','1','10','')
+values ('11321','28229','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10734','28229','2','1','8')
+values ('11322','28229','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10735','28230','1','1','1000000')
+values ('11323','28230','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10736','28294','1','10','')
+values ('11324','28294','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10737','28295','1','10','')
+values ('11325','28295','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10738','28296','1','10','')
+values ('11326','28296','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10739','28296','2','1','8')
+values ('11327','28296','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10740','28297','1','10','')
+values ('11328','28297','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10741','28298','1','10','')
+values ('11329','28298','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10742','28299','1','10','')
+values ('11330','28299','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10743','28299','2','1','8')
+values ('11331','28299','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10744','28300','1','1','1000000')
+values ('11332','28300','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10745','27069','1','10','')
+values ('11333','27069','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10746','27072','1','10','')
+values ('11334','27072','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10747','27073','1','10','')
+values ('11335','27073','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10748','27074','1','10','')
+values ('11336','27074','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10749','27074','2','1','8')
+values ('11337','27074','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10750','27075','1','10','')
+values ('11338','27075','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10751','27075','2','1','8')
+values ('11339','27075','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10752','27076','1','10','')
+values ('11340','27076','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10753','27597','1','10','')
+values ('11341','27597','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10754','27598','1','10','')
+values ('11342','27598','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10755','27599','1','10','')
+values ('11343','27599','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10756','27599','2','1','8')
+values ('11344','27599','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10757','27600','1','10','')
+values ('11345','27600','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10758','27601','1','10','')
+values ('11346','27601','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10759','27602','1','10','')
+values ('11347','27602','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10760','27602','2','1','8')
+values ('11348','27602','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10761','28006','1','10','')
+values ('11349','28006','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10762','28007','1','10','')
+values ('11350','28007','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10763','28008','1','10','')
+values ('11351','28008','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10764','28008','2','1','8')
+values ('11352','28008','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10765','28009','1','10','')
+values ('11353','28009','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10766','28010','1','10','')
+values ('11354','28010','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10767','28011','1','10','')
+values ('11355','28011','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10768','28011','2','1','8')
+values ('11356','28011','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10769','27079','1','10','')
+values ('11357','27079','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10770','27082','1','10','')
+values ('11358','27082','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10771','27083','1','10','')
+values ('11359','27083','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10772','27084','1','10','')
+values ('11360','27084','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10773','27084','2','1','8')
+values ('11361','27084','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10774','27085','1','10','')
+values ('11362','27085','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10775','27085','2','1','8')
+values ('11363','27085','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10776','27086','1','10','')
+values ('11364','27086','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10777','27620','1','10','')
+values ('11365','27620','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10778','27621','1','10','')
+values ('11366','27621','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10779','27622','1','10','')
+values ('11367','27622','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10780','27622','2','1','8')
+values ('11368','27622','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10781','27623','1','10','')
+values ('11369','27623','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10782','27624','1','10','')
+values ('11370','27624','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10783','27625','1','10','')
+values ('11371','27625','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10784','27625','2','1','8')
+values ('11372','27625','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10785','27977','1','10','')
+values ('11373','27977','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10786','27978','1','10','')
+values ('11374','27978','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10787','27979','1','10','')
+values ('11375','27979','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10788','27979','2','1','8')
+values ('11376','27979','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10789','27980','1','10','')
+values ('11377','27980','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10790','27981','1','10','')
+values ('11378','27981','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10791','27982','1','10','')
+values ('11379','27982','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10792','27982','2','1','8')
+values ('11380','27982','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10793','27119','1','10','')
+values ('11381','27119','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10794','27121','1','1','1000000')
+values ('11382','27121','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10795','27122','1','10','')
+values ('11383','27122','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10796','27123','1','10','')
+values ('11384','27123','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10797','27124','1','10','')
+values ('11385','27124','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10798','27124','2','1','8')
+values ('11386','27124','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10799','27125','1','10','')
+values ('11387','27125','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10800','27125','2','1','8')
+values ('11388','27125','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10801','27126','1','10','')
+values ('11389','27126','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10802','28098','1','10','')
+values ('11390','28098','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10803','28099','1','10','')
+values ('11391','28099','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10804','28100','1','10','')
+values ('11392','28100','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10805','28100','2','1','8')
+values ('11393','28100','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10806','28101','1','10','')
+values ('11394','28101','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10807','28102','1','10','')
+values ('11395','28102','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10808','28103','1','10','')
+values ('11396','28103','1','10','')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10809','28103','2','1','8')
+values ('11397','28103','2','1','8')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10810','28104','1','1','1000000')
+values ('11398','28104','1','1','1000000')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10811','27203','1','5','^(\w|-|\.|/)+ (\w|-|\.|/)+ (.+) Copyright' || chr(10) || '\3')
+values ('11399','27203','1','5','^(\w|-|\.|/)+ (\w|-|\.|/)+ (.+) Copyright' || chr(10) || '\3')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10812','27204','1','5','^((\w|-|\.|/)+)' || chr(10) || '\1')
+values ('11400','27204','1','5','^((\w|-|\.|/)+)' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10813','27206','1','1','1024')
+values ('11401','27206','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10814','27207','1','1','1024')
+values ('11402','27207','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10815','28323','1','1','0.1')
+values ('11403','28323','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10816','27314','1','1','0.5')
+values ('11404','27314','1','1','0.5')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10817','27315','1','1','0.5')
+values ('11405','27315','1','1','0.5')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10818','27318','1','1','0.5')
+values ('11406','27318','1','1','0.5')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10819','27377','1','5','Version (.+), RELEASE' || chr(10) || '\1')
+values ('11407','27377','1','5','Version (.+), RELEASE' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10820','27381','1','5','Version (.+), RELEASE' || chr(10) || '\1')
+values ('11408','27381','1','5','Version (.+), RELEASE' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10821','27384','1','5','Version (.+), RELEASE' || chr(10) || '\1')
+values ('11409','27384','1','5','Version (.+), RELEASE' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10822','28211','1','5','Version (.+), RELEASE' || chr(10) || '\1')
+values ('11410','28211','1','5','Version (.+), RELEASE' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10823','27591','1','1','1024')
+values ('11411','27591','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10824','27592','1','1','1024')
+values ('11412','27592','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10825','27777','1','5','Firmware Version: ([0-9.]+),' || chr(10) || '\1')
+values ('11413','27777','1','5','Firmware Version: ([0-9.]+),' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10826','27778','1','5','(.+) - Firmware' || chr(10) || '\1')
+values ('11414','27778','1','5','(.+) - Firmware' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10827','27811','1','5','kernel (JUNOS [0-9a-zA-Z\.\-]+)' || chr(10) || '\1')
+values ('11415','27811','1','5','kernel (JUNOS [0-9a-zA-Z\.\-]+)' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10828','28201','1','1','0.1')
+values ('11416','28201','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10829','27897','1','1','0.1')
+values ('11417','27897','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10830','27898','1','1','1024')
+values ('11418','27898','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10831','27900','1','1','1024')
+values ('11419','27900','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10832','27905','1','1','0.1')
+values ('11420','27905','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10833','27907','1','1','1024')
+values ('11421','27907','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10834','27908','1','1','1024')
+values ('11422','27908','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10835','27936','1','5','60 Secs \( ([0-9\.]+)%\).+300 Secs' || chr(10) || '\1')
+values ('11423','27936','1','5','60 Secs \( ([0-9\.]+)%\).+300 Secs' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10836','28029','1','1','1024')
+values ('11424','28029','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10837','28030','1','1','1024')
+values ('11425','28030','1','1','1024')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10838','28647','1','1','1048576')
+values ('11426','28647','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10839','28650','1','1','1048576')
+values ('11427','28650','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10840','28354','1','1','0.1')
+values ('11428','28354','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10841','28356','1','1','0.1')
+values ('11429','28356','1','1','0.1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10842','28367','1','1','1048576')
+values ('11430','28367','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10843','28372','1','1','1048576')
+values ('11431','28372','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10844','28422','1','1','1048576')
+values ('11432','28422','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10845','28425','1','1','1048576')
+values ('11433','28425','1','1','1048576')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10846','28451','1','5','(\d{1,3}) *%( of maximum)?' || chr(10) || '\1')
+values ('11434','28451','1','5','(\d{1,3}) *%( of maximum)?' || chr(10) || '\1')
 /
 
 INSERT INTO item_preproc (item_preprocid,itemid,step,type,params)
-values ('10847','28479','1','5','(\d{1,3}) *%( of maximum)?' || chr(10) || '\1')
+values ('11435','28479','1','5','(\d{1,3}) *%( of maximum)?' || chr(10) || '\1')
 /
 
 INSERT INTO sysmap_shape (sysmap_shapeid,sysmapid,type,x,y,width,height,text,font,font_size,font_color,text_halign,text_valign,border_type,border_width,border_color,background_color,zindex)
