@@ -3796,7 +3796,7 @@ CREATE TABLE dbversion (\n\
 mandatory integer DEFAULT '0' NOT NULL,\n\
 optional integer DEFAULT '0' NOT NULL\n\
 );\n\
-INSERT INTO dbversion VALUES ('4000000','4000005');\n\
+INSERT INTO dbversion VALUES ('4000000','4000006');\n\
 ";
 const char	*const db_schema_fkeys[] = {
 	NULL
