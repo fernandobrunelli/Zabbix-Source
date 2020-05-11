@@ -32,6 +32,7 @@ typedef struct
 	const char		*recovery_expression;
 	const char		*error;
 	const char		*correlation_tag;
+	const char		*opdata;
 	int			lastchange;
 	int			nextcheck;		/* time of next trigger recalculation,    */
 							/* valid for triggers with time functions */
@@ -101,8 +102,26 @@ typedef struct
 	unsigned char		queue_priority;
 	unsigned char		schedulable;
 	unsigned char		update_triggers;
+	zbx_uint64_t		templateid;
+	zbx_uint64_t		parent_itemid; /* from joined item_discovery table */
 }
 ZBX_DC_ITEM;
+
+typedef struct
+{
+	zbx_uint64_t		itemid;
+	zbx_uint64_t		hostid;
+	zbx_uint64_t		templateid;
+}
+ZBX_DC_TEMPLATE_ITEM;
+
+typedef struct
+{
+	zbx_uint64_t		itemid;
+	zbx_uint64_t		hostid;
+	zbx_uint64_t		templateid;
+}
+ZBX_DC_PROTOTYPE_ITEM;
 
 typedef struct
 {
@@ -124,14 +143,6 @@ typedef struct
 {
 	zbx_uint64_t	itemid;
 	const char	*snmp_oid;
-	const char	*snmp_community;
-	const char	*snmpv3_securityname;
-	const char	*snmpv3_authpassphrase;
-	const char	*snmpv3_privpassphrase;
-	const char	*snmpv3_contextname;
-	unsigned char	snmpv3_securitylevel;
-	unsigned char	snmpv3_authprotocol;
-	unsigned char	snmpv3_privprotocol;
 	unsigned char	snmp_oid_type;
 }
 ZBX_DC_SNMPITEM;
@@ -155,6 +166,7 @@ typedef struct
 	zbx_uint64_t	itemid;
 	zbx_uint64_t	master_itemid;
 	zbx_uint64_t	last_master_itemid;
+	unsigned char	flags;
 }
 ZBX_DC_DEPENDENTITEM;
 
@@ -221,14 +233,15 @@ ZBX_DC_CALCITEM;
 
 typedef struct
 {
-	zbx_uint64_t		itemid;
-	zbx_vector_uint64_t	dep_itemids;
+	zbx_uint64_t			itemid;
+	zbx_vector_uint64_pair_t	dep_itemids;
 }
 ZBX_DC_MASTERITEM;
 
 typedef struct
 {
 	zbx_uint64_t		itemid;
+	int			update_time;
 	zbx_vector_ptr_t	preproc_ops;
 }
 ZBX_DC_PREPROCITEM;
@@ -261,9 +274,7 @@ typedef struct
 }
 ZBX_DC_HTTPITEM;
 
-typedef zbx_item_history_value_t	ZBX_DC_DELTAITEM;
-
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 typedef struct
 {
 	const char	*tls_psk_identity;	/* pre-shared key identity           */
@@ -324,7 +335,7 @@ typedef struct
 	/* 'tls_connect' and 'tls_accept' must be respected even if encryption support is not compiled in */
 	unsigned char	tls_connect;
 	unsigned char	tls_accept;
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	const char	*tls_issuer;
 	const char	*tls_subject;
 	ZBX_DC_PSK	*tls_dc_psk;
@@ -356,22 +367,24 @@ ZBX_DC_HOST_H;
 
 typedef struct
 {
-	zbx_uint64_t	hostid;
-	zbx_uint64_t	hosts_monitored;	/* number of enabled hosts assigned to proxy */
-	zbx_uint64_t	hosts_not_monitored;	/* number of disabled hosts assigned to proxy */
-	double		required_performance;
-	int		proxy_config_nextcheck;
-	int		proxy_data_nextcheck;
-	int		proxy_tasks_nextcheck;
-	int		nextcheck;
-	int		lastaccess;
-	int		last_cfg_error_time;	/* time when passive proxy misconfiguration error was seen */
-						/* or 0 if no error */
-	int		version;
-	unsigned char	location;
-	unsigned char	auto_compress;
-	const char	*proxy_address;
-	int		last_version_error_time;
+	zbx_uint64_t		hostid;
+	zbx_uint64_t		hosts_monitored;	/* number of enabled hosts assigned to proxy */
+	zbx_uint64_t		hosts_not_monitored;	/* number of disabled hosts assigned to proxy */
+	double			required_performance;
+	int			proxy_config_nextcheck;
+	int			proxy_data_nextcheck;
+	int			proxy_tasks_nextcheck;
+	int			nextcheck;
+	int			lastaccess;
+	int			proxy_delay;
+	zbx_proxy_suppress_t	nodata_win;
+	int			last_cfg_error_time;	/* time when passive proxy misconfiguration error was seen */
+							/* or 0 if no error */
+	int			version;
+	unsigned char		location;
+	unsigned char		auto_compress;
+	const char		*proxy_address;
+	int			last_version_error_time;
 }
 ZBX_DC_PROXY;
 
@@ -398,6 +411,7 @@ typedef struct
 	const char	*macro;
 	const char	*context;
 	const char	*value;
+	unsigned char	type;
 }
 ZBX_DC_GMACRO;
 
@@ -415,6 +429,7 @@ typedef struct
 	const char	*macro;
 	const char	*context;
 	const char	*value;
+	unsigned char	type;
 }
 ZBX_DC_HMACRO;
 
@@ -436,11 +451,26 @@ typedef struct
 	unsigned char	type;
 	unsigned char	main;
 	unsigned char	useip;
-	unsigned char	bulk;
-	unsigned char	max_snmp_succeed;
-	unsigned char	min_snmp_fail;
 }
 ZBX_DC_INTERFACE;
+
+typedef struct
+{
+	zbx_uint64_t	interfaceid;
+	const char	*community;
+	const char	*securityname;
+	const char	*authpassphrase;
+	const char	*privpassphrase;
+	const char	*contextname;
+	unsigned char	securitylevel;
+	unsigned char	authprotocol;
+	unsigned char	privprotocol;
+	unsigned char	version;
+	unsigned char	bulk;
+	unsigned char	max_succeed;
+	unsigned char	min_fail;
+}
+ZBX_DC_SNMPINTERFACE;
 
 typedef struct
 {
@@ -485,10 +515,16 @@ ZBX_DC_EXPRESSION;
 typedef struct
 {
 	const char	*severity_name[TRIGGER_SEVERITY_COUNT];
+	const char	*instanceid;
 	zbx_uint64_t	discovery_groupid;
 	int		default_inventory_mode;
 	int		refresh_unsupported;
 	unsigned char	snmptrap_logging;
+	unsigned char	autoreg_tls_accept;
+
+	/* database configuration data for ZBX_CONFIG_DB_EXTENSION_* extensions */
+	zbx_config_db_t	db;
+
 	/* housekeeping related configuration data */
 	zbx_config_hk_t	hk;
 }
@@ -542,6 +578,23 @@ typedef struct
 	const char	*value;
 }
 zbx_dc_trigger_tag_t;
+
+typedef struct
+{
+	zbx_uint64_t	hosttagid;
+	zbx_uint64_t	hostid;
+	const char	*tag;
+	const char	*value;
+}
+zbx_dc_host_tag_t;
+
+typedef struct
+{
+	zbx_uint64_t		hostid;
+	zbx_vector_ptr_t	tags;
+		/* references to zbx_dc_host_tag_t records cached in config-> host_tags hashset */
+}
+zbx_dc_host_tag_index_t;
 
 typedef struct
 {
@@ -629,8 +682,10 @@ typedef struct
 	zbx_uint64_t	item_preprocid;
 	zbx_uint64_t	itemid;
 	int		step;
+	int		error_handler;
 	unsigned char	type;
 	const char	*params;
+	const char	*error_handler_params;
 }
 zbx_dc_preproc_op_t;
 
@@ -703,6 +758,8 @@ typedef struct
 
 	zbx_hashset_t		items;
 	zbx_hashset_t		items_hk;		/* hostid, key */
+	zbx_hashset_t		template_items;		/* template items selected from items table */
+	zbx_hashset_t		prototype_items;	/* item prototypes selected from items table */
 	zbx_hashset_t		numitems;
 	zbx_hashset_t		snmpitems;
 	zbx_hashset_t		ipmiitems;
@@ -726,7 +783,10 @@ typedef struct
 	zbx_hashset_t		hosts_p;		/* for searching proxies by 'host' name */
 	zbx_hashset_t		proxies;
 	zbx_hashset_t		host_inventories;
-	zbx_hashset_t		host_inventories_auto;	/* for caching of automatically populated host inventories */
+	zbx_hashset_t		host_inventories_auto;	/* For caching of automatically populated host inventories. */
+	 	 	 	 	 	 	/* Configuration syncer will read host_inventories without  */
+							/* locking cache and therefore it cannot be updated by      */
+							/* by history syncers when new data is received.	    */
 	zbx_hashset_t		ipmihosts;
 	zbx_hashset_t		htmpls;
 	zbx_hashset_t		gmacros;
@@ -734,6 +794,7 @@ typedef struct
 	zbx_hashset_t		hmacros;
 	zbx_hashset_t		hmacros_hm;		/* hostid, macro */
 	zbx_hashset_t		interfaces;
+	zbx_hashset_t		interfaces_snmp;
 	zbx_hashset_t		interfaces_ht;		/* hostid, type */
 	zbx_hashset_t		interface_snmpaddrs;	/* addr, interfaceids for SNMP interfaces */
 	zbx_hashset_t		interface_snmpitems;	/* interfaceid, itemids for SNMP trap items */
@@ -742,6 +803,8 @@ typedef struct
 	zbx_hashset_t		actions;
 	zbx_hashset_t		action_conditions;
 	zbx_hashset_t		trigger_tags;
+	zbx_hashset_t		host_tags;
+	zbx_hashset_t		host_tags_index;		/* host tag index by hostid */
 	zbx_hashset_t		correlations;
 	zbx_hashset_t		corr_conditions;
 	zbx_hashset_t		corr_operations;
@@ -751,7 +814,7 @@ typedef struct
 	zbx_hashset_t		maintenances;
 	zbx_hashset_t		maintenance_periods;
 	zbx_hashset_t		maintenance_tags;
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_hashset_t		psks;			/* for keeping PSK-identity and PSK pairs and for searching */
 							/* by PSK identity */
 #endif
@@ -759,10 +822,11 @@ typedef struct
 	zbx_binary_heap_t	queues[ZBX_POLLER_TYPE_COUNT];
 	zbx_binary_heap_t	pqueue;
 	zbx_binary_heap_t	timer_queue;
-	zbx_vector_uint64_t	locked_lld_ruleids;	/* for keeping track of lld rules being processed */
 	ZBX_DC_CONFIG_TABLE	*config;
 	ZBX_DC_STATUS		*status;
 	zbx_hashset_t		strpool;
+	char			autoreg_psk_identity[HOST_TLS_PSK_IDENTITY_LEN_MAX];	/* autoregistration PSK */
+	char			autoreg_psk[HOST_TLS_PSK_LEN_MAX];
 }
 ZBX_DC_CONFIG;
 
@@ -777,24 +841,15 @@ extern zbx_rwlock_t	config_lock;
 #define ZBX_IPMI_DEFAULT_AUTHTYPE	-1
 #define ZBX_IPMI_DEFAULT_PRIVILEGE	2
 
-/* validator function optionally used to validate macro values when expanding user macros */
-
 /******************************************************************************
  *                                                                            *
- * Function: zbx_macro_value_validator_func_t                                 *
- *                                                                            *
- * Purpose: validate macro value when expanding user macros                   *
- *                                                                            *
- * Parameters: value   - [IN] the macro value                                 *
- *                                                                            *
- * Return value: SUCCEED - the value is valid                                 *
- *               FAIL    - otherwise                                          *
+ * zbx_dc_expand_user_macros - has no autoquoting                             *
+ * for triggers and calculated items use                                      *
+ * zbx_dc_expand_user_macros_in_expression - which autoquotes macros that are *
+ * not already quoted and cannot be casted to a double                        *
  *                                                                            *
  ******************************************************************************/
-typedef int (*zbx_macro_value_validator_func_t)(const char *value);
-
-char	*zbx_dc_expand_user_macros(const char *text, zbx_uint64_t *hostids, int hostids_num,
-		zbx_macro_value_validator_func_t validator_func);
+char	*zbx_dc_expand_user_macros(const char *text, zbx_uint64_t *hostids, int hostids_num);
 
 void	zbx_dc_get_hostids_by_functionids(const zbx_uint64_t *functionids, int functionids_num,
 		zbx_vector_uint64_t *hostids);

@@ -31,6 +31,8 @@ char	*CONFIG_HOSTNAME		= NULL;
 char	*CONFIG_HOSTNAME_ITEM		= NULL;
 char	*CONFIG_HOST_METADATA		= NULL;
 char	*CONFIG_HOST_METADATA_ITEM	= NULL;
+char	*CONFIG_HOST_INTERFACE		= NULL;
+char	*CONFIG_HOST_INTERFACE_ITEM	= NULL;
 
 int	CONFIG_ENABLE_REMOTE_COMMANDS	= 0;
 int	CONFIG_LOG_REMOTE_COMMANDS	= 0;
@@ -44,7 +46,8 @@ int	CONFIG_LOG_LEVEL		= LOG_LEVEL_WARNING;
 int	CONFIG_BUFFER_SIZE		= 100;
 int	CONFIG_BUFFER_SEND		= 5;
 
-int	CONFIG_MAX_LINES_PER_SECOND	= 20;
+int	CONFIG_MAX_LINES_PER_SECOND		= 20;
+int	CONFIG_EVENTLOG_MAX_LINES_PER_SECOND	= 20;
 
 char	*CONFIG_LOAD_MODULE_PATH	= NULL;
 
@@ -113,7 +116,7 @@ char	*CONFIG_TLS_CIPHER_CMD		= NULL;	/* not used in agent, defined for linking w
 #endif
 
 #include "setproctitle.h"
-#include "../libs/zbxcrypto/tls.h"
+#include "zbxcrypto.h"
 
 const char	*progname = NULL;
 
@@ -282,6 +285,9 @@ int	CONFIG_IPMIMANAGER_FORKS	= 0;
 int	CONFIG_ALERTMANAGER_FORKS	= 0;
 int	CONFIG_PREPROCMAN_FORKS		= 0;
 int	CONFIG_PREPROCESSOR_FORKS	= 0;
+int	CONFIG_LLDMANAGER_FORKS		= 0;
+int	CONFIG_LLDWORKER_FORKS		= 0;
+int	CONFIG_ALERTDB_FORKS		= 0;
 
 char	*opt = NULL;
 
@@ -581,6 +587,12 @@ static void	set_defaults(void)
 				CONFIG_HOST_METADATA);
 	}
 
+	if (NULL != CONFIG_HOST_INTERFACE && NULL != CONFIG_HOST_INTERFACE_ITEM)
+	{
+		zabbix_log(LOG_LEVEL_WARNING, "both HostInterface and HostInterfaceItem defined, using [%s]",
+				CONFIG_HOST_INTERFACE);
+	}
+
 #ifndef _WINDOWS
 	if (NULL == CONFIG_LOAD_MODULE_PATH)
 		CONFIG_LOAD_MODULE_PATH = zbx_strdup(CONFIG_LOAD_MODULE_PATH, DEFAULT_LOAD_MODULE_PATH);
@@ -640,6 +652,13 @@ static void	zbx_validate_config(ZBX_TASK_EX *task)
 		err = 1;
 	}
 
+	if (NULL != CONFIG_HOST_INTERFACE && HOST_INTERFACE_LEN < zbx_strlen_utf8(CONFIG_HOST_INTERFACE))
+	{
+		zabbix_log(LOG_LEVEL_CRIT, "the value of \"HostInterface\" configuration parameter cannot be longer than"
+				" %d characters", HOST_INTERFACE_LEN);
+		err = 1;
+	}
+
 	/* make sure active or passive check is enabled */
 	if (0 == CONFIG_ACTIVE_FORKS && 0 == CONFIG_PASSIVE_FORKS)
 	{
@@ -656,7 +675,7 @@ static void	zbx_validate_config(ZBX_TASK_EX *task)
 	if (SUCCEED != zbx_validate_log_parameters(task))
 		err = 1;
 
-#if !(defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
+#if !(defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
 	err |= (FAIL == check_cfg_feature_str("TLSConnect", CONFIG_TLS_CONNECT, "TLS support"));
 	err |= (FAIL == check_cfg_feature_str("TLSAccept", CONFIG_TLS_ACCEPT, "TLS support"));
 	err |= (FAIL == check_cfg_feature_str("TLSCAFile", CONFIG_TLS_CA_FILE, "TLS support"));
@@ -681,9 +700,11 @@ static void	zbx_validate_config(ZBX_TASK_EX *task)
 
 	if (0 != err)
 		exit(EXIT_FAILURE);
+
+	CONFIG_EVENTLOG_MAX_LINES_PER_SECOND = CONFIG_MAX_LINES_PER_SECOND;
 }
 
-static int	add_activechk_host(const char *host, unsigned short port)
+static int	add_serveractive_host_cb(const char *host, unsigned short port)
 {
 	int	i;
 
@@ -694,62 +715,13 @@ static int	add_activechk_host(const char *host, unsigned short port)
 	}
 
 	CONFIG_ACTIVE_FORKS++;
-	CONFIG_ACTIVE_ARGS = (ZBX_THREAD_ACTIVECHK_ARGS *)zbx_realloc(CONFIG_ACTIVE_ARGS, sizeof(ZBX_THREAD_ACTIVECHK_ARGS) * CONFIG_ACTIVE_FORKS);
+	CONFIG_ACTIVE_ARGS = (ZBX_THREAD_ACTIVECHK_ARGS *)zbx_realloc(CONFIG_ACTIVE_ARGS,
+			sizeof(ZBX_THREAD_ACTIVECHK_ARGS) * CONFIG_ACTIVE_FORKS);
+
 	CONFIG_ACTIVE_ARGS[CONFIG_ACTIVE_FORKS - 1].host = zbx_strdup(NULL, host);
 	CONFIG_ACTIVE_ARGS[CONFIG_ACTIVE_FORKS - 1].port = port;
 
 	return SUCCEED;
-}
-
-/******************************************************************************
- *                                                                            *
- * Function: get_serveractive_hosts                                           *
- *                                                                            *
- * Purpose: parse string like IP<:port>,[IPv6]<:port>                         *
- *                                                                            *
- ******************************************************************************/
-static void	get_serveractive_hosts(char *active_hosts)
-{
-	char	*l = active_hosts, *r;
-	int	rc = SUCCEED;
-
-	do
-	{
-		char		*host = NULL;
-		unsigned short	port;
-
-		if (NULL != (r = strchr(l, ',')))
-			*r = '\0';
-
-		if (SUCCEED != parse_serveractive_element(l, &host, &port, (unsigned short)ZBX_DEFAULT_SERVER_PORT))
-			goto fail;
-
-		rc = add_activechk_host(host, port);
-
-		zbx_free(host);
-
-		if (SUCCEED != rc)
-			goto fail;
-
-		if (NULL != r)
-		{
-			*r = ',';
-			l = r + 1;
-		}
-	}
-	while (NULL != r);
-
-	return;
-fail:
-	if (SUCCEED != rc)
-		zbx_error("error parsing a \"ServerActive\" option: address \"%s\" specified more than once", l);
-	else
-		zbx_error("error parsing a \"ServerActive\" option: address \"%s\" is invalid", l);
-
-	if (NULL != r)
-		*r = ',';
-
-	exit(EXIT_FAILURE);
 }
 
 /******************************************************************************
@@ -780,6 +752,10 @@ static void	zbx_load_config(int requirement, ZBX_TASK_EX *task)
 		{"HostMetadata",		&CONFIG_HOST_METADATA,			TYPE_STRING,
 			PARM_OPT,	0,			0},
 		{"HostMetadataItem",		&CONFIG_HOST_METADATA_ITEM,		TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"HostInterface",		&CONFIG_HOST_INTERFACE,			TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"HostInterfaceItem",		&CONFIG_HOST_INTERFACE_ITEM,		TYPE_STRING,
 			PARM_OPT,	0,			0},
 		{"BufferSize",			&CONFIG_BUFFER_SIZE,			TYPE_INT,
 			PARM_OPT,	2,			65535},
@@ -869,6 +845,10 @@ static void	zbx_load_config(int requirement, ZBX_TASK_EX *task)
 			PARM_OPT,	0,			0},
 		{"TLSCipherAll",		&CONFIG_TLS_CIPHER_ALL,			TYPE_STRING,
 			PARM_OPT,	0,			0},
+		{"AllowKey",			load_key_access_rule,			TYPE_CUSTOM,
+			PARM_OPT,	0,			0},
+		{"DenyKey",			load_key_access_rule,			TYPE_CUSTOM,
+			PARM_OPT,	0,			0},
 		{NULL}
 	};
 
@@ -889,14 +869,15 @@ static void	zbx_load_config(int requirement, ZBX_TASK_EX *task)
 	CONFIG_LOG_TYPE = zbx_get_log_type(CONFIG_LOG_TYPE_STR);
 
 	if (NULL != active_hosts && '\0' != *active_hosts)
-		get_serveractive_hosts(active_hosts);
+		zbx_set_data_destination_hosts(active_hosts, add_serveractive_host_cb);
 
 	zbx_free(active_hosts);
+	finalize_key_access_rules_configuration();
 
 	if (ZBX_CFG_FILE_REQUIRED == requirement)
 	{
 		zbx_validate_config(task);
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 		zbx_tls_validate_config();
 #endif
 	}
@@ -986,7 +967,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 #else
 #	define IPV6_FEATURE_STATUS	" NO"
 #endif
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 #	define TLS_FEATURE_STATUS	"YES"
 #else
 #	define TLS_FEATURE_STATUS	" NO"
@@ -1002,7 +983,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 
 	zabbix_log(LOG_LEVEL_INFORMATION, "using configuration file: %s", CONFIG_FILE);
 
-#if !defined(_WINDOWS) && (defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
+#if !defined(_WINDOWS) && (defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
 	if (SUCCEED != zbx_coredump_disable())
 	{
 		zabbix_log(LOG_LEVEL_CRIT, "cannot disable core dump, exiting...");
@@ -1049,7 +1030,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 #endif
 	zbx_free_config();
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_init_parent();
 #endif
 	/* --- START THREADS ---*/
@@ -1191,7 +1172,7 @@ void	zbx_on_exit(int ret)
 
 	zbx_free_service_resources(ret);
 
-#if defined(_WINDOWS) && (defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
+#if defined(_WINDOWS) && (defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
 	zbx_tls_free();
 	zbx_tls_library_deinit();	/* deinitialize crypto library from parent thread */
 #endif
@@ -1315,6 +1296,8 @@ int	main(int argc, char **argv)
 
 			while (0 == WSACleanup())
 				;
+
+			zbx_co_uninitialize();
 #endif
 #ifndef _WINDOWS
 			zbx_unload_modules();

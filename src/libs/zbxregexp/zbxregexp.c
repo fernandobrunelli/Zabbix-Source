@@ -147,9 +147,9 @@ int	zbx_regexp_compile_ext(const char *pattern, zbx_regexp_t **regexp, int flags
  ****************************************************************************************************/
 static int	regexp_prepare(const char *pattern, int flags, zbx_regexp_t **regexp, const char **err_msg_static)
 {
-	ZBX_THREAD_LOCAL static zbx_regexp_t	*curr_regexp = NULL;
-	ZBX_THREAD_LOCAL static char		*curr_pattern = NULL;
-	ZBX_THREAD_LOCAL static int		curr_flags = 0;
+	static ZBX_THREAD_LOCAL zbx_regexp_t	*curr_regexp = NULL;
+	static ZBX_THREAD_LOCAL char		*curr_pattern = NULL;
+	static ZBX_THREAD_LOCAL int		curr_flags = 0;
 	int					ret = SUCCEED;
 
 	if (NULL == curr_regexp || 0 != strcmp(curr_pattern, pattern) || curr_flags != flags)
@@ -202,13 +202,12 @@ static int	regexp_exec(const char *string, const zbx_regexp_t *regexp, int flags
 {
 #define MATCHES_BUFF_SIZE	(ZBX_REGEXP_GROUPS_MAX * 3)		/* see pcre_exec() in "man pcreapi" why 3 */
 
-	const char			*__function_name = "regexp_exec";
 	int				result, r;
-	ZBX_THREAD_LOCAL static int	matches_buff[MATCHES_BUFF_SIZE];
+	static ZBX_THREAD_LOCAL int	matches_buff[MATCHES_BUFF_SIZE];
 	int				*ovector = NULL;
 	int				ovecsize = 3 * count;		/* see pcre_exec() in "man pcreapi" why 3 */
 	struct pcre_extra		extra, *pextra;
-#if defined(PCRE_EXTRA_MATCH_LIMIT) && defined(PCRE_EXTRA_MATCH_LIMIT_RECURSION) && !defined(_WINDOWS)
+#if defined(PCRE_EXTRA_MATCH_LIMIT) && defined(PCRE_EXTRA_MATCH_LIMIT_RECURSION) && !defined(_WINDOWS) && !defined(__MINGW32__)
 	static unsigned long int	recursion_limit = 0;
 
 	if (0 == recursion_limit)
@@ -239,7 +238,7 @@ static int	regexp_exec(const char *string, const zbx_regexp_t *regexp, int flags
 #if defined(PCRE_EXTRA_MATCH_LIMIT) && defined(PCRE_EXTRA_MATCH_LIMIT_RECURSION)
 	pextra->flags |= PCRE_EXTRA_MATCH_LIMIT | PCRE_EXTRA_MATCH_LIMIT_RECURSION;
 	pextra->match_limit = 1000000;
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 	pextra->match_limit_recursion = ZBX_PCRE_RECURSION_LIMIT;
 #else
 	pextra->match_limit_recursion = recursion_limit;
@@ -259,7 +258,7 @@ static int	regexp_exec(const char *string, const zbx_regexp_t *regexp, int flags
 	}
 	else
 	{
-		zabbix_log(LOG_LEVEL_WARNING, "%s() failed with error %d", __function_name, r);
+		zabbix_log(LOG_LEVEL_WARNING, "%s() failed with error %d", __func__, r);
 		result = FAIL;
 	}
 
@@ -1142,3 +1141,91 @@ void	zbx_regexp_escape(char **string)
 	*string = buffer;
 }
 
+/**********************************************************************************
+ *                                                                                *
+ * Function: zbx_wildcard_minimize                                                *
+ *                                                                                *
+ * Purpose: remove repeated wildcard characters from the expression               *
+ *                                                                                *
+ * Parameters: str - [IN/OUT] the string to update                                *
+ *                                                                                *
+ **********************************************************************************/
+void	zbx_wildcard_minimize(char *str)
+{
+	char	*p1, *p2;
+	int	w = 0;
+
+	for(p1 = p2 = str; '\0' != *p2; p2++)
+	{
+		if ('*' == *p2)
+		{
+			if (0 != w)
+				continue;
+
+			w = 1;
+		}
+		else
+			w = 0;
+
+		*p1 = *p2;
+		p1++;
+	}
+
+	*p1 = '\0';
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_wildcard_match                                               *
+ *                                                                            *
+ * Purpose: Matches string value to specified wildcard.                       *
+ *          Asterisk (*) characters match to any characters of any length.    *
+ *                                                                            *
+ * Parameters: value    - [IN] string to match                                *
+ *             wildcard - [IN] wildcard string expression                     *
+ *                                                                            *
+ * Return value: 1 - value match the wildcard                                 *
+ *               0 - otherwise                                                *
+ *                                                                            *
+ * Author: Andrejs Tumilovics                                                 *
+ *                                                                            *
+ ******************************************************************************/
+int	zbx_wildcard_match(const char *value, const char *wildcard)
+{
+	const char *s_pivot = value, *w_pivot = wildcard;
+
+	while('\0' != *value && '*' != *wildcard)
+	{
+		if (*value++ != *wildcard++)
+			return 0;
+	}
+
+	while('\0' != *value)
+	{
+		if ('*' == *wildcard)
+		{
+			wildcard++;
+
+			if ('\0' == *wildcard)
+				return 1;
+
+			w_pivot = wildcard;
+			s_pivot = value + 1;
+		}
+		else if (*value == *wildcard)
+		{
+			value++;
+			wildcard++;
+		}
+		else
+		{
+			wildcard = w_pivot;
+			value = s_pivot++;
+		}
+	}
+
+	while('*' == *wildcard)
+		wildcard++;
+
+	return '\0' == *wildcard;
+}

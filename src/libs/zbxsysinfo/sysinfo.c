@@ -25,6 +25,8 @@
 #include "alias.h"
 #include "threads.h"
 #include "sighandler.h"
+#include "zbxalgo.h"
+#include "zbxregexp.h"
 
 #ifdef WITH_AGENT_METRICS
 #	include "agent/agent.h"
@@ -42,11 +44,21 @@
 #	include "specsysinfo.h"
 #endif
 
+typedef struct
+{
+	zbx_vector_str_t		elements;
+	zbx_key_access_rule_type_t	type;
+	int				empty_arguments;
+}
+zbx_key_access_rule_t;
+
 #ifdef WITH_HOSTNAME_METRIC
-extern ZBX_METRIC      parameter_hostname;
+extern ZBX_METRIC	parameter_hostname;
 #endif
 
 static ZBX_METRIC	*commands = NULL;
+static ZBX_METRIC	*commands_local = NULL;
+zbx_vector_ptr_t	key_access_rules;
 
 #define ZBX_COMMAND_ERROR		0
 #define ZBX_COMMAND_WITHOUT_PARAMS	1
@@ -94,6 +106,32 @@ static int	parse_command_dyn(const char *command, char **cmd, char **param)
 	return ZBX_COMMAND_WITH_PARAMS;
 }
 
+
+static int	add_to_metrics(ZBX_METRIC **metrics, ZBX_METRIC *metric, char *error, size_t max_error_len)
+{
+	int		i = 0;
+
+	while (NULL != (*metrics)[i].key)
+	{
+		if (0 == strcmp((*metrics)[i].key, metric->key))
+		{
+			zbx_snprintf(error, max_error_len, "key \"%s\" already exists", metric->key);
+			return FAIL;	/* metric already exists */
+		}
+		i++;
+	}
+
+	(*metrics)[i].key = zbx_strdup(NULL, metric->key);
+	(*metrics)[i].flags = metric->flags;
+	(*metrics)[i].function = metric->function;
+	(*metrics)[i].test_param = (NULL == metric->test_param ? NULL : zbx_strdup(NULL, metric->test_param));
+
+	*metrics = (ZBX_METRIC *)zbx_realloc(*metrics, (i + 2) * sizeof(ZBX_METRIC));
+	memset(&(*metrics)[i + 1], 0, sizeof(ZBX_METRIC));
+
+	return SUCCEED;
+}
+
 /******************************************************************************
  *                                                                            *
  * Function: add_metric                                                       *
@@ -103,29 +141,22 @@ static int	parse_command_dyn(const char *command, char **cmd, char **param)
  ******************************************************************************/
 int	add_metric(ZBX_METRIC *metric, char *error, size_t max_error_len)
 {
-	int	i = 0;
-
-	while (NULL != commands[i].key)
-	{
-		if (0 == strcmp(commands[i].key, metric->key))
-		{
-			zbx_snprintf(error, max_error_len, "key \"%s\" already exists", metric->key);
-			return FAIL;	/* metric already exists */
-		}
-		i++;
-	}
-
-	commands[i].key = zbx_strdup(NULL, metric->key);
-	commands[i].flags = metric->flags;
-	commands[i].function = metric->function;
-	commands[i].test_param = (NULL == metric->test_param ? NULL : zbx_strdup(NULL, metric->test_param));
-
-	commands = (ZBX_METRIC *)zbx_realloc(commands, (i + 2) * sizeof(ZBX_METRIC));
-	memset(&commands[i + 1], 0, sizeof(ZBX_METRIC));
-
-	return SUCCEED;
+	return add_to_metrics(&commands, metric, error, max_error_len);
 }
 
+/******************************************************************************
+ *                                                                            *
+ * Function: add_metric_local                                                 *
+ *                                                                            *
+ * Purpose: registers a new item key as local into the system                 *
+ *                                                                            *
+ ******************************************************************************/
+int	add_metric_local(ZBX_METRIC *metric, char *error, size_t max_error_len)
+{
+	return add_to_metrics(&commands_local, metric, error, max_error_len);
+}
+
+#if !defined(__MINGW32__)
 int	add_user_parameter(const char *itemkey, char *command, char *error, size_t max_error_len)
 {
 	int		ret;
@@ -159,14 +190,19 @@ int	add_user_parameter(const char *itemkey, char *command, char *error, size_t m
 
 	return ret;
 }
+#endif
 
 void	init_metrics(void)
 {
 	int	i;
 	char	error[MAX_STRING_LEN];
 
+	init_key_access_rules();
+
 	commands = (ZBX_METRIC *)zbx_malloc(commands, sizeof(ZBX_METRIC));
 	commands[0].key = NULL;
+	commands_local = (ZBX_METRIC *)zbx_malloc(commands_local, sizeof(ZBX_METRIC));
+	commands_local[0].key = NULL;
 
 #ifdef WITH_AGENT_METRICS
 	for (i = 0; NULL != parameters_agent[i].key; i++)
@@ -183,6 +219,15 @@ void	init_metrics(void)
 	for (i = 0; NULL != parameters_common[i].key; i++)
 	{
 		if (SUCCEED != add_metric(&parameters_common[i], error, sizeof(error)))
+		{
+			zabbix_log(LOG_LEVEL_CRIT, "cannot add item key: %s", error);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	for (i = 0; NULL != parameters_common_local[i].key; i++)
+	{
+		if (SUCCEED != add_metric_local(&parameters_common_local[i], error, sizeof(error)))
 		{
 			zabbix_log(LOG_LEVEL_CRIT, "cannot add item key: %s", error);
 			exit(EXIT_FAILURE);
@@ -235,6 +280,414 @@ void	free_metrics(void)
 
 		zbx_free(commands);
 	}
+
+	if (NULL != commands_local)
+	{
+		int	i;
+
+		for (i = 0; NULL != commands_local[i].key; i++)
+		{
+			zbx_free(commands_local[i].key);
+			zbx_free(commands_local[i].test_param);
+		}
+
+		zbx_free(commands_local);
+	}
+
+	free_key_access_rules();
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: init_key_access_rules                                            *
+ *                                                                            *
+ * Purpose: initializes key access rule list                                  *
+ *                                                                            *
+ ******************************************************************************/
+void	init_key_access_rules(void)
+{
+	zbx_vector_ptr_create(&key_access_rules);
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: finalize_key_access_rules_configuration                          *
+ *                                                                            *
+ * Purpose: validates key access rules configuration                          *
+ *                                                                            *
+ ******************************************************************************/
+void finalize_key_access_rules_configuration(void)
+{
+	static int		first_run;
+	int			i, allow_rules = 0, deny_rules = 0;
+	zbx_key_access_rule_t	*rule;
+
+	if (0 == first_run)
+	{
+		for (i = 0; key_access_rules.values_num > i; i++)
+		{
+			rule = (zbx_key_access_rule_t*)key_access_rules.values[i];
+
+			switch(rule->type)
+			{
+				case ZBX_KEY_ACCESS_ALLOW:
+					allow_rules++;
+					break;
+				case ZBX_KEY_ACCESS_DENY:
+					deny_rules++;
+					break;
+				default:
+					THIS_SHOULD_NEVER_HAPPEN;
+			}
+		}
+
+		/* if there are only AllowKey rules defined, add DenyKey=* for proper whitelist configuration */
+		if (0 < allow_rules && 0 == deny_rules)
+		{
+			zabbix_log(LOG_LEVEL_CRIT, "\"AllowKey\" without \"DenyKey\" rules are meaningless");
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			/* trailing AllowKey rules are meaningless, because AllowKey=* is default behavior */
+			for (i = key_access_rules.values_num - 1; 0 <= i; i--)
+			{
+				rule = (zbx_key_access_rule_t*)key_access_rules.values[i];
+
+				if (ZBX_KEY_ACCESS_DENY == rule->type)
+					break;
+
+				zbx_vector_str_clear_ext(&rule->elements, zbx_str_free);
+				zbx_vector_str_destroy(&rule->elements);
+				zbx_free(rule);
+				zbx_vector_ptr_remove(&key_access_rules, i);
+			}
+		}
+
+		first_run = 1;
+	}
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: parse_key_access_rule                                            *
+ *                                                                            *
+ * Purpose: parses key access rule expression from AllowKey and DenyKey       *
+ *                                                                            *
+ * Parameters: pattern - [IN] key access rule wildcard                        *
+ *             rule    - [IN] key access rule element to fill                 *
+ *                                                                            *
+ * Return value: SUCCEED - successful execution                               *
+ *               FAIL    - pattern parsing failed                             *
+ *                                                                            *
+ ******************************************************************************/
+static int	parse_key_access_rule(const char *pattern, zbx_key_access_rule_t *rule)
+{
+	char		*pl, *pr = NULL, *param;
+	size_t		alloc = 0, offset = 0;
+	int		i, size;
+
+	for (pl = (char*)pattern; SUCCEED == is_key_char(*pl) || '*' == *pl; pl++);
+
+	if (pl == pattern)
+		return FAIL; /* empty key */
+
+	/* extract rule elements [0] = key pattern and all parameters follow */
+	zbx_strncpy_alloc(&pr, &alloc, &offset, pattern, pl - pattern);
+	zbx_wildcard_minimize(pr);
+	zbx_vector_str_append(&rule->elements, pr);
+	rule->empty_arguments = 0;
+
+	if ('\0' == *pl)	/* no parameters specified */
+		return SUCCEED;
+
+	if ('[' != *pl)		/* unsupported character */
+		return FAIL;
+
+	for (pr = ++pl; '\0' != *pr; pr++);
+
+	if (']' != *--pr)
+		return FAIL;
+
+	if (1 > pr - pl)	/* no parameters specified */
+	{
+		rule->empty_arguments = 1;
+		return SUCCEED;
+	}
+
+	*pr = '\0';
+	size = num_param(pl);
+	zbx_vector_str_reserve(&rule->elements, size);
+
+	for (i = 0; i < size; i++)
+	{
+		if (NULL == (param = get_param_dyn(pl, i + 1)))
+			return FAIL;
+
+		zbx_wildcard_minimize(param);
+		zbx_vector_str_append(&rule->elements, param);
+	}
+
+	*pr = ']';
+
+	/* remove repeated trailing "*" parameters */
+	if (1 < size && 0 == strcmp(rule->elements.values[i--], "*"))
+	{
+		for (; 0 < i; i--)
+		{
+			if (0 != strcmp(rule->elements.values[i], "*"))
+				break;
+
+			zbx_free(rule->elements.values[i + 1]);
+			zbx_vector_str_remove(&rule->elements, i + 1);
+		}
+	}
+
+	return SUCCEED;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: compare_key_access_rules                                         *
+ *                                                                            *
+ * Purpose: Compares two zbx_key_access_rule_t values to perform search       *
+ *          within vector. Rule type (allow/deny) is not checked here.        *
+ *                                                                            *
+ * Parameters: rule_a - [IN] key access rule 1                                *
+ *             rule_b - [IN] key access rule 2                                *
+ *                                                                            *
+ * Return value: If key access rule values are the same, 0 is returned        *
+ *               otherwise nonzero value is returned.                         *
+ *                                                                            *
+ ******************************************************************************/
+static int	compare_key_access_rules(const void *rule_a, const void *rule_b)
+{
+	const zbx_key_access_rule_t	*a, *b;
+	int				i;
+
+	a = *(zbx_key_access_rule_t **)rule_a;
+	b = *(zbx_key_access_rule_t **)rule_b;
+
+	if (a->empty_arguments != b->empty_arguments || a->elements.values_num != b->elements.values_num)
+		return 1;
+
+	for (i = 0; a->elements.values_num > i; i++)
+	{
+		if (0 != strcmp(a->elements.values[i], b->elements.values[i]))
+			return 1;
+	}
+
+	return 0;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: add_key_access_rule                                              *
+ *                                                                            *
+ * Purpose: adds new key access rule from AllowKey and DenyKey parameters     *
+ *                                                                            *
+ * Parameters: pattern - [IN] key access rule wildcard                        *
+ *             type    - [IN] key access rule type (allow/deny)               *
+ *                                                                            *
+ * Return value: SUCCEED - successful execution                               *
+ *               FAIL    - pattern parsing failed                             *
+ *                                                                            *
+ ******************************************************************************/
+int	add_key_access_rule(const char *pattern, zbx_key_access_rule_type_t type)
+{
+	static int		no_more_rules = 0;
+	int			ret, rule_added = 0;
+	zbx_key_access_rule_t	*rule;
+
+	rule = zbx_malloc(NULL, sizeof(zbx_key_access_rule_t));
+	rule->type = type;
+	zbx_vector_str_create(&rule->elements);
+
+	if (SUCCEED != (ret = parse_key_access_rule(pattern, rule)))
+	{
+		zabbix_log(LOG_LEVEL_WARNING, "failed to process key access rule \"%s\"", pattern);
+	}
+	else if (0 == no_more_rules)
+	{
+		int			i;
+		zbx_key_access_rule_t	*r;
+
+		if (FAIL != (i = zbx_vector_ptr_search(&key_access_rules, rule, compare_key_access_rules)))
+		{
+			r = (zbx_key_access_rule_t*)key_access_rules.values[i];
+
+			zabbix_log(LOG_LEVEL_WARNING, "key access rule \"%s\" %s another rule defined above",
+					pattern, r->type == type ? "duplicates" : "conflicts with");
+		}
+		else if (1 == rule->elements.values_num && 0 == strcmp(rule->elements.values[0], "*"))
+		{
+			switch(rule->type)
+			{
+				case ZBX_KEY_ACCESS_ALLOW:
+					no_more_rules = 1;	/* any rules after "allow all" are meaningless */
+					break;
+				case ZBX_KEY_ACCESS_DENY:
+					zbx_vector_ptr_append(&key_access_rules, rule);
+					rule_added = 1;
+					no_more_rules = 2;	/* any rules after "deny all" are meaningless */
+					break;
+				default:
+					THIS_SHOULD_NEVER_HAPPEN;
+			}
+		}
+		else
+		{
+			zbx_vector_ptr_append(&key_access_rules, rule);
+			rule_added = 1;
+		}
+	}
+
+	if (0 == rule_added)
+	{
+		zbx_vector_str_clear_ext(&rule->elements, zbx_str_free);
+		zbx_vector_str_destroy(&rule->elements);
+		zbx_free(rule);
+	}
+
+	return ret;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: check_request_access_rules                                       *
+ *                                                                            *
+ * Purpose: checks agent metric request against configured access rules       *
+ *                                                                            *
+ * Parameters: request - [IN] metric request (key and parameters)             *
+ *                                                                            *
+ * Return value: ZBX_KEY_ACCESS_ALLOW - metric access allowed                 *
+ *               ZBX_KEY_ACCESS_DENY  - metric access denied                  *
+ *                                                                            *
+ ******************************************************************************/
+int	check_request_access_rules(AGENT_REQUEST *request)
+{
+	int			i, j, empty_arguments;
+	zbx_key_access_rule_t	*rule;
+
+	/* empty arguments flag means key is followed by empty brackets, which is not the same as no brackets */
+	empty_arguments = (1 == request->nparam && 0 == strlen(request->params[0]));
+
+	for (i = 0; key_access_rules.values_num > i; i++)
+	{
+		rule = (zbx_key_access_rule_t*)key_access_rules.values[i];
+
+		if (0 == strcmp("*", rule->elements.values[0]) && 1 == rule->elements.values_num)
+			return rule->type; /* match all */
+
+		if (1 < rule->elements.values_num)
+		{
+			if (0 == strcmp("*", rule->elements.values[rule->elements.values_num - 1]))
+			{
+				if (2 == rule->elements.values_num && 0 == request->nparam)
+					continue;	/* rule: key[*], request: key */
+			}
+			else
+			{
+				if (request->nparam < (rule->elements.values_num - 1))
+					continue;	/* too few parameters */
+
+				if (request->nparam > (rule->elements.values_num - 1) && 0 == empty_arguments)
+					continue;	/* too many parameters */
+			}
+		}
+
+		if (0 == zbx_wildcard_match(request->key, rule->elements.values[0]))
+			continue;	/* key doesn't match */
+
+		if (0 != rule->empty_arguments)	/* rule expects empty argument list: key[] */
+		{
+			if (0 != empty_arguments)
+				return rule->type;
+
+			continue;
+		}
+
+		if (0 != empty_arguments && 1 == rule->elements.values_num)
+			continue;	/* no parameters expected by rule */
+
+		if (0 == request->nparam && 1 == rule->elements.values_num)	/* no parameters */
+			return rule->type;
+
+		for (j = 1; rule->elements.values_num > j; j++)
+		{
+			if ((rule->elements.values_num - 1) == j)	/* last parameter */
+			{
+				if (0 == strcmp("*", rule->elements.values[j]))
+					return rule->type;	/* skip next parameter checks */
+
+				if (request->nparam < j)
+					break;
+
+				if (0 == zbx_wildcard_match(request->params[j - 1], rule->elements.values[j]))
+					break;		/* parameter doesn't match pattern */
+
+				return rule->type;
+			}
+
+			if (request->nparam < j ||
+					0 == zbx_wildcard_match(request->params[j - 1], rule->elements.values[j]))
+				break;	/* parameter doesn't match pattern */
+		}
+	}
+
+	return ZBX_KEY_ACCESS_ALLOW;	/* allow by default for backward compatibility */
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: check_key_access_rules                                           *
+ *                                                                            *
+ * Purpose: checks agent metric request against configured access rules       *
+ *                                                                            *
+ * Parameters: metric - [IN] metric requested (key and parameters)            *
+ *                                                                            *
+ * Return value: ZBX_KEY_ACCESS_ALLOW - metric access allowed                 *
+ *               ZBX_KEY_ACCESS_DENY  - metric access denied                  *
+ *                                                                            *
+ ******************************************************************************/
+int	check_key_access_rules(const char *metric)
+{
+	int		ret;
+	AGENT_REQUEST	request;
+
+	init_request(&request);
+
+	if (SUCCEED == parse_item_key(metric, &request))
+		ret = check_request_access_rules(&request);
+	else
+		ret = ZBX_KEY_ACCESS_DENY;
+
+	free_request(&request);
+
+	return ret;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: free_key_access_rules                                            *
+ *                                                                            *
+ * Purpose: cleanup key access rule list                                      *
+ *                                                                            *
+ ******************************************************************************/
+void	free_key_access_rules(void)
+{
+	int			i;
+	zbx_key_access_rule_t	*rule;
+
+	for(i = 0; i < key_access_rules.values_num; i++)
+	{
+		rule = (zbx_key_access_rule_t*)key_access_rules.values[i];
+		zbx_vector_str_clear_ext(&rule->elements, zbx_str_free);
+		zbx_vector_str_destroy(&rule->elements);
+		zbx_free(key_access_rules.values[i]);
+	}
+
+	zbx_vector_ptr_destroy(&key_access_rules);
 }
 
 static void	zbx_log_init(zbx_log_t *log)
@@ -352,6 +805,8 @@ static void	add_request_param(AGENT_REQUEST *request, char *pvalue)
  *                                                                            *
  * Return value: request - structure filled with data from item key           *
  *                                                                            *
+ * Comments: thread-safe                                                      *
+ *                                                                            *
  ******************************************************************************/
 int	parse_item_key(const char *itemkey, AGENT_REQUEST *request)
 {
@@ -394,11 +849,13 @@ void	test_parameter(const char *key)
 
 	if (SUCCEED == process(key, PROCESS_WITH_ALIAS, &result))
 	{
+		char	buffer[ZBX_MAX_DOUBLE_LEN + 1];
+
 		if (0 != ISSET_UI64(&result))
 			printf(" [u|" ZBX_FS_UI64 "]", result.ui64);
 
 		if (0 != ISSET_DBL(&result))
-			printf(" [d|" ZBX_FS_DBL "]", result.dbl);
+			printf(" [d|%s]", zbx_print_double(buffer, sizeof(buffer), result.dbl));
 
 		if (0 != ISSET_STR(&result))
 			printf(" [s|%s]", result.str);
@@ -447,7 +904,8 @@ void	test_parameters(void)
 				zbx_chrcpy_alloc(&key, &key_alloc, &key_offset, ']');
 			}
 
-			test_parameter(key);
+			if (ZBX_KEY_ACCESS_ALLOW == check_key_access_rules(key))
+				test_parameter(key);
 		}
 	}
 
@@ -572,6 +1030,13 @@ int	process(const char *in_command, unsigned flags, AGENT_RESULT *result)
 		goto notsupported;
 	}
 
+	if (ZBX_KEY_ACCESS_ALLOW != check_request_access_rules(&request))
+	{
+		zabbix_log(LOG_LEVEL_DEBUG, "Key access denied: \"%s\"", in_command);
+		SET_MSG_RESULT(result, zbx_strdup(NULL, "Unsupported item key."));
+		goto notsupported;
+	}
+
 	/* system.run is not allowed by default except for getting hostname for daemons */
 	if (1 != CONFIG_ENABLE_REMOTE_COMMANDS && 0 == (flags & PROCESS_LOCAL_COMMAND) &&
 			0 == strcmp(request.key, "system.run"))
@@ -580,10 +1045,22 @@ int	process(const char *in_command, unsigned flags, AGENT_RESULT *result)
 		goto notsupported;
 	}
 
-	for (command = commands; NULL != command->key; command++)
+	if (0 != (flags & PROCESS_LOCAL_COMMAND))
 	{
-		if (0 == strcmp(command->key, request.key))
-			break;
+		for (command = commands_local; NULL != command->key; command++)
+		{
+			if (0 == strcmp(command->key, request.key))
+				break;
+		}
+	}
+
+	if (NULL == command || NULL == command->key)
+	{
+		for (command = commands; NULL != command->key; command++)
+		{
+			if (0 == strcmp(command->key, request.key))
+				break;
+		}
 	}
 
 	/* item key not found */
@@ -1039,7 +1516,14 @@ zbx_uint64_t	get_kstat_numeric_value(const kstat_named_t *kn)
 }
 #endif
 
-#ifndef _WINDOWS
+#if !defined(_WINDOWS) && !defined(__MINGW32__)
+#if defined(WITH_AGENT2_METRICS)
+int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *request, AGENT_RESULT *result)
+{
+	/* calling fork() in a multithreaded program may result in deadlock on mutex */
+	return metric_func(request, result);
+}
+#else
 /******************************************************************************
  *                                                                            *
  * Function: serialize_agent_result                                           *
@@ -1226,15 +1710,13 @@ static int	write_all(int fd, const char *buf, size_t n)
  ******************************************************************************/
 int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char	*__function_name = "zbx_execute_threaded_metric";
+	int	ret = SYSINFO_RET_OK;
+	pid_t	pid;
+	int	fds[2], n, status;
+	char	buffer[MAX_STRING_LEN], *data;
+	size_t	data_alloc = MAX_STRING_LEN, data_offset = 0;
 
-	int		ret = SYSINFO_RET_OK;
-	pid_t		pid;
-	int		fds[2], n, status;
-	char		buffer[MAX_STRING_LEN], *data;
-	size_t		data_alloc = MAX_STRING_LEN, data_offset = 0;
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() key:'%s'", __function_name, request->key);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() key:'%s'", __func__, request->key);
 
 	if (-1 == pipe(fds))
 	{
@@ -1345,13 +1827,14 @@ int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *re
 
 	zbx_free(data);
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s '%s'", __function_name, zbx_sysinfo_ret_string(ret),
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s '%s'", __func__, zbx_sysinfo_ret_string(ret),
 			ISSET_MSG(result) ? result->msg : "");
 	return ret;
 }
+#endif
 #else
 
-ZBX_THREAD_LOCAL static zbx_uint32_t	mutex_flag = ZBX_MUTEX_ALL_ALLOW;
+static ZBX_THREAD_LOCAL zbx_uint32_t	mutex_flag = ZBX_MUTEX_ALL_ALLOW;
 
 zbx_uint32_t get_thread_global_mutex_flag()
 {
@@ -1402,8 +1885,6 @@ ZBX_THREAD_ENTRY(agent_metric_thread, data)
  ******************************************************************************/
 int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char			*__function_name = "zbx_execute_threaded_metric";
-
 	ZBX_THREAD_HANDLE		thread;
 	zbx_thread_args_t		thread_args;
 	zbx_metric_thread_args_t	metric_args = {metric_func, request, result, ZBX_MUTEX_THREAD_DENIED |
@@ -1411,7 +1892,7 @@ int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *re
 	DWORD				rc;
 	BOOL				terminate_thread = FALSE;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() key:'%s'", __function_name, request->key);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() key:'%s'", __func__, request->key);
 
 	if (NULL == (metric_args.timeout_event = CreateEvent(NULL, TRUE, FALSE, NULL)))
 	{
@@ -1475,13 +1956,13 @@ int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *re
 	{
 		if (FALSE != TerminateThread(thread, 0))
 		{
-			zabbix_log(LOG_LEVEL_ERR, "%s(): TerminateThread() for %s[%s%s] succeeded", __function_name,
+			zabbix_log(LOG_LEVEL_ERR, "%s(): TerminateThread() for %s[%s%s] succeeded", __func__,
 					request->key, (0 < request->nparam) ? request->params[0] : "",
 					(1 < request->nparam) ? ",..." : "");
 		}
 		else
 		{
-			zabbix_log(LOG_LEVEL_ERR, "%s(): TerminateThread() for %s[%s%s] failed: %s", __function_name,
+			zabbix_log(LOG_LEVEL_ERR, "%s(): TerminateThread() for %s[%s%s] failed: %s", __func__,
 					request->key, (0 < request->nparam) ? request->params[0] : "",
 					(1 < request->nparam) ? ",..." : "",
 					strerror_from_system(GetLastError()));
@@ -1491,7 +1972,7 @@ int	zbx_execute_threaded_metric(zbx_metric_func_t metric_func, AGENT_REQUEST *re
 	CloseHandle(thread);
 	CloseHandle(metric_args.timeout_event);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s '%s'", __function_name,
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s '%s'", __func__,
 			zbx_sysinfo_ret_string(metric_args.agent_ret), ISSET_MSG(result) ? result->msg : "");
 
 	return WAIT_OBJECT_0 == rc ? metric_args.agent_ret : SYSINFO_RET_FAIL;

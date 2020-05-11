@@ -31,7 +31,7 @@
 
 #include "datasender.h"
 #include "../servercomms.h"
-#include "../../libs/zbxcrypto/tls.h"
+#include "zbxcrypto.h"
 
 extern unsigned char	process_type, program_type;
 extern int		server_num, process_num;
@@ -52,27 +52,25 @@ extern int		server_num, process_num;
  *                                                                            *
  * Function: proxy_data_sender                                                *
  *                                                                            *
- * Purpose: collects host availability, history, discovery, auto registration *
+ * Purpose: collects host availability, history, discovery, autoregistration  *
  *          data and sends 'proxy data' request                               *
  *                                                                            *
  ******************************************************************************/
 static int	proxy_data_sender(int *more, int now)
 {
-	const char		*__function_name = "proxy_data_sender";
-
 	static int		data_timestamp = 0, task_timestamp = 0, upload_state = SUCCEED;
 
 	zbx_socket_t		sock;
 	struct zbx_json		j;
 	struct zbx_json_parse	jp, jp_tasks;
 	int			availability_ts, history_records = 0, discovery_records = 0,
-				areg_records = 0, more_history = 0, more_discovery = 0, more_areg = 0;
+				areg_records = 0, more_history = 0, more_discovery = 0, more_areg = 0, proxy_delay;
 	zbx_uint64_t		history_lastid = 0, discovery_lastid = 0, areg_lastid = 0, flags = 0;
 	zbx_timespec_t		ts;
 	char			*error = NULL;
 	zbx_vector_ptr_t	tasks;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	*more = ZBX_PROXY_DATA_DONE;
 	zbx_json_init(&j, 16 * ZBX_KIBIBYTE);
@@ -86,13 +84,16 @@ static int	proxy_data_sender(int *more, int now)
 		if (SUCCEED == get_host_availability_data(&j, &availability_ts))
 			flags |= ZBX_DATASENDER_AVAILABILITY;
 
-		if  (0 != (history_records = proxy_get_hist_data(&j, &history_lastid, &more_history)))
+		history_records = proxy_get_hist_data(&j, &history_lastid, &more_history);
+		if (0 != history_lastid)
 			flags |= ZBX_DATASENDER_HISTORY;
 
-		if  (0 != (discovery_records = proxy_get_dhis_data(&j, &discovery_lastid, &more_discovery)))
+		discovery_records = proxy_get_dhis_data(&j, &discovery_lastid, &more_discovery);
+		if (0 != discovery_records)
 			flags |= ZBX_DATASENDER_DISCOVERY;
 
-		if  (0 != (areg_records = proxy_get_areg_data(&j, &areg_lastid, &more_areg)))
+		areg_records = proxy_get_areg_data(&j, &areg_lastid, &more_areg);
+		if (0 != areg_records)
 			flags |= ZBX_DATASENDER_AUTOREGISTRATION;
 
 		if (ZBX_PROXY_DATA_MORE != more_history && ZBX_PROXY_DATA_MORE != more_discovery &&
@@ -140,6 +141,9 @@ static int	proxy_data_sender(int *more, int now)
 		zbx_timespec(&ts);
 		zbx_json_adduint64(&j, ZBX_PROTO_TAG_CLOCK, ts.sec);
 		zbx_json_adduint64(&j, ZBX_PROTO_TAG_NS, ts.ns);
+
+		if (0 != (flags & ZBX_DATASENDER_HISTORY) && 0 != (proxy_delay = proxy_get_delay(history_lastid)))
+			zbx_json_adduint64(&j, ZBX_PROTO_TAG_PROXY_DELAY, proxy_delay);
 
 		if (SUCCEED != (upload_state = put_data_to_server(&sock, &j, &error)))
 		{
@@ -196,7 +200,7 @@ clean:
 
 	zbx_json_free(&j);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s more:%d flags:0x" ZBX_FS_UX64, __function_name,
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s more:%d flags:0x" ZBX_FS_UX64, __func__,
 			zbx_result_string(upload_state), *more, flags);
 
 	return history_records + discovery_records + areg_records;
@@ -223,7 +227,7 @@ ZBX_THREAD_ENTRY(datasender_thread, args)
 
 	update_selfmon_counter(ZBX_PROCESS_STATE_BUSY);
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_init_child();
 #endif
 	zbx_setproctitle("%s [connecting to the database]", get_process_type_string(process_type));

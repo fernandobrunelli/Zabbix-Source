@@ -192,9 +192,7 @@ static int	get_ipv6_support(const char * fping, const char *dst)
 static int	process_ping(ZBX_FPING_HOST *hosts, int hosts_count, int count, int interval, int size, int timeout,
 		char *error, size_t max_error_len)
 {
-	const char	*__function_name = "process_ping";
 	const int	response_time_chars_max = 20;
-
 	FILE		*f;
 	char		*c, params[70];
 	char		filename[MAX_STRING_LEN];
@@ -217,7 +215,7 @@ static int	process_ping(ZBX_FPING_HOST *hosts, int hosts_count, int count, int i
 
 	assert(hosts);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() hosts_count:%d", __function_name, hosts_count);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() hosts_count:%d", __func__, hosts_count);
 
 	tmp_size = (size_t)(MAX_STRING_LEN + count * response_time_chars_max);
 	tmp = zbx_malloc(tmp, tmp_size);
@@ -532,9 +530,9 @@ static int	process_ping(ZBX_FPING_HOST *hosts, int hosts_count, int count, int i
 	if (NOTSUPPORTED == ret)
 		zbx_snprintf(error, max_error_len, "fping failed: %s", tmp);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
 out:
 	zbx_free(tmp);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 	return ret;
 }
 
@@ -557,16 +555,14 @@ out:
 int	do_ping(ZBX_FPING_HOST *hosts, int hosts_count, int count, int interval, int size, int timeout, char *error,
 		size_t max_error_len)
 {
-	const char	*__function_name = "do_ping";
-
 	int	res;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() hosts_count:%d", __function_name, hosts_count);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() hosts_count:%d", __func__, hosts_count);
 
 	if (NOTSUPPORTED == (res = process_ping(hosts, hosts_count, count, interval, size, timeout, error, max_error_len)))
 		zabbix_log(LOG_LEVEL_ERR, "%s", error);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(res));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(res));
 
 	return res;
 }

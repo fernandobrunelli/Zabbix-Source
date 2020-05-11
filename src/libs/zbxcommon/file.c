@@ -20,7 +20,7 @@
 #include "common.h"
 #include "zbxtypes.h"
 
-#if defined(_WINDOWS)
+#if defined(_WINDOWS) || defined(__MINGW32__)
 #include "symbols.h"
 
 int	__zbx_open(const char *pathname, int flags)

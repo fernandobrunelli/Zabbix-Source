@@ -23,7 +23,7 @@
 #include "zbxregexp.h"
 #include "log.h"
 
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 #	include "disk.h"
 #endif
 
@@ -183,7 +183,7 @@ static int	prepare_common_parameters(const AGENT_REQUEST *request, AGENT_RESULT 
 	if ('\0' != *(*dir + 1) && ':' != *(*dir + strlen(*dir) - 2))
 		zbx_rtrim(*dir, "/\\");
 
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 	if (0 != zbx_stat(*dir, status))
 #else
 	if (0 != lstat(*dir, status))
@@ -422,7 +422,7 @@ static void	descriptors_vector_destroy(zbx_vector_ptr_t *descriptors)
  * sockets, etc.).                                                            *
  *                                                                            *
  *****************************************************************************/
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 
 #define		DW2UI64(h,l) 	((zbx_uint64_t)h << 32 | l)
 #define		FT2UT(ft) 	(time_t)(DW2UI64(ft.dwHighDateTime,ft.dwLowDateTime) / 10000000ULL - 11644473600ULL)
@@ -491,7 +491,6 @@ static int	get_file_info_by_handle(wchar_t *wpath, BY_HANDLE_FILE_INFORMATION *l
 
 static int	link_processed(DWORD attrib, wchar_t *wpath, zbx_vector_ptr_t *descriptors, char *path)
 {
-	const char			*__function_name = "link_processed";
 	BY_HANDLE_FILE_INFORMATION	link_info;
 	zbx_file_descriptor_t		*file;
 	char 				*error;
@@ -505,8 +504,7 @@ static int	link_processed(DWORD attrib, wchar_t *wpath, zbx_vector_ptr_t *descri
 
 	if (FAIL == get_file_info_by_handle(wpath, &link_info, &error))
 	{
-		zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot get file information '%s': %s",
-				__function_name, path, error);
+		zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot get file information '%s': %s", __func__, path, error);
 		zbx_free(error);
 		return SUCCEED;
 	}
@@ -534,7 +532,6 @@ static int	link_processed(DWORD attrib, wchar_t *wpath, zbx_vector_ptr_t *descri
 
 static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE timeout_event)
 {
-	const char		*__function_name = "vfs_dir_size";
 	char			*dir = NULL;
 	int			mode, max_depth, ret = SYSINFO_RET_FAIL;
 	zbx_uint64_t		size = 0;
@@ -583,7 +580,7 @@ static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE tim
 			if (0 < item->depth)
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot convert directory name to UTF-16: '%s'",
-						__function_name, item->path);
+						__func__, item->path);
 				goto skip;
 			}
 
@@ -602,7 +599,7 @@ static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE tim
 			if (0 < item->depth)
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot open directory listing '%s': %s",
-						__function_name, item->path, zbx_strerror(errno));
+						__func__, item->path, zbx_strerror(errno));
 				goto skip;
 			}
 
@@ -686,7 +683,7 @@ static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE tim
 
 		if (0 == FindClose(handle))
 		{
-			zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot close directory listing '%s': %s", __function_name,
+			zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot close directory listing '%s': %s", __func__,
 					item->path, zbx_strerror(errno));
 		}
 skip:
@@ -709,10 +706,9 @@ err1:
 
 	return ret;
 }
-#else /* not _WINDOWS */
+#else /* not _WINDOWS or __MINGW32__ */
 static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char		*__function_name = "vfs_dir_size";
 	char			*dir = NULL;
 	int			mode, max_depth, ret = SYSINFO_RET_FAIL;
 	zbx_uint64_t		size = 0;
@@ -764,7 +760,7 @@ static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result)
 			if (0 < item->depth)	/* unreadable subdirectory - skip */
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot open directory listing '%s': %s",
-						__function_name, item->path, zbx_strerror(errno));
+						__func__, item->path, zbx_strerror(errno));
 				goto skip;
 			}
 
@@ -837,7 +833,7 @@ static int	vfs_dir_size(AGENT_REQUEST *request, AGENT_RESULT *result)
 			else
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot process directory entry '%s': %s",
-						__function_name, path, zbx_strerror(errno));
+						__func__, path, zbx_strerror(errno));
 				zbx_free(path);
 			}
 		}
@@ -877,10 +873,9 @@ int	VFS_DIR_SIZE(AGENT_REQUEST *request, AGENT_RESULT *result)
  * Comments: under Widows we only support entry types "file" and "dir"        *
  *                                                                            *
  *****************************************************************************/
-#ifdef _WINDOWS
-static int	vfs_dir_count(const AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE timeout_event)
+#if defined(_WINDOWS) || defined(__MINGW32__)
+static int	vfs_dir_count(AGENT_REQUEST *request, AGENT_RESULT *result, HANDLE timeout_event)
 {
-	const char		*__function_name = "vfs_dir_count";
 	char			*dir = NULL;
 	int			types, max_depth, ret = SYSINFO_RET_FAIL;
 	zbx_uint64_t		count = 0;
@@ -930,7 +925,7 @@ static int	vfs_dir_count(const AGENT_REQUEST *request, AGENT_RESULT *result, HAN
 			if (0 < item->depth)
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot convert directory name to UTF-16: '%s'",
-						__function_name, item->path);
+						__func__, item->path);
 				goto skip;
 			}
 
@@ -949,7 +944,7 @@ static int	vfs_dir_count(const AGENT_REQUEST *request, AGENT_RESULT *result, HAN
 			if (0 < item->depth)
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot open directory listing '%s': %s",
-						__function_name, item->path, zbx_strerror(errno));
+						__func__, item->path, zbx_strerror(errno));
 				goto skip;
 			}
 
@@ -1033,7 +1028,7 @@ free_path:
 
 		if (0 == FindClose(handle))
 		{
-			zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot close directory listing '%s': %s", __function_name,
+			zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot close directory listing '%s': %s", __func__,
 					item->path, zbx_strerror(errno));
 		}
 skip:
@@ -1056,10 +1051,9 @@ err1:
 
 	return ret;
 }
-#else /* not _WINDOWS */
+#else /* not _WINDOWS or __MINGW32__ */
 static int	vfs_dir_count(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char		*__function_name = "vfs_dir_count";
 	char			*dir = NULL;
 	int			types, max_depth, ret = SYSINFO_RET_FAIL;
 	int			count = 0;
@@ -1102,7 +1096,7 @@ static int	vfs_dir_count(AGENT_REQUEST *request, AGENT_RESULT *result)
 			if (0 < item->depth)	/* unreadable subdirectory - skip */
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot open directory listing '%s': %s",
-						__function_name, item->path, zbx_strerror(errno));
+						__func__, item->path, zbx_strerror(errno));
 				goto skip;
 			}
 
@@ -1159,7 +1153,7 @@ static int	vfs_dir_count(AGENT_REQUEST *request, AGENT_RESULT *result)
 			else
 			{
 				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot process directory entry '%s': %s",
-						__function_name, path, zbx_strerror(errno));
+						__func__, path, zbx_strerror(errno));
 				zbx_free(path);
 			}
 		}

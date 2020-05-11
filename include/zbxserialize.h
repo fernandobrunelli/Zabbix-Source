@@ -26,6 +26,10 @@
 	str##_len = (NULL != str ? strlen(str) + 1 : 0);	\
 	len += str##_len + sizeof(zbx_uint32_t)
 
+#define zbx_serialize_prepare_str_len(len, str, str_len)	\
+	str_len = (NULL != str ? strlen(str) + 1 : 0);		\
+	len += str_len + sizeof(zbx_uint32_t)
+
 #define zbx_serialize_prepare_value(len, value)			\
 	len += sizeof(value)
 
@@ -54,7 +58,7 @@
 			len + sizeof(zbx_uint32_t)					\
 		)									\
 	)
-	
+
 #define zbx_serialize_value(buffer, value) (memcpy(buffer, &value, sizeof(value)), sizeof(value))
 
 /* deserialization of primitive types */
@@ -103,4 +107,14 @@
 #define zbx_deserialize_value(buffer, value) \
 	(memcpy(value, buffer, sizeof(*value)), sizeof(*value))
 
-#endif /* ZABBIX_SERIALIZE_H */
+/* length prefixed binary data */
+#define zbx_deserialize_bin(buffer, value, value_len)					\
+	(										\
+		memcpy(&value_len, buffer, sizeof(zbx_uint32_t)),			\
+		*value = (void *)zbx_malloc(NULL, value_len + sizeof(zbx_uint32_t)),	\
+		memcpy(*(value), buffer, value_len + sizeof(zbx_uint32_t)),		\
+		value_len + sizeof(zbx_uint32_t)					\
+	)
+#endif
+
+/* ZABBIX_SERIALIZE_H */

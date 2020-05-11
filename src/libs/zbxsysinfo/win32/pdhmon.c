@@ -25,12 +25,11 @@
 
 int	USER_PERF_COUNTER(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char		*__function_name = "USER_PERF_COUNTER";
-	int			ret = SYSINFO_RET_FAIL;
-	char			*counter, *error = NULL;
-	double			value;
+	int	ret = SYSINFO_RET_FAIL;
+	char	*counter, *error = NULL;
+	double	value;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (1 != request->nparam)
 	{
@@ -54,7 +53,7 @@ int	USER_PERF_COUNTER(AGENT_REQUEST *request, AGENT_RESULT *result)
 	SET_DBL_RESULT(result, value);
 	ret = SYSINFO_RET_OK;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -123,14 +122,10 @@ out:
 
 int	PERF_COUNTER(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char	*__function_name = "PERF_COUNTER";
-
-	return perf_counter_ex(__function_name, request, result, PERF_COUNTER_LANG_DEFAULT);
+	return perf_counter_ex(__func__, request, result, PERF_COUNTER_LANG_DEFAULT);
 }
 
 int	PERF_COUNTER_EN(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-	const char	*__function_name = "PERF_COUNTER_EN";
-
-	return perf_counter_ex(__function_name, request, result, PERF_COUNTER_LANG_EN);
+	return perf_counter_ex(__func__, request, result, PERF_COUNTER_LANG_EN);
 }

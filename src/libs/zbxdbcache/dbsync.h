@@ -40,7 +40,7 @@
 #define ZBX_DBSYNC_UPDATE_MAINTENANCE_GROUPS	__UINT64_C(0x0040)
 
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 #	define ZBX_HOST_TLS_OFFSET	4
 #else
 #	define ZBX_HOST_TLS_OFFSET	0
@@ -116,6 +116,7 @@ void	zbx_dbsync_clear(zbx_dbsync_t *sync);
 int	zbx_dbsync_next(zbx_dbsync_t *sync, zbx_uint64_t *rowid, char ***rows, unsigned char *tag);
 
 int	zbx_dbsync_compare_config(zbx_dbsync_t *sync);
+int	zbx_dbsync_compare_autoreg_psk(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_hosts(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_host_inventory(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_host_templates(zbx_dbsync_t *sync);
@@ -123,6 +124,8 @@ int	zbx_dbsync_compare_global_macros(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_host_macros(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_interfaces(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_items(zbx_dbsync_t *sync);
+int	zbx_dbsync_compare_template_items(zbx_dbsync_t *sync);
+int	zbx_dbsync_compare_prototype_items(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_triggers(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_trigger_dependency(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_functions(zbx_dbsync_t *sync);
@@ -131,6 +134,7 @@ int	zbx_dbsync_compare_actions(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_action_ops(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_action_conditions(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_trigger_tags(zbx_dbsync_t *sync);
+int	zbx_dbsync_compare_host_tags(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_correlations(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_corr_conditions(zbx_dbsync_t *sync);
 int	zbx_dbsync_compare_corr_operations(zbx_dbsync_t *sync);

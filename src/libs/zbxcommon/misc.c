@@ -162,10 +162,10 @@ const char	*get_program_name(const char *path)
  ******************************************************************************/
 void	zbx_timespec(zbx_timespec_t *ts)
 {
-	ZBX_THREAD_LOCAL static zbx_timespec_t	last_ts = {0, 0};
-	ZBX_THREAD_LOCAL static int		corr = 0;
-#ifdef _WINDOWS
-	ZBX_THREAD_LOCAL static LARGE_INTEGER	tickPerSecond = {0};
+	static ZBX_THREAD_LOCAL zbx_timespec_t	last_ts = {0, 0};
+	static ZBX_THREAD_LOCAL int		corr = 0;
+#if defined(_WINDOWS) || defined(__MINGW32__)
+	static ZBX_THREAD_LOCAL LARGE_INTEGER	tickPerSecond = {0};
 	struct _timeb				tb;
 #else
 	struct timeval	tv;
@@ -174,7 +174,7 @@ void	zbx_timespec(zbx_timespec_t *ts)
 	struct timespec	tp;
 #	endif
 #endif
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 
 	if (0 == tickPerSecond.QuadPart)
 		QueryPerformanceFrequency(&tickPerSecond);
@@ -190,7 +190,7 @@ void	zbx_timespec(zbx_timespec_t *ts)
 
 		if (TRUE == QueryPerformanceCounter(&tick))
 		{
-			ZBX_THREAD_LOCAL static LARGE_INTEGER	last_tick = {0};
+			static ZBX_THREAD_LOCAL LARGE_INTEGER	last_tick = {0};
 
 			if (0 < last_tick.QuadPart)
 			{
@@ -346,7 +346,7 @@ static int	is_leap_year(int year)
  ******************************************************************************/
 void	zbx_get_time(struct tm *tm, long *milliseconds, zbx_timezone_t *tz)
 {
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 	struct _timeb	current_time;
 
 	_ftime(&current_time);
@@ -362,7 +362,7 @@ void	zbx_get_time(struct tm *tm, long *milliseconds, zbx_timezone_t *tz)
 	if (NULL != tz)
 	{
 		long	offset;
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 		offset = zbx_get_timezone_offset(current_time.time, tm);
 #else
 		offset = zbx_get_timezone_offset(current_time.tv_sec, tm);
@@ -398,7 +398,7 @@ long	zbx_get_timezone_offset(time_t t, struct tm *tm)
 #ifdef HAVE_TM_TM_GMTOFF
 	offset = tm->tm_gmtoff;
 #else
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 	tm_utc = *gmtime(&t);
 #else
 	gmtime_r(&t, &tm_utc);
@@ -483,6 +483,27 @@ int	zbx_day_in_month(int year, int mon)
 		return month[mon - 1] + (2 == mon && SUCCEED == is_leap_year(year) ? 1 : 0);
 
 	return 30;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_get_duration_ms                                              *
+ *                                                                            *
+ * Purpose: get duration in milliseconds since time stamp till current time   *
+ *                                                                            *
+ * Parameters:                                                                *
+ *     start_time - [IN] time from when duration should be counted            *
+ *                                                                            *
+ * Return value: duration in milliseconds since time stamp till current time  *
+ *                                                                            *
+ ******************************************************************************/
+zbx_uint64_t	zbx_get_duration_ms(const zbx_timespec_t *ts)
+{
+	zbx_timespec_t	now;
+
+	zbx_timespec(&now);
+
+	return (now.sec - ts->sec) * 1e3 + (now.ns - ts->ns) / 1e6;
 }
 
 /******************************************************************************
@@ -649,15 +670,14 @@ void	*zbx_guaranteed_memset(void *v, int c, size_t n)
 void	zbx_setproctitle(const char *fmt, ...)
 {
 #if defined(HAVE_FUNCTION_SETPROCTITLE) || defined(PS_OVERWRITE_ARGV) || defined(PS_PSTAT_ARGV)
-	const char	*__function_name = "__zbx_zbx_setproctitle";
-	char		title[MAX_STRING_LEN];
-	va_list		args;
+	char	title[MAX_STRING_LEN];
+	va_list	args;
 
 	va_start(args, fmt);
 	zbx_vsnprintf(title, sizeof(title), fmt, args);
 	va_end(args);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "%s() title:'%s'", __function_name, title);
+	zabbix_log(LOG_LEVEL_DEBUG, "%s() title:'%s'", __func__, title);
 #endif
 
 #if defined(HAVE_FUNCTION_SETPROCTITLE)
@@ -2343,11 +2363,10 @@ time_t	calculate_proxy_nextcheck(zbx_uint64_t hostid, unsigned int delay, time_t
  ******************************************************************************/
 int	is_ip4(const char *ip)
 {
-	const char	*__function_name = "is_ip4";
 	const char	*p = ip;
 	int		digits = 0, dots = 0, res = FAIL, octet = 0;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() ip:'%s'", __function_name, ip);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() ip:'%s'", __func__, ip);
 
 	while ('\0' != *p)
 	{
@@ -2376,7 +2395,7 @@ int	is_ip4(const char *ip)
 	if (3 == dots && 1 <= digits && 3 >= digits && 255 >= octet)
 		res = SUCCEED;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(res));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(res));
 
 	return res;
 }
@@ -2397,11 +2416,10 @@ int	is_ip4(const char *ip)
  ******************************************************************************/
 int	is_ip6(const char *ip)
 {
-	const char	*__function_name = "is_ip6";
 	const char	*p = ip, *last_colon;
 	int		xdigits = 0, only_xdigits = 0, colons = 0, dbl_colons = 0, res;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() ip:'%s'", __function_name, ip);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() ip:'%s'", __func__, ip);
 
 	while ('\0' != *p)
 	{
@@ -2443,7 +2461,7 @@ int	is_ip6(const char *ip)
 	else
 		res = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(res));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(res));
 
 	return res;
 }
@@ -2552,8 +2570,6 @@ int	zbx_validate_hostname(const char *hostname)
  ******************************************************************************/
 int	ip_in_list(const char *list, const char *ip)
 {
-	const char	*__function_name = "ip_in_list";
-
 	int		ipaddress[8];
 	zbx_iprange_t	iprange;
 	char		*address = NULL;
@@ -2561,7 +2577,7 @@ int	ip_in_list(const char *list, const char *ip)
 	const char	*ptr;
 	int		ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() list:'%s' ip:'%s'", __function_name, list, ip);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() list:'%s' ip:'%s'", __func__, list, ip);
 
 	if (SUCCEED != iprange_parse(&iprange, ip))
 		goto out;
@@ -2594,7 +2610,7 @@ int	ip_in_list(const char *list, const char *ip)
 
 	zbx_free(address);
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -2615,11 +2631,10 @@ out:
  ******************************************************************************/
 int	int_in_list(char *list, int value)
 {
-	const char	*__function_name = "int_in_list";
-	char		*start = NULL, *end = NULL, c = '\0';
-	int		i1, i2, ret = FAIL;
+	char	*start = NULL, *end = NULL, c = '\0';
+	int	i1, i2, ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() list:'%s' value:%d", __function_name, list, value);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() list:'%s' value:%d", __func__, list, value);
 
 	for (start = list; '\0' != *start;)
 	{
@@ -2658,7 +2673,7 @@ int	int_in_list(char *list, int value)
 	if (NULL != end)
 		*end = c;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -2716,23 +2731,7 @@ static int	is_double_valid_syntax(const char *str)
 	if (FAIL == zbx_number_parse(str, &len))
 		return FAIL;
 
-	str += len;
-
-	if ('e' == *str || 'E' == *str)		/* check exponential part */
-	{
-		str++;
-
-		if ('-' == *str || '+' == *str)	/* check exponent sign */
-			str++;
-
-		if (0 == isdigit(*str))		/* check exponent */
-			return FAIL;
-
-		while (0 != isdigit(*str))
-			str++;
-	}
-
-	return '\0' == *str ? SUCCEED : FAIL;
+	return '\0' == *(str + len) ? SUCCEED : FAIL;
 }
 
 /******************************************************************************
@@ -2857,7 +2856,7 @@ int	is_time_suffix(const char *str, int *value, int length)
 	return SUCCEED;
 }
 
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 int	_wis_uint(const wchar_t *wide_string)
 {
 	const wchar_t	*wide_char = wide_string;
@@ -2878,36 +2877,6 @@ int	_wis_uint(const wchar_t *wide_string)
 	return SUCCEED;
 }
 #endif
-
-/******************************************************************************
- *                                                                            *
- * Function: is_int_prefix                                                    *
- *                                                                            *
- * Purpose: check if the beginning of string is a signed integer              *
- *                                                                            *
- * Parameters: str - string to check                                          *
- *                                                                            *
- * Return value:  SUCCEED - the beginning of string is a signed integer       *
- *                FAIL - otherwise                                            *
- *                                                                            *
- * Author: Aleksandrs Saveljevs                                               *
- *                                                                            *
- ******************************************************************************/
-int	is_int_prefix(const char *str)
-{
-	size_t	i = 0;
-
-	while (' ' == str[i])	/* trim left spaces */
-		i++;
-
-	if ('-' == str[i] || '+' == str[i])
-		i++;
-
-	if (0 == isdigit(str[i]))
-		return FAIL;
-
-	return SUCCEED;
-}
 
 /******************************************************************************
  *                                                                            *
@@ -3553,21 +3522,6 @@ int	is_time_function(const char *func)
 
 /******************************************************************************
  *                                                                            *
- * Function: is_snmp_type                                                     *
- *                                                                            *
- * Return value:  SUCCEED  - the given type is one of regular SNMP types      *
- *                FAIL - otherwise                                            *
- *                                                                            *
- * Author: Aleksandrs Saveljevs                                               *
- *                                                                            *
- ******************************************************************************/
-int	is_snmp_type(unsigned char type)
-{
-	return ITEM_TYPE_SNMPv1 == type || ITEM_TYPE_SNMPv2c == type || ITEM_TYPE_SNMPv3 == type ? SUCCEED : FAIL;
-}
-
-/******************************************************************************
- *                                                                            *
  * Function: make_hostname                                                    *
  *                                                                            *
  * Purpose: replace all not-allowed hostname characters in the string         *
@@ -3613,9 +3567,7 @@ unsigned char	get_interface_type_by_item_type(unsigned char type)
 	{
 		case ITEM_TYPE_ZABBIX:
 			return INTERFACE_TYPE_AGENT;
-		case ITEM_TYPE_SNMPv1:
-		case ITEM_TYPE_SNMPv2c:
-		case ITEM_TYPE_SNMPv3:
+		case ITEM_TYPE_SNMP:
 		case ITEM_TYPE_SNMPTRAP:
 			return INTERFACE_TYPE_SNMP;
 		case ITEM_TYPE_IPMI:
@@ -3745,7 +3697,7 @@ void	zbx_alarm_flag_clear(void)
 	zbx_timed_out = 0;
 }
 
-#if !defined(_WINDOWS)
+#if !defined(_WINDOWS) && !defined(__MINGW32__)
 unsigned int	zbx_alarm_on(unsigned int seconds)
 {
 	zbx_alarm_flag_clear();
@@ -3835,3 +3787,36 @@ void	zbx_update_env(double time_now)
 #endif
 	}
 }
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_dc_get_agent_item_nextcheck                                  *
+ *                                                                            *
+ * Purpose: calculate item nextcheck for zabix agent type items               *
+ *                                                                            *
+ ******************************************************************************/
+int	zbx_get_agent_item_nextcheck(zbx_uint64_t itemid, const char *delay, unsigned char state, int now,
+		int refresh_unsupported, int *nextcheck, char **error)
+{
+	if (ITEM_STATE_NORMAL == state)
+	{
+		int			simple_interval;
+		zbx_custom_interval_t	*custom_intervals;
+
+		if (SUCCEED != zbx_interval_preproc(delay, &simple_interval, &custom_intervals, error))
+		{
+			*nextcheck = ZBX_JAN_2038;
+			return FAIL;
+		}
+
+		*nextcheck = calculate_item_nextcheck(itemid, ITEM_TYPE_ZABBIX, simple_interval, custom_intervals, now);
+		zbx_custom_interval_free(custom_intervals);
+	}
+	else	/* for items notsupported for other reasons use refresh_unsupported interval */
+	{
+		*nextcheck = calculate_item_nextcheck(itemid, ITEM_TYPE_ZABBIX, refresh_unsupported, NULL, now);
+	}
+
+	return SUCCEED;
+}
+

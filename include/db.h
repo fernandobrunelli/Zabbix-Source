@@ -31,6 +31,12 @@ extern char	*CONFIG_DBSCHEMA;
 extern char	*CONFIG_DBUSER;
 extern char	*CONFIG_DBPASSWORD;
 extern char	*CONFIG_DBSOCKET;
+extern char	*CONFIG_DB_TLS_CONNECT;
+extern char	*CONFIG_DB_TLS_CERT_FILE;
+extern char	*CONFIG_DB_TLS_KEY_FILE;
+extern char	*CONFIG_DB_TLS_CA_FILE;
+extern char	*CONFIG_DB_TLS_CIPHER;
+extern char	*CONFIG_DB_TLS_CIPHER_13;
 extern int	CONFIG_DBPORT;
 extern int	CONFIG_HISTSYNCER_FORKS;
 extern int	CONFIG_UNAVAILABLE_DELAY;
@@ -69,11 +75,12 @@ struct	_DC_TRIGGER;
 #define ZBX_DB_SERVER	1
 #define ZBX_DB_PROXY	2
 
+#define TRIGGER_OPDATA_LEN		255
 #define TRIGGER_URL_LEN			255
 #define TRIGGER_DESCRIPTION_LEN		255
 #define TRIGGER_EXPRESSION_LEN		2048
 #define TRIGGER_EXPRESSION_LEN_MAX	(TRIGGER_EXPRESSION_LEN + 1)
-#if defined(HAVE_IBM_DB2) || defined(HAVE_ORACLE)
+#if defined(HAVE_ORACLE)
 #	define TRIGGER_COMMENTS_LEN	2048
 #else
 #	define TRIGGER_COMMENTS_LEN	65535
@@ -105,7 +112,7 @@ struct	_DC_TRIGGER;
 #define INTERFACE_PORT_LEN_MAX		(INTERFACE_PORT_LEN + 1)
 
 #define ITEM_NAME_LEN			255
-#define ITEM_KEY_LEN			255
+#define ITEM_KEY_LEN			2048
 #define ITEM_DELAY_LEN			1024
 #define ITEM_HISTORY_LEN		255
 #define ITEM_TRENDS_LEN			255
@@ -156,7 +163,7 @@ struct	_DC_TRIGGER;
 #define ITEM_SSL_CERT_FILE_LEN_MAX	(ITEM_SSL_CERT_FILE_LEN + 1)
 #define ITEM_SSL_KEY_FILE_LEN		255
 #define ITEM_SSL_KEY_FILE_LEN_MAX	(ITEM_SSL_KEY_FILE_LEN + 1)
-#if defined(HAVE_IBM_DB2) || defined(HAVE_ORACLE)
+#if defined(HAVE_ORACLE)
 #	define ITEM_PARAM_LEN		2048
 #	define ITEM_DESCRIPTION_LEN	2048
 #	define ITEM_POSTS_LEN		2048
@@ -169,13 +176,8 @@ struct	_DC_TRIGGER;
 #endif
 
 #define HISTORY_STR_VALUE_LEN		255
-#ifdef HAVE_IBM_DB2
-#	define HISTORY_TEXT_VALUE_LEN	2048
-#	define HISTORY_LOG_VALUE_LEN	2048
-#else
-#	define HISTORY_TEXT_VALUE_LEN	65535
-#	define HISTORY_LOG_VALUE_LEN	65535
-#endif
+#define HISTORY_TEXT_VALUE_LEN		65535
+#define HISTORY_LOG_VALUE_LEN		65535
 
 #define HISTORY_LOG_SOURCE_LEN		64
 #define HISTORY_LOG_SOURCE_LEN_MAX	(HISTORY_LOG_SOURCE_LEN + 1)
@@ -189,6 +191,7 @@ struct	_DC_TRIGGER;
 #define GRAPH_ITEM_COLOR_LEN_MAX	(GRAPH_ITEM_COLOR_LEN + 1)
 
 #define DSERVICE_VALUE_LEN		255
+#define MAX_DISCOVERED_VALUE_SIZE	(DSERVICE_VALUE_LEN * ZBX_MAX_BYTES_IN_UTF8_CHAR + 1)
 
 #define HTTPTEST_HTTP_USER_LEN		64
 #define HTTPTEST_HTTP_PASSWORD_LEN	64
@@ -308,6 +311,7 @@ typedef struct
 	char		*url;
 	char		*comments;
 	char		*correlation_tag;
+	char		*opdata;
 	unsigned char	value;
 	unsigned char	priority;
 	unsigned char	type;
@@ -331,7 +335,7 @@ typedef struct
 	int			severity;
 	unsigned char		suppressed;
 
-	zbx_vector_ptr_t	tags;
+	zbx_vector_ptr_t	tags;	/* used for both zbx_tag_t and zbx_host_tag_t */
 
 #define ZBX_FLAGS_DB_EVENT_UNSET		0x0000
 #define ZBX_FLAGS_DB_EVENT_CREATE		0x0001
@@ -452,12 +456,6 @@ typedef struct
 {
 	zbx_uint64_t	actionid;
 	char		*name;
-	char		*shortdata;
-	char		*longdata;
-	char		*r_shortdata;
-	char		*r_longdata;
-	char		*ack_shortdata;
-	char		*ack_longdata;
 	int		esc_period;
 	unsigned char	eventsource;
 	unsigned char	pause_suppressed;
@@ -484,6 +482,11 @@ void	DBdeinit(void);
 int	DBconnect(int flag);
 void	DBclose(void);
 
+int	zbx_db_validate_config_features(void);
+#if defined(HAVE_MYSQL) || defined(HAVE_POSTGRESQL)
+void	zbx_db_validate_config(void);
+#endif
+
 #ifdef HAVE_ORACLE
 void	DBstatement_prepare(const char *sql);
 #endif
@@ -503,6 +506,8 @@ const ZBX_TABLE	*DBget_table(const char *tablename);
 const ZBX_FIELD	*DBget_field(const ZBX_TABLE *table, const char *fieldname);
 #define DBget_maxid(table)	DBget_maxid_num(table, 1)
 zbx_uint64_t	DBget_maxid_num(const char *tablename, int num);
+
+void	DBcheck_capabilities(void);
 
 /******************************************************************************
  *                                                                            *
@@ -581,6 +586,7 @@ int	DBdelete_template_elements(zbx_uint64_t hostid, zbx_vector_uint64_t *del_tem
 
 void	DBdelete_items(zbx_vector_uint64_t *itemids);
 void	DBdelete_graphs(zbx_vector_uint64_t *graphids);
+void	DBdelete_triggers(zbx_vector_uint64_t *triggerids);
 void	DBdelete_hosts(zbx_vector_uint64_t *hostids);
 void	DBdelete_hosts_with_prototypes(zbx_vector_uint64_t *hostids);
 
@@ -602,22 +608,36 @@ const char	*zbx_host_key_string(zbx_uint64_t itemid);
 const char	*zbx_user_string(zbx_uint64_t userid);
 
 void	DBregister_host(zbx_uint64_t proxy_hostid, const char *host, const char *ip, const char *dns,
-		unsigned short port, const char *host_metadata, int now);
+		unsigned short port, unsigned int connection_type, const char *host_metadata, unsigned short flag,
+		int now);
 void	DBregister_host_prepare(zbx_vector_ptr_t *autoreg_hosts, const char *host, const char *ip, const char *dns,
-		unsigned short port, const char *host_metadata, int now);
+		unsigned short port, unsigned int connection_type, const char *host_metadata, unsigned short flag,
+		int now);
 void	DBregister_host_flush(zbx_vector_ptr_t *autoreg_hosts, zbx_uint64_t proxy_hostid);
 void	DBregister_host_clean(zbx_vector_ptr_t *autoreg_hosts);
 
 void	DBproxy_register_host(const char *host, const char *ip, const char *dns, unsigned short port,
-		const char *host_metadata);
+		unsigned int connection_type, const char *host_metadata, unsigned short flag);
 int	DBexecute_overflowed_sql(char **sql, size_t *sql_alloc, size_t *sql_offset);
-char	*DBget_unique_hostname_by_sample(const char *host_name_sample);
+char	*DBget_unique_hostname_by_sample(const char *host_name_sample, const char *field_name);
 
 const char	*DBsql_id_ins(zbx_uint64_t id);
 const char	*DBsql_id_cmp(zbx_uint64_t id);
 
-zbx_uint64_t	DBadd_interface(zbx_uint64_t hostid, unsigned char type,
-		unsigned char useip, const char *ip, const char *dns, unsigned short port);
+typedef enum
+{
+	ZBX_CONN_DEFAULT = 0,
+	ZBX_CONN_IP,
+	ZBX_CONN_DNS,
+}
+zbx_conn_flags_t;
+
+zbx_uint64_t	DBadd_interface(zbx_uint64_t hostid, unsigned char type, unsigned char useip, const char *ip,
+		const char *dns, unsigned short port, zbx_conn_flags_t flags);
+void	DBadd_interface_snmp(const zbx_uint64_t interfaceid, const unsigned char type, const unsigned char bulk,
+		const char *community, const char *securityname, const unsigned char securitylevel,
+		const char *authpassphrase, const char *privpassphrase, const unsigned char authprotocol,
+		const unsigned char privprotocol, const char *contextname);
 
 const char	*DBget_inventory_field(unsigned char inventory_link);
 
@@ -636,6 +656,7 @@ int	DBindex_exists(const char *table_name, const char *index_name);
 int	DBexecute_multiple_query(const char *query, const char *field_name, zbx_vector_uint64_t *ids);
 int	DBlock_record(const char *table, zbx_uint64_t id, const char *add_field, zbx_uint64_t add_id);
 int	DBlock_records(const char *table, const zbx_vector_uint64_t *ids);
+int	DBlock_ids(const char *table_name, const char *field_name, zbx_vector_uint64_t *ids);
 
 #define DBlock_hostid(id)			DBlock_record("hosts", id, NULL, 0)
 #define DBlock_druleid(id)			DBlock_record("drules", id, NULL, 0)
@@ -757,20 +778,27 @@ void	zbx_db_trigger_clean(DB_TRIGGER *trigger);
 
 typedef struct
 {
-	zbx_uint64_t	hostid;
-	unsigned char	compress;
-	int		version;
-	int		lastaccess;
-	int		last_version_error_time;
+	zbx_uint64_t		hostid;
+	unsigned char		compress;
+	int			version;
+	int			lastaccess;
+	int			last_version_error_time;
+	int			proxy_delay;
+	int			more_data;
+	zbx_proxy_suppress_t	nodata_win;
 
 #define ZBX_FLAGS_PROXY_DIFF_UNSET				__UINT64_C(0x0000)
 #define ZBX_FLAGS_PROXY_DIFF_UPDATE_COMPRESS			__UINT64_C(0x0001)
 #define ZBX_FLAGS_PROXY_DIFF_UPDATE_VERSION			__UINT64_C(0x0002)
 #define ZBX_FLAGS_PROXY_DIFF_UPDATE_LASTACCESS			__UINT64_C(0x0004)
 #define ZBX_FLAGS_PROXY_DIFF_UPDATE_LASTERROR			__UINT64_C(0x0008)
+#define ZBX_FLAGS_PROXY_DIFF_UPDATE_PROXYDELAY			__UINT64_C(0x0010)
+#define ZBX_FLAGS_PROXY_DIFF_UPDATE_SUPPRESS_WIN		__UINT64_C(0x0020)
+#define ZBX_FLAGS_PROXY_DIFF_UPDATE_HEARTBEAT			__UINT64_C(0x0040)
+#define ZBX_FLAGS_PROXY_DIFF_UPDATE_CONFIG			__UINT64_C(0x0080)
 #define ZBX_FLAGS_PROXY_DIFF_UPDATE (			\
 		ZBX_FLAGS_PROXY_DIFF_UPDATE_COMPRESS |	\
-		ZBX_FLAGS_PROXY_DIFF_UPDATE_VERSION | 	\
+		ZBX_FLAGS_PROXY_DIFF_UPDATE_VERSION |	\
 		ZBX_FLAGS_PROXY_DIFF_UPDATE_LASTACCESS)
 	zbx_uint64_t	flags;
 }
@@ -778,4 +806,20 @@ zbx_proxy_diff_t;
 
 int	zbx_db_lock_maintenanceids(zbx_vector_uint64_t *maintenanceids);
 
+void	zbx_db_save_item_changes(char **sql, size_t *sql_alloc, size_t *sql_offset, const zbx_vector_ptr_t *item_diff);
+
+/* mock field to estimate how much data can be stored in characters, bytes or both, */
+/* depending on database backend                                                    */
+
+typedef struct
+{
+	int	bytes_num;
+	int	chars_num;
+}
+zbx_db_mock_field_t;
+
+void	zbx_db_mock_field_init(zbx_db_mock_field_t *field, int field_type, int field_len);
+int	zbx_db_mock_field_append(zbx_db_mock_field_t *field, const char *text);
+
+int	zbx_db_check_instanceid(void);
 #endif

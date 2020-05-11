@@ -100,10 +100,9 @@ void	zbx_history_destroy(void)
  ************************************************************************************/
 int	zbx_history_add_values(const zbx_vector_ptr_t *history)
 {
-	const char	*__function_name = "zbx_history_add_values";
-	int		i, flags = 0, ret = SUCCEED;
+	int	i, flags = 0, ret = SUCCEED;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	for (i = 0; i < ITEM_VALUE_TYPE_MAX; i++)
 	{
@@ -121,7 +120,7 @@ int	zbx_history_add_values(const zbx_vector_ptr_t *history)
 			ret = writer->flush(writer);
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 
 	return ret;
 }
@@ -149,12 +148,11 @@ int	zbx_history_add_values(const zbx_vector_ptr_t *history)
 int	zbx_history_get_values(zbx_uint64_t itemid, int value_type, int start, int count, int end,
 		zbx_vector_history_record_t *values)
 {
-	const char		*__function_name = "zbx_history_get_values";
 	int			ret, pos;
 	zbx_history_iface_t	*writer = &history_ifaces[value_type];
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() itemid:" ZBX_FS_UI64 " value_type:%d start:%d count:%d end:%d",
-			__function_name, itemid, value_type, start, count, end);
+			__func__, itemid, value_type, start, count, end);
 
 	pos = values->values_num;
 	ret = writer->get_values(writer, itemid, start, count, end, values);
@@ -173,7 +171,7 @@ int	zbx_history_get_values(zbx_uint64_t itemid, int value_type, int start, int c
 		}
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s values:%d", __function_name, zbx_result_string(ret),
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s values:%d", __func__, zbx_result_string(ret),
 			values->values_num - pos);
 
 	return ret;
@@ -278,7 +276,7 @@ void	zbx_history_value2str(char *buffer, size_t size, const history_value_t *val
 	switch (value_type)
 	{
 		case ITEM_VALUE_TYPE_FLOAT:
-			zbx_snprintf(buffer, size, ZBX_FS_DBL, value->dbl);
+			zbx_snprintf(buffer, size, ZBX_FS_DBL64, value->dbl);
 			break;
 		case ITEM_VALUE_TYPE_UINT64:
 			zbx_snprintf(buffer, size, ZBX_FS_UI64, value->ui64);
@@ -290,6 +288,62 @@ void	zbx_history_value2str(char *buffer, size_t size, const history_value_t *val
 		case ITEM_VALUE_TYPE_LOG:
 			zbx_strlcpy_utf8(buffer, value->log->value, size);
 	}
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_history_value2str_dyn                                        *
+ *                                                                            *
+ * Purpose: converts history value to string format (with dynamic buffer)     *
+ *                                                                            *
+ * Parameters: value      - [IN] the value to convert                         *
+ *             value_type - [IN] the history value type                       *
+ *                                                                            *
+ * Return value: The value in text format.                                    *
+ *                                                                            *
+ ******************************************************************************/
+char	*zbx_history_value2str_dyn(const history_value_t *value, int value_type)
+{
+	char	*str = NULL;
+	size_t	str_alloc = 0, str_offset = 0;
+
+	switch (value_type)
+	{
+		case ITEM_VALUE_TYPE_FLOAT:
+			zbx_snprintf_alloc(&str, &str_alloc, &str_offset, ZBX_FS_DBL, value->dbl);
+			break;
+		case ITEM_VALUE_TYPE_UINT64:
+			zbx_snprintf_alloc(&str, &str_alloc, &str_offset, ZBX_FS_UI64, value->ui64);
+			break;
+		case ITEM_VALUE_TYPE_STR:
+		case ITEM_VALUE_TYPE_TEXT:
+			str = zbx_strdup(NULL, value->str);
+			break;
+		case ITEM_VALUE_TYPE_LOG:
+			str = zbx_strdup(NULL, value->log->value);
+	}
+	return str;
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_history_value_print                                          *
+ *                                                                            *
+ * Purpose: converts history value to string format (double type printed in   *
+ *          human friendly format)                                            *
+ *                                                                            *
+ * Parameters: buffer     - [OUT] the output buffer                           *
+ *             size       - [IN] the output buffer size                       *
+ *             value      - [IN] the value to convert                         *
+ *             value_type - [IN] the history value type                       *
+ *                                                                            *
+ ******************************************************************************/
+void	zbx_history_value_print(char *buffer, size_t size, const history_value_t *value, int value_type)
+{
+	if (ITEM_VALUE_TYPE_FLOAT == value_type)
+		zbx_print_double(buffer, size, value->dbl);
+	else
+		zbx_history_value2str(buffer, size, value, value_type);
 }
 
 /******************************************************************************

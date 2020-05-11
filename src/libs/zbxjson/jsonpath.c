@@ -510,21 +510,6 @@ static int	jsonpath_parse_number(const char *start, int *len)
 		return FAIL;
 
 	ptr += size;
-
-	if ('e' == *ptr || 'E' == *ptr)
-	{
-		ptr++;
-
-		if ('-' == *ptr || '+' == *ptr)
-			ptr++;
-
-		if (0 == isdigit((unsigned char)*ptr))
-			return FAIL;
-
-		while (0 != isdigit((unsigned char)*ptr))
-			ptr++;
-	}
-
 	errno = 0;
 	tmp = strtod(start, &end);
 
@@ -1488,7 +1473,13 @@ static int	jsonpath_extract_value(const struct zbx_json_parse *jp, const char *p
 	if (FAIL == zbx_json_open_path(jp, path, &jp_child))
 		goto out;
 
-	zbx_json_value_dyn(&jp_child, &data, &data_alloc);
+	if (NULL == zbx_json_decodevalue_dyn(jp_child.start, &data, &data_alloc, NULL))
+	{
+		size_t	len = jp_child.end - jp_child.start + 2;
+
+		data = (char *)zbx_malloc(NULL, len);
+		zbx_strlcpy(data, jp_child.start, len);
+	}
 
 	zbx_variant_set_str(value, data);
 	ret = SUCCEED;

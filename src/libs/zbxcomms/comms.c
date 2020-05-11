@@ -183,6 +183,66 @@ void	zbx_gethost_by_ip(const char *ip, char *host, size_t hostlen)
 	zbx_strlcpy(host, hst->h_name, hostlen);
 }
 #endif	/* HAVE_IPV6 */
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_getip_by_host                                                *
+ *                                                                            *
+ * Purpose: retrieve IP address by host name                                  *
+ *                                                                            *
+ ******************************************************************************/
+#ifdef HAVE_IPV6
+void	zbx_getip_by_host(const char *host, char *ip, size_t iplen)
+{
+	struct addrinfo	hints, *ai = NULL;
+
+	assert(ip);
+
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = PF_UNSPEC;
+
+	if (0 != getaddrinfo(host, NULL, &hints, &ai))
+	{
+		ip[0] = '\0';
+		goto out;
+	}
+
+	switch(ai->ai_addr->sa_family) {
+		case AF_INET:
+			inet_ntop(AF_INET, &(((struct sockaddr_in *)ai->ai_addr)->sin_addr), ip, iplen);
+			break;
+		case AF_INET6:
+			inet_ntop(AF_INET6, &(((struct sockaddr_in *)ai->ai_addr)->sin_addr), ip, iplen);
+			break;
+		default:
+			ip[0] = '\0';
+			goto out;
+	}
+out:
+	if (NULL != ai)
+		freeaddrinfo(ai);
+}
+#else
+void	zbx_getip_by_host(const char *host, char *ip, size_t iplen)
+{
+	struct in_addr	*addr;
+	struct hostent  *hst;
+
+	assert(host);
+
+	if (NULL == (hst = gethostbyname(host)))
+	{
+		ip[0] = '\0';
+		return;
+	}
+
+	addr = (struct in_addr *)hst->h_addr_list[0];
+
+	zbx_strlcpy(ip , inet_ntoa(*addr),iplen);
+}
+#endif	/* HAVE_IPV6 */
+
+
 #endif	/* _WINDOWS */
 
 #ifdef _WINDOWS
@@ -476,7 +536,7 @@ static int	zbx_socket_create(zbx_socket_t *s, int type, const char *source_ip, c
 		THIS_SHOULD_NEVER_HAPPEN;
 		return FAIL;
 	}
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if (ZBX_TCP_SEC_TLS_PSK == tls_connect && '\0' == *tls_arg1)
 	{
 		zbx_set_socket_strerror("cannot connect with PSK: PSK not available");
@@ -545,7 +605,7 @@ static int	zbx_socket_create(zbx_socket_t *s, int type, const char *source_ip, c
 		goto out;
 	}
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if ((ZBX_TCP_SEC_TLS_CERT == tls_connect || ZBX_TCP_SEC_TLS_PSK == tls_connect) &&
 			SUCCEED != zbx_tls_connect(s, tls_connect, tls_arg1, tls_arg2, &error))
 	{
@@ -584,7 +644,7 @@ static int	zbx_socket_create(zbx_socket_t *s, int type, const char *source_ip, c
 		THIS_SHOULD_NEVER_HAPPEN;
 		return FAIL;
 	}
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if (ZBX_TCP_SEC_TLS_PSK == tls_connect && '\0' == *tls_arg1)
 	{
 		zbx_set_socket_strerror("cannot connect with PSK: PSK not available");
@@ -658,7 +718,7 @@ static int	zbx_socket_create(zbx_socket_t *s, int type, const char *source_ip, c
 		return FAIL;
 	}
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if ((ZBX_TCP_SEC_TLS_CERT == tls_connect || ZBX_TCP_SEC_TLS_PSK == tls_connect) &&
 			SUCCEED != zbx_tls_connect(s, tls_connect, tls_arg1, tls_arg2, &error))
 	{
@@ -694,13 +754,13 @@ static ssize_t	zbx_tcp_write(zbx_socket_t *s, const char *buf, size_t len)
 {
 	ssize_t	res;
 	int	err;
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	char	*error = NULL;
 #endif
 #ifdef _WINDOWS
 	double	sec;
 #endif
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if (NULL != s->tls_ctx)	/* TLS connection */
 	{
 		if (ZBX_PROTO_ERROR == (res = zbx_tls_write(s, buf, len, &error)))
@@ -761,7 +821,6 @@ static ssize_t	zbx_tcp_write(zbx_socket_t *s, const char *buf, size_t len)
  ******************************************************************************/
 
 #define ZBX_TCP_HEADER_DATA	"ZBXD"
-#define ZBX_TCP_HEADER		ZBX_TCP_HEADER_DATA ZBX_TCP_HEADER_VERSION
 #define ZBX_TCP_HEADER_LEN	ZBX_CONST_STRLEN(ZBX_TCP_HEADER_DATA)
 
 int	zbx_tcp_send_ext(zbx_socket_t *s, const char *data, size_t len, unsigned char flags, int timeout)
@@ -1365,7 +1424,7 @@ int	zbx_tcp_accept(zbx_socket_t *s, unsigned int tls_accept)
 	/* if the 1st byte is 0x16 then assume it's a TLS connection */
 	if (1 == res && '\x16' == buf)
 	{
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 		if (0 != (tls_accept & (ZBX_TCP_SEC_TLS_CERT | ZBX_TCP_SEC_TLS_PSK)))
 		{
 			char	*error = NULL;
@@ -1420,7 +1479,7 @@ out:
  ******************************************************************************/
 void	zbx_tcp_unaccept(zbx_socket_t *s)
 {
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_close(s);
 #endif
 	if (!s->accepted) return;
@@ -1602,7 +1661,7 @@ static ssize_t	zbx_tcp_read(zbx_socket_t *s, char *buf, size_t len)
 #ifdef _WINDOWS
 	double	sec;
 #endif
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if (NULL != s->tls_ctx)	/* TLS connection */
 	{
 		char	*error = NULL;
@@ -1660,8 +1719,6 @@ ssize_t	zbx_tcp_recv_ext(zbx_socket_t *s, int timeout)
 #define ZBX_TCP_EXPECT_VERSION_VALIDATE	3
 #define ZBX_TCP_EXPECT_LENGTH		4
 #define ZBX_TCP_EXPECT_SIZE		5
-
-	const char	*__function_name = "zbx_tcp_recv_ext";
 
 	ssize_t		nbytes;
 	size_t		buf_dyn_bytes = 0, buf_stat_bytes = 0, offset = 0;
@@ -1824,7 +1881,7 @@ ssize_t	zbx_tcp_recv_ext(zbx_socket_t *s, int timeout)
 				s->read_bytes = reserved;
 
 				zabbix_log(LOG_LEVEL_TRACE, "%s(): received " ZBX_FS_SIZE_T " bytes with"
-						" compression ratio %.1f", __function_name,
+						" compression ratio %.1f", __func__,
 						(zbx_fs_size_t)(buf_stat_bytes + buf_dyn_bytes),
 						(double)reserved / (buf_stat_bytes + buf_dyn_bytes));
 			}

@@ -31,6 +31,7 @@ import javax.management.ObjectName;
 import javax.management.MalformedObjectNameException;
 import javax.management.openmbean.CompositeData;
 import javax.management.openmbean.TabularDataSupport;
+import javax.management.openmbean.TabularData;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXServiceURL;
 
@@ -51,8 +52,10 @@ class JMXItemChecker extends ItemChecker
 	private String password;
 	private String jmx_endpoint;
 
-	static final int DISCOVERY_MODE_ATTRIBUTES = 0;
-	static final int DISCOVERY_MODE_BEANS = 1;
+	private enum DiscoveryMode {
+		ATTRIBUTES,
+		BEANS
+	}
 
 	JMXItemChecker(JSONObject request) throws ZabbixException
 	{
@@ -143,10 +146,11 @@ class JMXItemChecker extends ItemChecker
 	protected String getStringValue(String key) throws Exception
 	{
 		ZabbixItem item = new ZabbixItem(key);
+		int argumentCount = item.getArgumentCount();
 
 		if (item.getKeyId().equals("jmx"))
 		{
-			if (2 != item.getArgumentCount())
+			if (2 != argumentCount)
 				throw new ZabbixException("required key format: jmx[<object name>,<attribute name>]");
 
 			ObjectName objectName = new ObjectName(item.getArgument(1));
@@ -177,21 +181,27 @@ class JMXItemChecker extends ItemChecker
 			logger.trace("attributeName:'{}'", realAttributeName);
 			logger.trace("fieldNames:'{}'", fieldNames);
 
+			Object dataObject = mbsc.getAttribute(objectName, realAttributeName);
+
+			if (dataObject instanceof TabularData)
+			{
+				logger.trace("'{}' contains tabular data", attributeName);
+				return getTabularData((TabularData)dataObject).toString();
+			}
+
 			try
 			{
-				return getPrimitiveAttributeValue(mbsc.getAttribute(objectName, realAttributeName), fieldNames);
+				return getPrimitiveAttributeValue(dataObject, fieldNames);
 			}
 			catch (InstanceNotFoundException e)
 			{
 				throw new ZabbixException("Object or attribute not found.");
 			}
 		}
-		else if (item.getKeyId().equals("jmx.discovery"))
+		else if (item.getKeyId().equals("jmx.discovery") || item.getKeyId().equals("jmx.get"))
 		{
-			int argumentCount = item.getArgumentCount();
-
 			if (2 < argumentCount)
-				throw new ZabbixException("required key format: jmx.discovery[<discovery mode>,<object name>]");
+				throw new ZabbixException("required key format: " + item.getKeyId() + "[<discovery mode>,<object name>]");
 
 			ObjectName filter;
 
@@ -204,32 +214,38 @@ class JMXItemChecker extends ItemChecker
 				throw new ZabbixException("invalid object name format: " + item.getArgument(2));
 			}
 
-			int mode = DISCOVERY_MODE_ATTRIBUTES;
-			if (0 != argumentCount)
+			boolean mapped = item.getKeyId().equals("jmx.discovery");
+			JSONArray counters = new JSONArray();
+			DiscoveryMode mode = DiscoveryMode.ATTRIBUTES;
+			if (0 < argumentCount)
 			{
 				String modeName = item.getArgument(1);
-
 				if (modeName.equals("beans"))
-					mode = DISCOVERY_MODE_BEANS;
+					mode = DiscoveryMode.BEANS;
 				else if (!modeName.equals("attributes"))
 					throw new ZabbixException("invalid discovery mode: " + modeName);
 			}
 
-			JSONArray counters = new JSONArray();
-
-			for (ObjectName name : mbsc.queryNames(filter, null))
+			switch(mode)
 			{
-				logger.trace("discovered object '{}'", name);
-
-				if (DISCOVERY_MODE_ATTRIBUTES == mode)
-					discoverAttributes(counters, name);
-				else
-					discoverBeans(counters, name);
+				case ATTRIBUTES:
+					discoverAttributes(counters, filter, mapped);
+					break;
+				case BEANS:
+					discoverBeans(counters, filter, mapped);
+					break;
 			}
 
-			JSONObject mapping = new JSONObject();
-			mapping.put(ItemChecker.JSON_TAG_DATA, counters);
-			return mapping.toString();
+			if (mapped)
+			{
+				JSONObject mapping = new JSONObject();
+				mapping.put(ItemChecker.JSON_TAG_DATA, counters);
+				return mapping.toString();
+			}
+			else
+			{
+				return counters.toString();
+			}
 		}
 		else
 			throw new ZabbixException("key ID '%s' is not supported", item.getKeyId());
@@ -285,76 +301,139 @@ class JMXItemChecker extends ItemChecker
 			throw new ZabbixException("unsupported data object type along the path: %s", dataObject.getClass());
 	}
 
-	private void discoverAttributes(JSONArray counters, ObjectName name) throws Exception
+	private JSONArray getTabularData(TabularData data) throws JSONException
 	{
-		Map<String, Object> values = new HashMap<String, Object>();
-		MBeanAttributeInfo[] attributeArray = mbsc.getMBeanInfo(name).getAttributes();
+		JSONArray values = new JSONArray();
 
-		if (0 == attributeArray.length)
+		for (Object value : data.values())
 		{
-			logger.trace("object has no attributes");
-			return;
+			JSONObject tmp = getCompositeDataValues((CompositeData)value);
+
+			if (tmp.length() > 0)
+				values.put(tmp);
 		}
 
-		String[] attributeNames = getAttributeNames(attributeArray);
-		AttributeList attributes;
-		String discoveredObjKey = jmx_endpoint + "#" + name;
-		Long expirationTime = JavaGateway.iterativeObjects.get(discoveredObjKey);
-		long now = System.currentTimeMillis();
+		return values;
+	}
 
-		if (null != expirationTime && now <= expirationTime)
+	private JSONObject getCompositeDataValues(CompositeData compData) throws JSONException
+	{
+		JSONObject value = new JSONObject();
+
+		for (String key : compData.getCompositeType().keySet())
 		{
-			attributes = getAttributesIterative(name, attributeNames);
-		}
-		else
-		{
-			try
+			Object data = compData.get(key);
+
+			if (data == null)
 			{
-				attributes = getAttributesBulk(name, attributeNames);
-
-				if (null != expirationTime)
-					JavaGateway.iterativeObjects.remove(discoveredObjKey);
+				value.put(key, JSONObject.NULL);
 			}
-			catch (Exception e)
+			else if (data.getClass().isArray())
 			{
-				attributes = getAttributesIterative(name, attributeNames);
-
-				// This object's attributes will be collected iteratively for next 24h. After that it will
-				// be checked if it is possible to successfully collect all attributes in bulk mode.
-				JavaGateway.iterativeObjects.put(discoveredObjKey, now + SocketProcessor.MILLISECONDS_IN_HOUR * 24);
-			}
-		}
-
-		if (attributes.isEmpty())
-		{
-			logger.warn("cannot process any attribute for object '{}'", name);
-			return;
-		}
-
-		for (javax.management.Attribute attribute : attributes.asList())
-			values.put(attribute.getName(), attribute.getValue());
-
-		for (MBeanAttributeInfo attrInfo : attributeArray)
-		{
-			logger.trace("discovered attribute '{}'", attrInfo.getName());
-
-			if (null == values.get(attrInfo.getName()))
-			{
-				logger.trace("cannot retrieve attribute value, skipping");
+				logger.trace("found attribute of a known, unsupported type: {}", data.getClass());
 				continue;
 			}
-
-			try
+			else if (data instanceof TabularData)
 			{
-				logger.trace("looking for attributes of primitive types");
-				String descr = (attrInfo.getName().equals(attrInfo.getDescription()) ? null : attrInfo.getDescription());
-				findPrimitiveAttributes(counters, name, descr, attrInfo.getName(), values.get(attrInfo.getName()));
+				value.put(key, getTabularData((TabularData)data));
 			}
-			catch (Exception e)
+			else if (data instanceof CompositeData)
 			{
-				Object[] logInfo = {name, attrInfo.getName(), ZabbixException.getRootCauseMessage(e)};
-				logger.warn("attribute processing '{},{}' failed: {}", logInfo);
-				logger.debug("error caused by", e);
+				value.put(key, getCompositeDataValues((CompositeData)data));
+			}
+			else
+				value.put(key, data);
+		}
+
+		return value;
+	}
+
+	private void discoverAttributes(JSONArray counters, ObjectName filter, boolean propertiesAsMacros) throws Exception
+	{
+		for (ObjectName name : mbsc.queryNames(filter, null))
+		{
+			Map<String, Object> values = new HashMap<String, Object>();
+			MBeanAttributeInfo[] attributeArray = mbsc.getMBeanInfo(name).getAttributes();
+
+			if (0 == attributeArray.length)
+			{
+				logger.trace("object has no attributes");
+				return;
+			}
+
+			String[] attributeNames = getAttributeNames(attributeArray);
+			AttributeList attributes;
+			String discoveredObjKey = jmx_endpoint + "#" + name;
+			Long expirationTime = JavaGateway.iterativeObjects.get(discoveredObjKey);
+			long now = System.currentTimeMillis();
+
+			if (null != expirationTime && now <= expirationTime)
+			{
+				attributes = getAttributesIterative(name, attributeNames);
+			}
+			else
+			{
+				try
+				{
+					attributes = getAttributesBulk(name, attributeNames);
+
+					if (null != expirationTime)
+						JavaGateway.iterativeObjects.remove(discoveredObjKey);
+				}
+				catch (Exception e)
+				{
+					attributes = getAttributesIterative(name, attributeNames);
+
+					// This object's attributes will be collected iteratively for next 24h. After that it will
+					// be checked if it is possible to successfully collect all attributes in bulk mode.
+					JavaGateway.iterativeObjects.put(discoveredObjKey, now + SocketProcessor.MILLISECONDS_IN_HOUR * 24);
+				}
+			}
+
+			if (attributes.isEmpty())
+			{
+				logger.warn("cannot process any attribute for object '{}'", name);
+				return;
+			}
+
+			for (javax.management.Attribute attribute : attributes.asList())
+				values.put(attribute.getName(), attribute.getValue());
+
+			for (MBeanAttributeInfo attrInfo : attributeArray)
+			{
+				logger.trace("discovered attribute '{}'", attrInfo.getName());
+
+				Object attribute;
+
+				if (null == (attribute = values.get(attrInfo.getName())))
+				{
+					logger.trace("cannot retrieve attribute value, skipping");
+					continue;
+				}
+
+				try
+				{
+					String descr = (attrInfo.getName().equals(attrInfo.getDescription()) ? null : attrInfo.getDescription());
+
+					if (attribute instanceof TabularData)
+					{
+						logger.trace("looking for attributes of tabular types");
+
+						formatPrimitiveTypeResult(counters, name, descr, attrInfo.getName(), attribute,
+							propertiesAsMacros, getTabularData((TabularData)attribute).toString());
+					}
+					else
+					{
+						logger.trace("looking for attributes of primitive types");
+						getAttributeFields(counters, name, descr, attrInfo.getName(), attribute, propertiesAsMacros);
+					}
+				}
+				catch (Exception e)
+				{
+					Object[] logInfo = {name, attrInfo.getName(), ZabbixException.getRootCauseMessage(e)};
+					logger.warn("attribute processing '{},{}' failed: {}", logInfo);
+					logger.debug("error caused by", e);
+				}
 			}
 		}
 	}
@@ -405,59 +484,71 @@ class JMXItemChecker extends ItemChecker
 		return attributes;
 	}
 
-	private void discoverBeans(JSONArray counters, ObjectName name)
+	private void discoverBeans(JSONArray counters, ObjectName filter, boolean propertiesAsMacros) throws Exception
 	{
-		try
+		for (ObjectName name : mbsc.queryNames(filter, null))
 		{
-			HashSet<String> properties = new HashSet<String>();
-			JSONObject counter = new JSONObject();
+			logger.trace("discovered bean '{}'", name);
 
-			// Default properties are added.
-			counter.put("{#JMXOBJ}", name);
-			counter.put("{#JMXDOMAIN}", name.getDomain());
-			properties.add("OBJ");
-			properties.add("DOMAIN");
-
-			for (Map.Entry<String, String> property : name.getKeyPropertyList().entrySet())
+			try
 			{
-				String key = property.getKey().toUpperCase();
+				JSONObject counter = new JSONObject();
 
-				// Property key should only contain valid characters and should not be already added to attribute list.
-				if (key.matches("^[A-Z0-9_\\.]+$") && !properties.contains(key))
+				if (propertiesAsMacros)
 				{
-					counter.put("{#JMX" + key + "}" , property.getValue());
-					properties.add(key);
+					HashSet<String> properties = new HashSet<String>();
+
+					// Default properties are added.
+					counter.put("{#JMXOBJ}", name);
+					counter.put("{#JMXDOMAIN}", name.getDomain());
+					properties.add("OBJ");
+					properties.add("DOMAIN");
+
+					for (Map.Entry<String, String> property : name.getKeyPropertyList().entrySet())
+					{
+						String key = property.getKey().toUpperCase();
+
+						// Property key should only contain valid characters and should not be already added to attribute list.
+						if (key.matches("^[A-Z0-9_\\.]+$") && !properties.contains(key))
+						{
+							counter.put("{#JMX" + key + "}" , property.getValue());
+							properties.add(key);
+						}
+						else
+							logger.trace("bean '{}' property '{}' was ignored", name, property.getKey());
+					}
 				}
 				else
-					logger.trace("bean '{}' property '{}' was ignored", name, property.getKey());
-			}
+				{
+					JSONObject properties = new JSONObject();
+					counter.put("object", name);
+					counter.put("domain", name.getDomain());
 
-			counters.put(counter);
-		}
-		catch (Exception e)
-		{
-			logger.warn("bean processing '{}' failed: {}", name, ZabbixException.getRootCauseMessage(e));
-			logger.debug("error caused by", e);
+					for (Map.Entry<String, String> property : name.getKeyPropertyList().entrySet())
+					{
+						String key = property.getKey();
+						properties.put(key, property.getValue());
+					}
+					counter.put("properties", properties);
+				}
+
+				counters.put(counter);
+			}
+			catch (Exception e)
+			{
+				logger.warn("bean processing '{}' failed: {}", name, ZabbixException.getRootCauseMessage(e));
+				logger.debug("error caused by", e);
+			}
 		}
 	}
 
-	private void findPrimitiveAttributes(JSONArray counters, ObjectName name, String descr, String attrPath, Object attribute) throws NoSuchMethodException, JSONException
+	private void getAttributeFields(JSONArray counters, ObjectName name, String descr, String attrPath,
+			Object attribute, boolean propertiesAsMacros) throws NoSuchMethodException, JSONException
 	{
-		logger.trace("drilling down with attribute path '{}'", attrPath);
-
 		if (isPrimitiveAttributeType(attribute))
 		{
 			logger.trace("found attribute of a primitive type: {}", attribute.getClass());
-
-			JSONObject counter = new JSONObject();
-
-			counter.put("{#JMXDESC}", null == descr ? name + "," + attrPath : descr);
-			counter.put("{#JMXOBJ}", name);
-			counter.put("{#JMXATTR}", attrPath);
-			counter.put("{#JMXTYPE}", attribute.getClass().getName());
-			counter.put("{#JMXVALUE}", attribute.toString());
-
-			counters.put(counter);
+			formatPrimitiveTypeResult(counters, name, descr, attrPath, attribute, propertiesAsMacros, attribute.toString());
 		}
 		else if (attribute instanceof CompositeData)
 		{
@@ -466,14 +557,43 @@ class JMXItemChecker extends ItemChecker
 			CompositeData comp = (CompositeData)attribute;
 
 			for (String key : comp.getCompositeType().keySet())
-				findPrimitiveAttributes(counters, name, descr, attrPath + "." + key, comp.get(key));
+			{
+				logger.trace("drilling down with attribute path '{}'", attrPath + "." + key);
+				getAttributeFields(counters, name, comp.getCompositeType().getDescription(key),
+						attrPath + "." + key, comp.get(key), propertiesAsMacros);
+			}
 		}
-		else if (attribute instanceof TabularDataSupport || attribute.getClass().isArray())
+		else if (attribute.getClass().isArray())
 		{
 			logger.trace("found attribute of a known, unsupported type: {}", attribute.getClass());
 		}
 		else
 			logger.trace("found attribute of an unknown, unsupported type: {}", attribute.getClass());
+	}
+
+	private void formatPrimitiveTypeResult(JSONArray counters, ObjectName name, String descr, String attrPath,
+			Object attribute, boolean propertiesAsMacros, String value) throws JSONException
+	{
+		JSONObject counter = new JSONObject();
+
+		if (propertiesAsMacros)
+		{
+			counter.put("{#JMXDESC}", null == descr ? name + "," + attrPath : descr);
+			counter.put("{#JMXOBJ}", name);
+			counter.put("{#JMXATTR}", attrPath);
+			counter.put("{#JMXTYPE}", attribute.getClass().getName());
+			counter.put("{#JMXVALUE}", value);
+		}
+		else
+		{
+			counter.put("name", attrPath);
+			counter.put("object", name);
+			counter.put("description", null == descr ? name + "," + attrPath : descr);
+			counter.put("type", attribute.getClass().getName());
+			counter.put("value", value);
+		}
+
+		counters.put(counter);
 	}
 
 	private boolean isPrimitiveAttributeType(Object obj) throws NoSuchMethodException

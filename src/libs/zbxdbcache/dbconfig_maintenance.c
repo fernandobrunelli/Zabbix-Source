@@ -26,6 +26,7 @@
 #include "dbconfig.h"
 
 #include "dbsync.h"
+#include "zbxserver.h"
 
 extern int		CONFIG_TIMER_FORKS;
 
@@ -61,8 +62,6 @@ zbx_host_event_maintenance_t;
  ******************************************************************************/
 void	DCsync_maintenances(zbx_dbsync_t *sync)
 {
-	const char		*__function_name = "DCsync_maintenances";
-
 	char			**row;
 	zbx_uint64_t		rowid;
 	unsigned char		tag;
@@ -70,7 +69,7 @@ void	DCsync_maintenances(zbx_dbsync_t *sync)
 	zbx_dc_maintenance_t	*maintenance;
 	int			found, ret;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	while (SUCCEED == (ret = zbx_dbsync_next(sync, &rowid, &row, &tag)))
 	{
@@ -122,7 +121,7 @@ void	DCsync_maintenances(zbx_dbsync_t *sync)
 		zbx_hashset_remove_direct(&config->maintenances, maintenance);
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -158,8 +157,6 @@ static int	dc_compare_maintenance_tags(const void *d1, const void *d2)
  ******************************************************************************/
 void	DCsync_maintenance_tags(zbx_dbsync_t *sync)
 {
-	const char			*__function_name = "DCsync_maintenance_tags";
-
 	char				**row;
 	zbx_uint64_t			rowid;
 	unsigned char			tag;
@@ -169,7 +166,7 @@ void	DCsync_maintenance_tags(zbx_dbsync_t *sync)
 	zbx_vector_ptr_t		maintenances;
 	int				found, ret, index, i;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	zbx_vector_ptr_create(&maintenances);
 
@@ -244,7 +241,7 @@ void	DCsync_maintenance_tags(zbx_dbsync_t *sync)
 
 	zbx_vector_ptr_destroy(&maintenances);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -270,8 +267,6 @@ void	DCsync_maintenance_tags(zbx_dbsync_t *sync)
  ******************************************************************************/
 void	DCsync_maintenance_periods(zbx_dbsync_t *sync)
 {
-	const char			*__function_name = "DCsync_maintenance_periods";
-
 	char				**row;
 	zbx_uint64_t			rowid;
 	unsigned char			tag;
@@ -280,7 +275,7 @@ void	DCsync_maintenance_periods(zbx_dbsync_t *sync)
 	zbx_dc_maintenance_t		*maintenance;
 	int				found, ret, index;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	while (SUCCEED == (ret = zbx_dbsync_next(sync, &rowid, &row, &tag)))
 	{
@@ -338,7 +333,7 @@ void	DCsync_maintenance_periods(zbx_dbsync_t *sync)
 		zbx_hashset_remove_direct(&config->maintenance_periods, period);
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -356,8 +351,6 @@ void	DCsync_maintenance_periods(zbx_dbsync_t *sync)
  ******************************************************************************/
 void	DCsync_maintenance_groups(zbx_dbsync_t *sync)
 {
-	const char		*__function_name = "DCsync_maintenance_groups";
-
 	char			**row;
 	zbx_uint64_t		rowid;
 	unsigned char		tag;
@@ -365,7 +358,7 @@ void	DCsync_maintenance_groups(zbx_dbsync_t *sync)
 	int			index, ret;
 	zbx_uint64_t		last_maintenanceid = 0, maintenanceid, groupid;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	while (SUCCEED == (ret = zbx_dbsync_next(sync, &rowid, &row, &tag)))
 	{
@@ -413,7 +406,7 @@ void	DCsync_maintenance_groups(zbx_dbsync_t *sync)
 		zbx_vector_uint64_remove_noorder(&maintenance->groupids, index);
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -431,8 +424,6 @@ void	DCsync_maintenance_groups(zbx_dbsync_t *sync)
  ******************************************************************************/
 void	DCsync_maintenance_hosts(zbx_dbsync_t *sync)
 {
-	const char		*__function_name = "DCsync_maintenance_hosts";
-
 	char			**row;
 	zbx_uint64_t		rowid;
 	unsigned char		tag;
@@ -441,7 +432,7 @@ void	DCsync_maintenance_hosts(zbx_dbsync_t *sync)
 	int			index, ret, i;
 	zbx_uint64_t		last_maintenanceid, maintenanceid, hostid;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	zbx_vector_ptr_create(&maintenances);
 
@@ -504,7 +495,7 @@ void	DCsync_maintenance_hosts(zbx_dbsync_t *sync)
 
 	zbx_vector_ptr_destroy(&maintenances);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -839,8 +830,6 @@ out:
  ******************************************************************************/
 int	zbx_dc_update_maintenances(void)
 {
-	const char			*__function_name = "zbx_dc_update_maintenances";
-
 	zbx_dc_maintenance_t		*maintenance;
 	zbx_dc_maintenance_period_t	*period;
 	zbx_hashset_iter_t		iter;
@@ -848,7 +837,7 @@ int	zbx_dc_update_maintenances(void)
 	unsigned char			state;
 	time_t				now, period_start, period_end, running_since, running_until;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	now = time(NULL);
 
@@ -933,7 +922,7 @@ int	zbx_dc_update_maintenances(void)
 
 	UNLOCK_CACHE;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() started:%d stopped:%d running:%d", __function_name,
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() started:%d stopped:%d running:%d", __func__,
 			started_num, stopped_num, running_num);
 
 	return ret;
@@ -1219,10 +1208,9 @@ void	zbx_dc_flush_host_maintenance_updates(const zbx_vector_ptr_t *updates)
  ******************************************************************************/
 void	zbx_dc_get_host_maintenance_updates(const zbx_vector_uint64_t *maintenanceids, zbx_vector_ptr_t *updates)
 {
-	const char	*__function_name = "zbx_dc_get_host_maintenance_updates";
 	zbx_hashset_t	host_maintenances;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	zbx_hashset_create(&host_maintenances, maintenanceids->values_num, ZBX_DEFAULT_UINT64_HASH_FUNC,
 			ZBX_DEFAULT_UINT64_COMPARE_FUNC);
@@ -1239,7 +1227,7 @@ void	zbx_dc_get_host_maintenance_updates(const zbx_vector_uint64_t *maintenancei
 
 	zbx_hashset_destroy(&host_maintenances);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() updates:%d", __function_name, updates->values_num);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() updates:%d", __func__, updates->values_num);
 }
 
 /******************************************************************************
@@ -1487,7 +1475,6 @@ static void	host_event_maintenance_clean(zbx_host_event_maintenance_t *host_even
  ******************************************************************************/
 int	zbx_dc_get_event_maintenances(zbx_vector_ptr_t *event_queries, const zbx_vector_uint64_t *maintenanceids)
 {
-	const char			*__function_name = "zbx_dc_get_event_maintenances";
 	zbx_hashset_t			host_event_maintenances;
 	int				i, j, k, ret = FAIL;
 	zbx_event_suppress_query_t	*query;
@@ -1497,7 +1484,7 @@ int	zbx_dc_get_event_maintenances(zbx_vector_ptr_t *event_queries, const zbx_vec
 	zbx_hashset_iter_t		iter;
 	zbx_host_event_maintenance_t	*host_event_maintenance;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	zbx_vector_uint64_create(&hostids);
 
@@ -1533,6 +1520,21 @@ int	zbx_dc_get_event_maintenances(zbx_vector_ptr_t *event_queries, const zbx_vec
 		query = (zbx_event_suppress_query_t *)event_queries->values[i];
 
 		/* find hostids of items used in event trigger expressions */
+
+		/* Some processes do not have trigger data at hand and create event queries */
+		/* without filling query functionids. Do it here if necessary.              */
+		if (0 == query->functionids.values_num)
+		{
+			ZBX_DC_TRIGGER	*trigger;
+
+			if (NULL == (trigger = (ZBX_DC_TRIGGER *)zbx_hashset_search(&config->triggers,
+					&query->triggerid)))
+			{
+				continue;
+			}
+			get_functionids(&query->functionids, trigger->expression);
+			get_functionids(&query->functionids, trigger->recovery_expression);
+		}
 
 		for (j = 0; j < query->functionids.values_num; j++)
 		{
@@ -1596,7 +1598,7 @@ unlock:
 	zbx_vector_uint64_destroy(&hostids);
 	zbx_hashset_destroy(&host_event_maintenances);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 
 	return ret;
 }

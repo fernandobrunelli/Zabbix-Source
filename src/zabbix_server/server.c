@@ -43,6 +43,7 @@
 
 #include "alerter/alerter.h"
 #include "alerter/alert_manager.h"
+#include "alerter/alert_syncer.h"
 #include "dbsyncer/dbsyncer.h"
 #include "dbconfig/dbconfig.h"
 #include "discoverer/discoverer.h"
@@ -60,10 +61,12 @@
 #include "taskmanager/taskmanager.h"
 #include "preprocessor/preproc_manager.h"
 #include "preprocessor/preproc_worker.h"
+#include "lld/lld_manager.h"
+#include "lld/lld_worker.h"
 #include "events.h"
 #include "../libs/zbxdbcache/valuecache.h"
 #include "setproctitle.h"
-#include "../libs/zbxcrypto/tls.h"
+#include "zbxcrypto.h"
 #include "zbxipcservice.h"
 #include "zbxhistory.h"
 #include "postinit.h"
@@ -101,6 +104,7 @@ const char	*help_message[] = {
 	"                                 target is not specified",
 	"      " ZBX_LOG_LEVEL_DECREASE "=target  Decrease log level, affects all processes if",
 	"                                 target is not specified",
+	"      " ZBX_SNMP_CACHE_RELOAD "          Reload SNMP cache",
 	"",
 	"      Log level control targets:",
 	"        process-type             All processes of specified type",
@@ -182,6 +186,9 @@ int	CONFIG_IPMIMANAGER_FORKS	= 0;
 int	CONFIG_ALERTMANAGER_FORKS	= 1;
 int	CONFIG_PREPROCMAN_FORKS		= 1;
 int	CONFIG_PREPROCESSOR_FORKS	= 3;
+int	CONFIG_LLDMANAGER_FORKS		= 1;
+int	CONFIG_LLDWORKER_FORKS		= 2;
+int	CONFIG_ALERTDB_FORKS		= 1;
 
 int	CONFIG_LISTEN_PORT		= ZBX_DEFAULT_SERVER_PORT;
 char	*CONFIG_LISTEN_IP		= NULL;
@@ -224,6 +231,12 @@ char	*CONFIG_DBSCHEMA		= NULL;
 char	*CONFIG_DBUSER			= NULL;
 char	*CONFIG_DBPASSWORD		= NULL;
 char	*CONFIG_DBSOCKET		= NULL;
+char	*CONFIG_DB_TLS_CONNECT		= NULL;
+char	*CONFIG_DB_TLS_CERT_FILE	= NULL;
+char	*CONFIG_DB_TLS_KEY_FILE		= NULL;
+char	*CONFIG_DB_TLS_CA_FILE		= NULL;
+char	*CONFIG_DB_TLS_CIPHER		= NULL;
+char	*CONFIG_DB_TLS_CIPHER_13	= NULL;
 char	*CONFIG_EXPORT_DIR		= NULL;
 int	CONFIG_DBPORT			= 0;
 int	CONFIG_ENABLE_REMOTE_COMMANDS	= 0;
@@ -274,7 +287,7 @@ char	*CONFIG_TLS_CIPHER_ALL13	= NULL;
 char	*CONFIG_TLS_CIPHER_ALL		= NULL;
 char	*CONFIG_TLS_CIPHER_CMD13	= NULL;	/* not used in server, defined for linking with tls.c */
 char	*CONFIG_TLS_CIPHER_CMD		= NULL;	/* not used in server, defined for linking with tls.c */
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 /* the following TLS parameters are not used in server, they are defined for linking with tls.c */
 char	*CONFIG_TLS_CONNECT		= NULL;
 char	*CONFIG_TLS_ACCEPT		= NULL;
@@ -291,6 +304,8 @@ char	*CONFIG_HISTORY_STORAGE_OPTS		= NULL;
 int	CONFIG_HISTORY_STORAGE_PIPELINES	= 0;
 
 char	*CONFIG_STATS_ALLOWED_IP	= NULL;
+
+int	CONFIG_DOUBLE_PRECISION		= ZBX_DB_DBL_PRECISION_DISABLED;
 
 int	get_process_info_by_thread(int local_server_num, unsigned char *local_process_type, int *local_process_num);
 
@@ -418,6 +433,21 @@ int	get_process_info_by_thread(int local_server_num, unsigned char *local_proces
 	{
 		*local_process_type = ZBX_PROCESS_TYPE_PREPROCESSOR;
 		*local_process_num = local_server_num - server_count + CONFIG_PREPROCESSOR_FORKS;
+	}
+	else if (local_server_num <= (server_count += CONFIG_LLDMANAGER_FORKS))
+	{
+		*local_process_type = ZBX_PROCESS_TYPE_LLDMANAGER;
+		*local_process_num = local_server_num - server_count + CONFIG_LLDMANAGER_FORKS;
+	}
+	else if (local_server_num <= (server_count += CONFIG_LLDWORKER_FORKS))
+	{
+		*local_process_type = ZBX_PROCESS_TYPE_LLDWORKER;
+		*local_process_num = local_server_num - server_count + CONFIG_LLDWORKER_FORKS;
+	}
+	else if (local_server_num <= (server_count += CONFIG_ALERTDB_FORKS))
+	{
+		*local_process_type = ZBX_PROCESS_TYPE_ALERTSYNCER;
+		*local_process_num = local_server_num - server_count + CONFIG_ALERTDB_FORKS;
 	}
 	else
 		return FAIL;
@@ -558,7 +588,7 @@ static void	zbx_validate_config(ZBX_TASK_EX *task)
 	if (SUCCEED != zbx_validate_log_parameters(task))
 		err = 1;
 
-#if !(defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
+#if !(defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL))
 	err |= (FAIL == check_cfg_feature_str("TLSCAFile", CONFIG_TLS_CA_FILE, "TLS support"));
 	err |= (FAIL == check_cfg_feature_str("TLSCRLFile", CONFIG_TLS_CRL_FILE, "TLS support"));
 	err |= (FAIL == check_cfg_feature_str("TLSCertFile", CONFIG_TLS_CERT_FILE, "TLS support"));
@@ -578,6 +608,8 @@ static void	zbx_validate_config(ZBX_TASK_EX *task)
 #if !defined(HAVE_OPENIPMI)
 	err |= (FAIL == check_cfg_feature_int("StartIPMIPollers", CONFIG_IPMIPOLLER_FORKS, "IPMI support"));
 #endif
+	err |= (FAIL == zbx_db_validate_config_features());
+
 	if (0 != err)
 		exit(EXIT_FAILURE);
 }
@@ -699,6 +731,18 @@ static void	zbx_load_config(ZBX_TASK_EX *task)
 			PARM_OPT,	0,			0},
 		{"DBPort",			&CONFIG_DBPORT,				TYPE_INT,
 			PARM_OPT,	1024,			65535},
+		{"DBTLSConnect",		&CONFIG_DB_TLS_CONNECT,			TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"DBTLSCertFile",		&CONFIG_DB_TLS_CERT_FILE,		TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"DBTLSKeyFile",		&CONFIG_DB_TLS_KEY_FILE,		TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"DBTLSCAFile",			&CONFIG_DB_TLS_CA_FILE,			TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"DBTLSCipher",			&CONFIG_DB_TLS_CIPHER,			TYPE_STRING,
+			PARM_OPT,	0,			0},
+		{"DBTLSCipher13",		&CONFIG_DB_TLS_CIPHER_13,		TYPE_STRING,
+			PARM_OPT,	0,			0},
 		{"SSHKeyLocation",		&CONFIG_SSH_KEY_LOCATION,		TYPE_STRING,
 			PARM_OPT,	0,			0},
 		{"LogSlowQueries",		&CONFIG_LOG_SLOW_QUERIES,		TYPE_INT,
@@ -769,6 +813,8 @@ static void	zbx_load_config(ZBX_TASK_EX *task)
 			PARM_OPT,	0,			0},
 		{"ExportFileSize",		&CONFIG_EXPORT_FILE_SIZE,		TYPE_UINT64,
 			PARM_OPT,	ZBX_MEBIBYTE,	ZBX_GIBIBYTE},
+		{"StartLLDProcessors",		&CONFIG_LLDWORKER_FORKS,		TYPE_INT,
+			PARM_OPT,	1,			100},
 		{"StatsAllowedIP",		&CONFIG_STATS_ALLOWED_IP,		TYPE_STRING_LIST,
 			PARM_OPT,	0,			0},
 		{NULL}
@@ -784,7 +830,10 @@ static void	zbx_load_config(ZBX_TASK_EX *task)
 	CONFIG_LOG_TYPE = zbx_get_log_type(CONFIG_LOG_TYPE_STR);
 
 	zbx_validate_config(task);
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_MYSQL) || defined(HAVE_POSTGRESQL)
+	zbx_db_validate_config();
+#endif
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_validate_config();
 #endif
 }
@@ -819,7 +868,6 @@ int	main(int argc, char **argv)
 #if defined(PS_OVERWRITE_ARGV) || defined(PS_PSTAT_ARGV)
 	argv = setproctitle_save_env(argc, argv);
 #endif
-
 	progname = get_program_name(argv[0]);
 
 	/* parse the command-line */
@@ -954,11 +1002,6 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 #else
 #	define SMTP_AUTH_FEATURE_STATUS	" NO"
 #endif
-#ifdef HAVE_JABBER
-#	define JABBER_FEATURE_STATUS	"YES"
-#else
-#	define JABBER_FEATURE_STATUS	" NO"
-#endif
 #ifdef HAVE_UNIXODBC
 #	define ODBC_FEATURE_STATUS	"YES"
 #else
@@ -974,7 +1017,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 #else
 #	define IPV6_FEATURE_STATUS	" NO"
 #endif
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 #	define TLS_FEATURE_STATUS	"YES"
 #else
 #	define TLS_FEATURE_STATUS	" NO"
@@ -989,8 +1032,6 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 	zabbix_log(LOG_LEVEL_INFORMATION, "Web monitoring:            " LIBCURL_FEATURE_STATUS);
 	zabbix_log(LOG_LEVEL_INFORMATION, "VMware monitoring:         " VMWARE_FEATURE_STATUS);
 	zabbix_log(LOG_LEVEL_INFORMATION, "SMTP authentication:       " SMTP_AUTH_FEATURE_STATUS);
-	zabbix_log(LOG_LEVEL_INFORMATION, "Jabber notifications:      " JABBER_FEATURE_STATUS);
-	zabbix_log(LOG_LEVEL_INFORMATION, "Ez Texting notifications:  " LIBCURL_FEATURE_STATUS);
 	zabbix_log(LOG_LEVEL_INFORMATION, "ODBC:                      " ODBC_FEATURE_STATUS);
 	zabbix_log(LOG_LEVEL_INFORMATION, "SSH support:               " SSH_FEATURE_STATUS);
 	zabbix_log(LOG_LEVEL_INFORMATION, "IPv6 support:              " IPV6_FEATURE_STATUS);
@@ -999,7 +1040,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 
 	zabbix_log(LOG_LEVEL_INFORMATION, "using configuration file: %s", CONFIG_FILE);
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	if (SUCCEED != zbx_coredump_disable())
 	{
 		zabbix_log(LOG_LEVEL_CRIT, "cannot disable core dump, exiting...");
@@ -1087,6 +1128,16 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 		exit(EXIT_FAILURE);
 	DBcheck_character_set();
 
+	if (SUCCEED == DBcheck_double_type())
+		CONFIG_DOUBLE_PRECISION = ZBX_DB_DBL_PRECISION_ENABLED;
+	else
+		zabbix_log(LOG_LEVEL_WARNING, "database is not upgraded to use double precision values");
+
+	DBcheck_capabilities();
+
+	if (SUCCEED != zbx_db_check_instanceid())
+		exit(EXIT_FAILURE);
+
 	threads_num = CONFIG_CONFSYNCER_FORKS + CONFIG_POLLER_FORKS
 			+ CONFIG_UNREACHABLE_POLLER_FORKS + CONFIG_TRAPPER_FORKS + CONFIG_PINGER_FORKS
 			+ CONFIG_ALERTER_FORKS + CONFIG_HOUSEKEEPER_FORKS + CONFIG_TIMER_FORKS
@@ -1094,7 +1145,8 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 			+ CONFIG_ESCALATOR_FORKS + CONFIG_IPMIPOLLER_FORKS + CONFIG_JAVAPOLLER_FORKS
 			+ CONFIG_SNMPTRAPPER_FORKS + CONFIG_PROXYPOLLER_FORKS + CONFIG_SELFMON_FORKS
 			+ CONFIG_VMWARE_FORKS + CONFIG_TASKMANAGER_FORKS + CONFIG_IPMIMANAGER_FORKS
-			+ CONFIG_ALERTMANAGER_FORKS + CONFIG_PREPROCMAN_FORKS + CONFIG_PREPROCESSOR_FORKS;
+			+ CONFIG_ALERTMANAGER_FORKS + CONFIG_PREPROCMAN_FORKS + CONFIG_PREPROCESSOR_FORKS
+			+ CONFIG_LLDMANAGER_FORKS + CONFIG_LLDWORKER_FORKS + CONFIG_ALERTDB_FORKS;
 	threads = (pid_t *)zbx_calloc(threads, threads_num, sizeof(pid_t));
 	threads_flags = (int *)zbx_calloc(threads_flags, threads_num, sizeof(int));
 
@@ -1107,7 +1159,7 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 		}
 	}
 
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_init_parent();
 #endif
 	zabbix_log(LOG_LEVEL_INFORMATION, "server #0 started [main process]");
@@ -1224,6 +1276,15 @@ int	MAIN_ZABBIX_ENTRY(int flags)
 #endif
 			case ZBX_PROCESS_TYPE_ALERTMANAGER:
 				zbx_thread_start(alert_manager_thread, &thread_args, &threads[i]);
+				break;
+			case ZBX_PROCESS_TYPE_LLDMANAGER:
+				zbx_thread_start(lld_manager_thread, &thread_args, &threads[i]);
+				break;
+			case ZBX_PROCESS_TYPE_LLDWORKER:
+				zbx_thread_start(lld_worker_thread, &thread_args, &threads[i]);
+				break;
+			case ZBX_PROCESS_TYPE_ALERTSYNCER:
+				zbx_thread_start(alert_syncer_thread, &thread_args, &threads[i]);
 				break;
 		}
 	}

@@ -36,7 +36,7 @@
  ******************************************************************************/
 #define ZBX_JSON_MAX_STRERROR	255
 
-ZBX_THREAD_LOCAL static char	zbx_json_strerror_message[ZBX_JSON_MAX_STRERROR];
+static ZBX_THREAD_LOCAL char	zbx_json_strerror_message[ZBX_JSON_MAX_STRERROR];
 
 const char	*zbx_json_strerror(void)
 {
@@ -1093,8 +1093,8 @@ const char	*zbx_json_next_value_dyn(const struct zbx_json_parse *jp, const char 
  * Author: Alexander Vladishev                                                *
  *                                                                            *
  ******************************************************************************/
-int	zbx_json_value_by_name(const struct zbx_json_parse *jp, const char *name, char *string,
-		size_t len, zbx_json_type_t *type)
+int	zbx_json_value_by_name(const struct zbx_json_parse *jp, const char *name, char *string, size_t len,
+		zbx_json_type_t *type)
 {
 	const char	*p;
 
@@ -1294,24 +1294,4 @@ int	zbx_json_open_path(const struct zbx_json_parse *jp, const char *path, struct
 out:
 	zbx_jsonpath_clear(&jsonpath);
 	return ret;
-}
-
-/******************************************************************************
- *                                                                            *
- * Function: zbx_json_value_dyn                                               *
- *                                                                            *
- * Purpose: return json fragment or value located at json parse location      *
- *                                                                            *
- ******************************************************************************/
-void	zbx_json_value_dyn(const struct zbx_json_parse *jp, char **string, size_t *string_alloc)
-{
-	if (NULL == zbx_json_decodevalue_dyn(jp->start, string, string_alloc, NULL))
-	{
-		size_t	len = jp->end - jp->start + 2;
-
-		if (*string_alloc < len)
-			*string = (char *)zbx_realloc(*string, len);
-
-		zbx_strlcpy(*string, jp->start, len);
-	}
 }

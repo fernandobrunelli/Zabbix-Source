@@ -19,9 +19,13 @@
 
 #include "common.h"
 #include "log.h"
+#include "logfiles/logfiles.h"
+#include "sysinfo.h"
 #include "zbxregexp.h"
 #include "winmeta.h"
+#include <strsafe.h>
 #include "eventlog.h"
+#include <delayimp.h>
 
 #define	DEFAULT_EVENT_CONTENT_SIZE 256
 
@@ -52,17 +56,71 @@ static const wchar_t	*RENDER_ITEMS[] = {
 
 #define	EVENTLOG_REG_PATH TEXT("SYSTEM\\CurrentControlSet\\Services\\EventLog\\")
 
+#ifndef INFORMATION_TYPE
+#	define INFORMATION_TYPE	"Information"
+#endif
+#ifndef WARNING_TYPE
+#	define WARNING_TYPE	"Warning"
+#endif
+#ifndef ERROR_TYPE
+#	define ERROR_TYPE	"Error"
+#endif
+#ifndef AUDIT_FAILURE
+#	define AUDIT_FAILURE	"Failure Audit"
+#endif
+#ifndef AUDIT_SUCCESS
+#	define AUDIT_SUCCESS	"Success Audit"
+#endif
+#ifndef CRITICAL_TYPE
+#	define CRITICAL_TYPE	"Critical"
+#endif
+#ifndef VERBOSE_TYPE
+#	define VERBOSE_TYPE	"Verbose"
+#endif
+
+extern int	CONFIG_EVENTLOG_MAX_LINES_PER_SECOND;
+
+LONG WINAPI	DelayLoadDllExceptionFilter(PEXCEPTION_POINTERS excpointers)
+{
+	LONG		disposition = EXCEPTION_EXECUTE_HANDLER;
+	PDelayLoadInfo	delayloadinfo = (PDelayLoadInfo)(excpointers->ExceptionRecord->ExceptionInformation[0]);
+
+	switch (excpointers->ExceptionRecord->ExceptionCode)
+	{
+		case VcppException(ERROR_SEVERITY_ERROR, ERROR_MOD_NOT_FOUND):
+			zabbix_log(LOG_LEVEL_DEBUG, "function %s was not found in %s",
+					delayloadinfo->dlp.szProcName, delayloadinfo->szDll);
+			break;
+		case VcppException(ERROR_SEVERITY_ERROR, ERROR_PROC_NOT_FOUND):
+			if (delayloadinfo->dlp.fImportByName)
+			{
+				zabbix_log(LOG_LEVEL_DEBUG, "function %s was not found in %s",
+						delayloadinfo->dlp.szProcName, delayloadinfo->szDll);
+			}
+			else
+			{
+				zabbix_log(LOG_LEVEL_DEBUG, "function ordinal %d was not found in %s",
+						delayloadinfo->dlp.dwOrdinal, delayloadinfo->szDll);
+			}
+			break;
+		default:
+			disposition = EXCEPTION_CONTINUE_SEARCH;
+			break;
+	}
+
+	return disposition;
+}
+
 /* open event logger and return number of records */
 static int	zbx_open_eventlog(LPCTSTR wsource, HANDLE *eventlog_handle, zbx_uint64_t *FirstID,
 		zbx_uint64_t *LastID, DWORD *error_code)
 {
-	const char	*__function_name = "zbx_open_eventlog";
-	wchar_t		reg_path[MAX_PATH];
-	HKEY		hk = NULL;
-	DWORD		dwNumRecords, dwOldestRecord;
-	int		ret = FAIL;
+	wchar_t	reg_path[MAX_PATH];
+	HKEY	hk = NULL;
+	DWORD	dwNumRecords, dwOldestRecord;
+	int	ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	*eventlog_handle = NULL;
 
@@ -100,7 +158,7 @@ static int	zbx_open_eventlog(LPCTSTR wsource, HANDLE *eventlog_handle, zbx_uint6
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -279,7 +337,6 @@ static void	zbx_translate_message_params(char **message, HINSTANCE hLib)
 static int	zbx_open_eventlog6(const wchar_t *wsource, zbx_uint64_t *lastlogsize, EVT_HANDLE *render_context,
 		zbx_uint64_t *FirstID, zbx_uint64_t *LastID, char **error)
 {
-	const char	*__function_name = "zbx_open_eventlog6";
 	EVT_HANDLE	log = NULL;
 	EVT_VARIANT	var;
 	EVT_HANDLE	tmp_all_event_query = NULL;
@@ -296,7 +353,7 @@ static int	zbx_open_eventlog6(const wchar_t *wsource, zbx_uint64_t *lastlogsize,
 	*FirstID = 0;
 	*LastID = 0;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	/* try to open the desired log */
 	if (NULL == (log = EvtOpenLog(NULL, wsource, EvtOpenChannelPath)))
@@ -395,7 +452,7 @@ out:
 	zbx_free(tmp_str);
 	zbx_free(renderedContent);
 	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s FirstID:" ZBX_FS_UI64 " LastID:" ZBX_FS_UI64 " numIDs:" ZBX_FS_UI64,
-			__function_name, zbx_result_string(ret), *FirstID, *LastID, numIDs);
+			__func__, zbx_result_string(ret), *FirstID, *LastID, numIDs);
 
 	return ret;
 }
@@ -404,13 +461,12 @@ out:
 static int	zbx_get_handle_eventlog6(const wchar_t *wsource, zbx_uint64_t *lastlogsize, EVT_HANDLE *query,
 		char **error)
 {
-	const char	*__function_name = "zbx_get_handle_eventlog6";
-	wchar_t		*event_query = NULL;
-	DWORD		status = 0;
-	char		*tmp_str = NULL;
-	int		ret = FAIL;
+	wchar_t	*event_query = NULL;
+	DWORD	status = 0;
+	char	*tmp_str = NULL;
+	int	ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s(), previous lastlogsize:" ZBX_FS_UI64, __function_name, *lastlogsize);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s(), previous lastlogsize:" ZBX_FS_UI64, __func__, *lastlogsize);
 
 	/* start building the query */
 	tmp_str = zbx_dsprintf(NULL, "Event/System[EventRecordID>" ZBX_FS_UI64 "]", *lastlogsize);
@@ -432,7 +488,7 @@ static int	zbx_get_handle_eventlog6(const wchar_t *wsource, zbx_uint64_t *lastlo
 out:
 	zbx_free(tmp_str);
 	zbx_free(event_query);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -441,12 +497,11 @@ out:
 int	initialize_eventlog6(const char *source, zbx_uint64_t *lastlogsize, zbx_uint64_t *FirstID,
 		zbx_uint64_t *LastID, EVT_HANDLE *render_context, EVT_HANDLE *query, char **error)
 {
-	const char	*__function_name = "initialize_eventlog6";
-	wchar_t		*wsource = NULL;
-	int		ret = FAIL;
+	wchar_t	*wsource = NULL;
+	int	ret = FAIL;
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() source:'%s' previous lastlogsize:" ZBX_FS_UI64,
-			__function_name, source, *lastlogsize);
+			__func__, source, *lastlogsize);
 
 	if (NULL == source || '\0' == *source)
 	{
@@ -471,7 +526,7 @@ int	initialize_eventlog6(const char *source, zbx_uint64_t *lastlogsize, zbx_uint
 	ret = SUCCEED;
 out:
 	zbx_free(wsource);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -479,14 +534,13 @@ out:
 /* expand the string message from a specific event handler */
 static char	*expand_message6(const wchar_t *pname, EVT_HANDLE event)
 {
-	const char	*__function_name = "expand_message6";
 	wchar_t		*pmessage = NULL;
 	EVT_HANDLE	provider = NULL;
 	DWORD		require = 0;
 	char		*out_message = NULL;
 	char		*tmp_pname = NULL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (NULL == (provider = EvtOpenPublisherMetadata(NULL, pname, NULL, 0, 0)))
 	{
@@ -519,7 +573,7 @@ static char	*expand_message6(const wchar_t *pname, EVT_HANDLE event)
 			}
 			else
 			{
-				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot format message: %s", __function_name,
+				zabbix_log(LOG_LEVEL_DEBUG, "%s() cannot format message: %s", __func__,
 						strerror_from_system(error));
 				goto out;
 			}
@@ -530,7 +584,7 @@ out:
 		EvtClose(provider);
 	zbx_free(pmessage);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, out_message);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, out_message);
 
 	/* should be freed */
 	return out_message;
@@ -564,7 +618,6 @@ static int	zbx_parse_eventlog_message6(const wchar_t *wsource, EVT_HANDLE *rende
 		unsigned long *out_timestamp, char **out_provider, char **out_source, char **out_message,
 		unsigned long *out_eventid, zbx_uint64_t *out_keywords, char **error)
 {
-	const char		*__function_name = "zbx_parse_eventlog_message6";
 	EVT_VARIANT*		renderedContent = NULL;
 	const wchar_t		*pprovider = NULL;
 	char			*tmp_str = NULL;
@@ -574,7 +627,7 @@ static int	zbx_parse_eventlog_message6(const wchar_t *wsource, EVT_HANDLE *rende
 	const zbx_uint64_t	failure_audit = 0x10000000000000;
 	int			ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() EventRecordID:" ZBX_FS_UI64, __function_name, *which);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() EventRecordID:" ZBX_FS_UI64, __func__, *which);
 
 	/* obtain the information from the selected events */
 
@@ -621,7 +674,7 @@ static int	zbx_parse_eventlog_message6(const wchar_t *wsource, EVT_HANDLE *rende
 	if (VAR_RECORD_NUMBER(renderedContent) != *which)
 	{
 		zabbix_log(LOG_LEVEL_DEBUG, "%s() Overwriting expected EventRecordID:" ZBX_FS_UI64 " with the real"
-				" EventRecordID:" ZBX_FS_UI64 " in eventlog '%s'", __function_name, *which,
+				" EventRecordID:" ZBX_FS_UI64 " in eventlog '%s'", __func__, *which,
 				VAR_RECORD_NUMBER(renderedContent), tmp_str);
 		*which = VAR_RECORD_NUMBER(renderedContent);
 	}
@@ -678,7 +731,7 @@ out:
 
 	zbx_free(tmp_str);
 	zbx_free(renderedContent);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -718,12 +771,12 @@ out:
 int	process_eventslog6(const char *server, unsigned short port, const char *eventlog_name, EVT_HANDLE *render_context,
 		EVT_HANDLE *query, zbx_uint64_t lastlogsize, zbx_uint64_t FirstID, zbx_uint64_t LastID,
 		zbx_vector_ptr_t *regexps, const char *pattern, const char *key_severity, const char *key_source,
-		const char *key_logeventid, int rate, zbx_process_value_t process_value_cb, ZBX_ACTIVE_METRIC *metric,
-		zbx_uint64_t *lastlogsize_sent, char **error)
+		const char *key_logeventid, int rate, zbx_process_value_func_t process_value_cb,
+		ZBX_ACTIVE_METRIC *metric, zbx_uint64_t *lastlogsize_sent, char **error)
 {
 #	define EVT_ARRAY_SIZE	100
 
-	const char	*str_severity, *__function_name = "process_eventslog6";
+	const char	*str_severity;
 	zbx_uint64_t	keywords, i, reading_startpoint = 0;
 	wchar_t		*eventlog_name_w = NULL;
 	int		s_count = 0, p_count = 0, send_err = SUCCEED, ret = FAIL, match = SUCCEED;
@@ -735,7 +788,7 @@ int	process_eventslog6(const char *server, unsigned short port, const char *even
 	EVT_HANDLE	event_bookmarks[EVT_ARRAY_SIZE];
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() source: '%s' previous lastlogsize: " ZBX_FS_UI64 ", FirstID: "
-			ZBX_FS_UI64 ", LastID: " ZBX_FS_UI64, __function_name, eventlog_name, lastlogsize, FirstID,
+			ZBX_FS_UI64 ", LastID: " ZBX_FS_UI64, __func__, eventlog_name, lastlogsize, FirstID,
 			LastID);
 
 	/* update counters */
@@ -749,7 +802,7 @@ int	process_eventslog6(const char *server, unsigned short port, const char *even
 
 	if (NULL == *query)
 	{
-		zabbix_log(LOG_LEVEL_DEBUG, "%s() no EvtQuery handle", __function_name);
+		zabbix_log(LOG_LEVEL_DEBUG, "%s() no EvtQuery handle", __func__);
 		goto out;
 	}
 
@@ -941,7 +994,7 @@ out:
 	}
 
 	zbx_free(eventlog_name_w);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -949,10 +1002,9 @@ out:
 /* finalize eventlog6 and free the handles */
 int	finalize_eventlog6(EVT_HANDLE *render_context, EVT_HANDLE *query)
 {
-	const char	*__function_name = "finalize_eventlog6";
 	int		ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (NULL != *query)
 	{
@@ -968,7 +1020,7 @@ int	finalize_eventlog6(EVT_HANDLE *render_context, EVT_HANDLE *query)
 
 	ret = SUCCEED;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1000,7 +1052,6 @@ static int	seek_eventlog(HANDLE *eventlog_handle, zbx_uint64_t FirstID, DWORD Re
 		zbx_uint64_t LastID, const char *eventlog_name, BYTE **pELRs, int *buffer_size, DWORD *num_bytes_read,
 		DWORD *error_code, char **error)
 {
-	const char	*__function_name="seek_eventlog";
 	DWORD		dwRecordNumber, required_buf_size;
 	zbx_uint64_t	skip_count = 0;
 
@@ -1057,7 +1108,7 @@ static int	seek_eventlog(HANDLE *eventlog_handle, zbx_uint64_t FirstID, DWORD Re
 		else
 			skip_count = LastID - FirstID;
 
-		zabbix_log(LOG_LEVEL_DEBUG, "In %s(): fallback error_code=%d skip_count="ZBX_FS_UI64, __function_name,
+		zabbix_log(LOG_LEVEL_DEBUG, "In %s(): fallback error_code=%d skip_count="ZBX_FS_UI64, __func__,
 				*error_code, skip_count);
 	}
 
@@ -1125,7 +1176,6 @@ static void	zbx_parse_eventlog_message(const wchar_t *wsource, const EVENTLOGREC
 		char **out_message, unsigned short *out_severity, unsigned long *out_timestamp,
 		unsigned long *out_eventid)
 {
-	const char	*__function_name = "zbx_parse_eventlog_message";
 	wchar_t 	*pEventMessageFile = NULL, *pParamMessageFile = NULL, *pFile = NULL, *pNextFile = NULL, *pCh,
 			*aInsertStrings[MAX_INSERT_STRS];
 	HINSTANCE	hLib = NULL, hParamLib = NULL;
@@ -1212,7 +1262,7 @@ static void	zbx_parse_eventlog_message(const wchar_t *wsource, const EVENTLOGREC
 		}
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 
 	return;
 }
@@ -1246,10 +1296,9 @@ static void	zbx_parse_eventlog_message(const wchar_t *wsource, const EVENTLOGREC
  ******************************************************************************/
 int	process_eventslog(const char *server, unsigned short port, const char *eventlog_name, zbx_vector_ptr_t *regexps,
 		const char *pattern, const char *key_severity, const char *key_source, const char *key_logeventid,
-		int rate, zbx_process_value_t process_value_cb, ZBX_ACTIVE_METRIC *metric,
+		int rate, zbx_process_value_func_t process_value_cb, ZBX_ACTIVE_METRIC *metric,
 		zbx_uint64_t *lastlogsize_sent, char **error)
 {
-	const char	*__function_name = "process_eventslog";
 	int		ret = FAIL;
 	HANDLE		eventlog_handle = NULL;
 	wchar_t 	*eventlog_name_w;
@@ -1262,7 +1311,7 @@ int	process_eventslog(const char *server, unsigned short port, const char *event
 	char		*source;
 
 	lastlogsize = metric->lastlogsize;
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() source:'%s' lastlogsize:" ZBX_FS_UI64, __function_name, eventlog_name,
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() source:'%s' lastlogsize:" ZBX_FS_UI64, __func__, eventlog_name,
 			lastlogsize);
 
 	/* From MSDN documentation:                                                                         */
@@ -1332,7 +1381,7 @@ int	process_eventslog(const char *server, unsigned short port, const char *event
 	}
 
 	zabbix_log(LOG_LEVEL_TRACE, "%s(): state before EventLog reading: num_bytes_read=%u error=%s FirstID="
-			ZBX_FS_UI64 " LastID=" ZBX_FS_UI64 " lastlogsize=" ZBX_FS_UI64, __function_name,
+			ZBX_FS_UI64 " LastID=" ZBX_FS_UI64 " lastlogsize=" ZBX_FS_UI64, __func__,
 			(unsigned int)num_bytes_read, strerror_from_system(error_code), FirstID, LastID, lastlogsize);
 
 	if (ERROR_HANDLE_EOF == error_code)
@@ -1373,7 +1422,7 @@ int	process_eventslog(const char *server, unsigned short port, const char *event
 
 		zabbix_log(LOG_LEVEL_TRACE, "%s(): state before buffer parsing: num_bytes_read = %u RecordNumber = %d"
 				"FirstID = "ZBX_FS_UI64" LastID = "ZBX_FS_UI64" lastlogsize="ZBX_FS_UI64,
-				__function_name, (unsigned int)num_bytes_read, ((PEVENTLOGRECORD)pELR)->RecordNumber,
+				__func__, (unsigned int)num_bytes_read, ((PEVENTLOGRECORD)pELR)->RecordNumber,
 				FirstID, LastID, lastlogsize);
 		num_bytes_read = 0;
 
@@ -1533,7 +1582,146 @@ out:
 	zbx_close_eventlog(eventlog_handle);
 	zbx_free(eventlog_name_w);
 	zbx_free(pELRs);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
+
+	return ret;
+}
+
+int	process_eventlog_check(char *server, unsigned short port, zbx_vector_ptr_t *regexps, ZBX_ACTIVE_METRIC *metric,
+		zbx_process_value_func_t process_value_cb, zbx_uint64_t *lastlogsize_sent, char **error)
+{
+	int 		ret = FAIL;
+	AGENT_REQUEST	request;
+	const char	*filename, *pattern, *maxlines_persec, *key_severity, *key_source, *key_logeventid, *skip;
+	int		rate;
+	OSVERSIONINFO	versionInfo;
+
+	init_request(&request);
+
+	if (SUCCEED != parse_item_key(metric->key, &request))
+	{
+		*error = zbx_strdup(*error, "Invalid item key format.");
+		goto out;
+	}
+
+	if (0 == get_rparams_num(&request))
+	{
+		*error = zbx_strdup(*error, "Invalid number of parameters.");
+		goto out;
+	}
+
+	if (7 < get_rparams_num(&request))
+	{
+		*error = zbx_strdup(*error, "Too many parameters.");
+		goto out;
+	}
+
+	if (NULL == (filename = get_rparam(&request, 0)) || '\0' == *filename)
+	{
+		*error = zbx_strdup(*error, "Invalid first parameter.");
+		goto out;
+	}
+
+	if (NULL == (pattern = get_rparam(&request, 1)))
+	{
+		pattern = "";
+	}
+	else if ('@' == *pattern && SUCCEED != zbx_global_regexp_exists(pattern + 1, regexps))
+	{
+		*error = zbx_dsprintf(*error, "Global regular expression \"%s\" does not exist.", pattern + 1);
+		goto out;
+	}
+
+	if (NULL == (key_severity = get_rparam(&request, 2)))
+	{
+		key_severity = "";
+	}
+	else if ('@' == *key_severity && SUCCEED != zbx_global_regexp_exists(key_severity + 1, regexps))
+	{
+		*error = zbx_dsprintf(*error, "Global regular expression \"%s\" does not exist.", key_severity + 1);
+		goto out;
+	}
+
+	if (NULL == (key_source = get_rparam(&request, 3)))
+	{
+		key_source = "";
+	}
+	else if ('@' == *key_source && SUCCEED != zbx_global_regexp_exists(key_source + 1, regexps))
+	{
+		*error = zbx_dsprintf(*error, "Global regular expression \"%s\" does not exist.", key_source + 1);
+		goto out;
+	}
+
+	if (NULL == (key_logeventid = get_rparam(&request, 4)))
+	{
+		key_logeventid = "";
+	}
+	else if ('@' == *key_logeventid && SUCCEED != zbx_global_regexp_exists(key_logeventid + 1, regexps))
+	{
+		*error = zbx_dsprintf(*error, "Global regular expression \"%s\" does not exist.", key_logeventid + 1);
+		goto out;
+	}
+
+	if (NULL == (maxlines_persec = get_rparam(&request, 5)) || '\0' == *maxlines_persec)
+	{
+		rate = CONFIG_EVENTLOG_MAX_LINES_PER_SECOND;
+	}
+	else if (MIN_VALUE_LINES > (rate = atoi(maxlines_persec)) || MAX_VALUE_LINES < rate)
+	{
+		*error = zbx_strdup(*error, "Invalid sixth parameter.");
+		goto out;
+	}
+
+	if (NULL == (skip = get_rparam(&request, 6)) || '\0' == *skip || 0 == strcmp(skip, "all"))
+	{
+		metric->skip_old_data = 0;
+	}
+	else if (0 != strcmp(skip, "skip"))
+	{
+		*error = zbx_strdup(*error, "Invalid seventh parameter.");
+		goto out;
+	}
+
+	versionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+	GetVersionEx(&versionInfo);
+
+	if (versionInfo.dwMajorVersion >= 6)	/* Windows Vista, 7 or Server 2008 */
+	{
+		__try
+		{
+
+			zbx_uint64_t	lastlogsize = metric->lastlogsize;
+			EVT_HANDLE	eventlog6_render_context = NULL;
+			EVT_HANDLE	eventlog6_query = NULL;
+			zbx_uint64_t	eventlog6_firstid = 0;
+			zbx_uint64_t	eventlog6_lastid = 0;
+
+			if (SUCCEED != initialize_eventlog6(filename, &lastlogsize, &eventlog6_firstid,
+					&eventlog6_lastid, &eventlog6_render_context, &eventlog6_query, error))
+			{
+				finalize_eventlog6(&eventlog6_render_context, &eventlog6_query);
+				goto out;
+			}
+
+			ret = process_eventslog6(server, port, filename, &eventlog6_render_context, &eventlog6_query,
+					lastlogsize, eventlog6_firstid, eventlog6_lastid, regexps, pattern,
+					key_severity, key_source, key_logeventid, rate, process_value_cb, metric,
+					lastlogsize_sent, error);
+
+			finalize_eventlog6(&eventlog6_render_context, &eventlog6_query);
+		}
+		__except (DelayLoadDllExceptionFilter(GetExceptionInformation()))
+		{
+			zabbix_log(LOG_LEVEL_WARNING, "failed to process eventlog");
+		}
+	}
+	else if (versionInfo.dwMajorVersion < 6)    /* Windows versions before Vista */
+	{
+		ret = process_eventslog(server, port, filename, regexps, pattern, key_severity, key_source,
+				key_logeventid, rate, process_value_cb, metric, lastlogsize_sent, error);
+	}
+out:
+	free_request(&request);
 
 	return ret;
 }

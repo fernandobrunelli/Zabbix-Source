@@ -20,11 +20,18 @@
 #include "common.h"
 #include "system.h"
 
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 #	include "perfmon.h"
 #	pragma comment(lib, "user32.lib")
 #endif
 
+/******************************************************************************
+ *                                                                            *
+ * Function: SYSTEM_LOCALTIME                                                 *
+ *                                                                            *
+ * Comments: Thread-safe                                                      *
+ *                                                                            *
+ ******************************************************************************/
 int	SYSTEM_LOCALTIME(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
 	char		*type, buf[32];
@@ -66,7 +73,7 @@ int	SYSTEM_LOCALTIME(AGENT_REQUEST *request, AGENT_RESULT *result)
 
 int	SYSTEM_USERS_NUM(AGENT_REQUEST *request, AGENT_RESULT *result)
 {
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__MINGW32__)
 	char		counter_path[64];
 	AGENT_REQUEST	request_tmp;
 	int		ret;
@@ -74,7 +81,7 @@ int	SYSTEM_USERS_NUM(AGENT_REQUEST *request, AGENT_RESULT *result)
 	ZBX_UNUSED(request);
 
 	zbx_snprintf(counter_path, sizeof(counter_path), "\\%u\\%u",
-			(unsigned int)get_builtin_counter_index(PCI_TERMINAL_SERVICES),
+			(unsigned int)get_builtin_object_index(PCI_TOTAL_SESSIONS),
 			(unsigned int)get_builtin_counter_index(PCI_TOTAL_SESSIONS));
 
 	request_tmp.nparam = 1;

@@ -28,10 +28,6 @@
 #define HTTP_REQUEST_PUT	2
 #define HTTP_REQUEST_HEAD	3
 
-#define HTTP_RETRIEVE_MODE_CONTENT	0
-#define HTTP_RETRIEVE_MODE_HEADERS	1
-#define HTTP_RETRIEVE_MODE_BOTH		2
-
 #define HTTP_STORE_RAW		0
 #define HTTP_STORE_JSON		1
 
@@ -167,7 +163,7 @@ static void	http_output_json(unsigned char retrieve_mode, char **buffer, zbx_htt
 
 	headers = header->data;
 
-	if (retrieve_mode != HTTP_RETRIEVE_MODE_CONTENT)
+	if (retrieve_mode != ZBX_RETRIEVE_MODE_CONTENT)
 		zbx_json_addobject(&json, "header");
 
 	while (NULL != (line = zbx_http_get_header(&headers)))
@@ -179,13 +175,13 @@ static void	http_output_json(unsigned char retrieve_mode, char **buffer, zbx_htt
 			json_content = 1;
 		}
 
-		if (retrieve_mode != HTTP_RETRIEVE_MODE_CONTENT)
+		if (retrieve_mode != ZBX_RETRIEVE_MODE_CONTENT)
 			http_add_json_header(&json, line);
 
 		zbx_free(line);
 	}
 
-	if (retrieve_mode != HTTP_RETRIEVE_MODE_CONTENT)
+	if (retrieve_mode != ZBX_RETRIEVE_MODE_CONTENT)
 		zbx_json_close(&json);
 
 	if (NULL != body->data)
@@ -212,8 +208,6 @@ static void	http_output_json(unsigned char retrieve_mode, char **buffer, zbx_htt
 
 int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 {
-	const char		*__function_name = "get_value_http";
-
 	CURL			*easyhandle;
 	CURLcode		err;
 	char			url[ITEM_URL_LEN_MAX], errbuf[CURL_ERROR_SIZE], *error = NULL, *headers, *line, *buffer;
@@ -227,7 +221,7 @@ int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 	char			application_xml[] = {"Content-Type: application/xml"};
 
 	zabbix_log(LOG_LEVEL_DEBUG, "In %s() request method '%s' URL '%s%s' headers '%s' message body '%s'",
-			__function_name, zbx_request_string(item->request_method), item->url, item->query_fields,
+			__func__, zbx_request_string(item->request_method), item->url, item->query_fields,
 			item->headers, item->posts);
 
 	if (NULL == (easyhandle = curl_easy_init()))
@@ -238,11 +232,11 @@ int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 
 	switch (item->retrieve_mode)
 	{
-		case HTTP_RETRIEVE_MODE_CONTENT:
-		case HTTP_RETRIEVE_MODE_BOTH:
+		case ZBX_RETRIEVE_MODE_CONTENT:
+		case ZBX_RETRIEVE_MODE_BOTH:
 			curl_body_cb = curl_write_cb;
 			break;
-		case HTTP_RETRIEVE_MODE_HEADERS:
+		case ZBX_RETRIEVE_MODE_HEADERS:
 			curl_body_cb = curl_ignore_cb;
 			break;
 		default:
@@ -406,7 +400,7 @@ int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 
 	switch (item->retrieve_mode)
 	{
-		case HTTP_RETRIEVE_MODE_CONTENT:
+		case ZBX_RETRIEVE_MODE_CONTENT:
 			if (NULL == body.data)
 			{
 				SET_MSG_RESULT(result, zbx_dsprintf(NULL, "Server returned empty content"));
@@ -430,7 +424,7 @@ int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 				body.data = NULL;
 			}
 			break;
-		case HTTP_RETRIEVE_MODE_HEADERS:
+		case ZBX_RETRIEVE_MODE_HEADERS:
 			if (FAIL == zbx_is_utf8(header.data))
 			{
 				SET_MSG_RESULT(result, zbx_dsprintf(NULL, "Server returned invalid UTF-8 sequence"));
@@ -456,7 +450,7 @@ int	get_value_http(const DC_ITEM *item, AGENT_RESULT *result)
 				header.data = NULL;
 			}
 			break;
-		case HTTP_RETRIEVE_MODE_BOTH:
+		case ZBX_RETRIEVE_MODE_BOTH:
 			if (FAIL == zbx_is_utf8(header.data) || (NULL != body.data && FAIL == zbx_is_utf8(body.data)))
 			{
 				SET_MSG_RESULT(result, zbx_dsprintf(NULL, "Server returned invalid UTF-8 sequence"));
@@ -484,7 +478,7 @@ clean:
 	curl_easy_cleanup(easyhandle);
 	zbx_free(body.data);
 	zbx_free(header.data);
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }

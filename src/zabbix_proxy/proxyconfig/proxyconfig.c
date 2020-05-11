@@ -26,7 +26,7 @@
 
 #include "proxyconfig.h"
 #include "../servercomms.h"
-#include "../../libs/zbxcrypto/tls.h"
+#include "zbxcrypto.h"
 
 #define CONFIG_PROXYCONFIG_RETRY	120	/* seconds */
 
@@ -54,13 +54,11 @@ static void	zbx_proxyconfig_sigusr_handler(int flags)
  ******************************************************************************/
 static void	process_configuration_sync(size_t *data_size)
 {
-	const char	*__function_name = "process_configuration_sync";
-
 	zbx_socket_t	sock;
 	struct		zbx_json_parse jp;
 	char		value[16], *error = NULL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	/* reset the performance metric */
 	*data_size = 0;
@@ -117,7 +115,7 @@ error:
 
 	zbx_free(error);
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -148,7 +146,7 @@ ZBX_THREAD_ENTRY(proxyconfig_thread, args)
 			server_num, get_process_type_string(process_type), process_num);
 	update_selfmon_counter(ZBX_PROCESS_STATE_BUSY);
 	zbx_set_sigusr_handler(zbx_proxyconfig_sigusr_handler);
-#if defined(HAVE_POLARSSL) || defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
+#if defined(HAVE_GNUTLS) || defined(HAVE_OPENSSL)
 	zbx_tls_init_child();
 #endif
 	zbx_setproctitle("%s [connecting to the database]", get_process_type_string(process_type));

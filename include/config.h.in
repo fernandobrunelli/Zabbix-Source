@@ -42,6 +42,9 @@
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
+/* Define to 1 if you have the <float.h> header file. */
+#undef HAVE_FLOAT_H
+
 /* Define to 1 if function 'curl_easy_escape' exists. */
 #undef HAVE_FUNCTION_CURL_EASY_ESCAPE
 
@@ -75,9 +78,6 @@
 /* Define to 1 if 'KERN_MAXPROC' exists. */
 #undef HAVE_FUNCTION_SYSCTL_KERN_MAXPROC
 
-/* Define to 1 if you have the `getaddrinfo' function. */
-#undef HAVE_GETADDRINFO
-
 /* Define to 1 if you have the `getenv' function. */
 #undef HAVE_GETENV
 
@@ -93,14 +93,8 @@
 /* Define to 1 if you have the `hstrerror' function. */
 #undef HAVE_HSTRERROR
 
-/* Define to 1 if IBM DB2 CLI libraries are available */
-#undef HAVE_IBM_DB2
-
 /* Define to 1 if you have the 'libiconv' library (-liconv) */
 #undef HAVE_ICONV
-
-/* Define to 1 if Iksemel library should be enabled. */
-#undef HAVE_IKSEMEL
 
 /* Define to 1 if you have NETLINK INET_DIAG support. */
 #undef HAVE_INET_DIAG
@@ -113,9 +107,6 @@
 
 /* Define to 1 if IPv6 should be enabled. */
 #undef HAVE_IPV6
-
-/* Define to 1 if Jabber should be enabled. */
-#undef HAVE_JABBER
 
 /* Define to 1 if you have the <knlist.h> header file. */
 #undef HAVE_KNLIST_H
@@ -195,6 +186,9 @@
 /* Define to 1 if you have the <mach/mach_host.h> header file. */
 #undef HAVE_MACH_MACH_HOST_H
 
+/* Define to 1 if TLS is supported in MariaDB library */
+#undef HAVE_MARIADB_TLS
+
 /* Define to 1 if you have the <math.h> header file. */
 #undef HAVE_MATH_H
 
@@ -212,6 +206,12 @@
 
 /* Define to 1 if MySQL libraries are available */
 #undef HAVE_MYSQL
+
+/* Define to 1 if TLS is supported in MySQL library */
+#undef HAVE_MYSQL_TLS
+
+/* Define to 1 if TLS ciphersuites are supported in MySQL library */
+#undef HAVE_MYSQL_TLS_CIPHERSUITES
 
 /* Define to 1 if you have the <netdb.h> header file. */
 #undef HAVE_NETDB_H
@@ -252,9 +252,6 @@
 
 /* Define to 1 if you have the <pdh.h> header file. */
 #undef HAVE_PDH_H
-
-/* Define to 1 if you have the 'libpolarssl' library (-lpolarssl) */
-#undef HAVE_POLARSSL
 
 /* Define to 1 if PostgreSQL libraries are available */
 #undef HAVE_POSTGRESQL
@@ -520,6 +517,9 @@
 
 /* Define to 1 if you have the <sys/wait.h> header file. */
 #undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if compiler keyword '__thread' supported. */
+#undef HAVE_THREAD_LOCAL
 
 /* Define to 1 if function 'clock_gettime' exists. */
 #undef HAVE_TIME_CLOCK_GETTIME

@@ -769,12 +769,11 @@ static void	ipc_service_push_client(zbx_ipc_service_t *service, zbx_ipc_client_t
  ******************************************************************************/
 static void	ipc_service_add_client(zbx_ipc_service_t *service, int fd)
 {
-	const char		*__function_name = "ipc_service_add_client";
 	static zbx_uint64_t	next_clientid = 1;
 	zbx_ipc_client_t	*client;
 	int			flags;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	client = (zbx_ipc_client_t *)zbx_malloc(NULL, sizeof(zbx_ipc_client_t));
 	memset(client, 0, sizeof(zbx_ipc_client_t));
@@ -808,7 +807,7 @@ static void	ipc_service_add_client(zbx_ipc_service_t *service, int fd)
 
 	zbx_vector_ptr_append(&service->clients, client);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() clientid:" ZBX_FS_UI64, __function_name, client->id);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s() clientid:" ZBX_FS_UI64, __func__, client->id);
 }
 
 /******************************************************************************
@@ -830,6 +829,34 @@ static void	ipc_service_remove_client(zbx_ipc_service_t *service, zbx_ipc_client
 		if (service->clients.values[i] == client)
 			zbx_vector_ptr_remove_noorder(&service->clients, i);
 	}
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_ipc_client_by_id                                             *
+ *                                                                            *
+ * Purpose: to find connected client when only it's ID is known               *
+ *                                                                            *
+ * Parameters: service - [IN] the IPC service                                 *
+ *             id      - [IN] ID of client                                    *
+ *                                                                            *
+ * Return value: address of client or NULL if client has already disconnected *
+ *                                                                            *
+ ******************************************************************************/
+zbx_ipc_client_t	*zbx_ipc_client_by_id(const zbx_ipc_service_t *service, zbx_uint64_t id)
+{
+	int			i;
+	zbx_ipc_client_t	*client;
+
+	for (i = 0; i < service->clients.values_num; i++)
+	{
+		client = (zbx_ipc_client_t *) service->clients.values[i];
+
+		if (id == client->id)
+			return client;
+	}
+
+	return NULL;
 }
 
 /******************************************************************************
@@ -956,10 +983,9 @@ static void	ipc_async_socket_timer_cb(evutil_socket_t fd, short what, void *arg)
  ******************************************************************************/
 static void	ipc_service_accept(zbx_ipc_service_t *service)
 {
-	const char	*__function_name = "ipc_service_accept";
-	int		fd;
+	int	fd;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	while (-1 == (fd = accept(service->fd, NULL, NULL)))
 	{
@@ -974,7 +1000,7 @@ static void	ipc_service_accept(zbx_ipc_service_t *service)
 
 	ipc_service_add_client(service, fd);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -1141,14 +1167,13 @@ static int	ipc_check_running_service(const char *service_name)
  ******************************************************************************/
 int	zbx_ipc_socket_open(zbx_ipc_socket_t *csocket, const char *service_name, int timeout, char **error)
 {
-	const char		*__function_name = "zbx_ipc_socket_open";
 	struct sockaddr_un	addr;
 	time_t			start;
 	struct timespec		ts = {0, 100000000};
 	const char		*socket_path;
 	int			ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (NULL == (socket_path = ipc_make_path(service_name, error)))
 		goto out;
@@ -1183,7 +1208,7 @@ int	zbx_ipc_socket_open(zbx_ipc_socket_t *csocket, const char *service_name, int
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 	return ret;
 }
 
@@ -1198,9 +1223,7 @@ out:
  ******************************************************************************/
 void	zbx_ipc_socket_close(zbx_ipc_socket_t *csocket)
 {
-	const char	*__function_name = "zbx_ipc_socket_close";
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (-1 != csocket->fd)
 	{
@@ -1208,7 +1231,7 @@ void	zbx_ipc_socket_close(zbx_ipc_socket_t *csocket)
 		csocket->fd = -1;
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -1228,11 +1251,10 @@ void	zbx_ipc_socket_close(zbx_ipc_socket_t *csocket)
  ******************************************************************************/
 int	zbx_ipc_socket_write(zbx_ipc_socket_t *csocket, zbx_uint32_t code, const unsigned char *data, zbx_uint32_t size)
 {
-	const char	*__function_name = "zbx_ipc_socket_write";
 	int		ret;
 	zbx_uint32_t	size_sent;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (SUCCEED == ipc_socket_write_message(csocket, code, data, size, &size_sent) &&
 			size_sent == size + ZBX_IPC_HEADER_SIZE)
@@ -1242,7 +1264,7 @@ int	zbx_ipc_socket_write(zbx_ipc_socket_t *csocket, zbx_uint32_t code, const uns
 	else
 		ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1265,12 +1287,11 @@ int	zbx_ipc_socket_write(zbx_ipc_socket_t *csocket, zbx_uint32_t code, const uns
  ******************************************************************************/
 int	zbx_ipc_socket_read(zbx_ipc_socket_t *csocket, zbx_ipc_message_t *message)
 {
-	const char	*__function_name = "zbx_ipc_socket_read";
 	int		ret = FAIL;
 	zbx_uint32_t	rx_bytes = 0, header[2];
 	unsigned char	*data = NULL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	if (SUCCEED != ipc_socket_read_message(csocket, header, &data, &rx_bytes))
 		goto out;
@@ -1291,14 +1312,14 @@ int	zbx_ipc_socket_read(zbx_ipc_socket_t *csocket, zbx_ipc_message_t *message)
 
 		zbx_ipc_message_format(message, &msg);
 
-		zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __function_name, msg);
+		zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __func__, msg);
 
 		zbx_free(msg);
 	}
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1423,11 +1444,10 @@ void	zbx_ipc_message_copy(zbx_ipc_message_t *dst, const zbx_ipc_message_t *src)
  ******************************************************************************/
 int	zbx_ipc_service_init_env(const char *path, char **error)
 {
-	const char	*__function_name = "zbx_ipc_service_init_env";
 	struct stat	fs;
 	int		ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() path:%s", __function_name, path);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() path:%s", __func__, path);
 
 	if (0 != ipc_path_root_len)
 	{
@@ -1471,7 +1491,7 @@ int	zbx_ipc_service_init_env(const char *path, char **error)
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1505,13 +1525,12 @@ void	zbx_ipc_service_free_env(void)
  ******************************************************************************/
 int	zbx_ipc_service_start(zbx_ipc_service_t *service, const char *service_name, char **error)
 {
-	const char		*__function_name = "zbx_ipc_service_start";
 	struct sockaddr_un	addr;
 	const char		*socket_path;
 	int			ret = FAIL;
 	mode_t			mode;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() service:%s", __function_name, service_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() service:%s", __func__, service_name);
 
 	mode = umask(077);
 
@@ -1572,7 +1591,7 @@ int	zbx_ipc_service_start(zbx_ipc_service_t *service, const char *service_name, 
 out:
 	umask(mode);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1588,10 +1607,9 @@ out:
  ******************************************************************************/
 void	zbx_ipc_service_close(zbx_ipc_service_t *service)
 {
-	const char	*__function_name = "zbx_ipc_service_close";
-	int		i;
+	int	i;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() path:%s", __function_name, service->path);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() path:%s", __func__, service->path);
 
 	close(service->fd);
 
@@ -1607,7 +1625,7 @@ void	zbx_ipc_service_close(zbx_ipc_service_t *service)
 	event_free(service->ev_listener);
 	event_base_free(service->ev);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -1641,11 +1659,9 @@ void	zbx_ipc_service_close(zbx_ipc_service_t *service)
 int	zbx_ipc_service_recv(zbx_ipc_service_t *service, int timeout, zbx_ipc_client_t **client,
 		zbx_ipc_message_t **message)
 {
-	const char	*__function_name = "zbx_ipc_service_recv";
+	int	ret, flags;
 
-	int		ret, flags;
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __function_name, timeout);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __func__, timeout);
 
 	if (timeout != 0 && SUCCEED == zbx_queue_ptr_empty(&service->clients_recv))
 	{
@@ -1670,7 +1686,7 @@ int	zbx_ipc_service_recv(zbx_ipc_service_t *service, int timeout, zbx_ipc_client
 				char	*data = NULL;
 
 				zbx_ipc_message_format(*message, &data);
-				zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __function_name, data);
+				zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __func__, data);
 
 				zbx_free(data);
 			}
@@ -1689,7 +1705,7 @@ int	zbx_ipc_service_recv(zbx_ipc_service_t *service, int timeout, zbx_ipc_client
 
 	evtimer_del(service->ev_timer);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __function_name, ret);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __func__, ret);
 
 	return ret;
 }
@@ -1712,12 +1728,11 @@ int	zbx_ipc_service_recv(zbx_ipc_service_t *service, int timeout, zbx_ipc_client
  ******************************************************************************/
 int	zbx_ipc_client_send(zbx_ipc_client_t *client, zbx_uint32_t code, const unsigned char *data, zbx_uint32_t size)
 {
-	const char		*__function_name = "zbx_ipc_client_send";
 	zbx_uint32_t		tx_size = 0;
 	zbx_ipc_message_t	*message;
 	int			ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() clientid:" ZBX_FS_UI64, __function_name, client->id);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() clientid:" ZBX_FS_UI64, __func__, client->id);
 
 	if (0 != client->tx_bytes)
 	{
@@ -1742,7 +1757,7 @@ int	zbx_ipc_client_send(zbx_ipc_client_t *client, zbx_uint32_t code, const unsig
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1758,9 +1773,7 @@ out:
  ******************************************************************************/
 void	zbx_ipc_client_close(zbx_ipc_client_t *client)
 {
-	const char	*__function_name = "zbx_ipc_client_close";
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	ipc_client_free_events(client);
 	zbx_ipc_socket_close(&client->csocket);
@@ -1769,7 +1782,7 @@ void	zbx_ipc_client_close(zbx_ipc_client_t *client)
 	zbx_queue_ptr_remove_value(&client->service->clients_recv, client);
 	zbx_ipc_client_release(client);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 void	zbx_ipc_client_addref(zbx_ipc_client_t *client)
@@ -1786,6 +1799,11 @@ void	zbx_ipc_client_release(zbx_ipc_client_t *client)
 int	zbx_ipc_client_connected(zbx_ipc_client_t *client)
 {
 	return (NULL == client->rx_event ? FAIL : SUCCEED);
+}
+
+zbx_uint64_t	zbx_ipc_client_id(const zbx_ipc_client_t *client)
+{
+	return client->id;
 }
 
 /******************************************************************************
@@ -1805,10 +1823,9 @@ int	zbx_ipc_client_connected(zbx_ipc_client_t *client)
  ******************************************************************************/
 int	zbx_ipc_async_socket_open(zbx_ipc_async_socket_t *asocket, const char *service_name, int timeout, char **error)
 {
-	const char		*__function_name = "zbx_ipc_async_socket_open";
-	int			ret = FAIL, flags;
+	int	ret = FAIL, flags;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	memset(asocket, 0, sizeof(zbx_ipc_async_socket_t));
 	asocket->client = (zbx_ipc_client_t *)zbx_malloc(NULL, sizeof(zbx_ipc_client_t));
@@ -1844,7 +1861,7 @@ int	zbx_ipc_async_socket_open(zbx_ipc_async_socket_t *asocket, const char *servi
 
 	ret = SUCCEED;
 out:
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 	return ret;
 }
 
@@ -1859,16 +1876,14 @@ out:
  ******************************************************************************/
 void	zbx_ipc_async_socket_close(zbx_ipc_async_socket_t *asocket)
 {
-	const char	*__function_name = "zbx_ipc_async_socket_close";
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	ipc_client_free(asocket->client);
 
 	event_free(asocket->ev_timer);
 	event_base_free(asocket->ev);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 /******************************************************************************
@@ -1891,14 +1906,13 @@ void	zbx_ipc_async_socket_close(zbx_ipc_async_socket_t *asocket)
 int	zbx_ipc_async_socket_send(zbx_ipc_async_socket_t *asocket, zbx_uint32_t code, const unsigned char *data,
 		zbx_uint32_t size)
 {
-	const char		*__function_name = "zbx_ipc_async_socket_send";
-	int			ret = FAIL;
+	int	ret = FAIL;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	ret = zbx_ipc_client_send(asocket->client, code, data, size);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
@@ -1929,11 +1943,9 @@ int	zbx_ipc_async_socket_send(zbx_ipc_async_socket_t *asocket, zbx_uint32_t code
  ******************************************************************************/
 int	zbx_ipc_async_socket_recv(zbx_ipc_async_socket_t *asocket, int timeout, zbx_ipc_message_t **message)
 {
-	const char	*__function_name = "zbx_ipc_async_socket_recv";
+	int	ret, flags;
 
-	int		ret, flags;
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __function_name, timeout);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __func__, timeout);
 
 	if (timeout != 0 && SUCCEED == zbx_queue_ptr_empty(&asocket->client->rx_queue))
 	{
@@ -1947,20 +1959,23 @@ int	zbx_ipc_async_socket_recv(zbx_ipc_async_socket_t *asocket, int timeout, zbx_
 	else
 		flags = EVLOOP_NONBLOCK;
 
-	if (ZBX_IPC_ASYNC_SOCKET_STATE_ERROR != asocket->state)
-		event_base_loop(asocket->ev, flags);
+	asocket->state = ZBX_IPC_ASYNC_SOCKET_STATE_NONE;
 
-	if (NULL != (*message = (zbx_ipc_message_t *)zbx_queue_ptr_pop(&asocket->client->rx_queue)))
+	do
 	{
-		if (SUCCEED == ZBX_CHECK_LOG_LEVEL(LOG_LEVEL_TRACE))
-		{
-			char	*data = NULL;
+		event_base_loop(asocket->ev, flags);
+		*message = (zbx_ipc_message_t *)zbx_queue_ptr_pop(&asocket->client->rx_queue);
+	}
+	while (NULL == *message && ZBX_IPC_ASYNC_SOCKET_STATE_NONE == asocket->state);
 
-			zbx_ipc_message_format(*message, &data);
-			zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __function_name, data);
+	if (SUCCEED == ZBX_CHECK_LOG_LEVEL(LOG_LEVEL_TRACE) && NULL != *message)
+	{
+		char	*data = NULL;
 
-			zbx_free(data);
-		}
+		zbx_ipc_message_format(*message, &data);
+		zabbix_log(LOG_LEVEL_DEBUG, "%s() %s", __func__, data);
+
+		zbx_free(data);
 	}
 
 	if (NULL != *message || ZBX_IPC_ASYNC_SOCKET_STATE_ERROR != asocket->state)
@@ -1970,7 +1985,7 @@ int	zbx_ipc_async_socket_recv(zbx_ipc_async_socket_t *asocket, int timeout, zbx_
 
 	evtimer_del(asocket->ev_timer);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __function_name, ret);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __func__, ret);
 
 	return ret;
 }
@@ -1995,11 +2010,9 @@ int	zbx_ipc_async_socket_recv(zbx_ipc_async_socket_t *asocket, int timeout, zbx_
  ******************************************************************************/
 int	zbx_ipc_async_socket_flush(zbx_ipc_async_socket_t *asocket, int timeout)
 {
-	const char	*__function_name = "zbx_ipc_async_socket_flush";
+	int	ret = FAIL, flags;
 
-	int		ret = FAIL, flags;
-
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __function_name, timeout);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() timeout:%d", __func__, timeout);
 
 	if (0 == asocket->client->tx_bytes)
 	{
@@ -2041,7 +2054,7 @@ int	zbx_ipc_async_socket_flush(zbx_ipc_async_socket_t *asocket, int timeout)
 out:
 	evtimer_del(asocket->ev_timer);
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __function_name, ret);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%d", __func__, ret);
 
 	return ret;
 }
@@ -2061,6 +2074,75 @@ out:
 int	zbx_ipc_async_socket_check_unsent(zbx_ipc_async_socket_t *asocket)
 {
 	return (0 == asocket->client->tx_bytes ? FAIL : SUCCEED);
+}
+
+/******************************************************************************
+ *                                                                            *
+ * Function: zbx_ipc_async_exchange                                           *
+ *                                                                            *
+ * Purpose: connect, send message and receive response in a given timeout     *
+ *                                                                            *
+ * Parameters: service_name - [IN] the IPC service name                       *
+ *             code         - [IN] the message code                           *
+ *             timeout      - [IN] time allowed to be spent on receive, note  *
+ *                                 that this does not include open, send and  *
+ *                                 flush that have their own timeouts         *
+ *             data         - [IN] the data                                   *
+ *             size         - [IN] the data size                              *
+ *             out          - [OUT] the received message or NULL on error     *
+ *                                  The message must be freed by zbx_free()   *
+ *             error        - [OUT] the error message                         *
+ *                                                                            *
+ * Return value: SUCCEED - successfully sent message and received response    *
+ *               FAIL    - error occurred                                     *
+ *                                                                            *
+ ******************************************************************************/
+int	zbx_ipc_async_exchange(const char *service_name, zbx_uint32_t code, int timeout, const unsigned char *data,
+		zbx_uint32_t size, unsigned char **out, char **error)
+{
+	zbx_ipc_message_t	*message;
+	zbx_ipc_async_socket_t	asocket;
+	int			ret = FAIL;
+
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s() service:'%s' code:%u timeout:%d", __func__, service_name, code, timeout);
+
+	if (FAIL == zbx_ipc_async_socket_open(&asocket, service_name, timeout, error))
+		goto out;
+
+	if (FAIL == zbx_ipc_async_socket_send(&asocket, code, data, size))
+	{
+		*error = zbx_strdup(NULL, "Cannot send request");
+		goto fail;
+	}
+
+	if (FAIL == zbx_ipc_async_socket_flush(&asocket, timeout))
+	{
+		*error = zbx_strdup(NULL, "Cannot flush request");
+		goto fail;
+	}
+
+	if (FAIL == zbx_ipc_async_socket_recv(&asocket, timeout, &message))
+	{
+		*error = zbx_strdup(NULL, "Cannot receive response");
+		goto fail;
+	}
+
+	if (NULL == message)
+	{
+		*error = zbx_strdup(NULL, "Timeout while waiting for response");
+		goto fail;
+	}
+
+	*out = message->data;
+	message->data = NULL;
+
+	zbx_ipc_message_free(message);
+	ret = SUCCEED;
+fail:
+	zbx_ipc_async_socket_close(&asocket);
+out:
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
+	return ret;
 }
 
 #endif

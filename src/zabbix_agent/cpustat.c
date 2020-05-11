@@ -50,13 +50,12 @@ static kstat_t		*(*ksp)[] = NULL;	/* array of pointers to "cpu_stat" elements in
 
 static int	refresh_kstat(ZBX_CPUS_STAT_DATA *pcpus)
 {
-	const char	*__function_name = "refresh_kstat";
 	static int	cpu_over_count_prev = 0;
 	int		cpu_over_count = 0, i, inserted;
 	kid_t		id;
 	kstat_t		*k;
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 	for (i = 0; i < pcpus->count; i++)
 		(*ksp)[i] = NULL;
@@ -69,7 +68,7 @@ static int	refresh_kstat(ZBX_CPUS_STAT_DATA *pcpus)
 	/*        kstat_open().									*/
 	if (-1 == (id = kstat_chain_update(kc)))
 	{
-		zabbix_log(LOG_LEVEL_ERR, "%s: kstat_chain_update() failed", __function_name);
+		zabbix_log(LOG_LEVEL_ERR, "%s: kstat_chain_update() failed", __func__);
 		return FAIL;
 	}
 
@@ -116,7 +115,7 @@ static int	refresh_kstat(ZBX_CPUS_STAT_DATA *pcpus)
 		}
 	}
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 
 	return SUCCEED;
 }
@@ -124,7 +123,6 @@ static int	refresh_kstat(ZBX_CPUS_STAT_DATA *pcpus)
 
 int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 {
-	const char			*__function_name = "init_cpu_collector";
 	char				*error = NULL;
 	int				idx, ret = FAIL;
 #ifdef _WINDOWS
@@ -132,15 +130,15 @@ int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 	char				counterPath[PDH_MAX_COUNTER_PATH];
 	PDH_COUNTER_PATH_ELEMENTS	cpe;
 #endif
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 #ifdef _WINDOWS
 	cpe.szMachineName = NULL;
-	cpe.szObjectName = get_counter_name(get_builtin_counter_index(PCI_PROCESSOR));
+	cpe.szObjectName = get_builtin_object_name(PCI_PROCESSOR_TIME);
 	cpe.szInstanceName = cpu;
 	cpe.szParentInstance = NULL;
 	cpe.dwInstanceIndex = (DWORD)-1;
-	cpe.szCounterName = get_counter_name(get_builtin_counter_index(PCI_PROCESSOR_TIME));
+	cpe.szCounterName = get_builtin_counter_name(PCI_PROCESSOR_TIME);
 
 	/* 64 logical CPUs (threads) is a hard limit for 32-bit Windows systems and some old 64-bit versions,  */
 	/* such as Windows Vista. Systems with <= 64 threads will always have one processor group, which means */
@@ -160,7 +158,7 @@ int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 			else
 				_itow_s(idx - 1, cpu, ARRSIZE(cpu), 10);
 
-			if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__function_name, &cpe, counterPath))
+			if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__func__, &cpe, counterPath))
 				goto clean;
 
 			if (NULL == (pcpus->cpu_counter[idx] = add_perf_counter(NULL, counterPath, MAX_COLLECTOR_PERIOD,
@@ -176,7 +174,8 @@ int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 
 		zabbix_log(LOG_LEVEL_DEBUG, "more than 64 CPUs, using \"Processor Information\" counter");
 
-		cpe.szObjectName = get_counter_name(get_builtin_counter_index(PCI_PROCESSOR_INFORMATION));
+		cpe.szObjectName = get_builtin_object_name(PCI_INFORMATION_PROCESSOR_TIME);
+		cpe.szCounterName = get_builtin_counter_name(PCI_INFORMATION_PROCESSOR_TIME);
 
 		/* This doesn't seem to be well documented but it looks like Windows treats Processor Information */
 		/* object differently on NUMA-enabled systems. First index for the object may either mean logical */
@@ -204,7 +203,7 @@ int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 					StringCchPrintf(cpu, ARRSIZE(cpu), L"%d,%d", gidx, idx - 1);
 				}
 
-				if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__function_name, &cpe, counterPath))
+				if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__func__, &cpe, counterPath))
 					goto clean;
 
 				if (NULL == (pcpus->cpu_counter[gidx * cpus_per_group + idx] =
@@ -217,11 +216,11 @@ int	init_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 		}
 	}
 
-	cpe.szObjectName = get_counter_name(get_builtin_counter_index(PCI_SYSTEM));
+	cpe.szObjectName = get_builtin_object_name(PCI_PROCESSOR_QUEUE_LENGTH);
 	cpe.szInstanceName = NULL;
-	cpe.szCounterName = get_counter_name(get_builtin_counter_index(PCI_PROCESSOR_QUEUE_LENGTH));
+	cpe.szCounterName = get_builtin_counter_name(PCI_PROCESSOR_QUEUE_LENGTH);
 
-	if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__function_name, &cpe, counterPath))
+	if (ERROR_SUCCESS != zbx_PdhMakeCounterPath(__func__, &cpe, counterPath))
 		goto clean;
 
 	if (NULL == (pcpus->queue_counter = add_perf_counter(NULL, counterPath, MAX_COLLECTOR_PERIOD,
@@ -280,18 +279,17 @@ clean:
 	ret = SUCCEED;
 #endif	/* _WINDOWS */
 
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __function_name, zbx_result_string(ret));
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s():%s", __func__, zbx_result_string(ret));
 
 	return ret;
 }
 
 void	free_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 {
-	const char	*__function_name = "free_cpu_collector";
 #ifdef _WINDOWS
-	int		idx;
+	int	idx;
 #endif
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 #ifdef _WINDOWS
 	remove_perf_counter(pcpus->queue_counter);
@@ -311,7 +309,7 @@ void	free_cpu_collector(ZBX_CPUS_STAT_DATA *pcpus)
 	kstat_close(kc);
 	zbx_free(ksp);
 #endif
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 #ifdef _WINDOWS
@@ -372,7 +370,6 @@ static void	update_cpu_counters(ZBX_SINGLE_CPU_STAT_DATA *cpu, zbx_uint64_t *cou
 
 static void	update_cpustats(ZBX_CPUS_STAT_DATA *pcpus)
 {
-	const char	*__function_name = "update_cpustats";
 	int		idx;
 	zbx_uint64_t	counter[ZBX_CPU_STATE_COUNT];
 
@@ -414,7 +411,7 @@ static void	update_cpustats(ZBX_CPUS_STAT_DATA *pcpus)
 
 #endif
 
-	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "In %s()", __func__);
 
 #define ZBX_SET_CPUS_NOTSUPPORTED()				\
 	for (idx = 0; idx <= pcpus->count; idx++)		\
@@ -710,7 +707,7 @@ read_again:
 #if defined(HAVE_PROC_STAT) || (defined(HAVE_FUNCTION_SYSCTLBYNAME) && defined(CPUSTATES)) || defined(HAVE_KSTAT_H)
 exit:
 #endif
-	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __function_name);
+	zabbix_log(LOG_LEVEL_DEBUG, "End of %s()", __func__);
 }
 
 void	collect_cpustat(ZBX_CPUS_STAT_DATA *pcpus)

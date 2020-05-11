@@ -20,7 +20,6 @@
 #include "common.h"
 #include "db.h"
 #include "dbupgrade.h"
-#include "log.h"
 
 /*
  * 4.0 maintenance database patches
@@ -222,88 +221,6 @@ static int	DBpatch_4000003(void)
 	return ret;
 }
 
-static int	DBpatch_4000004(void)
-{
-	int		i;
-	const char	*values[] = {
-			"alarm_ok",
-			"no_sound",
-			"alarm_information",
-			"alarm_warning",
-			"alarm_average",
-			"alarm_high",
-			"alarm_disaster"
-		};
-
-	if (0 == (program_type & ZBX_PROGRAM_TYPE_SERVER))
-		return SUCCEED;
-
-	for (i = 0; i < (int)ARRSIZE(values); i++)
-	{
-		if (ZBX_DB_OK > DBexecute(
-				"update profiles"
-				" set value_str='%s.mp3'"
-				" where value_str='%s.wav'"
-					" and idx='web.messages'", values[i], values[i]))
-		{
-			return FAIL;
-		}
-	}
-
-	return SUCCEED;
-}
-
-static int	DBpatch_4000005(void)
-{
-	DB_RESULT		result;
-	DB_ROW			row;
-	zbx_uint64_t		time_period_id, every;
-	int			invalidate = 0;
-	const ZBX_TABLE		*timeperiods;
-	const ZBX_FIELD		*field;
-
-	if (NULL != (timeperiods = DBget_table("timeperiods")) &&
-			NULL != (field = DBget_field(timeperiods, "every")))
-	{
-		ZBX_STR2UINT64(every, field->default_value);
-	}
-	else
-	{
-		THIS_SHOULD_NEVER_HAPPEN;
-		return FAIL;
-	}
-
-	result = DBselect("select timeperiodid from timeperiods where every=0");
-
-	while (NULL != (row = DBfetch(result)))
-	{
-		ZBX_STR2UINT64(time_period_id, row[0]);
-
-		zabbix_log(LOG_LEVEL_WARNING, "Invalid maintenance time period found: "ZBX_FS_UI64
-				", changing \"every\" to "ZBX_FS_UI64, time_period_id, every);
-		invalidate = 1;
-	}
-
-	DBfree_result(result);
-
-	if (0 != invalidate &&
-			ZBX_DB_OK > DBexecute("update timeperiods set every=1 where timeperiodid!=0 and every=0"))
-		return FAIL;
-
-	return SUCCEED;
-}
-
-static int	DBpatch_4000006(void)
-{
-	if (0 == (program_type & ZBX_PROGRAM_TYPE_SERVER))
-		return SUCCEED;
-
-	if (ZBX_DB_OK > DBexecute("delete from profiles where idx='web.screens.graphid'"))
-		return FAIL;
-
-	return SUCCEED;
-}
-
 #endif
 
 DBPATCH_START(4000)
@@ -314,8 +231,5 @@ DBPATCH_ADD(4000000, 0, 1)
 DBPATCH_ADD(4000001, 0, 0)
 DBPATCH_ADD(4000002, 0, 0)
 DBPATCH_ADD(4000003, 0, 0)
-DBPATCH_ADD(4000004, 0, 0)
-DBPATCH_ADD(4000005, 0, 0)
-DBPATCH_ADD(4000006, 0, 0)
 
 DBPATCH_END()
