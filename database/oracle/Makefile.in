@@ -336,7 +336,8 @@ top_srcdir = @top_srcdir@
 EXTRA_DIST = \
 	data.sql \
 	images.sql \
-	schema.sql
+	schema.sql \
+	double.sql
 
 all: all-am
 

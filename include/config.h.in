@@ -635,6 +635,12 @@
 /* Define to 1 if you are using Mac OS X. */
 #undef MAC_OS_X
 
+/* Define mysql options */
+#undef MYSQL_OPTIONS
+
+/* Define void cast for mysql options args */
+#undef MYSQL_OPTIONS_ARGS_VOID_CAST
+
 /* Define to 1 if OPENIPMI deprecated functions is used. */
 #undef OPENIPMI_DEPRECATED
 
