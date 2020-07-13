@@ -1958,4 +1958,4 @@ CREATE TABLE dbversion (
 	mandatory                integer         DEFAULT '0'               NOT NULL,
 	optional                 integer         DEFAULT '0'               NOT NULL
 );
-INSERT INTO dbversion VALUES ('5000000','5000000');
+INSERT INTO dbversion VALUES ('5000000','5000001');
