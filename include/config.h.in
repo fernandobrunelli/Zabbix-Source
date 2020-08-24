@@ -677,6 +677,9 @@
 /* Version number of package */
 #undef VERSION
 
+/* Define to 1 if Agent2 is being built. */
+#undef ZBX_BUILD_AGENT2
+
 /* Define to 1 on linux and solaris platforms */
 #undef ZBX_PROCSTAT_COLLECTOR
 

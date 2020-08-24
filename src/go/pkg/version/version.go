@@ -32,10 +32,10 @@ const (
 	ZABBIX_REVDATE          = "9 October 2019"
 	ZABBIX_VERSION_MAJOR    = 5
 	ZABBIX_VERSION_MINOR    = 0
-	ZABBIX_VERSION_PATCH    = 2
+	ZABBIX_VERSION_PATCH    = 3
 	ZABBIX_VERSION_RC       = ""
-	ZABBIX_VERSION_RC_NUM   = "2400"
-	ZABBIX_VERSION_REVISION = "352ca05870"
+	ZABBIX_VERSION_RC_NUM   = "1400"
+	ZABBIX_VERSION_REVISION = "6e02cfb1cf"
 	copyrightMessage        = "Copyright (C) 2020 Zabbix SIA\n" +
 		"License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>.\n" +
 		"This is free software: you are free to change and redistribute it according to\n" +
@@ -140,7 +140,7 @@ func TitleMessage() string {
 }
 
 func Display() {
-	fmt.Printf("%s (Zabbix) %s\n", TitleMessage(), LongStr())
+	fmt.Printf("%s (Zabbix) %s\n", TitleMessage(), Long())
 	fmt.Printf("Revision %s %s, compilation time: %s %s\n\n", Revision(), RevDate(), CompileDate(), CompileTime())
 	fmt.Println(CopyrightMessage())
 }
