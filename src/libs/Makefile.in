@@ -421,7 +421,8 @@ DIST_SUBDIRS = \
 	zbxhistory \
 	zbxcompress \
 	zbxembed \
-	zbxprometheus
+	zbxprometheus \
+	zbxdiag
 
 @SERVER_TRUE@SERVER_SUBDIRS = \
 @SERVER_TRUE@	zbxcommshigh \
@@ -439,7 +440,8 @@ DIST_SUBDIRS = \
 @SERVER_TRUE@	zbxhistory \
 @SERVER_TRUE@	zbxcompress \
 @SERVER_TRUE@	zbxembed \
-@SERVER_TRUE@	zbxprometheus
+@SERVER_TRUE@	zbxprometheus \
+@SERVER_TRUE@	zbxdiag
 
 @PROXY_TRUE@@SERVER_FALSE@PROXY_SUBDIRS = \
 @PROXY_TRUE@@SERVER_FALSE@	zbxcommshigh \
@@ -456,7 +458,8 @@ DIST_SUBDIRS = \
 @PROXY_TRUE@@SERVER_FALSE@	zbxhistory \
 @PROXY_TRUE@@SERVER_FALSE@	zbxcompress \
 @PROXY_TRUE@@SERVER_FALSE@	zbxembed \
-@PROXY_TRUE@@SERVER_FALSE@	zbxprometheus
+@PROXY_TRUE@@SERVER_FALSE@	zbxprometheus \
+@PROXY_TRUE@@SERVER_FALSE@	zbxdiag
 
 SUBDIRS = \
 	zbxcrypto \

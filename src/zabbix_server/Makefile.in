@@ -173,6 +173,7 @@ zabbix_server_DEPENDENCIES = alerter/libzbxalerter.a \
 	$(top_builddir)/src/libs/zbxdb/libzbxdb.a \
 	$(top_builddir)/src/libs/zbxmodules/libzbxmodules.a \
 	$(top_builddir)/src/libs/zbxtasks/libzbxtasks.a \
+	$(top_builddir)/src/libs/zbxdiag/libzbxdiag_server.a \
 	$(top_builddir)/src/libs/zbxcompress/libzbxcompress.a \
 	$(top_builddir)/src/libs/zbxserver/libzbxserver_server.a \
 	$(am__append_1) $(am__DEPENDENCIES_1)
@@ -568,6 +569,7 @@ zabbix_server_LDADD = alerter/libzbxalerter.a \
 	$(top_builddir)/src/libs/zbxdb/libzbxdb.a \
 	$(top_builddir)/src/libs/zbxmodules/libzbxmodules.a \
 	$(top_builddir)/src/libs/zbxtasks/libzbxtasks.a \
+	$(top_builddir)/src/libs/zbxdiag/libzbxdiag_server.a \
 	$(top_builddir)/src/libs/zbxcompress/libzbxcompress.a \
 	$(top_builddir)/src/libs/zbxserver/libzbxserver_server.a \
 	$(am__append_1) $(SERVER_LIBS)

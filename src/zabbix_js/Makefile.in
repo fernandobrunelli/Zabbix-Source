@@ -126,7 +126,8 @@ zabbix_js_DEPENDENCIES = $(top_srcdir)/src/libs/zbxlog/libzbxlog.a \
 	$(top_srcdir)/src/libs/zbxconf/libzbxconf.a \
 	$(top_srcdir)/src/libs/zbxcommon/libzbxcommon.a \
 	$(top_srcdir)/src/libs/zbxcrypto/libzbxcrypto.a \
-	$(top_srcdir)/src/libs/zbxcompress/libzbxcompress.a
+	$(top_srcdir)/src/libs/zbxcompress/libzbxcompress.a \
+	$(top_srcdir)/src/libs/zbxhttp/libzbxhttp.a
 zabbix_js_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(zabbix_js_LDFLAGS) \
 	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
@@ -402,7 +403,7 @@ zabbix_js_LDADD = $(top_srcdir)/src/libs/zbxlog/libzbxlog.a \
 	$(top_srcdir)/src/libs/zbxcommon/libzbxcommon.a \
 	$(top_srcdir)/src/libs/zbxcrypto/libzbxcrypto.a \
 	$(top_srcdir)/src/libs/zbxcompress/libzbxcompress.a \
-	@ZBXJS_LIBS@ $(am__empty)
+	$(top_srcdir)/src/libs/zbxhttp/libzbxhttp.a @ZBXJS_LIBS@
 zabbix_js_LDFLAGS = @ZBXJS_LDFLAGS@
 all: all-am
 
