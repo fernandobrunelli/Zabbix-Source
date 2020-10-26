@@ -29,13 +29,13 @@ import (
 
 const (
 	APPLICATION_NAME        = "Zabbix Agent"
-	ZABBIX_REVDATE          = "28 September 2020"
+	ZABBIX_REVDATE          = "26 October 2020"
 	ZABBIX_VERSION_MAJOR    = 5
 	ZABBIX_VERSION_MINOR    = 0
-	ZABBIX_VERSION_PATCH    = 4
+	ZABBIX_VERSION_PATCH    = 5
 	ZABBIX_VERSION_RC       = ""
 	ZABBIX_VERSION_RC_NUM   = "2400"
-	ZABBIX_VERSION_REVISION = "69c0ad3686"
+	ZABBIX_VERSION_REVISION = "eaa427cf19"
 	copyrightMessage        = "Copyright (C) 2020 Zabbix SIA\n" +
 		"License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>.\n" +
 		"This is free software: you are free to change and redistribute it according to\n" +
