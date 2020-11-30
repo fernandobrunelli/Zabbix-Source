@@ -539,6 +539,9 @@
 /* Define to 1 if unixODBC Driver Manager should be used. */
 #undef HAVE_UNIXODBC
 
+/* Define to 1 if 'vminfo.updates' exists. */
+#undef HAVE_VMINFO_T_UPDATES
+
 /* Define to 1 if you have the <vm/vm_param.h> header file. */
 #undef HAVE_VM_VM_PARAM_H
 

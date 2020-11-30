@@ -1,6 +1,8 @@
+// +build !windows
+
 /*
 ** Zabbix
-** Copyright (C) 2001-2020 Zabbix SIA
+** Copyright (C) 2001-2019 Zabbix SIA
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -17,34 +19,21 @@
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **/
 
-#include "common.h"
+package users
 
-#ifndef ZABBIX_ZBXKSTAT_H
-#define ZABBIX_ZBXKSTAT_H
+import (
+	"strconv"
+	"time"
 
-#if defined(HAVE_KSTAT_H) && defined(HAVE_VMINFO_T_UPDATES)
+	"zabbix.com/pkg/zbxcmd"
+)
 
-#include "zbxtypes.h"
+func (p *Plugin) getUsersNum() (num int, err error) {
+	var out string
+	out, err = zbxcmd.Execute("who | wc -l", time.Second*time.Duration(p.options.Timeout))
+	if err != nil {
+		return
+	}
 
-typedef struct
-{
-	zbx_uint64_t	freemem;
-	zbx_uint64_t	updates;
+	return strconv.Atoi(out)
 }
-zbx_kstat_vminfo_t;
-
-typedef struct
-{
-	zbx_kstat_vminfo_t	vminfo[2];
-	int			vminfo_index;
-}
-zbx_kstat_t;
-
-int	zbx_kstat_init(zbx_kstat_t *kstat, char **error);
-void	zbx_kstat_destroy(void);
-void	zbx_kstat_collect(zbx_kstat_t *kstat);
-int	zbx_kstat_get_freemem(zbx_uint64_t *value, char **error);
-
-#endif
-
-#endif
