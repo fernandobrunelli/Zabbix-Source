@@ -52,7 +52,7 @@ $item_form_list = (new CFormList('item-form-list'))
 	);
 
 // Append hosts to item form list.
-if ($data['displayInterfaces']) {
+if ($data['display_interfaces']) {
 	$item_form_list->addRow(
 		(new CVisibilityBox('visible[interfaceid]', 'interfaceDiv', _('Original')))
 			->setLabel(_('Host interface'))

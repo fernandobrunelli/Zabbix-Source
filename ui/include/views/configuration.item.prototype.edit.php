@@ -427,7 +427,7 @@ $form_list->addRow(
 );
 
 // append interfaces to form list
-if (!empty($data['interfaces'])) {
+if ($data['display_interfaces']) {
 	$select_interface = getInterfaceSelect($data['interfaces'])
 		->setId('interface-select')
 		->setValue($data['interfaceid'])
